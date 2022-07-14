@@ -1,26 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Balance } from './Balance';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+import { TouchBackend } from 'react-dnd-touch-backend'
+
+function isTouchDevice(): boolean {
+    return ('ontouchstart' in window) ||
+           (navigator.maxTouchPoints > 0);
+}
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const backend = isTouchDevice() ? TouchBackend : HTML5Backend;
+
+    return (
+        <div className="App">
+            <DndProvider backend={backend}>
+                <Balance/>
+            </DndProvider>
+        </div>
+    );
 }
 
 export default App;
