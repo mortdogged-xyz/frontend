@@ -1,12 +1,15 @@
 import React, {Suspense, useState, useRef} from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 
-import Tooltip from '@mui/material/Tooltip';
+import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
+import Tooltip from '@mui/material/Tooltip';
+import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 
 const TFTSet = "7";
@@ -145,13 +148,22 @@ export const Balance = () => {
         setCurrentTab(newTab);
     };
 
-    const headerSx = {fontSize: "18px"};
+    const headerSx = {fontSize: "18px", marginTop: "20px"};
 
     return (
         <div>
-            <Tabs value={currentTab} onChange={handleChange} centered>
-                {allTabs.map((tab) => <Tab label={tab} value={tab} key={tab} />)}
-            </Tabs>
+            <AppBar position="static">
+                <Container maxWidth="xl">
+                    <Toolbar disableGutters>
+                        <Box component="div" sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                            <Tabs value={currentTab} onChange={handleChange} centered>
+                                {allTabs.map((tab) => <Tab label={tab} value={tab} key={tab} />)}
+                            </Tabs>
+                        </Box>
+                        <Button color="inherit">Submit</Button>
+                    </Toolbar>
+                </Container>
+            </AppBar>
             <Stack
                 direction="row"
                 justifyContent="center"
