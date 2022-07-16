@@ -159,7 +159,7 @@ export const Balance = () => {
         setCurrentTab(newTab);
     };
 
-    const headerSx = {fontSize: "18px", marginTop: "20px"};
+    const headerSx = {fontSize: "18px", marginTop: "20px", fontWeight: "semi-bold"};
 
     return (
         <div>
@@ -184,7 +184,7 @@ export const Balance = () => {
             >
                 <Grid item xs={4}>
                     <DroppableZone onDrop={nerf} border="right">
-                        <Typography align="center" sx={headerSx}>Needs a Nerf</Typography>
+                        <Typography align="center" sx={headerSx} color="red">NERF</Typography>
                         <Box
                             component="div"
                             sx={{ display: 'flex',
@@ -199,7 +199,7 @@ export const Balance = () => {
 
                 <Grid item xs={4}>
                     <DroppableZone onDrop={noop} border="none">
-                        <Typography align="center" sx={headerSx}>Keep as is</Typography>
+                        <Typography align="center" sx={headerSx}>No change</Typography>
                         <Box
                             component="div"
                             sx={{ display: 'flex',
@@ -214,7 +214,7 @@ export const Balance = () => {
 
                 <Grid item xs={4}>
                     <DroppableZone onDrop={buff} border="left">
-                        <Typography align="center" sx={headerSx}>Needs a Buff</Typography>
+                        <Typography align="center" sx={headerSx} color="green">BUFF</Typography>
                         <Box
                             component="div"
                             sx={{ display: 'flex',
