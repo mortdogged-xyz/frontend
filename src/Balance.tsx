@@ -79,7 +79,7 @@ const DraggableIcon = (props: {icon: IconData}) => {
         borderStyle = {
             borderColor: champColor(icon.icon),
             borderStyle: 'solid',
-            borderSize: '1px',
+            borderWidth: '1px',
         }
     }
 
@@ -121,7 +121,7 @@ const DroppableZone = (props: {bgColor: string, border: "right" | "left" | "none
         opacity: isOver ? "10%" : "100%",
         backgroundColor: isOver ? bgColor : "",
         /* borderStyle: 'solid',
-         * borderSize: '1px',
+         * borderWidth: '1px',
          * borderColor: 'red', */
         width: '100%',
         height: '100%',
