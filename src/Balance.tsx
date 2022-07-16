@@ -64,8 +64,8 @@ const DraggableIcon = (props: {icon: IconData}) => {
     
 }
 
-const DroppableZone = (props: {border: "right" | "left" | "none", onDrop: (icon: IconData) => void, children: JSX.Element|JSX.Element[]}) => {
-    const { onDrop, children, border } = props;
+const DroppableZone = (props: {bgColor: string, border: "right" | "left" | "none", onDrop: (icon: IconData) => void, children: JSX.Element|JSX.Element[]}) => {
+    const { onDrop, children, border, bgColor } = props;
 
     const [{ isOver }, drop] = useDrop(
         () => ({
@@ -82,6 +82,7 @@ const DroppableZone = (props: {border: "right" | "left" | "none", onDrop: (icon:
     
     const zoneStyle = {
         opacity: isOver ? "10%" : "100%",
+        backgroundColor: isOver ? bgColor : "",
         /* borderStyle: 'solid',
          * borderSize: '1px',
          * borderColor: 'red', */
@@ -211,7 +212,7 @@ export const Balance = () => {
                 sx={{ paddingTop: '5px', height: '100%' }}
             >
                 <Grid item xs={4}>
-                    <DroppableZone onDrop={nerf} border="right">
+                    <DroppableZone onDrop={nerf} border="right" bgColor="red">
                         <Typography align="center" sx={headerSx} color="red">NERF</Typography>
                         <Box
                             component="div"
@@ -226,7 +227,7 @@ export const Balance = () => {
                 </Grid>
 
                 <Grid item xs={4}>
-                    <DroppableZone onDrop={noop} border="none">
+                    <DroppableZone onDrop={noop} border="none" bgColor="gray">
                         <Typography align="center" sx={headerSx} color="primary">No change</Typography>
                         <Box
                             component="div"
@@ -241,7 +242,7 @@ export const Balance = () => {
                 </Grid>
 
                 <Grid item xs={4}>
-                    <DroppableZone onDrop={buff} border="left">
+                    <DroppableZone onDrop={buff} border="left" bgColor="blue">
                         <Typography align="center" sx={headerSx} color="blue">BUFF</Typography>
                         <Box
                             component="div"
