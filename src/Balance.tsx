@@ -12,6 +12,8 @@ import Tooltip from '@mui/material/Tooltip';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 
+import TFTData from './data.json';
+
 const TFTSet = "7";
 
 interface ItemData {
@@ -78,8 +80,9 @@ const DroppableZone = (props: {border: "right" | "left" | "none", onDrop: (item:
     
 }
 
-const items = [{icon: "Diana", kind: "champ"},
-               {icon: "Shen", kind: "champ"}]
+const items = TFTData.champs.map((icon) => {
+    return {icon: icon, kind: "champ"};
+});
 
 interface BalanceData {
     nerf: Array<ItemData>;
