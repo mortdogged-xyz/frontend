@@ -17,37 +17,43 @@ import TFTData from './set_data.json';
 
 const TFTSet = "7";
 
-interface ItemData {
+interface IconData {
     icon: string;
     kind: string;
 }
 
-function iconURL(item: ItemData): string {
-    if (item.kind === "champ") {
-        return `https://rerollcdn.com/characters/Skin/${TFTSet}/${item.icon}.png`
+function iconURL(icon: IconData): string {
+    if (icon.kind === "champ") {
+        return `https://rerollcdn.com/characters/Skin/${TFTSet}/${icon.icon}.png`
+    } else if (icon.kind === "item") {
+        return `https://rerollcdn.com/items/${icon.icon}.png`
+    } else if (icon.kind === "aug") {
+        return `https://rerollcdn.com/augments/${TFTSet}/${icon.icon}.png`
+    } else if (icon.kind === "trait") {
+        return `https://rerollcdn.com/icons/${icon.icon}.png`
     }
 
     return "";
 }
 
-const DraggableIcon = (props: {item: ItemData}) => {
-    const { item } = props;
+const DraggableIcon = (props: {icon: IconData}) => {
+    const { icon } = props;
 
     const [{ isDragging }, drag] = useDrag(() => ({
-        type: "item",
-        item: item,
+        type: "icon",
+        item: icon,
         collect: (monitor) => ({
             isDragging: !!monitor.isDragging()
         })
     }));
 
     return (
-        <Tooltip title={item.icon}>
+        <Tooltip title={icon.icon}>
             <img
                 ref={drag}
                 width="80px"
-                src={iconURL(item)}
-                alt={item.icon}
+                src={iconURL(icon)}
+                alt={icon.icon}
                 style={{ opacity: (isDragging ? "10%" : "100%"),
                          cursor: 'pointer',
                          marginLeft: '15px',
@@ -58,14 +64,14 @@ const DraggableIcon = (props: {item: ItemData}) => {
     
 }
 
-const DroppableZone = (props: {border: "right" | "left" | "none", onDrop: (item: ItemData) => void, children: JSX.Element|JSX.Element[]}) => {
+const DroppableZone = (props: {border: "right" | "left" | "none", onDrop: (icon: IconData) => void, children: JSX.Element|JSX.Element[]}) => {
     const { onDrop, children, border } = props;
 
     const [{ isOver }, drop] = useDrop(
         () => ({
-            accept: "item",
-            drop: (item, monitor) => {
-                onDrop(item as ItemData);
+            accept: "icon",
+            drop: (icon, monitor) => {
+                onDrop(icon as IconData);
             },
             collect: (monitor) => ({
                 isOver: !!monitor.isOver()
@@ -88,23 +94,42 @@ const DroppableZone = (props: {border: "right" | "left" | "none", onDrop: (item:
     
 }
 
-const items = TFTData.champs.map((icon) => {
-    return {icon: icon, kind: "champ"};
-});
+function convertData(data: Array<string>, kind: string, blacklist: Array<string>): Array<IconData> {
+    return data.filter((icon) => !blacklist.includes(icon)).map((icon) => {
+        return {icon: icon, kind: kind};
+    });
+}
+
+const champs = convertData(TFTData.champs, "champ", ["Nomsy"])
+const items = convertData(
+    TFTData.items.filter((icon) => {
+        return !icon.includes("Radiant") &&
+               !icon.includes("Shimmerscale") &&
+               !icon.includes("Ornn") &&
+               !icon.includes("EmptyBag") &&
+               !icon.includes("AstralEmblem") &&
+               !icon.includes("Trainer")
+    }),
+    "item",
+    [],
+)
+const augs = convertData(TFTData.augs, "aug", [])
+const traits = convertData(TFTData.traits, "trait", [])
+const allIcons = champs.concat(items).concat(augs).concat(traits);
 
 interface BalanceData {
-    nerf: Array<ItemData>;
-    noop: Array<ItemData>;
-    buff: Array<ItemData>;
+    nerf: Array<IconData>;
+    noop: Array<IconData>;
+    buff: Array<IconData>;
 }
 
 
-const RenderItems = (props: {items: Array<ItemData>}) => {
-    const itemsRendered = props.items.map((item) => <DraggableIcon item={item} key={item.icon}/>);
+const RenderIcons = (props: {icons: Array<IconData>}) => {
+    const iconsRendered = props.icons.map((icon) => <DraggableIcon icon={icon} key={icon.icon}/>);
 
     return (
         <>
-            {itemsRendered}
+            {iconsRendered}
         </>
     )
 }
@@ -121,7 +146,8 @@ function disj<T>(arr: Array<T>, el: T): Array<T> {
 type BalanceKey = "nerf" | "noop" | "buff";
 const allKeys = ["nerf", "noop", "buff"] as BalanceKey[];
 
-function moveFromTo(data: BalanceData, tok: BalanceKey, el: ItemData) {
+function moveFromTo(data: BalanceData, tok: BalanceKey, el: IconData) {
+    console.log(el);
     const clone = {...data};
 
     allKeys.forEach((fromk) => clone[fromk] = disj(clone[fromk], el));
@@ -146,14 +172,14 @@ function filterBalance(balance: BalanceData, k: string): BalanceData {
 
 export const Balance = () => {
     const [currentTab, setCurrentTab] = useState(allTabs[0]);
-    const [allBalance, setAllBalance] = useState<BalanceData>({nerf: [], noop: items, buff: []})
+    const [allBalance, setAllBalance] = useState<BalanceData>({nerf: [], noop: allIcons, buff: []})
 
     const tabFilter = tabFilters[currentTab] || 'champ';
     const balance = filterBalance(allBalance, tabFilter);
 
-    const nerf = (item: ItemData) => setAllBalance((balance) => moveFromTo(balance, "nerf", item));
-    const noop = (item: ItemData) => setAllBalance((balance) => moveFromTo(balance, "noop", item));
-    const buff = (item: ItemData) => setAllBalance((balance) => moveFromTo(balance, "buff", item));
+    const nerf = (icon: IconData) => setAllBalance((balance) => moveFromTo(balance, "nerf", icon));
+    const noop = (icon: IconData) => setAllBalance((balance) => moveFromTo(balance, "noop", icon));
+    const buff = (icon: IconData) => setAllBalance((balance) => moveFromTo(balance, "buff", icon));
 
     const handleChange = (event: React.SyntheticEvent, newTab: string) => {
         setCurrentTab(newTab);
@@ -192,7 +218,7 @@ export const Balance = () => {
                                   paddingTop: '5px',
                                   justifyContent: 'flex-start' }}
                         >
-                            <RenderItems items={balance.nerf}/>
+                            <RenderIcons icons={balance.nerf}/>
                         </Box>
                     </DroppableZone>
                 </Grid>
@@ -207,7 +233,7 @@ export const Balance = () => {
                                   paddingTop: '5px',
                                   justifyContent: 'flex-start' }}
                         >
-                            <RenderItems items={balance.noop}/>
+                            <RenderIcons icons={balance.noop}/>
                         </Box>
                     </DroppableZone>
                 </Grid>
@@ -222,7 +248,7 @@ export const Balance = () => {
                                   paddingTop: '5px',
                                   justifyContent: 'flex-start' }}
                         >
-                            <RenderItems items={balance.buff}/>
+                            <RenderIcons icons={balance.buff}/>
                         </Box>
                     </DroppableZone>
                 </Grid>
