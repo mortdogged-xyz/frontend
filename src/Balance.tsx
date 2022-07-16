@@ -147,7 +147,6 @@ type BalanceKey = "nerf" | "noop" | "buff";
 const allKeys = ["nerf", "noop", "buff"] as BalanceKey[];
 
 function moveFromTo(data: BalanceData, tok: BalanceKey, el: IconData) {
-    console.log(el);
     const clone = {...data};
 
     allKeys.forEach((fromk) => clone[fromk] = disj(clone[fromk], el));
