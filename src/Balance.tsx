@@ -1,4 +1,4 @@
-import React, {Suspense, useState, useRef} from 'react';
+import React, {useState} from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 
 import AppBar from '@mui/material/AppBar';
