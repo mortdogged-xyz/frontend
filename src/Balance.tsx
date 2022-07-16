@@ -13,6 +13,8 @@ import Tooltip from '@mui/material/Tooltip';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 
+import { Logout } from './firebase';
+
 import TFTData from './set_data.json';
 
 const TFTSet = "7";
@@ -173,7 +175,9 @@ function filterBalance(balance: BalanceData, k: string): BalanceData {
     return clone;
 }
 
-export const Balance = () => {
+export const Balance = (props: {uid: string | null}) => {
+    const { uid } = props;
+    console.log(uid);
     const [currentTab, setCurrentTab] = useState(allTabs[0]);
     const [allBalance, setAllBalance] = useState<BalanceData>({nerf: [], noop: allIcons, buff: []})
 
@@ -201,6 +205,7 @@ export const Balance = () => {
                             </Tabs>
                         </Box>
                         <Button color="inherit" disabled={allBalance.nerf.length === 0 && allBalance.buff.length === 0}>Submit</Button>
+                        <Button color="inherit" onClick={Logout}>Logout</Button>
                     </Toolbar>
                 </Container>
             </AppBar>
