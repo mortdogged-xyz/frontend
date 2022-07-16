@@ -20,11 +20,21 @@ const app = firebase.initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 export async function dbSet(version: string, uid: string, data: any) {
-    await setDoc(doc(db, "feedback", "meta", version, uid), data)
+    await setDoc(doc(db, "feedback", "meta", version, uid), {data: JSON.stringify(data)});
 }
 
-export function dbGet(version: string, uid: string): Promise<any> {
-    return getDoc(doc(db, "feedback", "meta", version, uid))
+interface StoredBalanceData {
+    data: string,
+}
+
+export async function dbGet<T>(version: string, uid: string): Promise<T> {
+    const docRef = await getDoc(doc(db, "feedback", "meta", version, uid));
+    if (docRef.exists()) {
+        const data = docRef.data() as StoredBalanceData;
+        return JSON.parse(data.data) as T;
+    }
+
+    throw new Error("Could not find data");
 }
 
 var uiConfig = {
@@ -64,8 +74,6 @@ export const AuthUI = (props: {
     useEffect(() => {
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
-                console.log(user);
-                console.log(user.uid);
                 setAuth(true);
                 onLoginChange(user.uid);
             } else {
@@ -73,12 +81,13 @@ export const AuthUI = (props: {
                 onLoginChange(null);
             }
         });
-    }, []);
+    }, [onLoginChange]);
 
     useEffect(() => {
         if (rootEl.current) {
+            var fauth = firebase.auth();
             var ui = firebaseui.auth.AuthUI.getInstance() ||
-                     new firebaseui.auth.AuthUI(firebase.auth());
+                     new firebaseui.auth.AuthUI(fauth);
             ui.start(rootEl.current, uiConfig);
         }
     }, [rootEl]);
