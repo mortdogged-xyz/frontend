@@ -5,7 +5,8 @@ import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import Stack from '@mui/material/Stack';
+import Grid from '@mui/material/Grid';
+/* import Stack from '@mui/material/Stack'; */
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Tooltip from '@mui/material/Tooltip';
@@ -42,7 +43,16 @@ const DraggableIcon = (props: {item: ItemData}) => {
 
     return (
         <Tooltip title={item.icon}>
-            <img ref={drag} width="80px" src={iconURL(item)} alt={item.icon} style={{opacity: (isDragging ? "10%" : "100%"), cursor: 'pointer'}}/>
+            <img
+                ref={drag}
+                width="80px"
+                src={iconURL(item)}
+                alt={item.icon}
+                style={{ opacity: (isDragging ? "10%" : "100%"),
+                         cursor: 'pointer',
+                         marginLeft: '15px',
+                         marginBottom: '15px' }}
+            />
         </Tooltip>
     )
     
@@ -165,50 +175,58 @@ export const Balance = () => {
                     </Toolbar>
                 </Container>
             </AppBar>
-            <Stack
-                direction="row"
-                justifyContent="center"
+
+            <Grid
+                container
                 alignItems="center"
                 spacing={2}
                 sx={{ paddingTop: '5px' }}
             >
-                <DroppableZone onDrop={nerf} border="right">
-                    <Typography align="center" sx={headerSx}>Needs a Nerf</Typography>
-                    <Stack
-                        direction="row"
-                        justifyContent="center"
-                        alignItems="center"
-                        spacing={2}
-                        sx={{ paddingTop: '5px' }}
-                    >
-                        <RenderItems items={balance.nerf}/>
-                    </Stack>
-                </DroppableZone>
-                <DroppableZone onDrop={noop} border="none">
-                    <Typography align="center" sx={headerSx}>Keep as is</Typography>
-                    <Stack
-                        direction="row"
-                        justifyContent="center"
-                        alignItems="center"
-                        spacing={2}
-                        sx={{ paddingTop: '5px' }}
-                    >
-                        <RenderItems items={balance.noop}/>
-                    </Stack>
-                </DroppableZone>
-                <DroppableZone onDrop={buff} border="left">
-                    <Typography align="center" sx={headerSx}>Needs a Buff</Typography>
-                    <Stack
-                        direction="row"
-                        justifyContent="center"
-                        alignItems="center"
-                        spacing={2}
-                        sx={{ paddingTop: '5px' }}
-                    >
-                        <RenderItems items={balance.buff}/>
-                    </Stack>
-                </DroppableZone>
-            </Stack>
+                <Grid item xs={4}>
+                    <DroppableZone onDrop={nerf} border="right">
+                        <Typography align="center" sx={headerSx}>Needs a Nerf</Typography>
+                        <Box
+                            component="div"
+                            sx={{ display: 'flex',
+                                  flexWrap: "wrap",
+                                  paddingTop: '5px',
+                                  justifyContent: 'flex-start' }}
+                        >
+                            <RenderItems items={balance.nerf}/>
+                        </Box>
+                    </DroppableZone>
+                </Grid>
+
+                <Grid item xs={4}>
+                    <DroppableZone onDrop={noop} border="none">
+                        <Typography align="center" sx={headerSx}>Keep as is</Typography>
+                        <Box
+                            component="div"
+                            sx={{ display: 'flex',
+                                  flexWrap: "wrap",
+                                  paddingTop: '5px',
+                                  justifyContent: 'flex-start' }}
+                        >
+                            <RenderItems items={balance.noop}/>
+                        </Box>
+                    </DroppableZone>
+                </Grid>
+
+                <Grid item xs={4}>
+                    <DroppableZone onDrop={buff} border="left">
+                        <Typography align="center" sx={headerSx}>Needs a Buff</Typography>
+                        <Box
+                            component="div"
+                            sx={{ display: 'flex',
+                                  flexWrap: "wrap",
+                                  paddingTop: '5px',
+                                  justifyContent: 'flex-start' }}
+                        >
+                            <RenderItems items={balance.buff}/>
+                        </Box>
+                    </DroppableZone>
+                </Grid>
+            </Grid>
         </div>
     )
 }
