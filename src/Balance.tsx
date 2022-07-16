@@ -13,7 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 
-import TFTData from './data.json';
+import TFTData from './set_data.json';
 
 const TFTSet = "7";
 
