@@ -214,7 +214,7 @@ export const Balance = () => {
 
                 <Grid item xs={4}>
                     <DroppableZone onDrop={buff} border="left">
-                        <Typography align="center" sx={headerSx} color="green">BUFF</Typography>
+                        <Typography align="center" sx={headerSx} color="blue">BUFF</Typography>
                         <Box
                             component="div"
                             sx={{ display: 'flex',
