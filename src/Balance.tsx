@@ -82,8 +82,11 @@ const DroppableZone = (props: {border: "right" | "left" | "none", onDrop: (icon:
     
     const zoneStyle = {
         opacity: isOver ? "10%" : "100%",
+        /* borderStyle: 'solid',
+         * borderSize: '1px',
+         * borderColor: 'red', */
         width: '100%',
-        height: '100vh',
+        height: '100%',
     };
 
     return (
@@ -203,9 +206,9 @@ export const Balance = () => {
 
             <Grid
                 container
-                alignItems="center"
+                alignItems="top"
                 spacing={2}
-                sx={{ paddingTop: '5px' }}
+                sx={{ paddingTop: '5px', height: '100%' }}
             >
                 <Grid item xs={4}>
                     <DroppableZone onDrop={nerf} border="right">
