@@ -12,12 +12,21 @@ import Tab from '@mui/material/Tab';
 import Tooltip from '@mui/material/Tooltip';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert, { AlertProps } from '@mui/material/Alert';
 
 import { Logout, dbSet } from './firebase';
 
 import TFTData from './set_data.json';
 
 const TFTSet = "7";
+
+const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
+    props,
+    ref,
+) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 interface IconData {
     icon: string;
@@ -216,9 +225,15 @@ const defaultBalanceState = {nerf: [], noop: allIcons, buff: []};
 export const Balance = (props: {uid: string | null}) => {
     const { uid } = props;
     const [currentTab, setCurrentTab] = useState(allTabs[0]);
-    const [allBalance, setAllBalance] = useState<BalanceData>(defaultBalanceState)
+    const [allBalance, setAllBalance] = useState<BalanceData>(defaultBalanceState);
+    const [alertShown, setAlertShown] = useState(false);
     
-    const submit = async () => await dbSet(TFTSet, uid || "anon", allBalance);
+    const submit = async () => {
+        await dbSet(TFTSet, uid || "anon", allBalance);
+        setAlertShown(true);
+    }
+
+    const closeAlert = () => setAlertShown(false);
 
     const tabFilter = tabFilters[currentTab] || 'champ';
     const balance = filterBalance(allBalance, tabFilter);
@@ -248,6 +263,13 @@ export const Balance = (props: {uid: string | null}) => {
                     </Toolbar>
                 </Container>
             </AppBar>
+
+            <Snackbar open={alertShown}
+                      anchorOrigin={{vertical: "top", horizontal: "center"}}
+                      autoHideDuration={6000}
+                      onClose={closeAlert}>
+                <Alert severity="success" onClose={closeAlert}>Submitted, Thanks!</Alert>
+            </Snackbar>
 
             <Grid
                 container
