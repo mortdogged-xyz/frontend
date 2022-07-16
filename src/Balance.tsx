@@ -38,6 +38,30 @@ function iconURL(icon: IconData): string {
     return "";
 }
 
+function champCost(icon: string): number {
+    const cost = (TFTData.champ_cost as Record<string, number>)[icon];
+    if (cost) {
+        return cost;
+    }
+    return -1;
+}
+
+function champColor(icon: string): string {
+    const cost = champCost(icon);
+
+    if (cost === 6 || cost === 5) {
+        return "gold";
+    } if (cost === 4 || cost === 3) {
+        return "purple";
+    } if (cost === 2 ) {
+        return "blue";
+    } if (cost === 1 ) {
+        return "green";
+    }
+
+    return "gray";
+}
+
 const DraggableIcon = (props: {icon: IconData}) => {
     const { icon } = props;
 
@@ -49,6 +73,16 @@ const DraggableIcon = (props: {icon: IconData}) => {
         })
     }));
 
+    let borderStyle = {};
+
+    if (icon.kind === "champ") {
+        borderStyle = {
+            borderColor: champColor(icon.icon),
+            borderStyle: 'solid',
+            borderSize: '1px',
+        }
+    }
+
     return (
         <Tooltip title={icon.icon}>
             <img
@@ -56,7 +90,8 @@ const DraggableIcon = (props: {icon: IconData}) => {
                 width="80px"
                 src={iconURL(icon)}
                 alt={icon.icon}
-                style={{ opacity: (isDragging ? "10%" : "100%"),
+                style={{ ...borderStyle,
+                         opacity: (isDragging ? "10%" : "100%"),
                          cursor: 'pointer',
                          marginLeft: '15px',
                          marginBottom: '15px' }}
@@ -106,7 +141,8 @@ function convertData(data: Array<string>, kind: string, blacklist: Array<string>
     });
 }
 
-const champs = convertData(TFTData.champs, "champ", ["Nomsy"])
+TFTData.champs.sort((a, b) => champCost(a) - champCost(b));
+const champs = convertData(TFTData.champs.reverse(), "champ", ["Nomsy"])
 const items = convertData(
     TFTData.items.filter((icon) => {
         return !icon.includes("Radiant") &&
