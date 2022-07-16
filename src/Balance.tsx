@@ -7,6 +7,7 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
+import Typography from '@mui/material/Typography';
 
 const TFTSet = "7";
 
@@ -37,15 +38,15 @@ const DraggableIcon = (props: {item: ItemData}) => {
     return (
         <Tooltip title={item.icon}>
             <Button variant={isDragging ? "outlined" : "contained"} ref={drag} disabled={false}>
-                <img src={iconURL(item)} alt={item.icon} />
+                <img width="80px" src={iconURL(item)} alt={item.icon} />
             </Button>
         </Tooltip>
     )
     
 }
 
-const DroppableZone = (props: {onDrop: (item: ItemData) => void, children: JSX.Element|JSX.Element[]}) => {
-    const { onDrop, children } = props;
+const DroppableZone = (props: {border: "right" | "left" | "none", onDrop: (item: ItemData) => void, children: JSX.Element|JSX.Element[]}) => {
+    const { onDrop, children, border } = props;
 
     const [{ isOver }, drop] = useDrop(
         () => ({
@@ -62,15 +63,12 @@ const DroppableZone = (props: {onDrop: (item: ItemData) => void, children: JSX.E
     
     const zoneStyle = {
         opacity: isOver ? "10%" : "100%",
-        borderSize: '1px',
-        borderStyle: 'solid',
-        borderColor: 'red',
         width: '100%',
         height: '100vh',
     };
 
     return (
-        <Box component="div" ref={drop} style={zoneStyle}>
+        <Box component="div" ref={drop} style={zoneStyle} sx={{borderRight: border === "right" ? 1 : 0, borderLeft: border === "left" ? 1 : 0}}>
             {children}
         </Box>
     );
@@ -147,6 +145,8 @@ export const Balance = () => {
         setCurrentTab(newTab);
     };
 
+    const headerSx = {fontSize: "18px"};
+
     return (
         <div>
             <Tabs value={currentTab} onChange={handleChange} centered>
@@ -159,7 +159,8 @@ export const Balance = () => {
                 spacing={2}
                 sx={{ paddingTop: '5px' }}
             >
-                <DroppableZone onDrop={nerf}>
+                <DroppableZone onDrop={nerf} border="right">
+                    <Typography align="center" sx={headerSx}>Needs a Nerf</Typography>
                     <Stack
                         direction="row"
                         justifyContent="center"
@@ -170,7 +171,8 @@ export const Balance = () => {
                         <RenderItems items={balance.nerf}/>
                     </Stack>
                 </DroppableZone>
-                <DroppableZone onDrop={noop}>
+                <DroppableZone onDrop={noop} border="none">
+                    <Typography align="center" sx={headerSx}>Keep as is</Typography>
                     <Stack
                         direction="row"
                         justifyContent="center"
@@ -181,7 +183,8 @@ export const Balance = () => {
                         <RenderItems items={balance.noop}/>
                     </Stack>
                 </DroppableZone>
-                <DroppableZone onDrop={buff}>
+                <DroppableZone onDrop={buff} border="left">
+                    <Typography align="center" sx={headerSx}>Needs a Buff</Typography>
                     <Stack
                         direction="row"
                         justifyContent="center"
