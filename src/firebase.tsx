@@ -4,6 +4,10 @@ import { getFirestore, setDoc, getDoc, doc } from "firebase/firestore";
 import * as firebaseui from 'firebaseui';
 import 'firebaseui/dist/firebaseui.css';
 
+import Box from '@mui/material/Box';
+import Dialog from '@mui/material/Dialog';
+import DialogContent from '@mui/material/DialogContent';
+
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
@@ -68,34 +72,32 @@ export const AuthUI = (props: {
     onLoginChange: (uid: string | null) => void,
 }) => {
     const { children, onLoginChange } = props;
-    const [auth, setAuth] = useState(false);
+    const [firebaseInstance] = useState(firebaseui.auth.AuthUI.getInstance() ||
+                                        new firebaseui.auth.AuthUI(firebase.auth()))
+    const [isAuthed, setIsAuthed] = useState(false);
     const rootEl = useRef(null);
 
     useEffect(() => {
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
-                setAuth(true);
                 onLoginChange(user.uid);
             } else {
-                setAuth(false);
                 onLoginChange(null);
             }
+            setIsAuthed(!!user);
         });
-    }, [onLoginChange]);
+    }, [firebaseInstance, onLoginChange]);
 
     useEffect(() => {
         if (rootEl.current) {
-            var fauth = firebase.auth();
-            var ui = firebaseui.auth.AuthUI.getInstance() ||
-                     new firebaseui.auth.AuthUI(fauth);
-            ui.start(rootEl.current, uiConfig);
+            firebaseInstance.start(rootEl.current, uiConfig);
         }
-    }, [rootEl]);
+    }, [firebaseInstance, rootEl]);
 
     return (
-        <div>
-            <div style={{display: auth ? 'none' : 'block'}} id='auth-root' ref={rootEl}></div>
-            {auth ? children : <span></span>}
-        </div>
+        <>
+            <Box sx={{display: (!isAuthed ? 'block' : 'none')}} component="div" ref={rootEl}></Box>
+            {isAuthed ? children : <span></span>}
+        </>
     );
 }

@@ -24,13 +24,13 @@ function App() {
     const [uid, setUID] = useState<string | null>(null);
 
     return (
-        <AuthUI onLoginChange={setUID}>
-            <ThemeProvider theme={darkTheme}>
+        <ThemeProvider theme={darkTheme}>
+            <AuthUI onLoginChange={setUID}>
                 <DndProvider backend={backend}>
                     <Balance uid={uid}/>
                 </DndProvider>
-            </ThemeProvider>
-        </AuthUI>
+            </AuthUI>
+        </ThemeProvider>
     );
 }
 
