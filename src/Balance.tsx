@@ -200,7 +200,7 @@ export const Balance = () => {
                                 {allTabs.map((tab) => <Tab label={tab} value={tab} key={tab} />)}
                             </Tabs>
                         </Box>
-                        <Button color="inherit">Submit</Button>
+                        <Button color="inherit" disabled={allBalance.nerf.length === 0 && allBalance.buff.length === 0}>Submit</Button>
                     </Toolbar>
                 </Container>
             </AppBar>
