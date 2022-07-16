@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 
 import AppBar from '@mui/material/AppBar';
@@ -13,7 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 
-import { Logout } from './firebase';
+import { Logout, dbSet, dbGet } from './firebase';
 
 import TFTData from './set_data.json';
 
@@ -179,7 +179,17 @@ export const Balance = (props: {uid: string | null}) => {
     const { uid } = props;
     console.log(uid);
     const [currentTab, setCurrentTab] = useState(allTabs[0]);
-    const [allBalance, setAllBalance] = useState<BalanceData>({nerf: [], noop: allIcons, buff: []})
+    const defaultBalanceState = {nerf: [], noop: allIcons, buff: []};
+    const [allBalance, setAllBalance] = useState<BalanceData>(defaultBalanceState)
+
+    /* useEffect(async () => {
+     *     const userBalance = await dbGet(TFTSet, uid);
+     *     if (allBalance === defaultBalanceState && userBalance !== undefined) {
+     *         setAllBalance(userBalance);
+     *     }
+     * }, [defaultBalanceState, allBalance, uid]);
+     */
+    const submit = async () => await dbSet(TFTSet, uid || "anon", allBalance);
 
     const tabFilter = tabFilters[currentTab] || 'champ';
     const balance = filterBalance(allBalance, tabFilter);
@@ -204,7 +214,7 @@ export const Balance = (props: {uid: string | null}) => {
                                 {allTabs.map((tab) => <Tab label={tab} value={tab} key={tab} />)}
                             </Tabs>
                         </Box>
-                        <Button color="inherit" disabled={allBalance.nerf.length === 0 && allBalance.buff.length === 0}>Submit</Button>
+                        <Button color="inherit" disabled={allBalance.nerf.length === 0 && allBalance.buff.length === 0} onClick={submit}>Submit</Button>
                         <Button color="inherit" onClick={Logout}>Logout</Button>
                     </Toolbar>
                 </Container>

@@ -1,5 +1,6 @@
 import React, {useState, useRef, useEffect} from 'react';
 import firebase from 'firebase/compat/app';
+import { getFirestore, setDoc, getDoc, doc } from "firebase/firestore";
 import * as firebaseui from 'firebaseui';
 import 'firebaseui/dist/firebaseui.css';
 
@@ -15,18 +16,27 @@ const firebaseConfig = {
     measurementId: "G-11NJ6FYJQG"
 };
 
-firebase.initializeApp(firebaseConfig);
+const app = firebase.initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+export async function dbSet(version: string, uid: string, data: any) {
+    await setDoc(doc(db, "feedback", "meta", version, uid), data)
+}
+
+export function dbGet(version: string, uid: string): Promise<any> {
+    return getDoc(doc(db, "feedback", "meta", version, uid))
+}
 
 var uiConfig = {
     signInSuccessUrl: '/',
     signInOptions: [
         // Leave the lines as is for the providers you want to offer your users.
+        firebase.auth.EmailAuthProvider.PROVIDER_ID,
+        firebase.auth.TwitterAuthProvider.PROVIDER_ID,
         // firebase.auth.GoogleAuthProvider.PROVIDER_ID,
         // firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-        // firebase.auth.TwitterAuthProvider.PROVIDER_ID,
         // firebase.auth.GithubAuthProvider.PROVIDER_ID,
-        firebase.auth.EmailAuthProvider.PROVIDER_ID,
-        firebase.auth.PhoneAuthProvider.PROVIDER_ID,
+        // firebase.auth.PhoneAuthProvider.PROVIDER_ID,
         // firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
     ],
     // tosUrl and privacyPolicyUrl accept either url string or a callback
