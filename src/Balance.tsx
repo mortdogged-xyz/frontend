@@ -42,9 +42,7 @@ const DraggableIcon = (props: {item: ItemData}) => {
 
     return (
         <Tooltip title={item.icon}>
-            <Button variant={isDragging ? "outlined" : "contained"} ref={drag} disabled={false}>
-                <img width="80px" src={iconURL(item)} alt={item.icon} />
-            </Button>
+            <img ref={drag} width="80px" src={iconURL(item)} alt={item.icon} style={{opacity: (isDragging ? "10%" : "100%"), cursor: 'pointer'}}/>
         </Tooltip>
     )
     
