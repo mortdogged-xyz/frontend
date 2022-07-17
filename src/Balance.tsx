@@ -115,7 +115,9 @@ const DraggableIcon = (props: {icon: IconData}) => {
     
 }
 
-const DroppableZone = (props: {bgColor: string, border: "right" | "left" | "none", onDrop: (icon: IconData) => void, children: JSX.Element|JSX.Element[]}) => {
+type ColumnBorder = "right" | "left" | "none";
+
+const DroppableZone = (props: {bgColor: string, border: ColumnBorder, onDrop: (icon: IconData) => void, children: JSX.Element|JSX.Element[]}) => {
     const { onDrop, children, border, bgColor } = props;
 
     const [{ isOver }, drop] = useDrop(
@@ -228,6 +230,104 @@ function filterBalance(balance: BalanceData, k: string): BalanceData {
 const emptyBalanceState = {nerf: [], noop: [], buff: []};
 const defaultBalanceState = {nerf: [], noop: allIcons, buff: []};
 
+export const NavBar = (props: {
+    setTab: (tab: string) => void,
+    currentTab: string,
+    canSubmit: boolean,
+    submit: () => void,
+}) => {
+    const { setTab, currentTab, canSubmit, submit } = props;
+    const [navAnchorEl, setNavAnchorEl] = useState<HTMLElement | null>(null);
+    const [navMenuOpen, setNavMenuOpen] = useState(false);
+    const toggleNavMenu = (e: React.MouseEvent<HTMLElement>) => {
+        setNavMenuOpen((v) => !v);  
+        setNavAnchorEl(e.currentTarget);
+    } 
+
+    const changeTab = (tab: string) => {
+        return () => {
+            setTab(tab);
+            setNavMenuOpen(false);  
+        }
+    };
+
+    const handleChange = (event: React.SyntheticEvent, tab: string) => {
+        changeTab(tab)();
+    };
+
+   return (
+            <AppBar position="static">
+                <Container maxWidth="xl">
+                    <Toolbar disableGutters>
+                        <Box component="div" sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+                            <IconButton
+                                size="large"
+                                onClick={toggleNavMenu}
+                            >
+                                <MenuIcon />
+                            </IconButton>
+                            <Menu
+                                keepMounted
+                                open={navMenuOpen}
+                                onClose={toggleNavMenu}
+                                anchorEl={navAnchorEl}
+
+                            >
+                                {allTabs.map((tab) => {
+                                    return (
+                                        <MenuItem onClick={changeTab(tab)} key={tab} >
+                                            {tab}
+                                        </MenuItem>
+                                    );
+                                })}
+                            </Menu>
+
+                        </Box>
+
+                        <Box component="div" sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                            <Tabs value={currentTab} onChange={handleChange} centered>
+                                {allTabs.map((tab) => <Tab label={tab} value={tab} key={tab} />)}
+                            </Tabs>
+                        </Box>
+
+                        <Button color="inherit" disabled={!canSubmit} onClick={submit}>Submit</Button>
+                        <Button color="inherit" onClick={Logout}>Logout</Button>
+                        <Info />
+                    </Toolbar>
+                </Container>
+            </AppBar>
+   )
+}
+
+export const Column = (props: {
+    onDrop: (item: IconData) => void,
+    sx: any,
+    header: string,
+    headerColor: string,
+    border: ColumnBorder,
+    bgColor: string,
+    icons: Array<IconData>,
+}) => {
+    const { onDrop, sx, header, headerColor, border, bgColor, icons } = props;
+
+    return (
+        <Grid item xs={4}>
+            <DroppableZone onDrop={onDrop} border={border} bgColor={bgColor}>
+                <Typography align="center" sx={sx} color={headerColor}>{header}</Typography>
+                <Box
+                    component="div"
+                    sx={{ display: 'flex',
+                          flexWrap: "wrap",
+                          paddingTop: '5px',
+                          justifyContent: 'flex-start' }}
+                >
+                    <RenderIcons icons={icons}/>
+                </Box>
+            </DroppableZone>
+        </Grid>
+    )
+}
+
 export const Balance = (props: {uid: string | null}) => {
     const { uid } = props;
     const [currentTab, setCurrentTab] = useState(allTabs[0]);
@@ -267,68 +367,16 @@ export const Balance = (props: {uid: string | null}) => {
     const noop = (icon: IconData) => setAllBalance((balance) => moveFromTo(balance, "noop", icon));
     const buff = (icon: IconData) => setAllBalance((balance) => moveFromTo(balance, "buff", icon));
 
-    const handleChange = (event: React.SyntheticEvent, newTab: string) => {
-        setCurrentTab(newTab);
-    };
-
     const headerSx = {fontSize: "18px", marginTop: "20px", fontWeight: "semi-bold"};
 
-    const [navAnchorEl, setNavAnchorEl] = useState<HTMLElement | null>(null);
-    const [navMenuOpen, setNavMenuOpen] = useState(false);
-    const toggleNavMenu = (e: React.MouseEvent<HTMLElement>) => {
-        setNavMenuOpen((v) => !v);  
-        setNavAnchorEl(e.currentTarget);
-    } 
-
-    const changeTab = (tab: string) => {
-        return () => {
-            setCurrentTab(tab);
-            setNavMenuOpen(false);  
-        }
-    };
-
     return (
-        <div>
-            <AppBar position="static">
-                <Container maxWidth="xl">
-                    <Toolbar disableGutters>
-                        <Box component="div" sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-                            <IconButton
-                                size="large"
-                                onClick={toggleNavMenu}
-                            >
-                                <MenuIcon />
-                            </IconButton>
-                            <Menu
-                                keepMounted
-                                open={navMenuOpen}
-                                onClose={toggleNavMenu}
-                                anchorEl={navAnchorEl}
-
-                            >
-                                {allTabs.map((tab) => {
-                                    return (
-                                        <MenuItem onClick={changeTab(tab)} key={tab} >
-                                            {tab}
-                                        </MenuItem>
-                                    );
-                                })}
-                            </Menu>
-
-                        </Box>
-
-                        <Box component="div" sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                            <Tabs value={currentTab} onChange={handleChange} centered>
-                                {allTabs.map((tab) => <Tab label={tab} value={tab} key={tab} />)}
-                            </Tabs>
-                        </Box>
-
-                        <Button color="inherit" disabled={allBalance.nerf.length === 0 && allBalance.buff.length === 0} onClick={submit}>Submit</Button>
-                        <Button color="inherit" onClick={Logout}>Logout</Button>
-                        <Info />
-                    </Toolbar>
-                </Container>
-            </AppBar>
+        <>
+            <NavBar
+                setTab={setCurrentTab}
+                currentTab={currentTab}
+                canSubmit={allBalance.nerf.length > 0 || allBalance.buff.length > 0}
+                submit={submit}
+            />
 
             <Snackbar open={alertShown}
                       anchorOrigin={{vertical: "top", horizontal: "center"}}
@@ -343,51 +391,37 @@ export const Balance = (props: {uid: string | null}) => {
                 spacing={2}
                 sx={{ paddingTop: '5px', height: '100%' }}
             >
-                <Grid item xs={4}>
-                    <DroppableZone onDrop={nerf} border="right" bgColor="red">
-                        <Typography align="center" sx={headerSx} color="red">NERF</Typography>
-                        <Box
-                            component="div"
-                            sx={{ display: 'flex',
-                                  flexWrap: "wrap",
-                                  paddingTop: '5px',
-                                  justifyContent: 'flex-start' }}
-                        >
-                            <RenderIcons icons={balance.nerf}/>
-                        </Box>
-                    </DroppableZone>
-                </Grid>
 
-                <Grid item xs={4}>
-                    <DroppableZone onDrop={noop} border="none" bgColor="gray">
-                        <Typography align="center" sx={headerSx} color="primary">No change</Typography>
-                        <Box
-                            component="div"
-                            sx={{ display: 'flex',
-                                  flexWrap: "wrap",
-                                  paddingTop: '5px',
-                                  justifyContent: 'flex-start' }}
-                        >
-                            <RenderIcons icons={balance.noop}/>
-                        </Box>
-                    </DroppableZone>
-                </Grid>
+                <Column
+                    onDrop={nerf}
+                    border="right"
+                    bgColor="red"
+                    header="NERF"
+                    headerColor="red"
+                    sx={headerSx}
+                    icons={balance.nerf}
+                />
 
-                <Grid item xs={4}>
-                    <DroppableZone onDrop={buff} border="left" bgColor="blue">
-                        <Typography align="center" sx={headerSx} color="blue">BUFF</Typography>
-                        <Box
-                            component="div"
-                            sx={{ display: 'flex',
-                                  flexWrap: "wrap",
-                                  paddingTop: '5px',
-                                  justifyContent: 'flex-start' }}
-                        >
-                            <RenderIcons icons={balance.buff}/>
-                        </Box>
-                    </DroppableZone>
-                </Grid>
+                <Column
+                    onDrop={noop}
+                    border="none"
+                    bgColor="gray"
+                    header="No change"
+                    headerColor="primary"
+                    sx={headerSx}
+                    icons={balance.noop}
+                />
+
+                <Column
+                    onDrop={buff}
+                    border="left"
+                    bgColor="blue"
+                    header="BUFF"
+                    headerColor="blue"
+                    sx={headerSx}
+                    icons={balance.buff}
+                />
             </Grid>
-        </div>
+        </>
     )
 }
