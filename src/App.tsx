@@ -5,8 +5,15 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { TouchBackend } from 'react-dnd-touch-backend'
 
+import {
+    BrowserRouter,
+    Routes,
+    Route,
+} from "react-router-dom";
+
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { AuthUI } from './firebase';
+import { Dashboard } from './Dashboard';
 
 const darkTheme = createTheme({
     palette: {
@@ -27,7 +34,12 @@ function App() {
         <ThemeProvider theme={darkTheme}>
             <AuthUI onLoginChange={setUID}>
                 <DndProvider backend={backend}>
-                    <Balance uid={uid}/>
+                    <BrowserRouter>
+                        <Routes>
+                            <Route path="/" element={<Balance uid={uid} />} />
+                            <Route path="food-fight-tactics" element={<Dashboard />} />
+                        </Routes>
+                    </BrowserRouter>
                 </DndProvider>
             </AuthUI>
         </ThemeProvider>
