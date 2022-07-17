@@ -24,9 +24,7 @@ import { Info } from './info';
 
 import TFTData from './set_data.json';
 
-import { TFTSet, TFTVersion } from './version';
-
-const StorageKey = `${TFTSet}-${TFTVersion}`
+import { TFTSet, StorageKey } from './version';
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
     props,

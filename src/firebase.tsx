@@ -1,6 +1,6 @@
 import React, {useState, useRef, useEffect} from 'react';
 import firebase from 'firebase/compat/app';
-import { getFirestore, setDoc, getDoc, doc } from "firebase/firestore";
+import { getFirestore, setDoc, getDoc, getDocs, doc, collection, query } from "firebase/firestore";
 import * as firebaseui from 'firebaseui';
 import 'firebaseui/dist/firebaseui.css';
 
@@ -29,6 +29,17 @@ export async function dbSet(key: string, uid: string, data: any) {
 
 interface StoredData {
     data: string,
+}
+
+export async function dbGetAllFeedback(version: string): Promise<void> {
+    const q = query(collection(db, "feedback", "meta", version));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((data) => {
+        console.log(data);
+    })
+
+    return;
+    /* throw new Error("Could not find data"); */
 }
 
 export async function dbGet<T>(version: string, uid: string): Promise<T> {
