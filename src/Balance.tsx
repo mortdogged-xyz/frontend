@@ -243,7 +243,7 @@ export const Balance = (props: {uid: string | null}) => {
         }
 
         loadData().catch(console.error);
-    }, [])
+    }, [uid, loadedBalance, allBalance])
     
     const submit = async () => {
         await dbSet(TFTSet, uid || "anon", allBalance);
