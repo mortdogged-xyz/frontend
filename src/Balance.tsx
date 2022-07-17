@@ -20,11 +20,12 @@ import MuiAlert, { AlertProps } from '@mui/material/Alert';
 import MenuIcon from '@mui/icons-material/Menu';
 
 import { Logout, dbSet, dbGet } from './firebase';
+import { Info } from './info';
 
 import TFTData from './set_data.json';
 
-const TFTSet = "7";
-const TFTVersion = "12.13";
+import { TFTSet, TFTVersion } from './version';
+
 const StorageKey = `${TFTSet}-${TFTVersion}`
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
@@ -326,6 +327,7 @@ export const Balance = (props: {uid: string | null}) => {
 
                         <Button color="inherit" disabled={allBalance.nerf.length === 0 && allBalance.buff.length === 0} onClick={submit}>Submit</Button>
                         <Button color="inherit" onClick={Logout}>Logout</Button>
+                        <Info />
                     </Toolbar>
                 </Container>
             </AppBar>

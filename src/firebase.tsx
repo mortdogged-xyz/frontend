@@ -6,6 +6,8 @@ import 'firebaseui/dist/firebaseui.css';
 
 import Box from '@mui/material/Box';
 
+import { Info } from './info';
+
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
@@ -88,10 +90,17 @@ export const AuthUI = (props: {
         }
     }, [firebaseInstance, rootEl]);
 
+    const info = (
+        <Box component="div" sx={{position: 'absolute', top: '0', right: '0'}}>
+            <Info />
+        </Box>
+    )
+
     return (
         <>
             <Box sx={{display: (!isAuthed ? 'block' : 'none')}} component="div" ref={rootEl}></Box>
             {isAuthed ? children : <span></span>}
+            {!isAuthed ? info : <span></span>}
         </>
     );
 }
