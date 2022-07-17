@@ -244,7 +244,8 @@ export const Balance = (props: {uid: string | null}) => {
                     setAllBalance(data || defaultBalanceState);
                 }
             } catch (e) {
-                console.error(e);
+                console.log(e);
+                console.log("Did not find user data, initailizing default data")
                 setAllBalance(defaultBalanceState);
             }
             setLoadedBalance(true);
