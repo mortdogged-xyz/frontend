@@ -236,10 +236,10 @@ export const Balance = (props: {uid: string | null}) => {
     useEffect(() => {
         const loadData = async () => {
             const data = await dbGet<BalanceData>(TFTSet, uid || "anon");
-            if (!loadedBalance && data !== allBalance) {
-                setLoadedBalance(true);
+            if (data && !loadedBalance && data !== allBalance) {
                 setAllBalance(data);
             }
+            setLoadedBalance(true);
         }
 
         loadData().catch(console.error);
