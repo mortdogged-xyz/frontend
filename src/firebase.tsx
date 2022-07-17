@@ -21,8 +21,8 @@ const firebaseConfig = {
 const app = firebase.initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-export async function dbSet(version: string, uid: string, data: any) {
-    await setDoc(doc(db, "feedback", "meta", version, uid), {data: JSON.stringify(data)});
+export async function dbSet(key: string, uid: string, data: any) {
+    await setDoc(doc(db, "feedback", "meta", key, uid), {data: JSON.stringify(data)});
 }
 
 interface StoredData {

@@ -24,6 +24,8 @@ import { Logout, dbSet, dbGet } from './firebase';
 import TFTData from './set_data.json';
 
 const TFTSet = "7";
+const TFTVersion = "12.13";
+const StorageKey = `${TFTSet}-${TFTVersion}`
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
     props,
@@ -237,7 +239,7 @@ export const Balance = (props: {uid: string | null}) => {
     useEffect(() => {
         const loadData = async () => {
             try {
-                const data = await dbGet<BalanceData>(TFTSet, uid || "anon");
+                const data = await dbGet<BalanceData>(StorageKey, uid || "anon");
                 if (!loadedBalance) {
                     setAllBalance(data || defaultBalanceState);
                 }
@@ -252,7 +254,7 @@ export const Balance = (props: {uid: string | null}) => {
     }, [uid, loadedBalance])
     
     const submit = async () => {
-        await dbSet(TFTSet, uid || "anon", allBalance);
+        await dbSet(StorageKey, uid || "anon", allBalance);
         setAlertShown(true);
     }
 
