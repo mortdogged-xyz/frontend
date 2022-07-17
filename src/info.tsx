@@ -34,7 +34,7 @@ export const Info = () => {
                 </DialogTitle>
                 <DialogContent dividers>
                     <Typography gutterBottom>
-                        Collecting user feedback for Set {TFTSet} Patch {TFTVersion}
+                        Collecting data for Set {TFTSet} Patch {TFTVersion}
                     </Typography>
                     <Typography gutterBottom>
                         Feel free to send feedback, suggestions and error reports to <Link href="https://twitter.com/Gonzih" target="_blank">@Gonzih</Link> or <Link href="mailto:gonzih@gmail.com">email</Link>
