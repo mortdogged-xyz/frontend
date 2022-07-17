@@ -25,14 +25,14 @@ export async function dbSet(version: string, uid: string, data: any) {
     await setDoc(doc(db, "feedback", "meta", version, uid), {data: JSON.stringify(data)});
 }
 
-interface StoredBalanceData {
+interface StoredData {
     data: string,
 }
 
 export async function dbGet<T>(version: string, uid: string): Promise<T> {
     const docRef = await getDoc(doc(db, "feedback", "meta", version, uid));
     if (docRef.exists()) {
-        const data = docRef.data() as StoredBalanceData;
+        const data = docRef.data() as StoredData;
         return JSON.parse(data.data) as T;
     }
 

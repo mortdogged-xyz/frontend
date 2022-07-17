@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 
 import AppBar from '@mui/material/AppBar';
@@ -19,7 +19,7 @@ import Snackbar from '@mui/material/Snackbar';
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
 import MenuIcon from '@mui/icons-material/Menu';
 
-import { Logout, dbSet } from './firebase';
+import { Logout, dbSet, dbGet } from './firebase';
 
 import TFTData from './set_data.json';
 
@@ -229,8 +229,21 @@ const defaultBalanceState = {nerf: [], noop: allIcons, buff: []};
 export const Balance = (props: {uid: string | null}) => {
     const { uid } = props;
     const [currentTab, setCurrentTab] = useState(allTabs[0]);
+    const [loadedBalance, setLoadedBalance] = useState(false);
     const [allBalance, setAllBalance] = useState<BalanceData>(defaultBalanceState);
     const [alertShown, setAlertShown] = useState(false);
+
+    useEffect(() => {
+        const loadData = async () => {
+            const data = await dbGet<BalanceData>(TFTSet, uid || "anon");
+            if (!loadedBalance && data !== allBalance) {
+                setLoadedBalance(true);
+                setAllBalance(data);
+            }
+        }
+
+        loadData().catch(console.error);
+    }, [])
     
     const submit = async () => {
         await dbSet(TFTSet, uid || "anon", allBalance);
