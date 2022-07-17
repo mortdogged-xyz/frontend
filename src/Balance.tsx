@@ -4,16 +4,20 @@ import { useDrag, useDrop } from 'react-dnd';
 import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+import IconButton from '@mui/material/IconButton';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 /* import Stack from '@mui/material/Stack'; */
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 import Tooltip from '@mui/material/Tooltip';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
+import MenuIcon from '@mui/icons-material/Menu';
 
 import { Logout, dbSet } from './firebase';
 
@@ -248,16 +252,56 @@ export const Balance = (props: {uid: string | null}) => {
 
     const headerSx = {fontSize: "18px", marginTop: "20px", fontWeight: "semi-bold"};
 
+    const [navAnchorEl, setNavAnchorEl] = useState<HTMLElement | null>(null);
+    const [navMenuOpen, setNavMenuOpen] = useState(false);
+    const toggleNavMenu = (e: React.MouseEvent<HTMLElement>) => {
+        setNavMenuOpen((v) => !v);  
+        setNavAnchorEl(e.currentTarget);
+    } 
+
+    const changeTab = (tab: string) => {
+        return () => {
+            setCurrentTab(tab);
+            setNavMenuOpen(false);  
+        }
+    };
+
     return (
         <div>
             <AppBar position="static">
                 <Container maxWidth="xl">
                     <Toolbar disableGutters>
+                        <Box component="div" sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+                            <IconButton
+                                size="large"
+                                onClick={toggleNavMenu}
+                            >
+                                <MenuIcon />
+                            </IconButton>
+                            <Menu
+                                keepMounted
+                                open={navMenuOpen}
+                                onClose={toggleNavMenu}
+                                anchorEl={navAnchorEl}
+
+                            >
+                                {allTabs.map((tab) => {
+                                    return (
+                                        <MenuItem onClick={changeTab(tab)} key={tab} >
+                                            {tab}
+                                        </MenuItem>
+                                    );
+                                })}
+                            </Menu>
+
+                        </Box>
+
                         <Box component="div" sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                             <Tabs value={currentTab} onChange={handleChange} centered>
                                 {allTabs.map((tab) => <Tab label={tab} value={tab} key={tab} />)}
                             </Tabs>
                         </Box>
+
                         <Button color="inherit" disabled={allBalance.nerf.length === 0 && allBalance.buff.length === 0} onClick={submit}>Submit</Button>
                         <Button color="inherit" onClick={Logout}>Logout</Button>
                     </Toolbar>
