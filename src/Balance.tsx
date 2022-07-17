@@ -224,26 +224,32 @@ function filterBalance(balance: BalanceData, k: string): BalanceData {
     return clone;
 }
 
+const emptyBalanceState = {nerf: [], noop: [], buff: []};
 const defaultBalanceState = {nerf: [], noop: allIcons, buff: []};
 
 export const Balance = (props: {uid: string | null}) => {
     const { uid } = props;
     const [currentTab, setCurrentTab] = useState(allTabs[0]);
     const [loadedBalance, setLoadedBalance] = useState(false);
-    const [allBalance, setAllBalance] = useState<BalanceData>(defaultBalanceState);
+    const [allBalance, setAllBalance] = useState<BalanceData>(emptyBalanceState);
     const [alertShown, setAlertShown] = useState(false);
 
     useEffect(() => {
         const loadData = async () => {
-            const data = await dbGet<BalanceData>(TFTSet, uid || "anon");
-            if (data && !loadedBalance && data !== allBalance) {
-                setAllBalance(data);
+            try {
+                const data = await dbGet<BalanceData>(TFTSet, uid || "anon");
+                if (!loadedBalance) {
+                    setAllBalance(data || defaultBalanceState);
+                }
+            } catch (e) {
+                console.error(e);
+                setAllBalance(defaultBalanceState);
             }
             setLoadedBalance(true);
         }
 
         loadData().catch(console.error);
-    }, [uid, loadedBalance, allBalance])
+    }, [uid, loadedBalance])
     
     const submit = async () => {
         await dbSet(TFTSet, uid || "anon", allBalance);
