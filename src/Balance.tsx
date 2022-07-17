@@ -139,8 +139,8 @@ const DroppableZone = (props: {bgColor: string, border: "right" | "left" | "none
         /* borderStyle: 'solid',
          * borderWidth: '1px',
          * borderColor: 'red', */
-        width: '100%',
-        height: '100%',
+        width: '95%',
+        height: '98%',
     };
 
     return (
