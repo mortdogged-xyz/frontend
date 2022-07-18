@@ -368,7 +368,12 @@ export const Balance = (props: {uid: string | null}) => {
     const noop = (icon: IconData) => setAllBalance((balance) => moveFromTo(balance, "noop", icon));
     const buff = (icon: IconData) => setAllBalance((balance) => moveFromTo(balance, "buff", icon));
 
-    const headerSx = {fontSize: "18px", marginTop: "20px", fontWeight: "semi-bold"};
+    const headerSx = {
+        fontSize: '18px',
+        marginTop: '20px',
+        marginBottom: '20px',
+        fontWeight: 'semi-bold',
+    };
 
     return (
         <>
