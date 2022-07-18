@@ -94,6 +94,7 @@ const DraggableIcon = (props: {icon: IconData}) => {
             borderColor: champColor(icon.icon),
             borderStyle: 'solid',
             borderWidth: '1px',
+            boxShadow: `0 0 5px ${champColor(icon.icon)}`,
         }
     }
 
@@ -415,9 +416,9 @@ export const Balance = (props: {uid: string | null}) => {
                 <Column
                     onDrop={buff}
                     border="left"
-                    bgColor="blue"
+                    bgColor="#24ff7d"
                     header="BUFF"
-                    headerColor="blue"
+                    headerColor="#24ff7d"
                     sx={headerSx}
                     icons={balance.buff}
                 />
