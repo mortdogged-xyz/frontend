@@ -133,7 +133,7 @@ export const Dashboard = (props: {uid: string | null}) => {
             const resp = await fetch(dataUrl);
             const data = await resp.json() as SummaryState;
             setState(data);
-            /* setLoading(false); */
+            setLoading(false);
         }
 
         if (state.length === 0) {
