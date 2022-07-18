@@ -1,5 +1,9 @@
 import React, {useState, useEffect} from 'react';
 
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
+
 import { DataGrid } from '@mui/x-data-grid';
 
 import { NavBar, IconIcon, IconData, iconWidth, champColor, allTabs, tabFilters } from './Balance';
@@ -83,10 +87,35 @@ const RenderSummary = (props: {summary: SummaryState}) => {
     )
 }
 
+export const LoadingModal = (props: {loading: boolean}) => {
+    const { loading } = props;
+
+    const style = {
+        position: 'absolute' as 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+    };
+
+    return (
+        <Modal
+            open={loading}
+            onClose={() => {}}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+        >
+            <Box component="div" sx={style}>
+                <CircularProgress />
+            </Box>
+        </Modal>
+    )
+}
+
 export const Dashboard = (props: {uid: string | null}) => {
     const [currentTab, setCurrentTab] = useState(allTabs[0]);
     const { uid } = props;
     const [state, setState] = useState<SummaryState>([])
+    const [loading, setLoading] = useState(true);
     const [searchFilter, setSearchFilter] = useState("");
 
 
@@ -104,15 +133,22 @@ export const Dashboard = (props: {uid: string | null}) => {
             const resp = await fetch(dataUrl);
             const data = await resp.json() as SummaryState;
             setState(data);
+            /* setLoading(false); */
         }
 
         if (state.length === 0) {
-            f().catch(console.error);
+            f().catch((e) => {
+                setLoading(false);
+                console.error(e);
+            });
+        } else {
+            setLoading(false);
         }
     }, [state, uid])
 
     return (
         <>
+            <LoadingModal loading={loading} />
             <NavBar
                 setTab={setCurrentTab}
                 currentTab={currentTab}
