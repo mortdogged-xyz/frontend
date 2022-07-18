@@ -97,7 +97,7 @@ const DraggableIcon = (props: {
 
     if (icon.kind === "champ") {
         /* const shadowRadius = icon.isSuper === true ? '25px' : '5px'; */
-        const shadowRadius = icon === currentlyActive ? '55px' : '5px';
+        const shadowRadius = icon === currentlyActive ? '10px' : '5px';
 
         borderStyle = {
             borderColor: champColor(icon.icon),
