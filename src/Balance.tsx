@@ -17,10 +17,12 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
+
 import MenuIcon from '@mui/icons-material/Menu';
 
 import { Logout, dbSet, dbGet } from './firebase';
 import { Info } from './info';
+import { Search } from './Search';
 
 import TFTData from './set_data.json';
 
@@ -253,9 +255,14 @@ const tabFilters = {
     "Augments": "aug",
 } as Record<string, string>;
 
-function filterBalance(balance: BalanceData, k: string): BalanceData {
+function filterBalance(balance: BalanceData, k: string, search: string): BalanceData {
     const clone = {...balance};
-    (Object.keys(clone) as (keyof typeof clone)[]).forEach((key: BalanceKey) => clone[key] = clone[key].filter((v) => v.kind === k));
+    (Object.keys(clone) as (keyof typeof clone)[]).forEach(
+        (key: BalanceKey) =>
+            clone[key] = clone[key].filter(
+                (v) => v.kind === k && v.icon.toLowerCase().includes(search.toLowerCase())
+            )
+    );
     return clone;
 }
 
@@ -267,8 +274,15 @@ export const NavBar = (props: {
     currentTab: string,
     canSubmit: boolean,
     submit: () => void,
+    onSearch: (value: string) => void,
 }) => {
-    const { setTab, currentTab, canSubmit, submit } = props;
+    const {
+        setTab,
+        currentTab,
+        canSubmit,
+        submit,
+        onSearch,
+    } = props;
     const [navAnchorEl, setNavAnchorEl] = useState<HTMLElement | null>(null);
     const [navMenuOpen, setNavMenuOpen] = useState(false);
 
@@ -316,6 +330,8 @@ export const NavBar = (props: {
                             </Menu>
 
                         </Box>
+
+                        <Search placeholder={"Search..."} onChange={onSearch}/>
 
                         <Box component="div" sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                             <Tabs value={currentTab} onChange={handleChange} centered>
@@ -384,6 +400,7 @@ export const Balance = (props: {uid: string | null}) => {
     const [allBalance, setAllBalance] = useState<BalanceData>(emptyBalanceState);
     const [alertShown, setAlertShown] = useState(false);
     const [currentlyActiveIcon, setCurrentlyActiveIcon] = useState<IconData | null>(null);
+    const [searchFilter, setSearchFilter] = useState("");
 
     useEffect(() => {
         const loadData = async () => {
@@ -411,7 +428,7 @@ export const Balance = (props: {uid: string | null}) => {
     const closeAlert = () => setAlertShown(false);
 
     const tabFilter = tabFilters[currentTab] || 'champ';
-    const balance = filterBalance(allBalance, tabFilter);
+    const balance = filterBalance(allBalance, tabFilter, searchFilter);
 
     const nerf = (icon: IconData) => {
         setCurrentlyActiveIcon(icon);
@@ -434,6 +451,8 @@ export const Balance = (props: {uid: string | null}) => {
         }
     }
 
+    const search = (value: string) => setSearchFilter(value);
+
     const headerSx = {
         fontSize: '18px',
         marginTop: '20px',
@@ -448,6 +467,7 @@ export const Balance = (props: {uid: string | null}) => {
                 currentTab={currentTab}
                 canSubmit={allBalance.nerf.length > 0 || allBalance.buff.length > 0}
                 submit={submit}
+                onSearch={search}
             />
 
             <Snackbar open={alertShown}
