@@ -1,6 +1,6 @@
 import React, {useState, useRef, useEffect} from 'react';
 import firebase from 'firebase/compat/app';
-import { getFirestore, setDoc, getDoc, getDocs, doc, collection, query } from "firebase/firestore";
+import { getFirestore, setDoc, getDoc,  doc } from "firebase/firestore";
 import * as firebaseui from 'firebaseui';
 import 'firebaseui/dist/firebaseui.css';
 
