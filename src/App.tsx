@@ -37,7 +37,7 @@ function App() {
                     <BrowserRouter>
                         <Routes>
                             <Route path="/" element={<Balance uid={uid} />} />
-                            <Route path="food-fight-tactics" element={<Dashboard />} />
+                            <Route path="food-fight-tactics" element={<Dashboard uid={uid} />} />
                         </Routes>
                     </BrowserRouter>
                 </DndProvider>

@@ -28,6 +28,8 @@ import TFTData from './set_data.json';
 
 import { TFTSet, StorageKey } from './version';
 
+export const iconWidth = "80px";
+
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
     props,
     ref,
@@ -35,7 +37,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-interface IconData {
+export interface IconData {
     icon: string;
     kind: string;
     starLevel?: number;
@@ -64,7 +66,7 @@ function champCost(icon: string): number {
     return -1;
 }
 
-function champColor(icon: string): string {
+export function champColor(icon: string): string {
     const cost = champCost(icon);
 
     if (cost === 6 || cost === 5) {
@@ -78,6 +80,32 @@ function champColor(icon: string): string {
     }
 
     return "gray";
+}
+
+export const IconIcon = (props: {
+    icon: IconData,
+    width: string,
+    onClick: () => void,
+    style: any,
+}) => {
+    const {
+        icon,
+        width,
+        onClick,
+        style
+    } = props;
+
+    return (
+        <Tooltip title={icon.icon}>
+            <img
+                width={width}
+                src={iconURL(icon)}
+                alt={icon.icon}
+                onClick={onClick}
+                style={style}
+            />
+        </Tooltip>
+    )
 }
 
 const DraggableIcon = (props: {
@@ -112,16 +140,12 @@ const DraggableIcon = (props: {
 
     const clickHandler = () => onClick(icon);
 
-    const iconWidth = "80px";
-
     return (
         <Box component="div">
-            <Tooltip title={icon.icon}>
-                <img
-                    ref={drag}
+            <Box ref={drag}>
+                <IconIcon
+                    icon={icon}
                     width={iconWidth}
-                    src={iconURL(icon)}
-                    alt={icon.icon}
                     onClick={clickHandler}
                     style={{ ...borderStyle,
                             opacity: (isDragging ? "10%" : "100%"),
@@ -129,7 +153,7 @@ const DraggableIcon = (props: {
                             marginLeft: '15px',
                             marginBottom: '15px' }}
                 />
-            </Tooltip>
+            </Box>
 
             <Box
                 component="div"
@@ -265,8 +289,8 @@ function moveFromTo(data: BalanceData, tok: BalanceKey, el: IconData) {
     return clone;
 }
 
-const allTabs = ["Champions", "Items", "Traits", "Augments"];
-const tabFilters = {
+export const allTabs = ["Champions", "Items", "Traits", "Augments"];
+export const tabFilters = {
     "Champions": "champ",
     "Items": "item",
     "Traits": "trait",
@@ -291,6 +315,7 @@ export const NavBar = (props: {
     setTab: (tab: string) => void,
     currentTab: string,
     canSubmit: boolean,
+    showSubmit: boolean,
     submit: () => void,
     onSearch: (value: string) => void,
 }) => {
@@ -298,6 +323,7 @@ export const NavBar = (props: {
         setTab,
         currentTab,
         canSubmit,
+        showSubmit,
         submit,
         onSearch,
     } = props;
@@ -357,7 +383,10 @@ export const NavBar = (props: {
 
                         <Search placeholder={"Search..."} onChange={onSearch}/>
 
-                        <Button color="inherit" disabled={!canSubmit} onClick={submit}>Submit</Button>
+                        {
+                            showSubmit &&
+                            <Button color="inherit" disabled={!canSubmit} onClick={submit}>Submit</Button>
+                        }
                         <InfoMenu />
                     </Toolbar>
                 </Container>
@@ -483,6 +512,7 @@ export const Balance = (props: {uid: string | null}) => {
                 setTab={setCurrentTab}
                 currentTab={currentTab}
                 canSubmit={allBalance.nerf.length > 0 || allBalance.buff.length > 0}
+                showSubmit={true}
                 submit={submit}
                 onSearch={search}
             />
