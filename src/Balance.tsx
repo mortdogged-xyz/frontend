@@ -36,6 +36,8 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
 interface IconData {
     icon: string;
     kind: string;
+    starLevel?: number;
+    isSuper?: boolean;
 }
 
 function iconURL(icon: IconData): string {
@@ -76,8 +78,12 @@ function champColor(icon: string): string {
     return "gray";
 }
 
-const DraggableIcon = (props: {icon: IconData}) => {
-    const { icon } = props;
+const DraggableIcon = (props: {
+    icon: IconData,
+    currentlyActive: IconData | null,
+    onClick: (icon: IconData) => void,
+}) => {
+    const { icon, currentlyActive, onClick } = props;
 
     const [{ isDragging }, drag] = useDrag(() => ({
         type: "icon",
@@ -90,35 +96,48 @@ const DraggableIcon = (props: {icon: IconData}) => {
     let borderStyle = {};
 
     if (icon.kind === "champ") {
+        /* const shadowRadius = icon.isSuper === true ? '25px' : '5px'; */
+        const shadowRadius = icon === currentlyActive ? '55px' : '5px';
+
         borderStyle = {
             borderColor: champColor(icon.icon),
             borderStyle: 'solid',
             borderWidth: '1px',
-            boxShadow: `0 0 5px ${champColor(icon.icon)}`,
+            boxShadow: `0 0 ${shadowRadius} ${champColor(icon.icon)}`,
         }
     }
 
+    const clickHandler = () => onClick(icon);
+
     return (
-        <Tooltip title={icon.icon}>
-            <img
-                ref={drag}
-                width="80px"
-                src={iconURL(icon)}
-                alt={icon.icon}
-                style={{ ...borderStyle,
-                         opacity: (isDragging ? "10%" : "100%"),
-                         cursor: 'pointer',
-                         marginLeft: '15px',
-                         marginBottom: '15px' }}
-            />
-        </Tooltip>
+        <Box component="div">
+            <Tooltip title={icon.icon}>
+                <img
+                    ref={drag}
+                    width="80px"
+                    src={iconURL(icon)}
+                    alt={icon.icon}
+                    onClick={clickHandler}
+                    style={{ ...borderStyle,
+                            opacity: (isDragging ? "10%" : "100%"),
+                            cursor: 'pointer',
+                            marginLeft: '15px',
+                            marginBottom: '15px' }}
+                />
+            </Tooltip>
+        </Box>
     )
     
 }
 
 type ColumnBorder = "right" | "left" | "none";
 
-const DroppableZone = (props: {bgColor: string, border: ColumnBorder, onDrop: (icon: IconData) => void, children: JSX.Element|JSX.Element[]}) => {
+const DroppableZone = (props: {
+    bgColor: string,
+    border: ColumnBorder,
+    onDrop: (icon: IconData) => void,
+    children: JSX.Element|JSX.Element[],
+}) => {
     const { onDrop, children, border, bgColor } = props;
 
     const [{ isOver }, drop] = useDrop(
@@ -183,8 +202,20 @@ interface BalanceData {
 }
 
 
-const RenderIcons = (props: {icons: Array<IconData>}) => {
-    const iconsRendered = props.icons.map((icon) => <DraggableIcon icon={icon} key={icon.icon}/>);
+const RenderIcons = (props: {
+    icons: Array<IconData>,
+    currentlyActive: IconData | null,
+    onClick: (icon: IconData) => void,
+}) => {
+    const { icons, currentlyActive, onClick } = props;
+    const iconsRendered = icons.map((icon) =>
+        <DraggableIcon
+            icon={icon}
+            currentlyActive={currentlyActive}
+            onClick={onClick}
+            key={icon.icon}
+        />
+    );
 
     return (
         <>
@@ -240,6 +271,7 @@ export const NavBar = (props: {
     const { setTab, currentTab, canSubmit, submit } = props;
     const [navAnchorEl, setNavAnchorEl] = useState<HTMLElement | null>(null);
     const [navMenuOpen, setNavMenuOpen] = useState(false);
+
     const toggleNavMenu = (e: React.MouseEvent<HTMLElement>) => {
         setNavMenuOpen((v) => !v);  
         setNavAnchorEl(e.currentTarget);
@@ -308,8 +340,20 @@ export const Column = (props: {
     border: ColumnBorder,
     bgColor: string,
     icons: Array<IconData>,
+    currentlyActive: IconData | null,
+    onClick: (icon: IconData) => void,
 }) => {
-    const { onDrop, sx, header, headerColor, border, bgColor, icons } = props;
+    const {
+        onDrop,
+        sx,
+        header,
+        headerColor,
+        border,
+        bgColor,
+        icons,
+        currentlyActive,
+        onClick,
+    } = props;
 
     return (
         <Grid item xs={4}>
@@ -322,7 +366,11 @@ export const Column = (props: {
                           paddingTop: '5px',
                           justifyContent: 'flex-start' }}
                 >
-                    <RenderIcons icons={icons}/>
+                    <RenderIcons
+                        icons={icons}
+                        currentlyActive={currentlyActive}
+                        onClick={onClick}
+                    />
                 </Box>
             </DroppableZone>
         </Grid>
@@ -335,6 +383,7 @@ export const Balance = (props: {uid: string | null}) => {
     const [loadedBalance, setLoadedBalance] = useState(false);
     const [allBalance, setAllBalance] = useState<BalanceData>(emptyBalanceState);
     const [alertShown, setAlertShown] = useState(false);
+    const [currentlyActiveIcon, setCurrentlyActiveIcon] = useState<IconData | null>(null);
 
     useEffect(() => {
         const loadData = async () => {
@@ -364,9 +413,26 @@ export const Balance = (props: {uid: string | null}) => {
     const tabFilter = tabFilters[currentTab] || 'champ';
     const balance = filterBalance(allBalance, tabFilter);
 
-    const nerf = (icon: IconData) => setAllBalance((balance) => moveFromTo(balance, "nerf", icon));
-    const noop = (icon: IconData) => setAllBalance((balance) => moveFromTo(balance, "noop", icon));
-    const buff = (icon: IconData) => setAllBalance((balance) => moveFromTo(balance, "buff", icon));
+    const nerf = (icon: IconData) => {
+        setCurrentlyActiveIcon(icon);
+        setAllBalance((balance) => moveFromTo(balance, "nerf", icon));
+    }
+    const noop = (icon: IconData) => {
+        setCurrentlyActiveIcon(icon);
+        setAllBalance((balance) => moveFromTo(balance, "noop", icon));
+    }
+    const buff = (icon: IconData) => {
+        setCurrentlyActiveIcon(icon);
+        setAllBalance((balance) => moveFromTo(balance, "buff", icon));
+    }
+
+    const clickIcon = (icon: IconData) => {
+        if (currentlyActiveIcon === icon) {
+            setCurrentlyActiveIcon(null);
+        } else {
+            setCurrentlyActiveIcon(icon);
+        }
+    }
 
     const headerSx = {
         fontSize: '18px',
@@ -406,6 +472,8 @@ export const Balance = (props: {uid: string | null}) => {
                     headerColor="red"
                     sx={headerSx}
                     icons={balance.nerf}
+                    currentlyActive={currentlyActiveIcon}
+                    onClick={clickIcon}
                 />
 
                 <Column
@@ -416,6 +484,8 @@ export const Balance = (props: {uid: string | null}) => {
                     headerColor="primary"
                     sx={headerSx}
                     icons={balance.noop}
+                    currentlyActive={currentlyActiveIcon}
+                    onClick={clickIcon}
                 />
 
                 <Column
@@ -426,6 +496,8 @@ export const Balance = (props: {uid: string | null}) => {
                     headerColor="#24ff7d"
                     sx={headerSx}
                     icons={balance.buff}
+                    currentlyActive={currentlyActiveIcon}
+                    onClick={clickIcon}
                 />
             </Grid>
         </>
