@@ -6,7 +6,7 @@ import 'firebaseui/dist/firebaseui.css';
 
 import Box from '@mui/material/Box';
 
-import { Info } from './info';
+import { Info } from './Info';
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional

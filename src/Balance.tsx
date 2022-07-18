@@ -20,8 +20,8 @@ import MuiAlert, { AlertProps } from '@mui/material/Alert';
 
 import MenuIcon from '@mui/icons-material/Menu';
 
-import { Logout, dbSet, dbGet } from './firebase';
-import { Info } from './info';
+import { dbSet, dbGet } from './firebase';
+import { InfoMenu } from './Info';
 import { Search } from './Search';
 
 import TFTData from './set_data.json';
@@ -97,9 +97,10 @@ const DraggableIcon = (props: {
 
     let borderStyle = {};
 
+    const isActive = icon === currentlyActive;
+
     if (icon.kind === "champ") {
-        /* const shadowRadius = icon.isSuper === true ? '25px' : '5px'; */
-        const shadowRadius = icon === currentlyActive ? '10px' : '5px';
+        const shadowRadius = icon.isSuper === true ? '25px' : '5px';
 
         borderStyle = {
             borderColor: champColor(icon.icon),
@@ -111,12 +112,14 @@ const DraggableIcon = (props: {
 
     const clickHandler = () => onClick(icon);
 
+    const iconWidth = "80px";
+
     return (
         <Box component="div">
             <Tooltip title={icon.icon}>
                 <img
                     ref={drag}
-                    width="80px"
+                    width={iconWidth}
                     src={iconURL(icon)}
                     alt={icon.icon}
                     onClick={clickHandler}
@@ -127,6 +130,21 @@ const DraggableIcon = (props: {
                             marginBottom: '15px' }}
                 />
             </Tooltip>
+
+            <Box
+                component="div"
+                display={isActive ? "none" : "none"}
+                sx={{
+                    width: iconWidth,
+                    position: 'absolute',
+                }}
+            >
+                {icon.icon}
+                3 star
+                2 star
+                1 star
+                Super buff
+            </Box>
         </Box>
     )
     
@@ -340,8 +358,7 @@ export const NavBar = (props: {
                         <Search placeholder={"Search..."} onChange={onSearch}/>
 
                         <Button color="inherit" disabled={!canSubmit} onClick={submit}>Submit</Button>
-                        <Button color="inherit" onClick={Logout}>Logout</Button>
-                        <Info />
+                        <InfoMenu />
                     </Toolbar>
                 </Container>
             </AppBar>
