@@ -121,7 +121,7 @@ export const Dashboard = (props: {uid: string | null}) => {
 
     const tabFilter = tabFilters[currentTab] || 'champ';
     const filteredState = state.filter((item) => {
-        return item.icon.icon.toLowerCase().includes(searchFilter) &&
+        return item.icon.icon.toLowerCase().includes(searchFilter.toLowerCase()) &&
                item.icon.kind === tabFilter;
     })
 
