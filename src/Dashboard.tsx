@@ -144,9 +144,13 @@ export const Dashboard = (props: {uid: string | null}) => {
     })
 
     useEffect(() => {
+        let active = true;
+
         const dataUrl = `${url}${uid}`;
 
         const f = async () => {
+            if (!active || state.summary.length > 0) { return }
+
             console.log("Fetching data");
             const resp = await fetch(dataUrl);
             const data = await resp.json() as SummaryResponse;
@@ -155,15 +159,10 @@ export const Dashboard = (props: {uid: string | null}) => {
             setLoading(false);
         }
 
-        if (state.summary.length === 0) {
-            f().catch((e) => {
-                setLoading(false);
-                console.error(e);
-            });
-        } else {
-            setLoading(false);
-        }
-    }, [state, uid])
+        f().catch(console.error);
+
+        return () => { active = false };
+    }, [uid, state.summary.length])
 
     return (
         <>
