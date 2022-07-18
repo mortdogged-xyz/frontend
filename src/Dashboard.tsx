@@ -17,7 +17,15 @@ interface Summary {
     nerf: number,
 }
 
-type SummaryState = Array<Summary>;
+interface Stats {
+    submissions: number,
+    items: number,
+}
+
+interface SummaryResponse {
+    summary: Array<Summary>,
+    stats: Stats,
+};
 
 const RenderIcon = (props: {icon: IconData}) => {
     const { icon } = props;
@@ -47,7 +55,7 @@ const RenderIcon = (props: {icon: IconData}) => {
     )
 }
 
-const RenderSummary = (props: {summary: SummaryState}) => {
+const RenderSummary = (props: {summary: Array<Summary>}) => {
     const { summary } = props;
     const columns = [
         {
@@ -114,13 +122,13 @@ export const LoadingModal = (props: {loading: boolean}) => {
 export const Dashboard = (props: {uid: string | null}) => {
     const [currentTab, setCurrentTab] = useState(allTabs[0]);
     const { uid } = props;
-    const [state, setState] = useState<SummaryState>([])
+    const [state, setState] = useState<SummaryResponse>({summary: [], stats: {submissions: 0, items: 0}})
     const [loading, setLoading] = useState(true);
     const [searchFilter, setSearchFilter] = useState("");
 
 
     const tabFilter = tabFilters[currentTab] || 'champ';
-    const filteredState = state.filter((item) => {
+    const filteredState = state.summary.filter((item) => {
         return item.icon.icon.toLowerCase().includes(searchFilter.toLowerCase()) &&
                item.icon.kind === tabFilter;
     })
@@ -131,12 +139,13 @@ export const Dashboard = (props: {uid: string | null}) => {
         const f = async () => {
             console.log("Fetching data");
             const resp = await fetch(dataUrl);
-            const data = await resp.json() as SummaryState;
+            const data = await resp.json() as SummaryResponse;
+            console.log(`${data.stats.submissions} users submitted ${data.stats.items} individual entries`);
             setState(data);
             setLoading(false);
         }
 
-        if (state.length === 0) {
+        if (state.summary.length === 0) {
             f().catch((e) => {
                 setLoading(false);
                 console.error(e);
