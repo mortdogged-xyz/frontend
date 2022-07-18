@@ -31,17 +31,6 @@ interface StoredData {
     data: string,
 }
 
-export async function dbGetAllFeedback(version: string): Promise<void> {
-    const q = query(collection(db, "feedback", "meta", version));
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((data) => {
-        console.log(data);
-    })
-
-    return;
-    /* throw new Error("Could not find data"); */
-}
-
 export async function dbGet<T>(version: string, uid: string): Promise<T> {
     const docRef = await getDoc(doc(db, "feedback", "meta", version, uid));
     if (docRef.exists()) {
@@ -53,7 +42,7 @@ export async function dbGet<T>(version: string, uid: string): Promise<T> {
 }
 
 var uiConfig = {
-    signInSuccessUrl: '/',
+    signInSuccessUrl: document.location.href || '/',
     signInOptions: [
         // Leave the lines as is for the providers you want to offer your users.
         firebase.auth.GoogleAuthProvider.PROVIDER_ID,
