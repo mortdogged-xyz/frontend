@@ -58,9 +58,9 @@ const RenderSummary = (props: {summary: SummaryState}) => {
                 return <RenderIcon icon={params.row.icon as IconData} />
             }
         },
-        { field: 'total', headerName: 'Total', width: 70 },
         { field: 'buff', headerName: 'Buff', width: 70 },
         { field: 'nerf', headerName: 'Nerf', width: 70 },
+        { field: 'total', headerName: 'Total', width: 70 },
     ];
 
     const rows = summary.map((sum) => {
