@@ -331,13 +331,13 @@ export const NavBar = (props: {
 
                         </Box>
 
-                        <Search placeholder={"Search..."} onChange={onSearch}/>
-
                         <Box component="div" sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                             <Tabs value={currentTab} onChange={handleChange} centered>
                                 {allTabs.map((tab) => <Tab label={tab} value={tab} key={tab} />)}
                             </Tabs>
                         </Box>
+
+                        <Search placeholder={"Search..."} onChange={onSearch}/>
 
                         <Button color="inherit" disabled={!canSubmit} onClick={submit}>Submit</Button>
                         <Button color="inherit" onClick={Logout}>Logout</Button>
