@@ -6,8 +6,10 @@ import Modal from '@mui/material/Modal';
 
 import { DataGrid } from '@mui/x-data-grid';
 
-import { NavBar, IconIcon, IconData, iconWidth, champColor, allTabs, tabFilters } from './Balance';
+import { NavBar, IconIcon, IconData, champColor, allTabs, tabFilters } from './Balance';
 import { TFTSet, TFTVersion } from './version';
+
+export const iconWidth = "70px";
 
 const url = `https://us-central1-tft-meta-73571.cloudfunctions.net/exportResponses?TFTSet=${TFTSet}&TFTVersion=${TFTVersion}&token=`;
 
@@ -59,8 +61,16 @@ const RenderSummary = (props: {summary: Array<Summary>}) => {
     const { summary } = props;
     const columns = [
         {
+            field: 'name',
+            headerName: 'Name',
+            width: 130,
+            renderCell: (params: any) => {
+                return params.row.icon.icon;
+            }
+        },
+        {
             field: 'icon',
-            headerName: '',
+            headerName: 'Icon',
             width: 130,
             renderCell: (params: any) => {
                 return <RenderIcon icon={params.row.icon as IconData} />
@@ -84,7 +94,7 @@ const RenderSummary = (props: {summary: Array<Summary>}) => {
     return (
         <div style={{ height: '92vh', width: '100%' }}>
             <DataGrid
-                rowHeight={130}
+                rowHeight={100}
                 rows={rows}
                 columns={columns}
                 pageSize={100}
