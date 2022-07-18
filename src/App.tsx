@@ -11,6 +11,7 @@ import {
     Route,
 } from "react-router-dom";
 
+import Chip from '@mui/material/Chip';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { AuthUI } from './firebase';
 import { Dashboard } from './Dashboard';
@@ -24,6 +25,19 @@ const darkTheme = createTheme({
 function isTouchDevice(): boolean {
     return ('ontouchstart' in window) ||
            (navigator.maxTouchPoints > 0);
+}
+
+const Plug = () => {
+    return (
+        <Chip sx={{
+            position: 'fixed',
+            right: 5,
+            bottom: 5,
+            display: { xs: 'none', md: 'flex' },
+        }}
+              label="mortdogged.xyz"
+        />
+    )
 }
 
 function App() {
@@ -42,6 +56,7 @@ function App() {
                     </BrowserRouter>
                 </DndProvider>
             </AuthUI>
+            <Plug />
         </ThemeProvider>
     );
 }
