@@ -3,6 +3,8 @@ import React, {useState, useEffect} from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 
 import { DataGrid } from '@mui/x-data-grid';
 
@@ -59,27 +61,38 @@ const RenderIcon = (props: {icon: IconData}) => {
 
 const RenderSummary = (props: {summary: Array<Summary>}) => {
     const { summary } = props;
+
+    const theme = useTheme();
+    const matches = useMediaQuery(theme.breakpoints.up('md'));
+
+    const nameColumn = {
+        field: 'name',
+        headerName: 'Name',
+        width: 130,
+        sortable: true,
+        renderCell: (params: any) => {
+            return params.row.icon.icon;
+        }
+    };
+
     const columns = [
-        {
-            field: 'name',
-            headerName: 'Name',
-            width: 130,
-            renderCell: (params: any) => {
-                return params.row.icon.icon;
-            }
-        },
         {
             field: 'icon',
             headerName: 'Icon',
             width: 130,
+            sortable: false,
             renderCell: (params: any) => {
                 return <RenderIcon icon={params.row.icon as IconData} />
             }
         },
-        { field: 'buff', headerName: 'Buff', width: 70 },
-        { field: 'nerf', headerName: 'Nerf', width: 70 },
-        { field: 'total', headerName: 'Total', width: 70 },
+        { field: 'buff', headerName: 'Buff', width: 70, type: 'number' },
+        { field: 'nerf', headerName: 'Nerf', width: 70, type: 'number' },
+        { field: 'total', headerName: 'Total', width: 70, type: 'number' },
     ];
+
+    if (matches) {
+        columns.splice(0, 0, nameColumn);
+    }
 
     const rows = summary.map((sum) => {
         const { icon, nerf, buff } = sum;
