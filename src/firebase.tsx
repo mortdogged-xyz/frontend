@@ -82,11 +82,11 @@ export const FirefoxWarning = (props: {loggedIn: boolean}) => {
             alignItems="center"
             sx={{
                 margin: '10px',
-            }}>
-
+            }}
+        >
             <Alert sx={{ width: "300px" }}
-                   severity="warning"
-                   onClose={() => setVisible(false)}>
+                severity="warning"
+                onClose={() => setVisible(false)}>
                 <Typography>
                     Firefox users might experience problems with logging in.
                 </Typography>
