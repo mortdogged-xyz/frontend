@@ -16,26 +16,19 @@ import Tooltip from '@mui/material/Tooltip';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Snackbar from '@mui/material/Snackbar';
-import MuiAlert, { AlertProps } from '@mui/material/Alert';
 
 import MenuIcon from '@mui/icons-material/Menu';
 
 import { dbSet, dbGet } from './firebase';
 import { InfoMenu } from './Info';
 import { Search } from './Search';
+import { Alert } from './Alert';
 
 import TFTData from './set_data.json';
 
 import { TFTSet, StorageKey } from './version';
 
 export const iconWidth = "80px";
-
-const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
-    props,
-    ref,
-) {
-    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-});
 
 export interface IconData {
     icon: string;
