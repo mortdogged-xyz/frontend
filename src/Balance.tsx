@@ -5,6 +5,7 @@ import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
+import Chip from '@mui/material/Chip';
 import CardActionArea from '@mui/material/CardActionArea';
 import CardContent from '@mui/material/CardContent';
 import IconButton from '@mui/material/IconButton';
@@ -55,6 +56,12 @@ export interface IconData {
 
 export type BalanceData = Record<IconKind, Record<string, IconData>>;
 export type BalanceDataForRendering = Record<IconSentiment, Array<IconData>>
+
+const SentimentColors = {
+    nerf: "red",
+    noop: "gray",
+    buff: "#24ff7d",
+} as Record<IconSentiment, string>;
 
 function iconURL(icon: IconData): string {
     if (icon.kind === "champ") {
@@ -163,13 +170,44 @@ const StarSelector = (props: {
     )
 }
 
+const ExtraChip = (props: {
+    pile: IconSentiment,
+    isSuper: boolean,
+    onClick: () => void,
+}) => {
+    const {
+        pile,
+        isSuper,
+        onClick,
+    } = props;
+
+    return (
+        <Chip
+            sx={{
+                backgroundColor: isSuper ? SentimentColors[pile] : "gray",
+            }}
+            label={`${pile.toUpperCase()}++`}
+            onClick={onClick}
+        />
+    )
+}
+
 const DraggableIcon = (props: {
     icon: IconData,
     currentlyActive: IconData | null,
+    pile: IconSentiment,
     selectStar: (star: number) => void,
+    setIsSuper: (isSuper: boolean) => void,
     onClick: (icon: IconData) => void,
 }) => {
-    const { icon, currentlyActive, selectStar, onClick } = props;
+    const {
+        icon,
+        currentlyActive,
+        pile,
+        selectStar,
+        setIsSuper,
+        onClick,
+    } = props;
 
     const [{ isDragging }, drag] = useDrag(() => ({
         type: "icon",
@@ -217,12 +255,21 @@ const DraggableIcon = (props: {
                 {(icon.starLevel > 0 || icon.isSuper) &&
                  <Box component="div" sx={{
                      position: 'absolute',
-                     bottom: 15,
+                     bottom: 25,
                      left: 20,
                  }}>
-                     <Typography>
+                     {icon.starLevel > 0  &&
+                      <Typography>
                          <ThreeStars starLevel={icon.starLevel} selectStar={() => {}} />
-                     </Typography>
+                     </Typography>}
+                     {icon.isSuper &&
+                      <Typography>
+                         <ExtraChip
+                             pile={pile}
+                             isSuper={icon.isSuper}
+                             onClick={() => {}}
+                         />
+                     </Typography>}
                  </Box>
                 }
             </Box>
@@ -249,7 +296,12 @@ const DraggableIcon = (props: {
                           <StarSelector starLevel={icon.starLevel} selectStar={selectStar} />}
 
                          <Typography>
-                             Needs extra
+                             {pile !== "noop" && 
+                              <ExtraChip
+                                  pile={pile}
+                                  isSuper={icon.isSuper}
+                                  onClick={() => setIsSuper(!icon.isSuper)}
+                              />}
                          </Typography>
                      </CardContent>
                  </CardActionArea>
@@ -285,9 +337,6 @@ const DroppableZone = (props: {
     const zoneStyle = {
         opacity: isOver ? "10%" : "100%",
         backgroundColor: isOver ? bgColor : "",
-        /* borderStyle: 'solid',
-         * borderWidth: '1px',
-         * borderColor: 'red', */
         width: '95%',
         height: '98%',
     };
@@ -337,16 +386,27 @@ const allIcons = {
 const RenderIcons = (props: {
     icons: Array<IconData>,
     currentlyActive: IconData | null,
+    pile: IconSentiment,
     selectStar: (icon: IconData, star: number) => void,
+    setIsSuper: (icon: IconData, isSuper: boolean) => void,
     onClick: (icon: IconData) => void,
 }) => {
-    const { icons, currentlyActive, selectStar, onClick } = props;
+    const {
+        icons,
+        currentlyActive,
+        pile,
+        selectStar,
+        setIsSuper,
+        onClick,
+    } = props;
 
     const iconsRendered = icons.map((icon) =>
         <DraggableIcon
             icon={icon}
             currentlyActive={currentlyActive}
+            pile={pile}
             selectStar={(star: number) => selectStar(icon, star)}
+            setIsSuper={(isSuper: boolean) => setIsSuper(icon, isSuper)}
             onClick={onClick}
             key={icon.icon}
         />
@@ -481,7 +541,9 @@ export const Column = (props: {
     bgColor: string,
     icons: Array<IconData>,
     currentlyActive: IconData | null,
+    pile: IconSentiment,
     selectStar: (icon: IconData, star: number) => void,
+    setIsSuper: (icon: IconData, isSuper: boolean) => void,
     onClick: (icon: IconData) => void,
 }) => {
     const {
@@ -493,7 +555,9 @@ export const Column = (props: {
         bgColor,
         icons,
         currentlyActive,
+        pile,
         selectStar,
+        setIsSuper,
         onClick,
     } = props;
 
@@ -511,7 +575,9 @@ export const Column = (props: {
                     <RenderIcons
                         icons={icons}
                         currentlyActive={currentlyActive}
+                        pile={pile}
                         selectStar={selectStar}
+                        setIsSuper={setIsSuper}
                         onClick={onClick}
                     />
                 </Box>
@@ -585,7 +651,14 @@ export const Balance = (props: {uid: string | null}) => {
             clone[icon.kind][icon.icon].starLevel = star;
             return clone;
         })
-        
+    }
+
+    const setIsSuper = (icon: IconData, isSuper: boolean) => {
+        setAllBalance((balance) => {
+            const clone = {...balance};
+            clone[icon.kind][icon.icon].isSuper = isSuper;
+            return clone;
+        })
     }
 
     const search = (value: string) => setSearchFilter(value);
@@ -625,39 +698,45 @@ export const Balance = (props: {uid: string | null}) => {
                 <Column
                     onDrop={nerf}
                     border="right"
-                    bgColor="red"
+                    bgColor={SentimentColors["nerf"]}
                     header="NERF"
-                    headerColor="red"
+                    headerColor={SentimentColors["nerf"]}
                     sx={headerSx}
                     icons={balance.nerf}
                     currentlyActive={currentlyActiveIcon}
+                    pile="nerf"
                     selectStar={selectStar}
+                    setIsSuper={setIsSuper}
                     onClick={clickIcon}
                 />
 
                 <Column
                     onDrop={noop}
                     border="none"
-                    bgColor="gray"
+                    bgColor={SentimentColors["noop"]}
                     header="No change"
                     headerColor="primary"
                     sx={headerSx}
                     icons={balance.noop}
                     currentlyActive={currentlyActiveIcon}
+                    pile="noop"
                     selectStar={selectStar}
+                    setIsSuper={setIsSuper}
                     onClick={clickIcon}
                 />
 
                 <Column
                     onDrop={buff}
                     border="left"
-                    bgColor="#24ff7d"
+                    bgColor={SentimentColors["buff"]}
                     header="BUFF"
-                    headerColor="#24ff7d"
+                    headerColor={SentimentColors["buff"]}
                     sx={headerSx}
                     icons={balance.buff}
                     currentlyActive={currentlyActiveIcon}
+                    pile="buff"
                     selectStar={selectStar}
+                    setIsSuper={setIsSuper}
                     onClick={clickIcon}
                 />
             </Grid>
