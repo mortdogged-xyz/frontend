@@ -63,6 +63,12 @@ const SentimentChipColor = {
     buff: "success",
 } as Record<IconSentiment, "primary" | "success" | "error" >;
 
+const StarLevelChipColor = {
+    1: "primary",
+    2: "info",
+    3: "warning",
+} as Record<number, "primary" | "info" | "warning" >;
+
 function iconURL(icon: IconData): string {
     if (icon.kind === "champ") {
         return `https://rerollcdn.com/characters/Skin/${TFTSet}/${icon.icon}.png`
@@ -252,7 +258,7 @@ const DraggableIcon = (props: {
                 />
 
                 {(icon.starLevel > 0 || icon.isSuper) &&
-                 <Box
+                <Box
                     component="div"
                     onClick={clickHandler}
                     sx={{
@@ -260,24 +266,26 @@ const DraggableIcon = (props: {
                         bottom: 25,
                         left: 20,
                     }}
-                    >
+                >
                     <Typography>
-                     {icon.starLevel > 0  &&
-                         <Chip
-                             component="span"
-                             onClick={clickHandler}
-                             label={icon.starLevel}
-                             icon={<StarIcon />}
-                         />
-                     }
-                     {icon.isSuper && pile !== "noop" &&
-                         <Chip
-                            color={SentimentChipColor[pile]}
+                    {icon.starLevel > 0  &&
+                        <Chip
+                            color={StarLevelChipColor[icon.starLevel]}
+                            variant="filled"
                             component="span"
                             onClick={clickHandler}
-                            label="+"
-                         />
-                     }
+                            label={icon.starLevel}
+                            icon={<StarIcon />}
+                        />
+                    }
+                    {icon.isSuper && pile !== "noop" &&
+                        <Chip
+                           color={SentimentChipColor[pile]}
+                           component="span"
+                           onClick={clickHandler}
+                           label="+"
+                        />
+                    }
                     </Typography>
                  </Box>
                 }
