@@ -57,6 +57,12 @@ const SentimentColors = {
     buff: "#24ff7d",
 } as Record<IconSentiment, string>;
 
+const SentimentChipColor = {
+    nerf: "error",
+    noop: "primary",
+    buff: "success",
+} as Record<IconSentiment, "primary" | "success" | "error" >;
+
 function iconURL(icon: IconData): string {
     if (icon.kind === "champ") {
         return `https://rerollcdn.com/characters/Skin/${TFTSet}/${icon.icon}.png`
@@ -178,9 +184,7 @@ const ExtraChip = (props: {
     return (
         <Chip
             component="span"
-            sx={{
-                backgroundColor: isSuper ? SentimentColors[pile] : "gray",
-            }}
+            color={SentimentChipColor[pile]}
             label={`${pile.toUpperCase()}++`}
             onClick={onClick}
         />
@@ -266,11 +270,9 @@ const DraggableIcon = (props: {
                              icon={<StarIcon />}
                          />
                      }
-                     {icon.isSuper &&
+                     {icon.isSuper && pile !== "noop" &&
                          <Chip
-                            sx={{
-                                backgroundColor: SentimentColors[pile],
-                            }}
+                            color={SentimentChipColor[pile]}
                             component="span"
                             onClick={clickHandler}
                             label="+"
