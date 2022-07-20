@@ -370,6 +370,7 @@ function convertData(data: Array<string>, kind: string, blacklist: Array<string>
 
 TFTData.champs.sort((a, b) => champCost(a) - champCost(b));
 TFTData.augs.sort();
+TFTData.items.sort((a, b) => a.includes("Emblem") ? 1 : -1);
 
 const champs = convertData(TFTData.champs.reverse(), "champ", ["Nomsy"])
 const items = convertData(
