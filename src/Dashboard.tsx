@@ -1,14 +1,26 @@
 import React, {useState, useEffect} from 'react';
 
-import CircularProgress from '@mui/material/CircularProgress';
+import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
-import { DataGrid } from '@mui/x-data-grid';
+import CircularProgress from '@mui/material/CircularProgress';
 
-import { NavBar, IconIcon, IconExport, champColor, allTabs, tabFilters } from './Balance';
+import { DataGrid, GridColumnHeaderParams, GridColDef } from '@mui/x-data-grid';
+
+import {
+    NavBar,
+    IconIcon,
+    IconExport,
+    IconSentiment,
+    champColor,
+    allTabs,
+    tabFilters,
+    SentimentColors,
+    StarSummaryChip,
+} from './Balance';
 import { TFTSet, TFTVersion } from './version';
 
 function capitalize(s: string): string {
@@ -91,7 +103,7 @@ const RenderSummary = (props: {summary: Array<Summary>}) => {
         numberColWidth = 60;
     }
 
-    const columns = [
+    const columns: GridColDef[]  = [
         {
             field: 'icon',
             headerName: 'Icon',
@@ -101,20 +113,38 @@ const RenderSummary = (props: {summary: Array<Summary>}) => {
                 return <RenderIcon icon={params.row.icon as IconExport} width={iconWidth} />
             }
         },
-        { field: 'total',      headerName: 'Total', width: numberColWidth, type: 'number' },
-        { field: 'buffTotal',  headerName: 'Buff',  width: numberColWidth, type: 'number' },
-        { field: 'nerfTotal',  headerName: 'Nerf',  width: numberColWidth, type: 'number' },
+        { field: 'total',  headerName: 'Total', width: numberColWidth, type: 'number' },
     ];
 
     
-    ['buff', 'nerf'].forEach((sentiment) => {
+    const sentiments: Array<IconSentiment> = ['buff', 'nerf'];
+    sentiments.forEach((sentiment) => {
         const key = `${sentiment}Total`;
-        columns.push({ field: key, headerName: capitalize(key), width: numberColWidth, type: 'number' });
+        columns.push({
+            field: key,
+            width: numberColWidth,
+            type: 'number',
+            renderHeader: (params: GridColumnHeaderParams) => (
+                <Typography color={SentimentColors[sentiment]}>
+                    {capitalize(sentiment)}
+                </Typography>
+            )
+        });
 
         [...Array(3)].forEach((_, i) => {
             const star = i+1;
             const subkey = `${key}${star}`;
-            columns.push({ field: subkey,  headerName: capitalize(subkey), width: numberColWidth, type: 'number' });
+            columns.push({
+                field: subkey,
+                headerName: capitalize(subkey),
+                width: numberColWidth * 1.6,
+                type: 'number',
+                renderHeader: (params: GridColumnHeaderParams) => (
+                    <Typography color={SentimentColors[sentiment]}>
+                        {capitalize(sentiment)} <StarSummaryChip starLevel={star} />
+                    </Typography>
+                )
+            });
         })
     });
 

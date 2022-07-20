@@ -56,7 +56,7 @@ export interface IconData {
 export type BalanceData = Record<IconKind, Record<string, IconData>>;
 export type BalanceDataForRendering = Record<IconSentiment, Array<IconData>>
 
-const SentimentColors = {
+export const SentimentColors = {
     nerf: "red",
     noop: "gray",
     buff: "#24ff7d",
@@ -202,6 +202,28 @@ const ExtraChip = (props: {
     )
 }
 
+export const StarSummaryChip = (props: {
+    starLevel: number,
+    onClick?: () => void,
+}) => {
+    const {
+        starLevel,
+        onClick,
+    } = props;
+
+    return (
+        <Chip
+            color={StarLevelChipColor[starLevel]}
+            variant="filled"
+            component="span"
+            size="small"
+            onClick={onClick}
+            label={starLevel}
+            icon={<StarIcon />}
+        />
+    )
+}
+
 const DraggableIcon = (props: {
     icon: IconData,
     currentlyActive: IconData | null,
@@ -279,14 +301,9 @@ const DraggableIcon = (props: {
                             component="span"
                             sx={{ flexGrow: 1 }}
                         >
-                            <Chip
-                                color={StarLevelChipColor[icon.starLevel]}
-                                variant="filled"
-                                component="span"
-                                size="small"
+                            <StarSummaryChip
+                                starLevel={icon.starLevel}
                                 onClick={clickHandler}
-                                label={icon.starLevel}
-                                icon={<StarIcon />}
                             />
                         </Box>
                     }
