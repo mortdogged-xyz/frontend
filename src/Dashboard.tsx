@@ -11,7 +11,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import { NavBar, IconIcon, IconData, champColor, allTabs, tabFilters } from './Balance';
 import { TFTSet, TFTVersion } from './version';
 
-const url = `https://us-central1-tft-meta-73571.cloudfunctions.net/exportResponses?TFTSet=${TFTSet}&TFTVersion=${TFTVersion}&token=`;
+const url = `https://us-central1-tft-meta-73571.cloudfunctions.net/exportResponsesV2?TFTSet=${TFTSet}&TFTVersion=${TFTVersion}&token=`;
 
 interface Summary {
     icon: IconData
