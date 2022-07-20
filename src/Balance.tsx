@@ -191,7 +191,7 @@ const ExtraChip = (props: {
         <Chip
             component="span"
             color={SentimentChipColor[pile]}
-            label={`${pile.toUpperCase()}++`}
+            label={`${pile.toUpperCase()}+`}
             onClick={onClick}
         />
     )
