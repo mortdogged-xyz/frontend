@@ -15,6 +15,7 @@ import Chip from '@mui/material/Chip';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { AuthUI } from './firebase';
 import { Dashboard } from './Dashboard';
+import { TFTSet, TFTVersion } from './version';
 
 const darkTheme = createTheme({
     palette: {
@@ -35,7 +36,7 @@ const Plug = () => {
             bottom: 5,
             display: { xs: 'none', md: 'flex' },
         }}
-              label="mortdogged.xyz"
+              label={`set ${TFTSet}, patch ${TFTVersion} mortdogged.xyz`}
         />
     )
 }
