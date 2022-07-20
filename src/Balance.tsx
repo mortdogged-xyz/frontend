@@ -245,7 +245,8 @@ const DraggableIcon = (props: {
                              {icon.icon}
                          </Typography>
 
-                         <StarSelector starLevel={icon.starLevel} selectStar={selectStar} />
+                         {icon.kind === "champ" &&
+                          <StarSelector starLevel={icon.starLevel} selectStar={selectStar} />}
 
                          <Typography>
                              Needs extra
