@@ -40,6 +40,11 @@ export const iconWidth = "80px";
 export type IconKind = "champ" | "item" | "trait" | "aug";
 export type IconSentiment = "nerf" | "buff" | "noop";
 
+export interface IconExport {
+    icon: string;
+    kind: IconKind;
+}
+
 export interface IconData {
     icon: string;
     kind: IconKind;
@@ -69,7 +74,7 @@ const StarLevelChipColor = {
     3: "warning",
 } as Record<number, "primary" | "info" | "warning" >;
 
-function iconURL(icon: IconData): string {
+function iconURL(icon: IconExport): string {
     if (icon.kind === "champ") {
         return `https://rerollcdn.com/characters/Skin/${TFTSet}/${icon.icon}.png`
     } else if (icon.kind === "item") {
@@ -108,7 +113,7 @@ export function champColor(icon: string): string {
 }
 
 export const IconIcon = (props: {
-    icon: IconData,
+    icon: IconExport,
     width: string,
     onClick: () => void,
     style: any,
