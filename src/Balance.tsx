@@ -173,7 +173,7 @@ const StarSelector = (props: {
 const ExtraChip = (props: {
     pile: IconSentiment,
     isSuper: boolean,
-    onClick: () => void,
+    onClick?: () => void,
 }) => {
     const {
         pile,
@@ -183,6 +183,7 @@ const ExtraChip = (props: {
 
     return (
         <Chip
+            component="span"
             sx={{
                 backgroundColor: isSuper ? SentimentColors[pile] : "gray",
             }}
@@ -267,7 +268,6 @@ const DraggableIcon = (props: {
                          <ExtraChip
                              pile={pile}
                              isSuper={icon.isSuper}
-                             onClick={() => {}}
                          />
                      </Typography>}
                  </Box>
