@@ -11,8 +11,6 @@ import { DataGrid } from '@mui/x-data-grid';
 import { NavBar, IconIcon, IconData, champColor, allTabs, tabFilters } from './Balance';
 import { TFTSet, TFTVersion } from './version';
 
-export const iconWidth = "70px";
-
 const url = `https://us-central1-tft-meta-73571.cloudfunctions.net/exportResponses?TFTSet=${TFTSet}&TFTVersion=${TFTVersion}&token=`;
 
 interface Summary {
@@ -31,8 +29,10 @@ interface SummaryResponse {
     stats: Stats,
 };
 
-const RenderIcon = (props: {icon: IconData}) => {
-    const { icon } = props;
+const RenderIcon = (props: {icon: IconData, width?: string}) => {
+    const { icon, width } = props;
+    const iconWidth = "70px";
+
     let borderStyle = {};
 
     if (icon.kind === "champ") {
@@ -49,7 +49,7 @@ const RenderIcon = (props: {icon: IconData}) => {
     return (
         <IconIcon
         icon={icon}
-        width={iconWidth}
+        width={width || iconWidth}
         onClick={() => console.log("nothing")}
         style={{ ...borderStyle,
                  cursor: 'pointer',
@@ -75,19 +75,31 @@ const RenderSummary = (props: {summary: Array<Summary>}) => {
         }
     };
 
+    let iconWidth = "70px";
+    let iconColWidth = 130;
+    let rowHeight = 100;
+    let numberColWidth = 70;
+
+    if (!matches) {
+        iconWidth = "40px";
+        iconColWidth = 80;
+        rowHeight = 75;
+        numberColWidth = 60;
+    }
+
     const columns = [
         {
             field: 'icon',
             headerName: 'Icon',
-            width: 130,
+            width: iconColWidth,
             sortable: false,
             renderCell: (params: any) => {
-                return <RenderIcon icon={params.row.icon as IconData} />
+                return <RenderIcon icon={params.row.icon as IconData} width={iconWidth} />
             }
         },
-        { field: 'buff', headerName: 'Buff', width: 70, type: 'number' },
-        { field: 'nerf', headerName: 'Nerf', width: 70, type: 'number' },
-        { field: 'total', headerName: 'Total', width: 70, type: 'number' },
+        { field: 'buff',  headerName: 'Buff',  width: numberColWidth, type: 'number' },
+        { field: 'nerf',  headerName: 'Nerf',  width: numberColWidth, type: 'number' },
+        { field: 'total', headerName: 'Total', width: numberColWidth, type: 'number' },
     ];
 
     if (matches) {
@@ -107,7 +119,7 @@ const RenderSummary = (props: {summary: Array<Summary>}) => {
     return (
         <div style={{ height: '92vh', width: '100%' }}>
             <DataGrid
-                rowHeight={100}
+                rowHeight={rowHeight}
                 rows={rows}
                 columns={columns}
                 pageSize={100}

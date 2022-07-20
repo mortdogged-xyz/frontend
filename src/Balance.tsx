@@ -19,7 +19,6 @@ import MenuItem from '@mui/material/MenuItem';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Snackbar from '@mui/material/Snackbar';
-import MuiAlert, { AlertProps } from '@mui/material/Alert';
 
 import MenuIcon from '@mui/icons-material/Menu';
 import StarIcon from '@mui/icons-material/Star';
@@ -29,6 +28,7 @@ import { dbSet, dbGet } from './firebase';
 import { InfoMenu } from './Info';
 import { Search } from './Search';
 import { showStarsNSuper } from './feature_flags'
+import { Alert } from './Alert';
 
 import TFTData from './set_data.json';
 
@@ -36,12 +36,6 @@ import { TFTSet, StorageKey } from './version';
 
 export const iconWidth = "80px";
 
-const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
-    props,
-    ref,
-) {
-    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-});
 
 export type IconKind = "champ" | "item" | "trait" | "aug";
 export type IconSentiment = "nerf" | "buff" | "noop";

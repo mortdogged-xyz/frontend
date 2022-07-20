@@ -4,9 +4,12 @@ import { getFirestore, setDoc, getDoc,  doc } from "firebase/firestore";
 import * as firebaseui from 'firebaseui';
 import 'firebaseui/dist/firebaseui.css';
 
+import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
 import { Info } from './Info';
+import { Alert } from './Alert';
+import { isFirefox } from './browser';
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -72,6 +75,34 @@ export async function Logout() {
     await firebase.auth().signOut();
 }
 
+export const FirefoxWarning = (props: {loggedIn: boolean}) => {
+    const { loggedIn } = props;
+    const [visible, setVisible] = useState(isFirefox);
+    
+    return (
+        <Box
+            component="div"
+            display={visible && !loggedIn ? "flex" : "none"}
+            justifyContent="center"
+            alignItems="center"
+            sx={{
+                margin: '10px',
+            }}
+        >
+            <Alert sx={{ width: "300px" }}
+                severity="warning"
+                onClose={() => setVisible(false)}>
+                <Typography>
+                    Firefox users might experience problems with logging in.
+                </Typography>
+                <Typography fontWeight="bold">
+                    Try registering with email and password instead of using Google or Twitter authentication.
+                </Typography>
+            </Alert>
+        </Box>
+    )
+}
+
 export const AuthUI = (props: {
     children: JSX.Element|JSX.Element[],
     onLoginChange: (uid: string | null) => void,
@@ -103,6 +134,8 @@ export const AuthUI = (props: {
 
     return (
         <>
+            <FirefoxWarning loggedIn={isAuthed}/>
+
             <Box sx={{display: (!isAuthed ? 'block' : 'none')}} component="div" ref={rootEl}></Box>
             {isAuthed ? children : <span></span>}
             {!isAuthed ? info : <span></span>}
