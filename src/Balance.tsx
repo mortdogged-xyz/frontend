@@ -359,17 +359,6 @@ const RenderIcons = (props: {
     )
 }
 
-
-function append<T>(arr: Array<T>, el: T): Array<T> {
-    return arr.concat([el]);
-}
-
-function disj<T>(arr: Array<T>, el: T): Array<T> {
-    return arr.filter((e) => e !== el);
-}
-
-const allKeys = ["nerf", "noop", "buff"] as IconSentiment[];
-
 function moveFromTo(data: BalanceData, tok: IconSentiment, el: IconData) {
     const clone = {...data};
 
