@@ -42,12 +42,19 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
+export type IconKind = "champ" | "item" | "trait" | "aug";
+export type IconSentiment = "nerf" | "buff" | "noop";
+
 export interface IconData {
     icon: string;
-    kind: string;
-    starLevel?: number;
-    isSuper?: boolean;
+    kind: IconKind;
+    sentiment: IconSentiment;
+    starLevel: number;
+    isSuper: boolean;
 }
+
+export type BalanceData = Record<IconKind, Record<string, IconData>>;
+export type BalanceDataForRendering = Record<IconSentiment, Array<IconData>>
 
 function iconURL(icon: IconData): string {
     if (icon.kind === "champ") {
@@ -119,6 +126,22 @@ const DynamicStar = (props: {filled: boolean, onClick: () => void}) => {
     return filled ? <StarIcon onClick={onClick} /> : <StarBorderIcon onClick={onClick} />;
 }
 
+const ThreeStars = (props: {
+    starLevel: number,
+    selectStar: (star: number) => void,
+}) => {
+    const { starLevel, selectStar } = props;
+
+    const stars = [...Array(3)].map((_, i) => 
+        <DynamicStar
+            filled={i < starLevel}
+            onClick={() => selectStar(i+1)}
+            key={`filled-icon-${i}`} />
+    )
+
+    return (<> {stars} </>)
+}
+
 const StarSelector = (props: {
     starLevel: number,
     selectStar: (star: number) => void,
@@ -126,23 +149,16 @@ const StarSelector = (props: {
     const { starLevel, selectStar } = props;
 
     function clickHandle(i: number) {
-        return () => {
-            if (i === starLevel) {
-                selectStar(0);
-            } else {
-                selectStar(i);
-            }
+        if (i === starLevel) {
+            selectStar(0);
+        } else {
+            selectStar(i);
         }
     }
 
     return (
         <Typography>
-            {[...Array(3)].map((_, i) => 
-                <DynamicStar
-                    filled={i < starLevel}
-                    onClick={clickHandle(i+1)}
-                    key={`filled-icon-${i}`} />
-            )}
+            <ThreeStars starLevel={starLevel} selectStar={clickHandle} />
         </Typography>
     )
 }
@@ -150,9 +166,10 @@ const StarSelector = (props: {
 const DraggableIcon = (props: {
     icon: IconData,
     currentlyActive: IconData | null,
+    selectStar: (star: number) => void,
     onClick: (icon: IconData) => void,
 }) => {
-    const { icon, currentlyActive, onClick } = props;
+    const { icon, currentlyActive, selectStar, onClick } = props;
 
     const [{ isDragging }, drag] = useDrag(() => ({
         type: "icon",
@@ -179,16 +196,7 @@ const DraggableIcon = (props: {
 
     const clickHandler = () => onClick(icon);
 
-    const displayStyle: Record<string, any> = {};
-    if (!isActive || !showStarsNSuper) {
-        displayStyle["display"] = "none";
-    }
-
-    const [starLevel, setStarLevel] = useState(0);
-    const selectStar = (i: number) => {
-        console.log(i);
-        setStarLevel(i);
-    }
+    const dropdownVisible = isActive && showStarsNSuper;
 
     return (
         <Box component="div"
@@ -205,34 +213,46 @@ const DraggableIcon = (props: {
                             marginLeft: '15px',
                             marginBottom: '15px' }}
                 />
+
+                {(icon.starLevel > 0 || icon.isSuper) &&
+                 <Box component="div" sx={{
+                     position: 'absolute',
+                     bottom: 15,
+                     left: 20,
+                 }}>
+                     <Typography>
+                         <ThreeStars starLevel={icon.starLevel} selectStar={() => {}} />
+                     </Typography>
+                 </Box>
+                }
             </Box>
 
-            <Card
-                component="div"
-                sx={{
-                    ...displayStyle,
-                    ...borderStyle,
-                    width: '110px',
-                    position: 'absolute',
-                    top: '90px',
-                    left: '0',
-                    zIndex: 999,
-                }}
-            >
-                <CardActionArea>
-                    <CardContent>
-                        <Typography>
-                            {icon.icon}
-                        </Typography>
+            {dropdownVisible &&
+             <Card
+                 component="div"
+                 sx={{
+                     ...borderStyle,
+                     width: '110px',
+                     position: 'absolute',
+                     top: '90px',
+                     left: '0',
+                     zIndex: 999,
+                 }}
+             >
+                 <CardActionArea>
+                     <CardContent>
+                         <Typography>
+                             {icon.icon}
+                         </Typography>
 
-                        <StarSelector starLevel={starLevel} selectStar={selectStar} />
+                         <StarSelector starLevel={icon.starLevel} selectStar={selectStar} />
 
-                        <Typography>
-                            Needs extra
-                        </Typography>
-                    </CardContent>
-                </CardActionArea>
-            </Card>
+                         <Typography>
+                             Needs extra
+                         </Typography>
+                     </CardContent>
+                 </CardActionArea>
+             </Card>}
         </Box>
     )
     
@@ -279,10 +299,14 @@ const DroppableZone = (props: {
     
 }
 
-function convertData(data: Array<string>, kind: string, blacklist: Array<string>): Array<IconData> {
-    return data.filter((icon) => !blacklist.includes(icon)).map((icon) => {
-        return {icon: icon, kind: kind};
-    });
+function convertData(data: Array<string>, kind: string, blacklist: Array<string>): Record<string, IconData> {
+    const result: Record<string, IconData> = {};
+
+    data.filter((icon) => !blacklist.includes(icon)).forEach((icon) => 
+        result[icon] = {icon: icon, kind: kind, sentiment: "noop", starLevel: 0, isSuper: false} as IconData
+    );
+
+    return result;
 }
 
 TFTData.champs.sort((a, b) => champCost(a) - champCost(b));
@@ -301,25 +325,27 @@ const items = convertData(
 )
 const augs = convertData(TFTData.augs, "aug", [])
 const traits = convertData(TFTData.traits, "trait", [])
-const allIcons = champs.concat(items).concat(augs).concat(traits);
-
-interface BalanceData {
-    nerf: Array<IconData>;
-    noop: Array<IconData>;
-    buff: Array<IconData>;
-}
+const allIcons = {
+    champ: champs,
+    item: items,
+    trait: traits,
+    aug: augs,
+};
 
 
 const RenderIcons = (props: {
     icons: Array<IconData>,
     currentlyActive: IconData | null,
+    selectStar: (icon: IconData, star: number) => void,
     onClick: (icon: IconData) => void,
 }) => {
-    const { icons, currentlyActive, onClick } = props;
+    const { icons, currentlyActive, selectStar, onClick } = props;
+
     const iconsRendered = icons.map((icon) =>
         <DraggableIcon
             icon={icon}
             currentlyActive={currentlyActive}
+            selectStar={(star: number) => selectStar(icon, star)}
             onClick={onClick}
             key={icon.icon}
         />
@@ -341,14 +367,13 @@ function disj<T>(arr: Array<T>, el: T): Array<T> {
     return arr.filter((e) => e !== el);
 }
 
-type BalanceKey = "nerf" | "noop" | "buff";
-const allKeys = ["nerf", "noop", "buff"] as BalanceKey[];
+const allKeys = ["nerf", "noop", "buff"] as IconSentiment[];
 
-function moveFromTo(data: BalanceData, tok: BalanceKey, el: IconData) {
+function moveFromTo(data: BalanceData, tok: IconSentiment, el: IconData) {
     const clone = {...data};
 
-    allKeys.forEach((fromk) => clone[fromk] = disj(clone[fromk], el));
-    clone[tok] = append(clone[tok], el);
+    el.sentiment = tok;
+    clone[el.kind][el.icon] = el;
 
     return clone;
 }
@@ -359,21 +384,20 @@ export const tabFilters = {
     "Items": "item",
     "Traits": "trait",
     "Augments": "aug",
-} as Record<string, string>;
+} as Record<string, IconKind>;
 
-function filterBalance(balance: BalanceData, k: string, search: string): BalanceData {
-    const clone = {...balance};
-    (Object.keys(clone) as (keyof typeof clone)[]).forEach(
-        (key: BalanceKey) =>
-            clone[key] = clone[key].filter(
-                (v) => v.kind === k && v.icon.toLowerCase().includes(search.toLowerCase())
-            )
-    );
-    return clone;
+function prepareBalanceData(balance: BalanceData, k: IconKind, search: string): BalanceDataForRendering {
+    const result: BalanceDataForRendering = {"nerf": [], "noop": [], "buff": []};
+
+    const items = Object.values(balance[k]);
+
+    items.forEach((item) => result[item.sentiment].push(item));
+
+    return result;
 }
 
-const emptyBalanceState = {nerf: [], noop: [], buff: []};
-const defaultBalanceState = {nerf: [], noop: allIcons, buff: []};
+const emptyBalanceState: BalanceData = {champ: {}, item: {}, trait: {}, aug: {}};
+const defaultBalanceState: BalanceData = allIcons;
 
 export const NavBar = (props: {
     setTab: (tab: string) => void,
@@ -467,6 +491,7 @@ export const Column = (props: {
     bgColor: string,
     icons: Array<IconData>,
     currentlyActive: IconData | null,
+    selectStar: (icon: IconData, star: number) => void,
     onClick: (icon: IconData) => void,
 }) => {
     const {
@@ -478,6 +503,7 @@ export const Column = (props: {
         bgColor,
         icons,
         currentlyActive,
+        selectStar,
         onClick,
     } = props;
 
@@ -495,6 +521,7 @@ export const Column = (props: {
                     <RenderIcons
                         icons={icons}
                         currentlyActive={currentlyActive}
+                        selectStar={selectStar}
                         onClick={onClick}
                     />
                 </Box>
@@ -530,6 +557,7 @@ export const Balance = (props: {uid: string | null}) => {
         loadData().catch(console.error);
     }, [uid, loadedBalance])
     
+    const canSubmit = Object.values(allBalance).find((o) => Object.values(o).find((i) => i.sentiment !== "noop")) !== undefined;
     const submit = async () => {
         await dbSet(StorageKey, uid || "anon", allBalance);
         setAlertShown(true);
@@ -538,7 +566,7 @@ export const Balance = (props: {uid: string | null}) => {
     const closeAlert = () => setAlertShown(false);
 
     const tabFilter = tabFilters[currentTab] || 'champ';
-    const balance = filterBalance(allBalance, tabFilter, searchFilter);
+    const balance = prepareBalanceData(allBalance, tabFilter, searchFilter);
 
     const nerf = (icon: IconData) => {
         setCurrentlyActiveIcon(icon);
@@ -561,6 +589,15 @@ export const Balance = (props: {uid: string | null}) => {
         }
     }
 
+    const selectStar = (icon: IconData, star: number) => {
+        setAllBalance((balance) => {
+            const clone = {...balance};
+            clone[icon.kind][icon.icon].starLevel = star;
+            return clone;
+        })
+        
+    }
+
     const search = (value: string) => setSearchFilter(value);
 
     const headerSx = {
@@ -575,7 +612,7 @@ export const Balance = (props: {uid: string | null}) => {
             <NavBar
                 setTab={setCurrentTab}
                 currentTab={currentTab}
-                canSubmit={allBalance.nerf.length > 0 || allBalance.buff.length > 0}
+                canSubmit={canSubmit}
                 showSubmit={true}
                 submit={submit}
                 onSearch={search}
@@ -604,6 +641,7 @@ export const Balance = (props: {uid: string | null}) => {
                     sx={headerSx}
                     icons={balance.nerf}
                     currentlyActive={currentlyActiveIcon}
+                    selectStar={selectStar}
                     onClick={clickIcon}
                 />
 
@@ -616,6 +654,7 @@ export const Balance = (props: {uid: string | null}) => {
                     sx={headerSx}
                     icons={balance.noop}
                     currentlyActive={currentlyActiveIcon}
+                    selectStar={selectStar}
                     onClick={clickIcon}
                 />
 
@@ -628,6 +667,7 @@ export const Balance = (props: {uid: string | null}) => {
                     sx={headerSx}
                     icons={balance.buff}
                     currentlyActive={currentlyActiveIcon}
+                    selectStar={selectStar}
                     onClick={clickIcon}
                 />
             </Grid>
