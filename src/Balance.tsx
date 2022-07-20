@@ -248,22 +248,35 @@ const DraggableIcon = (props: {
                 />
 
                 {(icon.starLevel > 0 || icon.isSuper) &&
-                 <Box component="div" sx={{
-                     position: 'absolute',
-                     bottom: 25,
-                     left: 20,
-                 }}>
+                 <Box
+                    component="div"
+                    onClick={clickHandler}
+                    sx={{
+                        position: 'absolute',
+                        bottom: 25,
+                        left: 20,
+                    }}
+                    >
+                    <Typography>
                      {icon.starLevel > 0  &&
-                      <Typography>
-                         <ThreeStars starLevel={icon.starLevel} selectStar={() => {}} />
-                     </Typography>}
-                     {icon.isSuper &&
-                      <Typography>
-                         <ExtraChip
-                             pile={pile}
-                             isSuper={icon.isSuper}
+                         <Chip
+                             component="span"
+                             onClick={clickHandler}
+                             label={icon.starLevel}
+                             icon={<StarIcon />}
                          />
-                     </Typography>}
+                     }
+                     {icon.isSuper &&
+                         <Chip
+                            sx={{
+                                backgroundColor: SentimentColors[pile],
+                            }}
+                            component="span"
+                            onClick={clickHandler}
+                            label="+"
+                         />
+                     }
+                    </Typography>
                  </Box>
                 }
             </Box>
