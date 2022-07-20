@@ -265,7 +265,7 @@ const DraggableIcon = (props: {
                         position: 'absolute',
                         bottom: 25,
                         left: 20,
-                        width: '72px',
+                        width: '78px',
                     }}
                 >
                     <Typography display="flex">
