@@ -4,6 +4,9 @@ import { useDrag, useDrop } from 'react-dnd';
 import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardActionArea from '@mui/material/CardActionArea';
+import CardContent from '@mui/material/CardContent';
 import IconButton from '@mui/material/IconButton';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
@@ -12,17 +15,19 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import Tooltip from '@mui/material/Tooltip';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
 
 import MenuIcon from '@mui/icons-material/Menu';
+import StarIcon from '@mui/icons-material/Star';
+import StarBorderIcon from '@mui/icons-material/StarBorder';
 
 import { dbSet, dbGet } from './firebase';
 import { InfoMenu } from './Info';
 import { Search } from './Search';
+import { showStarsNSuper } from './feature_flags'
 
 import TFTData from './set_data.json';
 
@@ -96,7 +101,7 @@ export const IconIcon = (props: {
     } = props;
 
     return (
-        <Tooltip title={icon.icon}>
+        <Box component="div">
             <img
                 width={width}
                 src={iconURL(icon)}
@@ -104,7 +109,41 @@ export const IconIcon = (props: {
                 onClick={onClick}
                 style={style}
             />
-        </Tooltip>
+        </Box>
+    )
+}
+
+const DynamicStar = (props: {filled: boolean, onClick: () => void}) => {
+    const { filled, onClick } = props;
+
+    return filled ? <StarIcon onClick={onClick} /> : <StarBorderIcon onClick={onClick} />;
+}
+
+const StarSelector = (props: {
+    starLevel: number,
+    selectStar: (star: number) => void,
+}) => {
+    const { starLevel, selectStar } = props;
+
+    function clickHandle(i: number) {
+        return () => {
+            if (i === starLevel) {
+                selectStar(0);
+            } else {
+                selectStar(i);
+            }
+        }
+    }
+
+    return (
+        <Typography>
+            {[...Array(3)].map((_, i) => 
+                <DynamicStar
+                    filled={i < starLevel}
+                    onClick={clickHandle(i+1)}
+                    key={`filled-icon-${i}`} />
+            )}
+        </Typography>
     )
 }
 
@@ -140,8 +179,21 @@ const DraggableIcon = (props: {
 
     const clickHandler = () => onClick(icon);
 
+    const displayStyle: Record<string, any> = {};
+    if (!isActive || !showStarsNSuper) {
+        displayStyle["display"] = "none";
+    }
+
+    const [starLevel, setStarLevel] = useState(0);
+    const selectStar = (i: number) => {
+        console.log(i);
+        setStarLevel(i);
+    }
+
     return (
-        <Box component="div">
+        <Box component="div"
+            sx={{position: 'relative'}}
+        >
             <Box ref={drag}>
                 <IconIcon
                     icon={icon}
@@ -155,20 +207,32 @@ const DraggableIcon = (props: {
                 />
             </Box>
 
-            <Box
+            <Card
                 component="div"
-                display={isActive ? "none" : "none"}
                 sx={{
-                    width: iconWidth,
+                    ...displayStyle,
+                    ...borderStyle,
+                    width: '110px',
                     position: 'absolute',
+                    top: '90px',
+                    left: '0',
+                    zIndex: 999,
                 }}
             >
-                {icon.icon}
-                3 star
-                2 star
-                1 star
-                Super buff
-            </Box>
+                <CardActionArea>
+                    <CardContent>
+                        <Typography>
+                            {icon.icon}
+                        </Typography>
+
+                        <StarSelector starLevel={starLevel} selectStar={selectStar} />
+
+                        <Typography>
+                            Needs extra
+                        </Typography>
+                    </CardContent>
+                </CardActionArea>
+            </Card>
         </Box>
     )
     
