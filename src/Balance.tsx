@@ -265,26 +265,39 @@ const DraggableIcon = (props: {
                         position: 'absolute',
                         bottom: 25,
                         left: 20,
+                        width: '72px',
                     }}
                 >
-                    <Typography>
+                    <Typography display="flex">
                     {icon.starLevel > 0  &&
-                        <Chip
-                            color={StarLevelChipColor[icon.starLevel]}
-                            variant="filled"
+                        <Box
                             component="span"
-                            onClick={clickHandler}
-                            label={icon.starLevel}
-                            icon={<StarIcon />}
-                        />
+                            sx={{ flexGrow: 1 }}
+                        >
+                            <Chip
+                                color={StarLevelChipColor[icon.starLevel]}
+                                variant="filled"
+                                component="span"
+                                size="small"
+                                onClick={clickHandler}
+                                label={icon.starLevel}
+                                icon={<StarIcon />}
+                            />
+                        </Box>
                     }
                     {icon.isSuper && pile !== "noop" &&
-                        <Chip
-                           color={SentimentChipColor[pile]}
-                           component="span"
-                           onClick={clickHandler}
-                           label="+"
-                        />
+                        <Box
+                            component="span"
+                            sx={{ flexGrow: 1 }}
+                        >
+                            <Chip
+                                color={SentimentChipColor[pile]}
+                                component="span"
+                                size="small"
+                                onClick={clickHandler}
+                                label="+"
+                            />
+                        </Box>
                     }
                     </Typography>
                  </Box>
