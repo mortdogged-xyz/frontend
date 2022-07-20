@@ -177,7 +177,7 @@ const ExtraChip = (props: {
 }) => {
     const {
         pile,
-        isSuper,
+        /* isSuper, */
         onClick,
     } = props;
 
