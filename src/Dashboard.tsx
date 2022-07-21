@@ -2,11 +2,10 @@ import React, {useState, useEffect} from 'react';
 
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
-import CircularProgress from '@mui/material/CircularProgress';
+import { LoadingModal } from './Loading';
 
 import { DataGrid, GridColumnHeaderParams, GridColDef } from '@mui/x-data-grid';
 
@@ -196,30 +195,6 @@ const RenderSummary = (props: {summary: Array<Summary>, pile: IconKind}) => {
                 checkboxSelection
             />
         </div>
-    )
-}
-
-export const LoadingModal = (props: {loading: boolean}) => {
-    const { loading } = props;
-
-    const style = {
-        position: 'absolute' as 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-    };
-
-    return (
-        <Modal
-            open={loading}
-            onClose={() => {}}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-        >
-            <Box component="div" sx={style}>
-                <CircularProgress />
-            </Box>
-        </Modal>
     )
 }
 

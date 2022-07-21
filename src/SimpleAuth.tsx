@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -14,6 +14,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 
 import { Info } from './Info';
+import { LoadingModal } from './Loading';
 
 const loginUrl = "http://localhost:5001/tft-meta-73571/us-central1/loginV2";
 
@@ -109,7 +110,7 @@ export const setUserData = (data: LoginData) => {
     localStorage.setItem(lsKey, JSON.stringify(data));
 }
 
-export const rmUserData = () => localStorage.removeItem(lsKey);
+export const removeUserData = () => localStorage.removeItem(lsKey);
 
 export const getUserData = (): LoginData | null => {
     const json = localStorage.getItem(lsKey);
@@ -125,6 +126,7 @@ export const SimpleAuth = (props: {
     uid: string | null,
 }) =>  {
     const { children, onLoginChange, uid } = props;
+    const [loading, setLoading] = useState(false);
     const isAuthed = uid !== null;
 
     useEffect(() => {
@@ -135,6 +137,7 @@ export const SimpleAuth = (props: {
     }, [onLoginChange]);
 
     const handleSubmit = async (email: string | null, password: string | null) => {
+        setLoading(true);
         console.log({email, password});
 
         const resp = await fetch(loginUrl, {
@@ -142,6 +145,7 @@ export const SimpleAuth = (props: {
             body: JSON.stringify({email, password}),
         });
         const data = await resp.json() as LoginData;
+        setLoading(false);
 
         if (data.uid) {
             setUserData(data);
@@ -157,6 +161,7 @@ export const SimpleAuth = (props: {
 
     return (
         <>
+            <LoadingModal loading={loading} />
             {!isAuthed && <LoginForm onSubmit={handleSubmit} />}
             {isAuthed && children}
             {!isAuthed && info}

@@ -16,7 +16,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 import { Balance } from './Balance';
 import { AuthUI, Logout } from './firebase';
-import { SimpleAuth } from './SimpleAuth';
+import { SimpleAuth, removeUserData } from './SimpleAuth';
 import { Dashboard } from './Dashboard';
 import { TFTSet, TFTVersion } from './version';
 
@@ -53,6 +53,7 @@ function App() {
 
     const logout = () => {
         Logout();
+        removeUserData();
         setUID(null);
     }
 
