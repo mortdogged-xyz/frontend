@@ -28,8 +28,8 @@ function capitalize(s: string): string {
     return s.charAt(0).toUpperCase() + s.slice(1);
 }
 
-/* const url = `https://us-central1-tft-meta-73571.cloudfunctions.net/exportResponsesV2?TFTSet=${TFTSet}&TFTVersion=${TFTVersion}&token=`; */
-const url = `http://localhost:5001/tft-meta-73571/us-central1/exportResponsesV2?TFTSet=${TFTSet}&TFTVersion=${TFTVersion}&token=`;
+const url = `https://us-central1-tft-meta-73571.cloudfunctions.net/exportResponsesV2?TFTSet=${TFTSet}&TFTVersion=${TFTVersion}&token=`;
+/* const url = `http://localhost:5001/tft-meta-73571/us-central1/exportResponsesV2?TFTSet=${TFTSet}&TFTVersion=${TFTVersion}&token=`; */
 
 interface Summary {
     icon: IconExport
