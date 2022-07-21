@@ -36,7 +36,8 @@ const Plug = () => {
             bottom: 5,
             display: { xs: 'none', md: 'flex' },
         }}
-              color="success"
+              onClick={() => window?.open("https://twitter.com/Gonzih")?.focus()}
+              color="info"
               variant="outlined"
               label={`Set: ${TFTSet}, Patch: ${TFTVersion} — mortdogged.xyz by @Gonzih`}
         />
