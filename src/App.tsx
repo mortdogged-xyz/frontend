@@ -32,11 +32,11 @@ const Plug = () => {
     return (
         <Chip sx={{
             position: 'fixed',
-            right: 5,
+            left: 5,
             bottom: 5,
             display: { xs: 'none', md: 'flex' },
         }}
-              label={`set ${TFTSet}, patch ${TFTVersion} mortdogged.xyz`}
+              label={`set ${TFTSet}, patch ${TFTVersion} — mortdogged.xyz`}
         />
     )
 }
