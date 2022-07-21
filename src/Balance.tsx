@@ -224,6 +224,26 @@ export const StarSummaryChip = (props: {
     )
 }
 
+export const ExtraSummaryChip = (props: {
+    pile: IconSentiment,
+    onClick?: () => void,
+}) => {
+    const {
+        pile,
+        onClick,
+    } = props;
+
+    return (
+        <Chip
+            color={SentimentChipColor[pile]}
+            component="span"
+            size="small"
+            onClick={onClick}
+            label="+"
+        />
+    )
+}
+
 const DraggableIcon = (props: {
     icon: IconData,
     currentlyActive: IconData | null,
@@ -312,13 +332,7 @@ const DraggableIcon = (props: {
                             component="span"
                             sx={{ flexGrow: 1 }}
                         >
-                            <Chip
-                                color={SentimentChipColor[pile]}
-                                component="span"
-                                size="small"
-                                onClick={clickHandler}
-                                label="+"
-                            />
+                            <ExtraSummaryChip pile={pile} onClick={clickHandler} />
                         </Box>
                     }
                     </Typography>

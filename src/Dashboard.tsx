@@ -20,6 +20,7 @@ import {
     tabFilters,
     SentimentColors,
     StarSummaryChip,
+    ExtraSummaryChip,
 } from './Balance';
 import { TFTSet, TFTVersion } from './version';
 
@@ -93,14 +94,14 @@ const RenderSummary = (props: {summary: Array<Summary>}) => {
 
     let iconWidth = "70px";
     let iconColWidth = 130;
-    let rowHeight = 100;
-    let numberColWidth = 70;
+    let rowHeight = 200;
+    let numberColWidth = 90;
 
     if (!matches) {
         iconWidth = "40px";
         iconColWidth = 80;
-        rowHeight = 75;
-        numberColWidth = 60;
+        rowHeight = 165;
+        numberColWidth = 80;
     }
 
     const columns: GridColDef[]  = [
@@ -120,32 +121,51 @@ const RenderSummary = (props: {summary: Array<Summary>}) => {
     const sentiments: Array<IconSentiment> = ['buff', 'nerf'];
     sentiments.forEach((sentiment) => {
         const key = `${sentiment}Total`;
+
         columns.push({
             field: key,
-            width: numberColWidth,
+            width: numberColWidth * 2,
             type: 'number',
+            renderCell: (p) => {
+                const params = p.row as Record<string, number>;
+                const stars = [...Array(3)].map((_, i) => {
+                    const star = i + 1;
+
+                    return (
+                        <Box component="div" sx={{
+                            justifyContent: 'space-evenly',
+                            flexGrow: 1,
+                            display: 'flex',
+                            margin: '5px',
+                        }}>
+                            <Box component="span">
+                                {params[`${key}${star}`] || 0} <StarSummaryChip starLevel={star} />
+                            </Box>
+                            <Box component="span">
+                                {params[`${key}Super${star}`] || 0} <ExtraSummaryChip pile={sentiment} />
+                            </Box>
+                        </Box>
+                    )
+                })
+
+                return (
+                    <Box component="div" flexDirection="column" sx={{ width: '100%' }}>
+                        <Box component="div" textAlign="center">
+                            Total: {params[key] || 0}
+                        </Box>
+                        <Box component="div" textAlign="center">
+                            {params[`${sentiment}SuperAny`] || 0} <ExtraSummaryChip pile={sentiment} />
+                        </Box>
+                        {stars}
+                    </Box>
+                )
+            },
             renderHeader: (params: GridColumnHeaderParams) => (
                 <Typography color={SentimentColors[sentiment]}>
                     {capitalize(sentiment)}
                 </Typography>
             )
         });
-
-        [...Array(3)].forEach((_, i) => {
-            const star = i+1;
-            const subkey = `${key}${star}`;
-            columns.push({
-                field: subkey,
-                headerName: capitalize(subkey),
-                width: numberColWidth * 1.6,
-                type: 'number',
-                renderHeader: (params: GridColumnHeaderParams) => (
-                    <Typography color={SentimentColors[sentiment]}>
-                        {capitalize(sentiment)} <StarSummaryChip starLevel={star} />
-                    </Typography>
-                )
-            });
-        })
     });
 
     if (matches) {
@@ -154,7 +174,6 @@ const RenderSummary = (props: {summary: Array<Summary>}) => {
 
     const rows = summary.map((sum) => {
         const { icon, numbers } = sum;
-        console.log(numbers);
 
         return {
             ...numbers,
