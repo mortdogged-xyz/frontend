@@ -104,7 +104,8 @@ const LoginForm = (props: {
 
 interface LoginData {
     uid: string,
-    jwt: string,
+    token?: string,
+    jwt?: string,
 }
 
 const lsKey = "user-simple-auth";
@@ -142,21 +143,35 @@ export const SimpleAuth = (props: {
     const handleSubmit = async (email: string | null, password: string | null) => {
         setLoading(true);
         console.log({email, password});
-
-        // TODO HANDLE THE CASE WHEN USER HAS FIREBASE ACCOUNT
-        // TODO still re-register user using their credentials in our own system
-        if (email && password) {
-            signInWithEmailAndPassword(auth, email, password)
-                .then((creds) => {
-                    console.log(creds);
-                    const user = creds.user;
-                }).catch(console.error);
-        }
-
-        const resp = await fetch(loginUrl, {
+        const fetchBody = {
             method: 'POST',
             body: JSON.stringify({email, password}),
-        });
+        };
+
+        if (email && password) {
+            try {
+                const creds = await signInWithEmailAndPassword(auth, email, password);
+                await fetch(loginUrl, fetchBody);
+
+                const user = creds.user;
+                console.log(user);
+
+                const data: LoginData = {
+                    uid: user.uid,
+                    token: (user as any)["accessToken"],
+                }
+
+                setLoading(false);
+                setUserData(data);
+                onLoginChange(data.uid);
+                return;
+            } catch (e) {
+                console.log(e);
+                console.log("Failed to find firebase account, continuing");
+            }
+        }
+
+        const resp = await fetch(loginUrl, fetchBody);
         const data = await resp.json() as LoginData;
         setLoading(false);
 
