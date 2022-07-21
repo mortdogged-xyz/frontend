@@ -65,7 +65,7 @@ function App() {
         </AuthUI>
     )
 
-    const cnBalance = (
+    const simpleLoginBalance = (
         <SimpleAuth onLoginChange={setUID} uid={uid}>
             <DndProvider backend={backend}>
                 <Balance uid={uid} logout={logout} />
@@ -86,7 +86,7 @@ function App() {
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={balance} />
-                    <Route path="/letmein" element={cnBalance} />
+                    <Route path="/letmein" element={simpleLoginBalance} />
                     <Route path="food-fight-tactics" element={dashboard} />
                 </Routes>
             </BrowserRouter>

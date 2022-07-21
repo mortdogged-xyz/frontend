@@ -4,8 +4,13 @@ import { getFirestore, setDoc, getDoc,  doc } from "firebase/firestore";
 import * as firebaseui from 'firebaseui';
 import 'firebaseui/dist/firebaseui.css';
 
+import { useNavigate } from "react-router-dom";
+
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+
+import EmailIcon from '@mui/icons-material/Email';
 
 import { Info } from './Info';
 import { Alert } from './Alert';
@@ -55,7 +60,7 @@ var uiConfig = {
         // Leave the lines as is for the providers you want to offer your users.
         firebase.auth.GoogleAuthProvider.PROVIDER_ID,
         firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-        firebase.auth.EmailAuthProvider.PROVIDER_ID,
+        // firebase.auth.EmailAuthProvider.PROVIDER_ID,
         // firebase.auth.FacebookAuthProvider.PROVIDER_ID,
         // firebase.auth.GithubAuthProvider.PROVIDER_ID,
         // firebase.auth.PhoneAuthProvider.PROVIDER_ID,
@@ -132,11 +137,34 @@ export const AuthUI = (props: {
         </Box>
     )
 
+    const navigate = useNavigate();
+
     return (
         <>
             <FirefoxWarning loggedIn={isAuthed}/>
 
-            <Box sx={{display: (!isAuthed ? 'block' : 'none')}} component="div" ref={rootEl}></Box>
+            <Box sx={{
+                display: (!isAuthed ? 'block' : 'none'),
+                justifyContent: 'center',
+                alignItems: 'center',
+                textAlign: 'center',
+                paddingTop: '20px',
+            }} component="div">
+                <Button
+                    variant="contained"
+                    color="error"
+                    size="large"
+                    startIcon={<EmailIcon />}
+                    onClick={() => navigate("/letmein")}
+                    sx={{
+                        textTransform: 'none',
+                        width: '220px',
+                    }}
+                >
+                    Sign in with email
+                </Button>
+                <Box component="div" ref={rootEl}></Box>
+            </Box>
             {isAuthed ? children : <span></span>}
             {!isAuthed ? info : <span></span>}
         </>
