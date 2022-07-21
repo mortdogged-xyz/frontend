@@ -16,8 +16,6 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 import { TFTSet, TFTVersion } from './version';
 
-import { Logout } from './firebase';
-
 const InfoPopup = (props: {isOpen: boolean, handleClose: () => void}) => {
     const { isOpen, handleClose } = props;
     
@@ -67,7 +65,8 @@ export const Info = () => {
     )
 }
 
-export const InfoMenu =() => {
+export const InfoMenu =(props: {logout: () => void}) => {
+    const { logout } = props;
     const [moreAnchorEl, setMoreAnchorEl] = useState<HTMLElement | null>(null);
     const [moreMenuOpen, setMoreMenuOpen] = useState(false);
     const [open, setOpen] = useState(false);
@@ -106,7 +105,7 @@ export const InfoMenu =() => {
                 <MenuItem onClick={handleClick}>
                     Info
                 </MenuItem>
-                <MenuItem onClick={Logout}>
+                <MenuItem onClick={logout}>
                     Logout
                 </MenuItem>
             </Menu>

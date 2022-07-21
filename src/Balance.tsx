@@ -528,6 +528,7 @@ export const NavBar = (props: {
     canSubmit: boolean,
     showSubmit: boolean,
     submit: () => void,
+    logout: () => void,
     onSearch: (value: string) => void,
 }) => {
     const {
@@ -536,6 +537,7 @@ export const NavBar = (props: {
         canSubmit,
         showSubmit,
         submit,
+        logout,
         onSearch,
     } = props;
     const [navAnchorEl, setNavAnchorEl] = useState<HTMLElement | null>(null);
@@ -598,7 +600,7 @@ export const NavBar = (props: {
                             showSubmit &&
                             <Button color="inherit" disabled={!canSubmit} onClick={submit}>Submit</Button>
                         }
-                        <InfoMenu />
+                        <InfoMenu logout={logout} />
                     </Toolbar>
                 </Container>
             </AppBar>
@@ -659,8 +661,8 @@ export const Column = (props: {
     )
 }
 
-export const Balance = (props: {uid: string | null}) => {
-    const { uid } = props;
+export const Balance = (props: {uid: string | null, logout: () => void}) => {
+    const { uid, logout } = props;
     const [currentTab, setCurrentTab] = useState(allTabs[0]);
     const [loadedBalance, setLoadedBalance] = useState(false);
     const [allBalance, setAllBalance] = useState<BalanceData>(emptyBalanceState);
@@ -751,6 +753,7 @@ export const Balance = (props: {uid: string | null}) => {
                 canSubmit={canSubmit}
                 showSubmit={true}
                 submit={submit}
+                logout={logout}
                 onSearch={search}
             />
 

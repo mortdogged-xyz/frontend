@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -14,6 +14,8 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 
 import { Info } from './Info';
+
+const loginUrl = "http://localhost:5001/tft-meta-73571/us-central1/loginV2";
 
 const LoginForm = (props: {
     onSubmit: (email: string | null, password: string | null) => void,
@@ -97,17 +99,54 @@ const LoginForm = (props: {
     );
 }
 
+interface LoginData {
+    uid: string,
+    jwt: string,
+}
+
+const lsKey = "user-simple-auth";
+export const setUserData = (data: LoginData) => {
+    localStorage.setItem(lsKey, JSON.stringify(data));
+}
+
+export const rmUserData = () => localStorage.removeItem(lsKey);
+
+export const getUserData = (): LoginData | null => {
+    const json = localStorage.getItem(lsKey);
+    if (json) {
+        return JSON.parse(json) as LoginData;
+    }
+    return null;
+}
+
 export const SimpleAuth = (props: {
     children: JSX.Element|JSX.Element[],
     onLoginChange: (uid: string | null) => void,
+    uid: string | null,
 }) =>  {
-    const { children, onLoginChange } = props;
-    const [isAuthed, setIsAuthed] = useState(false);
+    const { children, onLoginChange, uid } = props;
+    const isAuthed = uid !== null;
 
-    const handleSubmit = (email: string | null, password: string | null) => {
+    useEffect(() => {
+        const data = getUserData();
+        if (data) {
+            onLoginChange(data.uid);
+        }
+    }, [onLoginChange]);
+
+    const handleSubmit = async (email: string | null, password: string | null) => {
         console.log({email, password});
-        onLoginChange(null);
-        setIsAuthed(false);
+
+        const resp = await fetch(loginUrl, {
+            method: 'POST',
+            body: JSON.stringify({email, password}),
+        });
+        const data = await resp.json() as LoginData;
+
+        if (data.uid) {
+            setUserData(data);
+            onLoginChange(data.uid);
+        }
     }
 
     const info = (

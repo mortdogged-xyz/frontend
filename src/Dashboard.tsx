@@ -223,9 +223,9 @@ export const LoadingModal = (props: {loading: boolean}) => {
     )
 }
 
-export const Dashboard = (props: {uid: string | null}) => {
+export const Dashboard = (props: {uid: string | null, logout: () => void}) => {
     const [currentTab, setCurrentTab] = useState(allTabs[0]);
-    const { uid } = props;
+    const { uid, logout } = props;
     const [state, setState] = useState<SummaryResponse>({summary: [], stats: {submissions: 0, items: 0}})
     const [loading, setLoading] = useState(true);
     const [searchFilter, setSearchFilter] = useState("");
@@ -267,6 +267,7 @@ export const Dashboard = (props: {uid: string | null}) => {
                 canSubmit={false}
                 showSubmit={false}
                 submit={() => {}}
+                logout={logout}
                 onSearch={setSearchFilter}
             />
             <RenderSummary summary={filteredState} pile={tabFilter} />

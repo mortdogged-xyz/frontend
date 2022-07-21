@@ -15,7 +15,7 @@ import Chip from '@mui/material/Chip';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 import { Balance } from './Balance';
-import { AuthUI } from './firebase';
+import { AuthUI, Logout } from './firebase';
 import { SimpleAuth } from './SimpleAuth';
 import { Dashboard } from './Dashboard';
 import { TFTSet, TFTVersion } from './version';
@@ -51,18 +51,23 @@ function App() {
     const backend = isTouchDevice() ? TouchBackend : HTML5Backend;
     const [uid, setUID] = useState<string | null>(null);
 
+    const logout = () => {
+        Logout();
+        setUID(null);
+    }
+
     const balance = (
         <AuthUI onLoginChange={setUID}>
             <DndProvider backend={backend}>
-                <Balance uid={uid} />
+                <Balance uid={uid} logout={logout }/>
             </DndProvider>
         </AuthUI>
     )
 
     const cnBalance = (
-        <SimpleAuth onLoginChange={setUID}>
+        <SimpleAuth onLoginChange={setUID} uid={uid}>
             <DndProvider backend={backend}>
-                <Balance uid={uid} />
+                <Balance uid={uid} logout={logout} />
             </DndProvider>
         </SimpleAuth>
     )
@@ -70,7 +75,7 @@ function App() {
     const dashboard =  (
         <AuthUI onLoginChange={setUID}>
             <DndProvider backend={backend}>
-                <Dashboard uid={uid} />
+                <Dashboard uid={uid} logout={logout} />
             </DndProvider>
         </AuthUI>
     )
