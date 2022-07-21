@@ -114,7 +114,7 @@ const RenderSummary = (props: {summary: Array<Summary>}) => {
                 return <RenderIcon icon={params.row.icon as IconExport} width={iconWidth} />
             }
         },
-        { field: 'total',  headerName: 'Total', width: numberColWidth, type: 'number' },
+        { field: 'total',  headerName: 'Total', width: 50, type: 'number' },
     ];
 
     
