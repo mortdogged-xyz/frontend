@@ -80,7 +80,7 @@ function App() {
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={balance} />
-                    <Route path="/cn" element={cnBalance} />
+                    <Route path="/letmein" element={cnBalance} />
                     <Route path="food-fight-tactics" element={dashboard} />
                 </Routes>
             </BrowserRouter>
