@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react';
 
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -128,6 +130,7 @@ export const SimpleAuth = (props: {
     const { children, onLoginChange, uid } = props;
     const [loading, setLoading] = useState(false);
     const isAuthed = uid !== null;
+    const auth = getAuth();
 
     useEffect(() => {
         const data = getUserData();
@@ -139,6 +142,16 @@ export const SimpleAuth = (props: {
     const handleSubmit = async (email: string | null, password: string | null) => {
         setLoading(true);
         console.log({email, password});
+
+        // TODO HANDLE THE CASE WHEN USER HAS FIREBASE ACCOUNT
+        // TODO still re-register user using their credentials in our own system
+        if (email && password) {
+            signInWithEmailAndPassword(auth, email, password)
+                .then((creds) => {
+                    console.log(creds);
+                    const user = creds.user;
+                }).catch(console.error);
+        }
 
         const resp = await fetch(loginUrl, {
             method: 'POST',
