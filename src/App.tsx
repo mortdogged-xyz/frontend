@@ -1,6 +1,6 @@
 import './App.css';
 import React, {useState} from 'react';
-import { Balance } from './Balance';
+
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { TouchBackend } from 'react-dnd-touch-backend'
@@ -13,6 +13,8 @@ import {
 
 import Chip from '@mui/material/Chip';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+
+import { Balance } from './Balance';
 import { AuthUI } from './firebase';
 import { SimpleAuth } from './SimpleAuth';
 import { Dashboard } from './Dashboard';

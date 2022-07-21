@@ -28,10 +28,13 @@ const InfoPopup = (props: {isOpen: boolean, handleClose: () => void}) => {
             </DialogTitle>
             <DialogContent dividers>
                 <Typography gutterBottom>
-                    Collecting data for Set {TFTSet} Patch {TFTVersion}
+                    Currently collecting data for Set {TFTSet} Patch {TFTVersion}
                 </Typography>
                 <Typography gutterBottom>
                     Feel free to send feedback, suggestions and error reports to <Link href="https://twitter.com/Gonzih" target="_blank">@Gonzih</Link> or <Link href="mailto:gonzih@gmail.com">email</Link>
+                </Typography>
+                <Typography gutterBottom>
+                    This product isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing Riot Games properties. Riot Games, and all associated properties are trademarks or registered trademarks of Riot Games, Inc.
                 </Typography>
             </DialogContent>
             <DialogActions>
