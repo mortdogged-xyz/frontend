@@ -244,6 +244,11 @@ export const ExtraSummaryChip = (props: {
     )
 }
 
+// TODO split name into words based on capitalization
+function formatIconName(name: string): string {
+    return name;
+}
+
 const DraggableIcon = (props: {
     icon: IconData,
     currentlyActive: IconData | null,
@@ -355,7 +360,7 @@ const DraggableIcon = (props: {
                  <CardActionArea>
                      <CardContent>
                          <Typography>
-                             {icon.icon}
+                             {formatIconName(icon.icon)}
                          </Typography>
 
                          {icon.kind === "champ" &&
