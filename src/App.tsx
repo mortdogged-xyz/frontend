@@ -36,7 +36,7 @@ const Plug = () => {
             bottom: 5,
             display: { xs: 'none', md: 'flex' },
         }}
-              label={`set ${TFTSet}, patch ${TFTVersion} — mortdogged.xyz`}
+              label={`set ${TFTSet}, patch ${TFTVersion} — mortdogged.xyz by @Gonzih`}
         />
     )
 }
