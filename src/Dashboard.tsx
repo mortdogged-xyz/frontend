@@ -142,7 +142,7 @@ const RenderSummary = (props: {summary: Array<Summary>}) => {
                                 {params[`${key}${star}`] || 0} <StarSummaryChip starLevel={star} />
                             </Box>
                             <Box component="span">
-                                {params[`${key}Super${star}`] || 0} <ExtraSummaryChip pile={sentiment} />
+                                {params[`${sentiment}Super${star}`] || 0} <ExtraSummaryChip pile={sentiment} />
                             </Box>
                         </Box>
                     )
