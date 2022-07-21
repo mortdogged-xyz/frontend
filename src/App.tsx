@@ -14,6 +14,7 @@ import {
 import Chip from '@mui/material/Chip';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { AuthUI } from './firebase';
+import { SimpleAuth } from './SimpleAuth';
 import { Dashboard } from './Dashboard';
 import { TFTSet, TFTVersion } from './version';
 
@@ -48,18 +49,40 @@ function App() {
     const backend = isTouchDevice() ? TouchBackend : HTML5Backend;
     const [uid, setUID] = useState<string | null>(null);
 
+    const balance = (
+        <AuthUI onLoginChange={setUID}>
+            <DndProvider backend={backend}>
+                <Balance uid={uid} />
+            </DndProvider>
+        </AuthUI>
+    )
+
+    const cnBalance = (
+        <SimpleAuth onLoginChange={setUID}>
+            <DndProvider backend={backend}>
+                <Balance uid={uid} />
+            </DndProvider>
+        </SimpleAuth>
+    )
+
+    const dashboard =  (
+        <AuthUI onLoginChange={setUID}>
+            <DndProvider backend={backend}>
+                <Dashboard uid={uid} />
+            </DndProvider>
+        </AuthUI>
+    )
+
     return (
         <ThemeProvider theme={darkTheme}>
-            <AuthUI onLoginChange={setUID}>
-                <DndProvider backend={backend}>
-                    <BrowserRouter>
-                        <Routes>
-                            <Route path="/" element={<Balance uid={uid} />} />
-                            <Route path="food-fight-tactics" element={<Dashboard uid={uid} />} />
-                        </Routes>
-                    </BrowserRouter>
-                </DndProvider>
-            </AuthUI>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={balance} />
+                    <Route path="/cn" element={cnBalance} />
+                    <Route path="food-fight-tactics" element={dashboard} />
+                </Routes>
+            </BrowserRouter>
+
             <Plug />
         </ThemeProvider>
     );
