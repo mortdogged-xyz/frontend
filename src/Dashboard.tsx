@@ -14,6 +14,7 @@ import {
     NavBar,
     IconIcon,
     IconExport,
+    IconKind,
     IconSentiment,
     champColor,
     allTabs,
@@ -76,8 +77,8 @@ const RenderIcon = (props: {icon: IconExport, width?: string}) => {
     )
 }
 
-const RenderSummary = (props: {summary: Array<Summary>}) => {
-    const { summary } = props;
+const RenderSummary = (props: {summary: Array<Summary>, pile: IconKind}) => {
+    const { summary, pile } = props;
 
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.up('md'));
@@ -94,13 +95,13 @@ const RenderSummary = (props: {summary: Array<Summary>}) => {
 
     let iconWidth = "70px";
     let iconColWidth = 130;
-    let rowHeight = 200;
+    let rowHeight = pile === "champ" ? 200 : 100;
     let numberColWidth = 90;
 
     if (!matches) {
         iconWidth = "40px";
         iconColWidth = 80;
-        rowHeight = 165;
+        rowHeight = pile === "champ" ? 165 : 80;
         numberColWidth = 80;
     }
 
@@ -128,6 +129,8 @@ const RenderSummary = (props: {summary: Array<Summary>}) => {
             type: 'number',
             renderCell: (p) => {
                 const params = p.row as Record<string, number>;
+                const icon = p.row.icon as IconExport;
+
                 const stars = [...Array(3)].map((_, i) => {
                     const star = i + 1;
 
@@ -156,7 +159,7 @@ const RenderSummary = (props: {summary: Array<Summary>}) => {
                         <Box component="div" textAlign="center">
                             {params[`${sentiment}SuperAny`] || 0} <ExtraSummaryChip pile={sentiment} />
                         </Box>
-                        {stars}
+                        {icon.kind === "champ" && stars}
                     </Box>
                 )
             },
@@ -228,7 +231,7 @@ export const Dashboard = (props: {uid: string | null}) => {
     const [searchFilter, setSearchFilter] = useState("");
 
 
-    const tabFilter = tabFilters[currentTab] || 'champ';
+    const tabFilter: IconKind = tabFilters[currentTab] || 'champ';
     const filteredState = state.summary.filter((item) => {
         return item.icon.icon.toLowerCase().includes(searchFilter.toLowerCase()) &&
                item.icon.kind === tabFilter;
@@ -266,7 +269,7 @@ export const Dashboard = (props: {uid: string | null}) => {
                 submit={() => {}}
                 onSearch={setSearchFilter}
             />
-            <RenderSummary summary={filteredState} />
+            <RenderSummary summary={filteredState} pile={tabFilter} />
         </>
     )
 }
