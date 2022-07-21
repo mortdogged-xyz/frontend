@@ -244,9 +244,8 @@ export const ExtraSummaryChip = (props: {
     )
 }
 
-// TODO split name into words based on capitalization
 function formatIconName(name: string): string {
-    return name;
+    return name.replace(/[A-Z]/g, ' $&').trim();
 }
 
 const DraggableIcon = (props: {
