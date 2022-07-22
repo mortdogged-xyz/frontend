@@ -5,3 +5,4 @@
 /exportResponsesV2 https://us-central1-tft-meta-73571.cloudfunctions.net/exportResponsesV2 200
 /loginV2 https://us-central1-tft-meta-73571.cloudfunctions.net/loginV2 200
 /submitV2 https://us-central1-tft-meta-73571.cloudfunctions.net/submitV2 200
+/getSavedResultsV2 https://us-central1-tft-meta-73571.cloudfunctions.net/getSavedResultsV2 200
