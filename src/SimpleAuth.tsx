@@ -106,6 +106,7 @@ const LoginForm = (props: {
 
 interface LoginData {
     uid: string,
+    ts: number,
     token?: string,
     jwt?: string,
 }
@@ -120,7 +121,16 @@ export const removeUserData = () => localStorage.removeItem(lsKey);
 export const getUserData = (): LoginData | null => {
     const json = localStorage.getItem(lsKey);
     if (json) {
-        return JSON.parse(json) as LoginData;
+        const data = JSON.parse(json) as LoginData;
+        const ts = Date.now();
+        const diff = (ts - data.ts) / 1000 / 60 / 60 / 24;
+        if (diff > 3) {
+            console.log(`Session is ${diff} days old, resetting`);
+            removeUserData();
+            return null;
+        }
+
+        return data
     }
     return null;
 }
@@ -161,6 +171,7 @@ export const SimpleAuth = (props: {
 
                 const data: LoginData = {
                     uid: user.uid,
+                    ts: Date.now(),
                     token: (user as any)["accessToken"],
                 }
 
