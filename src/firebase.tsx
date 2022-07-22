@@ -1,6 +1,6 @@
 import React, {useState, useRef, useEffect} from 'react';
 import firebase from 'firebase/compat/app';
-import { getFirestore, setDoc, getDoc,  doc } from "firebase/firestore";
+import { getFirestore, getDoc,  doc } from "firebase/firestore";
 import * as firebaseui from 'firebaseui';
 import 'firebaseui/dist/firebaseui.css';
 
@@ -15,6 +15,8 @@ import EmailIcon from '@mui/icons-material/Email';
 import { Info } from './Info';
 import { Alert } from './Alert';
 import { isFirefox } from './browser';
+import { getUserData } from './SimpleAuth';
+import { submitURL } from './config';
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -31,12 +33,16 @@ const firebaseConfig = {
 const app = firebase.initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-const storageVersion = "v2";
+export async function dbSet(storageKey: string, uid: string, data: any) {
+    const auth = getUserData();
+    const payload = { auth, data, storageKey }
 
-export async function dbSet(key: string, uid: string, data: any) {
-    await setDoc(doc(db, "feedback", "meta", key, uid),
-                 { data: JSON.stringify(data),
-                   version: storageVersion });
+    const fetchBody = {
+        method: 'POST',
+        body: JSON.stringify(payload),
+    };
+    const resp = await fetch(submitURL, fetchBody);
+    console.log(resp);
 }
 
 interface StoredData {
