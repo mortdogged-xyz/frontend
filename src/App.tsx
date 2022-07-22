@@ -81,13 +81,22 @@ function App() {
         </AuthUI>
     )
 
+    const simpleLoginDashboard =  (
+        <SimpleAuth onLoginChange={setUID} uid={uid}>
+            <DndProvider backend={backend}>
+                <Dashboard uid={uid} logout={logout} />
+            </DndProvider>
+        </SimpleAuth>
+    )
+
     return (
         <ThemeProvider theme={darkTheme}>
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={balance} />
                     <Route path="/letmein" element={simpleLoginBalance} />
-                    <Route path="food-fight-tactics" element={dashboard} />
+                    <Route path="/food-fight-tactics" element={dashboard} />
+                    <Route path="/simple-food-fight-tactics" element={simpleLoginDashboard} />
                 </Routes>
             </BrowserRouter>
 
