@@ -1,6 +1,5 @@
 import React, {useState, useRef, useEffect} from 'react';
 import firebase from 'firebase/compat/app';
-import { getFirestore, getDoc,  doc } from "firebase/firestore";
 import * as firebaseui from 'firebaseui';
 import 'firebaseui/dist/firebaseui.css';
 
@@ -16,7 +15,7 @@ import { Info } from './Info';
 import { Alert } from './Alert';
 import { isFirefox } from './browser';
 import { getUserData } from './SimpleAuth';
-import { submitURL } from './config';
+import { submitURL, getSavedResultsURL } from './config';
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -29,9 +28,7 @@ const firebaseConfig = {
     appId: "1:396966753051:web:08f96ed782fbebc19c99be",
     measurementId: "G-11NJ6FYJQG"
 };
-
-const app = firebase.initializeApp(firebaseConfig);
-const db = getFirestore(app);
+firebase.initializeApp(firebaseConfig);
 
 export async function dbSet(storageKey: string, uid: string, data: any) {
     const auth = getUserData();
@@ -41,23 +38,29 @@ export async function dbSet(storageKey: string, uid: string, data: any) {
         method: 'POST',
         body: JSON.stringify(payload),
     };
-    const resp = await fetch(submitURL, fetchBody);
-    console.log(resp);
+    await fetch(submitURL, fetchBody);
 }
 
-interface StoredData {
+interface SavedData {
     data: string,
-    version: string,
+    version: number,
+    loginSource: string,
 }
 
-export async function dbGet<T>(version: string, uid: string): Promise<T> {
-    const docRef = await getDoc(doc(db, "feedback", "meta", version, uid));
-    if (docRef.exists()) {
-        const data = docRef.data() as StoredData;
-        return JSON.parse(data.data) as T;
+export async function dbGet<T>(storageKey: string, uid: string): Promise<T> {
+    const auth = getUserData();
+    const payload = { auth, storageKey }
+    const fetchBody = {
+        method: 'POST',
+        body: JSON.stringify(payload),
+    };
+    const resp = await fetch(getSavedResultsURL, fetchBody);
+    const state = await resp.json() as SavedData;
+    if (!state.data) {
+        throw new Error("Could not find data");
     }
 
-    throw new Error("Could not find data");
+    return JSON.parse(state.data) as T;
 }
 
 var uiConfig = {
