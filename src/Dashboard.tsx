@@ -22,14 +22,11 @@ import {
     StarSummaryChip,
     ExtraSummaryChip,
 } from './Balance';
-import { TFTSet, TFTVersion } from './version';
+import { exportURL } from './config';
 
 function capitalize(s: string): string {
     return s.charAt(0).toUpperCase() + s.slice(1);
 }
-
-const url = `https://us-central1-tft-meta-73571.cloudfunctions.net/exportResponsesV2?TFTSet=${TFTSet}&TFTVersion=${TFTVersion}&token=`;
-/* const url = `http://localhost:5001/tft-meta-73571/us-central1/exportResponsesV2?TFTSet=${TFTSet}&TFTVersion=${TFTVersion}&token=`; */
 
 interface Summary {
     icon: IconExport
@@ -215,7 +212,7 @@ export const Dashboard = (props: {uid: string | null, logout: () => void}) => {
     useEffect(() => {
         let active = true;
 
-        const dataUrl = `${url}${uid}`;
+        const dataUrl = `${exportURL}${uid}`;
 
         const f = async () => {
             if (!active || state.summary.length > 0) { return }

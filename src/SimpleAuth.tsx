@@ -14,11 +14,12 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import Snackbar from '@mui/material/Snackbar';
 
+import { Alert } from './Alert';
 import { Info } from './Info';
 import { LoadingModal } from './Loading';
-
-const loginUrl = "http://localhost:5001/tft-meta-73571/us-central1/loginV2";
+import { loginURL } from './config';
 
 const LoginForm = (props: {
     onSubmit: (email: string | null, password: string | null) => void,
@@ -56,6 +57,7 @@ const LoginForm = (props: {
                             fullWidth
                             id="email"
                             label="Email Address"
+                            type="email"
                             name="email"
                             autoComplete="email"
                             autoFocus
@@ -129,6 +131,7 @@ export const SimpleAuth = (props: {
     uid: string | null,
 }) =>  {
     const { children, onLoginChange, uid } = props;
+    const [err, setErr] = useState("");
     const [loading, setLoading] = useState(false);
     const isAuthed = uid !== null;
     const auth = getAuth();
@@ -151,7 +154,7 @@ export const SimpleAuth = (props: {
         if (email && password) {
             try {
                 const creds = await signInWithEmailAndPassword(auth, email, password);
-                await fetch(loginUrl, fetchBody);
+                await fetch(loginURL, fetchBody);
 
                 const user = creds.user;
                 console.log(user);
@@ -167,17 +170,24 @@ export const SimpleAuth = (props: {
                 return;
             } catch (e) {
                 console.log(e);
+                if ((`${e}`).includes("(auth/wrong-password)")) {
+                    setErr("Wrong password");
+                    setLoading(false);
+                    return;
+                }
                 console.log("Failed to find firebase account, continuing");
             }
         }
 
-        const resp = await fetch(loginUrl, fetchBody);
+        const resp = await fetch(loginURL, fetchBody);
         const data = await resp.json() as LoginData;
         setLoading(false);
 
         if (data.uid) {
             setUserData(data);
             onLoginChange(data.uid);
+        } else {
+            setErr("Could not login");
         }
     }
 
@@ -189,6 +199,13 @@ export const SimpleAuth = (props: {
 
     return (
         <>
+            <Snackbar open={err.length > 0}
+                      anchorOrigin={{vertical: "top", horizontal: "center"}}
+                      autoHideDuration={6000}
+                      onClose={() => setErr("")}>
+                <Alert severity="error" onClose={() => setErr("")}>{err}</Alert>
+            </Snackbar>
+
             <LoadingModal loading={loading} />
             {!isAuthed && <LoginForm onSubmit={handleSubmit} />}
             {isAuthed && children}
