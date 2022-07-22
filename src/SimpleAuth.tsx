@@ -155,7 +155,6 @@ export const SimpleAuth = (props: {
 
     const handleSubmit = async (email: string | null, password: string | null) => {
         setLoading(true);
-        console.log({email, password});
         const fetchBody = {
             method: 'POST',
             body: JSON.stringify({email, password}),
@@ -165,10 +164,7 @@ export const SimpleAuth = (props: {
             try {
                 const creds = await signInWithEmailAndPassword(auth, email, password);
                 await fetch(loginURL, fetchBody);
-
                 const user = creds.user;
-                console.log(user);
-
                 const data: LoginData = {
                     uid: user.uid,
                     ts: Date.now(),
