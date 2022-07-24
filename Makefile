@@ -6,5 +6,10 @@ run:
 export-feedback:
 	$(ENV) gcloud firestore export gs://feedback/meta
 
+lint: lint-format lint-ts
+
 lint-format:
 	npm run lint:format
+
+lint-ts:
+	npm run lint:ts
