@@ -8,7 +8,7 @@ export const LoadingModal = (props: { loading: boolean }) => {
   const { loading } = props;
 
   const style = {
-    position: 'absolute' as 'absolute',
+    position: 'absolute',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)'
@@ -17,6 +17,7 @@ export const LoadingModal = (props: { loading: boolean }) => {
   return (
     <Modal
       open={loading}
+      // eslint-disable-next-line
       onClose={() => {}}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"

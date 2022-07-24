@@ -121,6 +121,7 @@ export const IconIcon = (props: {
   icon: IconExport;
   width: string;
   onClick: () => void;
+  // eslint-disable-next-line
   style: any;
 }) => {
   const { icon, width, onClick, style } = props;
@@ -384,7 +385,7 @@ const DroppableZone = (props: {
   const [{ isOver }, drop] = useDrop(
     () => ({
       accept: 'icon',
-      drop: (icon, monitor) => {
+      drop: (icon) => {
         onDrop(icon as IconData);
       },
       collect: (monitor) => ({
@@ -441,7 +442,7 @@ function convertData(
 
 TFTData.champs.sort((a, b) => champCost(a) - champCost(b));
 TFTData.augs.sort();
-TFTData.items.sort((a, b) => (a.includes('Emblem') ? 1 : -1));
+TFTData.items.sort((a) => (a.includes('Emblem') ? 1 : -1));
 
 const champs = convertData(TFTData.champs.reverse(), 'champ', ['Nomsy']);
 const items = convertData(
@@ -513,6 +514,7 @@ export const tabFilters = {
 function prepareBalanceData(
   balance: BalanceData,
   k: IconKind,
+  // eslint-disable-next-line
   search: string
 ): BalanceDataForRendering {
   const result: BalanceDataForRendering = { nerf: [], noop: [], buff: [] };
@@ -625,6 +627,7 @@ export const NavBar = (props: {
 
 export const Column = (props: {
   onDrop: (item: IconData) => void;
+  // eslint-disable-next-line
   sx: any;
   header: string;
   headerColor: string;

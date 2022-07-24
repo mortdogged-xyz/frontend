@@ -86,6 +86,7 @@ const RenderSummary = (props: { summary: Array<Summary>; pile: IconKind }) => {
     headerName: 'Name',
     width: 130,
     sortable: true,
+    // eslint-disable-next-line
     renderCell: (params: any) => {
       return params.row.icon.icon;
     }
@@ -109,6 +110,7 @@ const RenderSummary = (props: { summary: Array<Summary>; pile: IconKind }) => {
       headerName: 'Icon',
       width: iconColWidth,
       sortable: false,
+      // eslint-disable-next-line
       renderCell: (params: any) => {
         return (
           <RenderIcon icon={params.row.icon as IconExport} width={iconWidth} />
@@ -168,6 +170,7 @@ const RenderSummary = (props: { summary: Array<Summary>; pile: IconKind }) => {
           </Box>
         );
       },
+      // eslint-disable-next-line
       renderHeader: (params: GridColumnHeaderParams) => (
         <Typography color={SentimentColors[sentiment]}>
           {capitalize(sentiment)}
@@ -260,6 +263,7 @@ export const Dashboard = (props: {
         currentTab={currentTab}
         canSubmit={false}
         showSubmit={false}
+        // eslint-disable-next-line
         submit={() => {}}
         logout={logout}
         onSearch={setSearchFilter}

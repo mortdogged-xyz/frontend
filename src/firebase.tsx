@@ -30,6 +30,7 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 
+// eslint-disable-next-line
 export async function dbSet(storageKey: string, uid: string, data: any) {
   const auth = getUserData();
   const payload = { auth, data, storageKey };
@@ -47,6 +48,7 @@ interface SavedData<T> {
   loginSource: string;
 }
 
+// eslint-disable-next-line
 export async function dbGet<T>(storageKey: string, uid: string): Promise<T> {
   const auth = getUserData();
   const payload = { auth, storageKey };
@@ -63,7 +65,7 @@ export async function dbGet<T>(storageKey: string, uid: string): Promise<T> {
   return state.data as T;
 }
 
-var uiConfig = {
+const uiConfig = {
   signInSuccessUrl: document.location.href || '/',
   signInOptions: [
     // Leave the lines as is for the providers you want to offer your users.

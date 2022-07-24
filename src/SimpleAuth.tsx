@@ -179,6 +179,7 @@ export const SimpleAuth = (props: {
         const data: LoginData = {
           uid: user.uid,
           ts: Date.now(),
+          // eslint-disable-next-line
           token: (user as any)['accessToken']
         };
 
