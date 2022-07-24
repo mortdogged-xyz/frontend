@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -30,799 +30,819 @@ import StarBorderIcon from '@mui/icons-material/StarBorder';
 import { dbSet, dbGet } from './firebase';
 import { InfoMenu } from './Info';
 import { Search } from './Search';
-import { showStarsNSuper } from './feature_flags'
+import { showStarsNSuper } from './feature_flags';
 import { Alert } from './Alert';
 
 import TFTData from './set_data.json';
 
 import { TFTSet, StorageKey } from './version';
 
-export const iconWidth = "80px";
+export const iconWidth = '80px';
 
-
-export type IconKind = "champ" | "item" | "trait" | "aug";
-export type IconSentiment = "nerf" | "buff" | "noop";
+export type IconKind = 'champ' | 'item' | 'trait' | 'aug';
+export type IconSentiment = 'nerf' | 'buff' | 'noop';
 
 export interface IconExport {
-    icon: string;
-    kind: IconKind;
+  icon: string;
+  kind: IconKind;
 }
 
 export interface IconData {
-    icon: string;
-    kind: IconKind;
-    sentiment: IconSentiment;
-    starLevel: number;
-    isSuper: boolean;
+  icon: string;
+  kind: IconKind;
+  sentiment: IconSentiment;
+  starLevel: number;
+  isSuper: boolean;
 }
 
 export type BalanceData = Record<IconKind, Record<string, IconData>>;
-export type BalanceDataForRendering = Record<IconSentiment, Array<IconData>>
+export type BalanceDataForRendering = Record<IconSentiment, Array<IconData>>;
 
 export const SentimentColors = {
-    nerf: "red",
-    noop: "gray",
-    buff: "#24ff7d",
+  nerf: 'red',
+  noop: 'gray',
+  buff: '#24ff7d'
 } as Record<IconSentiment, string>;
 
 const SentimentChipColor = {
-    nerf: "error",
-    noop: "primary",
-    buff: "success",
-} as Record<IconSentiment, "primary" | "success" | "error" >;
+  nerf: 'error',
+  noop: 'primary',
+  buff: 'success'
+} as Record<IconSentiment, 'primary' | 'success' | 'error'>;
 
 const StarLevelChipColor = {
-    1: "primary",
-    2: "info",
-    3: "warning",
-} as Record<number, "primary" | "info" | "warning" >;
+  1: 'primary',
+  2: 'info',
+  3: 'warning'
+} as Record<number, 'primary' | 'info' | 'warning'>;
 
 function iconURL(icon: IconExport): string {
-    if (icon.kind === "champ") {
-        return `https://rerollcdn.com/characters/Skin/${TFTSet}/${icon.icon}.png`
-    } else if (icon.kind === "item") {
-        return `https://rerollcdn.com/items/${icon.icon}.png`
-    } else if (icon.kind === "aug") {
-        return `https://rerollcdn.com/augments/${TFTSet}/${icon.icon}.png`
-    } else if (icon.kind === "trait") {
-        return `https://rerollcdn.com/icons/${icon.icon}.png`
-    }
+  if (icon.kind === 'champ') {
+    return `https://rerollcdn.com/characters/Skin/${TFTSet}/${icon.icon}.png`;
+  } else if (icon.kind === 'item') {
+    return `https://rerollcdn.com/items/${icon.icon}.png`;
+  } else if (icon.kind === 'aug') {
+    return `https://rerollcdn.com/augments/${TFTSet}/${icon.icon}.png`;
+  } else if (icon.kind === 'trait') {
+    return `https://rerollcdn.com/icons/${icon.icon}.png`;
+  }
 
-    return "";
+  return '';
 }
 
 function champCost(icon: string): number {
-    const cost = (TFTData.champ_cost as Record<string, number>)[icon];
-    if (cost) {
-        return cost;
-    }
-    return -1;
+  const cost = (TFTData.champ_cost as Record<string, number>)[icon];
+  if (cost) {
+    return cost;
+  }
+  return -1;
 }
 
 export function champColor(icon: string): string {
-    const cost = champCost(icon);
+  const cost = champCost(icon);
 
-    if (cost === 6 || cost === 5) {
-        return "gold";
-    } if (cost === 4 || cost === 3) {
-        return "purple";
-    } if (cost === 2 ) {
-        return "blue";
-    } if (cost === 1 ) {
-        return "green";
-    }
+  if (cost === 6 || cost === 5) {
+    return 'gold';
+  }
+  if (cost === 4 || cost === 3) {
+    return 'purple';
+  }
+  if (cost === 2) {
+    return 'blue';
+  }
+  if (cost === 1) {
+    return 'green';
+  }
 
-    return "gray";
+  return 'gray';
 }
 
 export const IconIcon = (props: {
-    icon: IconExport,
-    width: string,
-    onClick: () => void,
-    style: any,
+  icon: IconExport;
+  width: string;
+  onClick: () => void;
+  style: any;
 }) => {
-    const {
-        icon,
-        width,
-        onClick,
-        style
-    } = props;
+  const { icon, width, onClick, style } = props;
 
-    return (
-        <Box component="div">
-            <img
-                width={width}
-                src={iconURL(icon)}
-                alt={icon.icon}
-                onClick={onClick}
-                style={style}
-            />
-        </Box>
-    )
-}
+  return (
+    <Box component="div">
+      <img
+        width={width}
+        src={iconURL(icon)}
+        alt={icon.icon}
+        onClick={onClick}
+        style={style}
+      />
+    </Box>
+  );
+};
 
-const DynamicStar = (props: {filled: boolean, onClick: () => void}) => {
-    const { filled, onClick } = props;
+const DynamicStar = (props: { filled: boolean; onClick: () => void }) => {
+  const { filled, onClick } = props;
 
-    return filled ? <StarIcon onClick={onClick} /> : <StarBorderIcon onClick={onClick} />;
-}
+  return filled ? (
+    <StarIcon onClick={onClick} />
+  ) : (
+    <StarBorderIcon onClick={onClick} />
+  );
+};
 
 const ThreeStars = (props: {
-    starLevel: number,
-    selectStar: (star: number) => void,
+  starLevel: number;
+  selectStar: (star: number) => void;
 }) => {
-    const { starLevel, selectStar } = props;
+  const { starLevel, selectStar } = props;
 
-    const stars = [...Array(3)].map((_, i) => 
-        <DynamicStar
-            filled={i < starLevel}
-            onClick={() => selectStar(i+1)}
-            key={`filled-icon-${i}`} />
-    )
+  const stars = [...Array(3)].map((_, i) => (
+    <DynamicStar
+      filled={i < starLevel}
+      onClick={() => selectStar(i + 1)}
+      key={`filled-icon-${i}`}
+    />
+  ));
 
-    return (<> {stars} </>)
-}
+  return <> {stars} </>;
+};
 
 const StarSelector = (props: {
-    starLevel: number,
-    selectStar: (star: number) => void,
+  starLevel: number;
+  selectStar: (star: number) => void;
 }) => {
-    const { starLevel, selectStar } = props;
+  const { starLevel, selectStar } = props;
 
-    function clickHandle(i: number) {
-        if (i === starLevel) {
-            selectStar(0);
-        } else {
-            selectStar(i);
-        }
+  function clickHandle(i: number) {
+    if (i === starLevel) {
+      selectStar(0);
+    } else {
+      selectStar(i);
     }
+  }
 
-    return (
-        <Typography>
-            <ThreeStars starLevel={starLevel} selectStar={clickHandle} />
-        </Typography>
-    )
-}
+  return (
+    <Typography>
+      <ThreeStars starLevel={starLevel} selectStar={clickHandle} />
+    </Typography>
+  );
+};
 
 const ExtraChip = (props: {
-    pile: IconSentiment,
-    isSuper: boolean,
-    onClick?: () => void,
+  pile: IconSentiment;
+  isSuper: boolean;
+  onClick?: () => void;
 }) => {
-    const {
-        pile,
-        /* isSuper, */
-        onClick,
-    } = props;
+  const {
+    pile,
+    /* isSuper, */
+    onClick
+  } = props;
 
-    return (
-        <Chip
-            component="span"
-            color={SentimentChipColor[pile]}
-            label={`${pile.toUpperCase()}+`}
-            onClick={onClick}
-        />
-    )
-}
+  return (
+    <Chip
+      component="span"
+      color={SentimentChipColor[pile]}
+      label={`${pile.toUpperCase()}+`}
+      onClick={onClick}
+    />
+  );
+};
 
 export const StarSummaryChip = (props: {
-    starLevel: number,
-    onClick?: () => void,
+  starLevel: number;
+  onClick?: () => void;
 }) => {
-    const {
-        starLevel,
-        onClick,
-    } = props;
+  const { starLevel, onClick } = props;
 
-    return (
-        <Chip
-            color={StarLevelChipColor[starLevel]}
-            variant="filled"
-            component="span"
-            size="small"
-            onClick={onClick}
-            label={starLevel}
-            icon={<StarIcon />}
-        />
-    )
-}
+  return (
+    <Chip
+      color={StarLevelChipColor[starLevel]}
+      variant="filled"
+      component="span"
+      size="small"
+      onClick={onClick}
+      label={starLevel}
+      icon={<StarIcon />}
+    />
+  );
+};
 
 export const ExtraSummaryChip = (props: {
-    pile: IconSentiment,
-    onClick?: () => void,
+  pile: IconSentiment;
+  onClick?: () => void;
 }) => {
-    const {
-        pile,
-        onClick,
-    } = props;
+  const { pile, onClick } = props;
 
-    return (
-        <Chip
-            color={SentimentChipColor[pile]}
-            component="span"
-            size="small"
-            onClick={onClick}
-            label="+"
-        />
-    )
-}
+  return (
+    <Chip
+      color={SentimentChipColor[pile]}
+      component="span"
+      size="small"
+      onClick={onClick}
+      label="+"
+    />
+  );
+};
 
 function formatIconName(name: string): string {
-    return name.replace(/[A-Z]/g, ' $&').trim();
+  return name.replace(/[A-Z]/g, ' $&').trim();
 }
 
 const DraggableIcon = (props: {
-    icon: IconData,
-    currentlyActive: IconData | null,
-    pile: IconSentiment,
-    selectStar: (star: number) => void,
-    setIsSuper: (isSuper: boolean) => void,
-    onClick: (icon: IconData) => void,
+  icon: IconData;
+  currentlyActive: IconData | null;
+  pile: IconSentiment;
+  selectStar: (star: number) => void;
+  setIsSuper: (isSuper: boolean) => void;
+  onClick: (icon: IconData) => void;
 }) => {
-    const {
-        icon,
-        currentlyActive,
-        pile,
-        selectStar,
-        setIsSuper,
-        onClick,
-    } = props;
+  const { icon, currentlyActive, pile, selectStar, setIsSuper, onClick } =
+    props;
 
-    const [{ isDragging }, drag] = useDrag(() => ({
-        type: "icon",
-        item: icon,
-        collect: (monitor) => ({
-            isDragging: !!monitor.isDragging()
-        })
-    }));
+  const [{ isDragging }, drag] = useDrag(() => ({
+    type: 'icon',
+    item: icon,
+    collect: (monitor) => ({
+      isDragging: !!monitor.isDragging()
+    })
+  }));
 
-    let borderStyle = {};
+  let borderStyle = {};
 
-    const isActive = icon === currentlyActive;
+  const isActive = icon === currentlyActive;
 
-    if (icon.kind === "champ") {
-        const shadowRadius = icon.isSuper === true ? '25px' : '5px';
+  if (icon.kind === 'champ') {
+    const shadowRadius = icon.isSuper === true ? '25px' : '5px';
 
-        borderStyle = {
-            borderColor: champColor(icon.icon),
-            borderStyle: 'solid',
-            borderWidth: '1px',
-            boxShadow: `0 0 ${shadowRadius} ${champColor(icon.icon)}`,
-        }
-    }
+    borderStyle = {
+      borderColor: champColor(icon.icon),
+      borderStyle: 'solid',
+      borderWidth: '1px',
+      boxShadow: `0 0 ${shadowRadius} ${champColor(icon.icon)}`
+    };
+  }
 
-    const clickHandler = () => onClick(icon);
+  const clickHandler = () => onClick(icon);
 
-    const dropdownVisible = isActive && showStarsNSuper;
+  const dropdownVisible = isActive && showStarsNSuper;
 
-    return (
-        <Box component="div"
-            sx={{position: 'relative'}}
+  return (
+    <Box component="div" sx={{ position: 'relative' }}>
+      <Box ref={drag}>
+        <IconIcon
+          icon={icon}
+          width={iconWidth}
+          onClick={clickHandler}
+          style={{
+            ...borderStyle,
+            opacity: isDragging ? '10%' : '100%',
+            cursor: 'pointer',
+            marginLeft: '15px',
+            marginBottom: '15px'
+          }}
+        />
+
+        {(icon.starLevel > 0 || icon.isSuper) && (
+          <Box
+            component="div"
+            onClick={clickHandler}
+            sx={{
+              position: 'absolute',
+              bottom: 25,
+              left: 20,
+              width: '78px'
+            }}
+          >
+            <Typography display="flex">
+              {icon.starLevel > 0 && (
+                <Box component="span" sx={{ flexGrow: 1 }}>
+                  <StarSummaryChip
+                    starLevel={icon.starLevel}
+                    onClick={clickHandler}
+                  />
+                </Box>
+              )}
+              {icon.isSuper && pile !== 'noop' && (
+                <Box component="span" sx={{ flexGrow: 1 }}>
+                  <ExtraSummaryChip pile={pile} onClick={clickHandler} />
+                </Box>
+              )}
+            </Typography>
+          </Box>
+        )}
+      </Box>
+
+      {dropdownVisible && (
+        <Card
+          component="div"
+          sx={{
+            ...borderStyle,
+            width: '110px',
+            position: 'absolute',
+            top: '90px',
+            left: '0',
+            zIndex: 999
+          }}
         >
-            <Box ref={drag}>
-                <IconIcon
-                    icon={icon}
-                    width={iconWidth}
-                    onClick={clickHandler}
-                    style={{ ...borderStyle,
-                            opacity: (isDragging ? "10%" : "100%"),
-                            cursor: 'pointer',
-                            marginLeft: '15px',
-                            marginBottom: '15px' }}
+          <CardActionArea>
+            <CardContent>
+              <Typography>{formatIconName(icon.icon)}</Typography>
+
+              {icon.kind === 'champ' && (
+                <StarSelector
+                  starLevel={icon.starLevel}
+                  selectStar={selectStar}
                 />
+              )}
 
-                {(icon.starLevel > 0 || icon.isSuper) &&
-                <Box
-                    component="div"
-                    onClick={clickHandler}
-                    sx={{
-                        position: 'absolute',
-                        bottom: 25,
-                        left: 20,
-                        width: '78px',
-                    }}
-                >
-                    <Typography display="flex">
-                    {icon.starLevel > 0  &&
-                        <Box
-                            component="span"
-                            sx={{ flexGrow: 1 }}
-                        >
-                            <StarSummaryChip
-                                starLevel={icon.starLevel}
-                                onClick={clickHandler}
-                            />
-                        </Box>
-                    }
-                    {icon.isSuper && pile !== "noop" &&
-                        <Box
-                            component="span"
-                            sx={{ flexGrow: 1 }}
-                        >
-                            <ExtraSummaryChip pile={pile} onClick={clickHandler} />
-                        </Box>
-                    }
-                    </Typography>
-                 </Box>
-                }
-            </Box>
+              <Typography>
+                {pile !== 'noop' && (
+                  <ExtraChip
+                    pile={pile}
+                    isSuper={icon.isSuper}
+                    onClick={() => setIsSuper(!icon.isSuper)}
+                  />
+                )}
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+        </Card>
+      )}
+    </Box>
+  );
+};
 
-            {dropdownVisible &&
-             <Card
-                 component="div"
-                 sx={{
-                     ...borderStyle,
-                     width: '110px',
-                     position: 'absolute',
-                     top: '90px',
-                     left: '0',
-                     zIndex: 999,
-                 }}
-             >
-                 <CardActionArea>
-                     <CardContent>
-                         <Typography>
-                             {formatIconName(icon.icon)}
-                         </Typography>
-
-                         {icon.kind === "champ" &&
-                          <StarSelector starLevel={icon.starLevel} selectStar={selectStar} />}
-
-                         <Typography>
-                             {pile !== "noop" && 
-                              <ExtraChip
-                                  pile={pile}
-                                  isSuper={icon.isSuper}
-                                  onClick={() => setIsSuper(!icon.isSuper)}
-                              />}
-                         </Typography>
-                     </CardContent>
-                 </CardActionArea>
-             </Card>}
-        </Box>
-    )
-    
-}
-
-type ColumnBorder = "right" | "left" | "none";
+type ColumnBorder = 'right' | 'left' | 'none';
 
 const DroppableZone = (props: {
-    bgColor: string,
-    border: ColumnBorder,
-    onDrop: (icon: IconData) => void,
-    children: JSX.Element|JSX.Element[],
+  bgColor: string;
+  border: ColumnBorder;
+  onDrop: (icon: IconData) => void;
+  children: JSX.Element | JSX.Element[];
 }) => {
-    const { onDrop, children, border, bgColor } = props;
+  const { onDrop, children, border, bgColor } = props;
 
-    const [{ isOver }, drop] = useDrop(
-        () => ({
-            accept: "icon",
-            drop: (icon, monitor) => {
-                onDrop(icon as IconData);
-            },
-            collect: (monitor) => ({
-                isOver: !!monitor.isOver()
-            })
-        }),
-        []
-    )
-    
-    const zoneStyle = {
-        opacity: isOver ? "10%" : "100%",
-        backgroundColor: isOver ? bgColor : "",
-        width: '95%',
-        height: '98%',
-    };
+  const [{ isOver }, drop] = useDrop(
+    () => ({
+      accept: 'icon',
+      drop: (icon, monitor) => {
+        onDrop(icon as IconData);
+      },
+      collect: (monitor) => ({
+        isOver: !!monitor.isOver()
+      })
+    }),
+    []
+  );
 
-    return (
-        <Box component="div" ref={drop} style={zoneStyle} sx={{borderRight: border === "right" ? 1 : 0, borderLeft: border === "left" ? 1 : 0}}>
-            {children}
-        </Box>
+  const zoneStyle = {
+    opacity: isOver ? '10%' : '100%',
+    backgroundColor: isOver ? bgColor : '',
+    width: '95%',
+    height: '98%'
+  };
+
+  return (
+    <Box
+      component="div"
+      ref={drop}
+      style={zoneStyle}
+      sx={{
+        borderRight: border === 'right' ? 1 : 0,
+        borderLeft: border === 'left' ? 1 : 0
+      }}
+    >
+      {children}
+    </Box>
+  );
+};
+
+function convertData(
+  data: Array<string>,
+  kind: string,
+  blacklist: Array<string>
+): Record<string, IconData> {
+  const result: Record<string, IconData> = {};
+
+  data
+    .filter((icon) => !blacklist.includes(icon))
+    .forEach(
+      (icon) =>
+        (result[icon] = {
+          icon: icon,
+          kind: kind,
+          sentiment: 'noop',
+          starLevel: 0,
+          isSuper: false
+        } as IconData)
     );
-    
-}
 
-function convertData(data: Array<string>, kind: string, blacklist: Array<string>): Record<string, IconData> {
-    const result: Record<string, IconData> = {};
-
-    data.filter((icon) => !blacklist.includes(icon)).forEach((icon) => 
-        result[icon] = {icon: icon, kind: kind, sentiment: "noop", starLevel: 0, isSuper: false} as IconData
-    );
-
-    return result;
+  return result;
 }
 
 TFTData.champs.sort((a, b) => champCost(a) - champCost(b));
 TFTData.augs.sort();
-TFTData.items.sort((a, b) => a.includes("Emblem") ? 1 : -1);
+TFTData.items.sort((a, b) => (a.includes('Emblem') ? 1 : -1));
 
-const champs = convertData(TFTData.champs.reverse(), "champ", ["Nomsy"])
+const champs = convertData(TFTData.champs.reverse(), 'champ', ['Nomsy']);
 const items = convertData(
-    TFTData.items.filter((icon) => {
-        return !icon.includes("Radiant") &&
-               !icon.includes("Shimmerscale") &&
-               !icon.includes("Ornn") &&
-               !icon.includes("EmptyBag") &&
-               !icon.includes("AstralEmblem") &&
-               !icon.includes("Trainer")
-    }),
-    "item",
-    [],
-)
-const augs = convertData(TFTData.augs, "aug", [])
-const traits = convertData(TFTData.traits, "trait", [])
+  TFTData.items.filter((icon) => {
+    return (
+      !icon.includes('Radiant') &&
+      !icon.includes('Shimmerscale') &&
+      !icon.includes('Ornn') &&
+      !icon.includes('EmptyBag') &&
+      !icon.includes('AstralEmblem') &&
+      !icon.includes('Trainer')
+    );
+  }),
+  'item',
+  []
+);
+const augs = convertData(TFTData.augs, 'aug', []);
+const traits = convertData(TFTData.traits, 'trait', []);
 const allIcons = {
-    champ: champs,
-    item: items,
-    trait: traits,
-    aug: augs,
+  champ: champs,
+  item: items,
+  trait: traits,
+  aug: augs
 };
 
-
 const RenderIcons = (props: {
-    icons: Array<IconData>,
-    currentlyActive: IconData | null,
-    pile: IconSentiment,
-    selectStar: (icon: IconData, star: number) => void,
-    setIsSuper: (icon: IconData, isSuper: boolean) => void,
-    onClick: (icon: IconData) => void,
+  icons: Array<IconData>;
+  currentlyActive: IconData | null;
+  pile: IconSentiment;
+  selectStar: (icon: IconData, star: number) => void;
+  setIsSuper: (icon: IconData, isSuper: boolean) => void;
+  onClick: (icon: IconData) => void;
 }) => {
-    const {
-        icons,
-        currentlyActive,
-        pile,
-        selectStar,
-        setIsSuper,
-        onClick,
-    } = props;
+  const { icons, currentlyActive, pile, selectStar, setIsSuper, onClick } =
+    props;
 
-    const iconsRendered = icons.map((icon) =>
-        <DraggableIcon
-            icon={icon}
-            currentlyActive={currentlyActive}
-            pile={pile}
-            selectStar={(star: number) => selectStar(icon, star)}
-            setIsSuper={(isSuper: boolean) => setIsSuper(icon, isSuper)}
-            onClick={onClick}
-            key={icon.icon}
-        />
-    );
+  const iconsRendered = icons.map((icon) => (
+    <DraggableIcon
+      icon={icon}
+      currentlyActive={currentlyActive}
+      pile={pile}
+      selectStar={(star: number) => selectStar(icon, star)}
+      setIsSuper={(isSuper: boolean) => setIsSuper(icon, isSuper)}
+      onClick={onClick}
+      key={icon.icon}
+    />
+  ));
 
-    return (
-        <>
-            {iconsRendered}
-        </>
-    )
-}
+  return <>{iconsRendered}</>;
+};
 
 function moveFromTo(data: BalanceData, tok: IconSentiment, el: IconData) {
-    const clone = {...data};
+  const clone = { ...data };
 
-    el.sentiment = tok;
-    clone[el.kind][el.icon] = el;
+  el.sentiment = tok;
+  clone[el.kind][el.icon] = el;
 
-    return clone;
+  return clone;
 }
 
-export const allTabs = ["Champions", "Items", "Traits", "Augments"];
+export const allTabs = ['Champions', 'Items', 'Traits', 'Augments'];
 export const tabFilters = {
-    "Champions": "champ",
-    "Items": "item",
-    "Traits": "trait",
-    "Augments": "aug",
+  Champions: 'champ',
+  Items: 'item',
+  Traits: 'trait',
+  Augments: 'aug'
 } as Record<string, IconKind>;
 
-function prepareBalanceData(balance: BalanceData, k: IconKind, search: string): BalanceDataForRendering {
-    const result: BalanceDataForRendering = {"nerf": [], "noop": [], "buff": []};
+function prepareBalanceData(
+  balance: BalanceData,
+  k: IconKind,
+  search: string
+): BalanceDataForRendering {
+  const result: BalanceDataForRendering = { nerf: [], noop: [], buff: [] };
 
-    const items = Object.values(balance[k]);
+  const items = Object.values(balance[k]);
 
-    items.forEach((item) => result[item.sentiment].push(item));
+  items.forEach((item) => result[item.sentiment].push(item));
 
-    return result;
+  return result;
 }
 
-const emptyBalanceState: BalanceData = {champ: {}, item: {}, trait: {}, aug: {}};
+const emptyBalanceState: BalanceData = {
+  champ: {},
+  item: {},
+  trait: {},
+  aug: {}
+};
 const defaultBalanceState: BalanceData = allIcons;
 
 export const NavBar = (props: {
-    setTab: (tab: string) => void,
-    currentTab: string,
-    canSubmit: boolean,
-    showSubmit: boolean,
-    submit: () => void,
-    logout: () => void,
-    onSearch: (value: string) => void,
+  setTab: (tab: string) => void;
+  currentTab: string;
+  canSubmit: boolean;
+  showSubmit: boolean;
+  submit: () => void;
+  logout: () => void;
+  onSearch: (value: string) => void;
 }) => {
-    const {
-        setTab,
-        currentTab,
-        canSubmit,
-        showSubmit,
-        submit,
-        logout,
-        onSearch,
-    } = props;
-    const [navAnchorEl, setNavAnchorEl] = useState<HTMLElement | null>(null);
-    const [navMenuOpen, setNavMenuOpen] = useState(false);
+  const {
+    setTab,
+    currentTab,
+    canSubmit,
+    showSubmit,
+    submit,
+    logout,
+    onSearch
+  } = props;
+  const [navAnchorEl, setNavAnchorEl] = useState<HTMLElement | null>(null);
+  const [navMenuOpen, setNavMenuOpen] = useState(false);
 
-    const toggleNavMenu = (e: React.MouseEvent<HTMLElement>) => {
-        setNavMenuOpen((v) => !v);  
-        setNavAnchorEl(e.currentTarget);
-    } 
+  const toggleNavMenu = (e: React.MouseEvent<HTMLElement>) => {
+    setNavMenuOpen((v) => !v);
+    setNavAnchorEl(e.currentTarget);
+  };
 
-    const changeTab = (tab: string) => {
-        return () => {
-            setTab(tab);
-            setNavMenuOpen(false);  
-        }
+  const changeTab = (tab: string) => {
+    return () => {
+      setTab(tab);
+      setNavMenuOpen(false);
     };
+  };
 
-    const handleChange = (event: React.SyntheticEvent, tab: string) => {
-        changeTab(tab)();
-    };
+  const handleChange = (event: React.SyntheticEvent, tab: string) => {
+    changeTab(tab)();
+  };
 
-    const theme = useTheme();
-    const matchesMd = useMediaQuery(theme.breakpoints.up('md'));
+  const theme = useTheme();
+  const matchesMd = useMediaQuery(theme.breakpoints.up('md'));
 
-   return (
-            <AppBar position="static">
-                <Container maxWidth="xl">
-                    <Toolbar disableGutters>
-                        <Box component="div" sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-                            <IconButton
-                                size="large"
-                                onClick={toggleNavMenu}
-                            >
-                                <MenuIcon />
-                            </IconButton>
-                            <Menu
-                                keepMounted
-                                open={navMenuOpen}
-                                onClose={toggleNavMenu}
-                                anchorEl={navAnchorEl}
+  return (
+    <AppBar position="static">
+      <Container maxWidth="xl">
+        <Toolbar disableGutters>
+          <Box
+            component="div"
+            sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
+          >
+            <IconButton size="large" onClick={toggleNavMenu}>
+              <MenuIcon />
+            </IconButton>
+            <Menu
+              keepMounted
+              open={navMenuOpen}
+              onClose={toggleNavMenu}
+              anchorEl={navAnchorEl}
+            >
+              {allTabs.map((tab) => {
+                return (
+                  <MenuItem onClick={changeTab(tab)} key={tab}>
+                    {tab}
+                  </MenuItem>
+                );
+              })}
+            </Menu>
+          </Box>
 
-                            >
-                                {allTabs.map((tab) => {
-                                    return (
-                                        <MenuItem onClick={changeTab(tab)} key={tab} >
-                                            {tab}
-                                        </MenuItem>
-                                    );
-                                })}
-                            </Menu>
+          {matchesMd && (
+            <Box component="div" sx={{ flexGrow: 1 }}>
+              <Tabs value={currentTab} onChange={handleChange} centered>
+                {allTabs.map((tab) => (
+                  <Tab label={tab} value={tab} key={tab} />
+                ))}
+              </Tabs>
+            </Box>
+          )}
 
-                        </Box>
+          <Search placeholder={'Search...'} onChange={onSearch} />
 
-                        {matchesMd &&
-                         <Box component="div" sx={{ flexGrow: 1 }}>
-                             <Tabs value={currentTab} onChange={handleChange} centered>
-                                 {allTabs.map((tab) => <Tab label={tab} value={tab} key={tab} />)}
-                             </Tabs>
-                         </Box>
-                        }
-
-                        <Search placeholder={"Search..."} onChange={onSearch}/>
-
-                        {showSubmit &&
-                         <Button color="inherit" disabled={!canSubmit} onClick={submit}>Submit</Button>
-                        }
-                        <InfoMenu logout={logout} />
-                    </Toolbar>
-                </Container>
-            </AppBar>
-   )
-}
+          {showSubmit && (
+            <Button color="inherit" disabled={!canSubmit} onClick={submit}>
+              Submit
+            </Button>
+          )}
+          <InfoMenu logout={logout} />
+        </Toolbar>
+      </Container>
+    </AppBar>
+  );
+};
 
 export const Column = (props: {
-    onDrop: (item: IconData) => void,
-    sx: any,
-    header: string,
-    headerColor: string,
-    border: ColumnBorder,
-    bgColor: string,
-    icons: Array<IconData>,
-    currentlyActive: IconData | null,
-    pile: IconSentiment,
-    selectStar: (icon: IconData, star: number) => void,
-    setIsSuper: (icon: IconData, isSuper: boolean) => void,
-    onClick: (icon: IconData) => void,
+  onDrop: (item: IconData) => void;
+  sx: any;
+  header: string;
+  headerColor: string;
+  border: ColumnBorder;
+  bgColor: string;
+  icons: Array<IconData>;
+  currentlyActive: IconData | null;
+  pile: IconSentiment;
+  selectStar: (icon: IconData, star: number) => void;
+  setIsSuper: (icon: IconData, isSuper: boolean) => void;
+  onClick: (icon: IconData) => void;
 }) => {
-    const {
-        onDrop,
-        sx,
-        header,
-        headerColor,
-        border,
-        bgColor,
-        icons,
-        currentlyActive,
-        pile,
-        selectStar,
-        setIsSuper,
-        onClick,
-    } = props;
+  const {
+    onDrop,
+    sx,
+    header,
+    headerColor,
+    border,
+    bgColor,
+    icons,
+    currentlyActive,
+    pile,
+    selectStar,
+    setIsSuper,
+    onClick
+  } = props;
 
-    return (
-        <Grid item xs={4}>
-            <DroppableZone onDrop={onDrop} border={border} bgColor={bgColor}>
-                <Typography align="center" sx={sx} color={headerColor}>{header}</Typography>
-                <Box
-                    component="div"
-                    sx={{ display: 'flex',
-                          flexWrap: "wrap",
-                          paddingTop: '5px',
-                          justifyContent: 'flex-start' }}
-                >
-                    <RenderIcons
-                        icons={icons}
-                        currentlyActive={currentlyActive}
-                        pile={pile}
-                        selectStar={selectStar}
-                        setIsSuper={setIsSuper}
-                        onClick={onClick}
-                    />
-                </Box>
-            </DroppableZone>
-        </Grid>
-    )
-}
+  return (
+    <Grid item xs={4}>
+      <DroppableZone onDrop={onDrop} border={border} bgColor={bgColor}>
+        <Typography align="center" sx={sx} color={headerColor}>
+          {header}
+        </Typography>
+        <Box
+          component="div"
+          sx={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            paddingTop: '5px',
+            justifyContent: 'flex-start'
+          }}
+        >
+          <RenderIcons
+            icons={icons}
+            currentlyActive={currentlyActive}
+            pile={pile}
+            selectStar={selectStar}
+            setIsSuper={setIsSuper}
+            onClick={onClick}
+          />
+        </Box>
+      </DroppableZone>
+    </Grid>
+  );
+};
 
-export const Balance = (props: {uid: string | null, logout: () => void}) => {
-    const { uid, logout } = props;
-    const [currentTab, setCurrentTab] = useState(allTabs[0]);
-    const [loadedBalance, setLoadedBalance] = useState(false);
-    const [allBalance, setAllBalance] = useState<BalanceData>(emptyBalanceState);
-    const [alertShown, setAlertShown] = useState(false);
-    const [currentlyActiveIcon, setCurrentlyActiveIcon] = useState<IconData | null>(null);
-    const [searchFilter, setSearchFilter] = useState("");
+export const Balance = (props: { uid: string | null; logout: () => void }) => {
+  const { uid, logout } = props;
+  const [currentTab, setCurrentTab] = useState(allTabs[0]);
+  const [loadedBalance, setLoadedBalance] = useState(false);
+  const [allBalance, setAllBalance] = useState<BalanceData>(emptyBalanceState);
+  const [alertShown, setAlertShown] = useState(false);
+  const [currentlyActiveIcon, setCurrentlyActiveIcon] =
+    useState<IconData | null>(null);
+  const [searchFilter, setSearchFilter] = useState('');
 
-    useEffect(() => {
-        const loadData = async () => {
-            try {
-                const data = await dbGet<BalanceData>(StorageKey, uid || "anon");
-                if (!loadedBalance) {
-                    setAllBalance(data || defaultBalanceState);
-                }
-            } catch (e) {
-                console.log(e);
-                console.log("Did not find user data, initailizing default data")
-                setAllBalance(defaultBalanceState);
-            }
-            setLoadedBalance(true);
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        const data = await dbGet<BalanceData>(StorageKey, uid || 'anon');
+        if (!loadedBalance) {
+          setAllBalance(data || defaultBalanceState);
         }
-
-        loadData().catch(console.error);
-    }, [uid, loadedBalance])
-    
-    const canSubmit = Object.values(allBalance).find((o) => Object.values(o).find((i) => i.sentiment !== "noop")) !== undefined;
-    const submit = async () => {
-        await dbSet(StorageKey, uid || "anon", allBalance);
-        setAlertShown(true);
-    }
-
-    const closeAlert = () => setAlertShown(false);
-
-    const tabFilter = tabFilters[currentTab] || 'champ';
-    const balance = prepareBalanceData(allBalance, tabFilter, searchFilter);
-
-    const nerf = (icon: IconData) => {
-        setCurrentlyActiveIcon(icon);
-        setAllBalance((balance) => moveFromTo(balance, "nerf", icon));
-    }
-    const noop = (icon: IconData) => {
-        setCurrentlyActiveIcon(icon);
-        setAllBalance((balance) => moveFromTo(balance, "noop", icon));
-    }
-    const buff = (icon: IconData) => {
-        setCurrentlyActiveIcon(icon);
-        setAllBalance((balance) => moveFromTo(balance, "buff", icon));
-    }
-
-    const clickIcon = (icon: IconData) => {
-        if (currentlyActiveIcon === icon) {
-            setCurrentlyActiveIcon(null);
-        } else {
-            setCurrentlyActiveIcon(icon);
-        }
-    }
-
-    const selectStar = (icon: IconData, star: number) => {
-        setAllBalance((balance) => {
-            const clone = {...balance};
-            clone[icon.kind][icon.icon].starLevel = star;
-            return clone;
-        })
-    }
-
-    const setIsSuper = (icon: IconData, isSuper: boolean) => {
-        setAllBalance((balance) => {
-            const clone = {...balance};
-            clone[icon.kind][icon.icon].isSuper = isSuper;
-            return clone;
-        })
-    }
-
-    const search = (value: string) => setSearchFilter(value);
-
-    const headerSx = {
-        fontSize: '18px',
-        marginTop: '20px',
-        marginBottom: '20px',
-        fontWeight: 'semi-bold',
+      } catch (e) {
+        console.log(e);
+        console.log('Did not find user data, initailizing default data');
+        setAllBalance(defaultBalanceState);
+      }
+      setLoadedBalance(true);
     };
 
-    return (
-        <>
-            <NavBar
-                setTab={setCurrentTab}
-                currentTab={currentTab}
-                canSubmit={canSubmit}
-                showSubmit={true}
-                submit={submit}
-                logout={logout}
-                onSearch={search}
-            />
+    loadData().catch(console.error);
+  }, [uid, loadedBalance]);
 
-            <Snackbar open={alertShown}
-                      anchorOrigin={{vertical: "top", horizontal: "center"}}
-                      autoHideDuration={6000}
-                      onClose={closeAlert}>
-                <Alert severity="success" onClose={closeAlert}>Submitted, Thanks!</Alert>
-            </Snackbar>
+  const canSubmit =
+    Object.values(allBalance).find((o) =>
+      Object.values(o).find((i) => i.sentiment !== 'noop')
+    ) !== undefined;
+  const submit = async () => {
+    await dbSet(StorageKey, uid || 'anon', allBalance);
+    setAlertShown(true);
+  };
 
-            <Grid
-                container
-                alignItems="top"
-                spacing={2}
-                sx={{ paddingTop: '5px', height: '100%' }}
-            >
+  const closeAlert = () => setAlertShown(false);
 
-                <Column
-                    onDrop={nerf}
-                    border="right"
-                    bgColor={SentimentColors["nerf"]}
-                    header="NERF"
-                    headerColor={SentimentColors["nerf"]}
-                    sx={headerSx}
-                    icons={balance.nerf}
-                    currentlyActive={currentlyActiveIcon}
-                    pile="nerf"
-                    selectStar={selectStar}
-                    setIsSuper={setIsSuper}
-                    onClick={clickIcon}
-                />
+  const tabFilter = tabFilters[currentTab] || 'champ';
+  const balance = prepareBalanceData(allBalance, tabFilter, searchFilter);
 
-                <Column
-                    onDrop={noop}
-                    border="none"
-                    bgColor={SentimentColors["noop"]}
-                    header="No change"
-                    headerColor="primary"
-                    sx={headerSx}
-                    icons={balance.noop}
-                    currentlyActive={currentlyActiveIcon}
-                    pile="noop"
-                    selectStar={selectStar}
-                    setIsSuper={setIsSuper}
-                    onClick={clickIcon}
-                />
+  const nerf = (icon: IconData) => {
+    setCurrentlyActiveIcon(icon);
+    setAllBalance((balance) => moveFromTo(balance, 'nerf', icon));
+  };
+  const noop = (icon: IconData) => {
+    setCurrentlyActiveIcon(icon);
+    setAllBalance((balance) => moveFromTo(balance, 'noop', icon));
+  };
+  const buff = (icon: IconData) => {
+    setCurrentlyActiveIcon(icon);
+    setAllBalance((balance) => moveFromTo(balance, 'buff', icon));
+  };
 
-                <Column
-                    onDrop={buff}
-                    border="left"
-                    bgColor={SentimentColors["buff"]}
-                    header="BUFF"
-                    headerColor={SentimentColors["buff"]}
-                    sx={headerSx}
-                    icons={balance.buff}
-                    currentlyActive={currentlyActiveIcon}
-                    pile="buff"
-                    selectStar={selectStar}
-                    setIsSuper={setIsSuper}
-                    onClick={clickIcon}
-                />
-            </Grid>
-        </>
-    )
-}
+  const clickIcon = (icon: IconData) => {
+    if (currentlyActiveIcon === icon) {
+      setCurrentlyActiveIcon(null);
+    } else {
+      setCurrentlyActiveIcon(icon);
+    }
+  };
+
+  const selectStar = (icon: IconData, star: number) => {
+    setAllBalance((balance) => {
+      const clone = { ...balance };
+      clone[icon.kind][icon.icon].starLevel = star;
+      return clone;
+    });
+  };
+
+  const setIsSuper = (icon: IconData, isSuper: boolean) => {
+    setAllBalance((balance) => {
+      const clone = { ...balance };
+      clone[icon.kind][icon.icon].isSuper = isSuper;
+      return clone;
+    });
+  };
+
+  const search = (value: string) => setSearchFilter(value);
+
+  const headerSx = {
+    fontSize: '18px',
+    marginTop: '20px',
+    marginBottom: '20px',
+    fontWeight: 'semi-bold'
+  };
+
+  return (
+    <>
+      <NavBar
+        setTab={setCurrentTab}
+        currentTab={currentTab}
+        canSubmit={canSubmit}
+        showSubmit={true}
+        submit={submit}
+        logout={logout}
+        onSearch={search}
+      />
+
+      <Snackbar
+        open={alertShown}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        autoHideDuration={6000}
+        onClose={closeAlert}
+      >
+        <Alert severity="success" onClose={closeAlert}>
+          Submitted, Thanks!
+        </Alert>
+      </Snackbar>
+
+      <Grid
+        container
+        alignItems="top"
+        spacing={2}
+        sx={{ paddingTop: '5px', height: '100%' }}
+      >
+        <Column
+          onDrop={nerf}
+          border="right"
+          bgColor={SentimentColors['nerf']}
+          header="NERF"
+          headerColor={SentimentColors['nerf']}
+          sx={headerSx}
+          icons={balance.nerf}
+          currentlyActive={currentlyActiveIcon}
+          pile="nerf"
+          selectStar={selectStar}
+          setIsSuper={setIsSuper}
+          onClick={clickIcon}
+        />
+
+        <Column
+          onDrop={noop}
+          border="none"
+          bgColor={SentimentColors['noop']}
+          header="No change"
+          headerColor="primary"
+          sx={headerSx}
+          icons={balance.noop}
+          currentlyActive={currentlyActiveIcon}
+          pile="noop"
+          selectStar={selectStar}
+          setIsSuper={setIsSuper}
+          onClick={clickIcon}
+        />
+
+        <Column
+          onDrop={buff}
+          border="left"
+          bgColor={SentimentColors['buff']}
+          header="BUFF"
+          headerColor={SentimentColors['buff']}
+          sx={headerSx}
+          icons={balance.buff}
+          currentlyActive={currentlyActiveIcon}
+          pile="buff"
+          selectStar={selectStar}
+          setIsSuper={setIsSuper}
+          onClick={clickIcon}
+        />
+      </Grid>
+    </>
+  );
+};
