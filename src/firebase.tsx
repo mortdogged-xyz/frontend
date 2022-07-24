@@ -41,8 +41,8 @@ export async function dbSet(storageKey: string, uid: string, data: any) {
     await fetch(submitURL, fetchBody);
 }
 
-interface SavedData {
-    data: string,
+interface SavedData<T> {
+    data: T,
     version: number,
     loginSource: string,
 }
@@ -55,12 +55,12 @@ export async function dbGet<T>(storageKey: string, uid: string): Promise<T> {
         body: JSON.stringify(payload),
     };
     const resp = await fetch(getSavedResultsURL, fetchBody);
-    const state = await resp.json() as SavedData;
+    const state = await resp.json() as SavedData<T>;
     if (!state.data) {
         throw new Error("Could not find data");
     }
 
-    return JSON.parse(state.data) as T;
+    return state.data as T;
 }
 
 var uiConfig = {
