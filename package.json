@@ -33,7 +33,18 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint:format": "prettier --loglevel warn --write '**/*.{ts,tsx,css,scss}'"
+  },
+  "prettier": {
+    "semi": true,
+    "trailingComma": "none",
+    "endOfLine": "lf",
+    "tabWidth": 2,
+    "bracketSpacing": true,
+    "singleQuote": true,
+    "arrowParens": "always",
+    "overrides": []
   },
   "eslintConfig": {
     "extends": [
@@ -41,16 +52,7 @@
       "react-app/jest"
     ]
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "devDependencies": {
+    "prettier": "^2.7.1"
   }
 }
