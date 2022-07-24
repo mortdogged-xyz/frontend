@@ -1,6 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
+
 import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
@@ -559,6 +562,9 @@ export const NavBar = (props: {
         changeTab(tab)();
     };
 
+    const theme = useTheme();
+    const matchesMd = useMediaQuery(theme.breakpoints.up('md'));
+
    return (
             <AppBar position="static">
                 <Container maxWidth="xl">
@@ -588,17 +594,18 @@ export const NavBar = (props: {
 
                         </Box>
 
-                        <Box component="div" sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                            <Tabs value={currentTab} onChange={handleChange} centered>
-                                {allTabs.map((tab) => <Tab label={tab} value={tab} key={tab} />)}
-                            </Tabs>
-                        </Box>
+                        {matchesMd &&
+                         <Box component="div" sx={{ flexGrow: 1 }}>
+                             <Tabs value={currentTab} onChange={handleChange} centered>
+                                 {allTabs.map((tab) => <Tab label={tab} value={tab} key={tab} />)}
+                             </Tabs>
+                         </Box>
+                        }
 
                         <Search placeholder={"Search..."} onChange={onSearch}/>
 
-                        {
-                            showSubmit &&
-                            <Button color="inherit" disabled={!canSubmit} onClick={submit}>Submit</Button>
+                        {showSubmit &&
+                         <Button color="inherit" disabled={!canSubmit} onClick={submit}>Submit</Button>
                         }
                         <InfoMenu logout={logout} />
                     </Toolbar>

@@ -77,7 +77,7 @@ const RenderSummary = (props: {summary: Array<Summary>, pile: IconKind}) => {
     const { summary, pile } = props;
 
     const theme = useTheme();
-    const matches = useMediaQuery(theme.breakpoints.up('md'));
+    const matchesMd = useMediaQuery(theme.breakpoints.up('md'));
 
     const nameColumn = {
         field: 'name',
@@ -94,7 +94,7 @@ const RenderSummary = (props: {summary: Array<Summary>, pile: IconKind}) => {
     let rowHeight = pile === "champ" ? 200 : 100;
     let numberColWidth = 90;
 
-    if (!matches) {
+    if (!matchesMd) {
         iconWidth = "40px";
         iconColWidth = 80;
         rowHeight = pile === "champ" ? 165 : 80;
@@ -167,7 +167,7 @@ const RenderSummary = (props: {summary: Array<Summary>, pile: IconKind}) => {
         });
     });
 
-    if (matches) {
+    if (matchesMd) {
         columns.splice(0, 0, nameColumn);
     }
 
