@@ -1,15 +1,29 @@
 {
-  "root": true,
-  "parser": "@typescript-eslint/parser",
-  "plugins": [
-    "@typescript-eslint"
-  ],
-  "extends": [
-    // "airbnb",
-    // "airbnb/hooks",
-    "google",
-    "eslint:recommended",
-    "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended"
-  ]
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+        "@typescript-eslint"
+    ],
+    "extends": [
+        // "airbnb",
+        // "airbnb/hooks",
+        "google",
+        "eslint:recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended"
+    ],
+    "rules": {
+        "require-jsdoc": [
+            "error",
+            {
+                "require": {
+                    "FunctionDeclaration": false,
+                    "MethodDefinition": false,
+                    "ClassDeclaration": false,
+                    "ArrowFunctionExpression": false,
+                    "FunctionExpression": false
+                }
+            }
+        ]
+    }
 }

@@ -1,25 +1,25 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
-import { TouchBackend } from 'react-dnd-touch-backend';
+import {DndProvider} from 'react-dnd';
+import {HTML5Backend} from 'react-dnd-html5-backend';
+import {TouchBackend} from 'react-dnd-touch-backend';
 
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
 
 import Chip from '@mui/material/Chip';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import {ThemeProvider, createTheme} from '@mui/material/styles';
 
-import { Balance } from './Balance';
-import { AuthUI, Logout } from './firebase';
-import { SimpleAuth, removeUserData } from './SimpleAuth';
-import { Dashboard } from './Dashboard';
-import { TFTSet, TFTVersion } from './version';
+import {Balance} from './Balance';
+import {AuthUI, Logout} from './firebase';
+import {SimpleAuth, removeUserData} from './SimpleAuth';
+import {Dashboard} from './Dashboard';
+import {TFTSet, TFTVersion} from './version';
 
 const darkTheme = createTheme({
   palette: {
-    mode: 'dark'
-  }
+    mode: 'dark',
+  },
 });
 
 function isTouchDevice(): boolean {
@@ -33,7 +33,7 @@ const Plug = () => {
         position: 'fixed',
         left: 5,
         bottom: 5,
-        display: { xs: 'none', md: 'flex' }
+        display: {xs: 'none', md: 'flex'},
       }}
       onClick={() => window?.open('https://twitter.com/Gonzih')?.focus()}
       color="info"

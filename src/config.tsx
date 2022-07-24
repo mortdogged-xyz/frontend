@@ -1,4 +1,4 @@
-import { TFTSet, TFTVersion } from './version';
+import {TFTSet, TFTVersion} from './version';
 
 export let exportURL = `/exportResponsesV2?TFTSet=${TFTSet}&TFTVersion=${TFTVersion}&token=`;
 export let loginURL = '/loginV2';

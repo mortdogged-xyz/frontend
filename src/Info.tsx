@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 
 import IconButton from '@mui/material/IconButton';
 import HelpIcon from '@mui/icons-material/Help';
@@ -14,10 +14,10 @@ import MenuItem from '@mui/material/MenuItem';
 
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
-import { TFTSet, TFTVersion } from './version';
+import {TFTSet, TFTVersion} from './version';
 
 const InfoPopup = (props: { isOpen: boolean; handleClose: () => void }) => {
-  const { isOpen, handleClose } = props;
+  const {isOpen, handleClose} = props;
 
   return (
     <Dialog onClose={handleClose} open={isOpen}>
@@ -72,7 +72,7 @@ export const Info = () => {
 };
 
 export const InfoMenu = (props: { logout: () => void }) => {
-  const { logout } = props;
+  const {logout} = props;
   const [moreAnchorEl, setMoreAnchorEl] = useState<HTMLElement | null>(null);
   const [moreMenuOpen, setMoreMenuOpen] = useState(false);
   const [open, setOpen] = useState(false);

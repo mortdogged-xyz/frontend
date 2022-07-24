@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import * as Sentry from '@sentry/react';
-import { BrowserTracing } from '@sentry/tracing';
+import {BrowserTracing} from '@sentry/tracing';
 
 Sentry.init({
   dsn: 'https://7372455626154f96a2a89515d3b6da61@o1323051.ingest.sentry.io/6580264',
@@ -14,7 +14,7 @@ Sentry.init({
   // Set tracesSampleRate to 1.0 to capture 100%
   // of transactions for performance monitoring.
   // We recommend adjusting this value in production
-  tracesSampleRate: 1.0
+  tracesSampleRate: 1.0,
 });
 
 function render_react() {
@@ -22,9 +22,9 @@ function render_react() {
     document.getElementById('root') as HTMLElement
   );
   root.render(
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
   );
 
   // If you want to start measuring performance in your app, pass a function

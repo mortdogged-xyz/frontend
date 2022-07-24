@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { useDrag, useDrop } from 'react-dnd';
+import React, {useState, useEffect} from 'react';
+import {useDrag, useDrop} from 'react-dnd';
 
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { useTheme } from '@mui/material/styles';
+import {useTheme} from '@mui/material/styles';
 
 import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
@@ -27,15 +27,15 @@ import MenuIcon from '@mui/icons-material/Menu';
 import StarIcon from '@mui/icons-material/Star';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 
-import { dbSet, dbGet } from './firebase';
-import { InfoMenu } from './Info';
-import { Search } from './Search';
-import { showStarsNSuper } from './feature_flags';
-import { Alert } from './Alert';
+import {dbSet, dbGet} from './firebase';
+import {InfoMenu} from './Info';
+import {Search} from './Search';
+import {showStarsNSuper} from './feature_flags';
+import {Alert} from './Alert';
 
 import TFTData from './set_data.json';
 
-import { TFTSet, StorageKey } from './version';
+import {TFTSet, StorageKey} from './version';
 
 export const iconWidth = '80px';
 
@@ -61,19 +61,19 @@ export type BalanceDataForRendering = Record<IconSentiment, Array<IconData>>;
 export const SentimentColors = {
   nerf: 'red',
   noop: 'gray',
-  buff: '#24ff7d'
+  buff: '#24ff7d',
 } as Record<IconSentiment, string>;
 
 const SentimentChipColor = {
   nerf: 'error',
   noop: 'primary',
-  buff: 'success'
+  buff: 'success',
 } as Record<IconSentiment, 'primary' | 'success' | 'error'>;
 
 const StarLevelChipColor = {
   1: 'primary',
   2: 'info',
-  3: 'warning'
+  3: 'warning',
 } as Record<number, 'primary' | 'info' | 'warning'>;
 
 function iconURL(icon: IconExport): string {
@@ -124,7 +124,7 @@ export const IconIcon = (props: {
   // eslint-disable-next-line
   style: any;
 }) => {
-  const { icon, width, onClick, style } = props;
+  const {icon, width, onClick, style} = props;
 
   return (
     <Box component="div">
@@ -140,7 +140,7 @@ export const IconIcon = (props: {
 };
 
 const DynamicStar = (props: { filled: boolean; onClick: () => void }) => {
-  const { filled, onClick } = props;
+  const {filled, onClick} = props;
 
   return filled ? (
     <StarIcon onClick={onClick} />
@@ -153,7 +153,7 @@ const ThreeStars = (props: {
   starLevel: number;
   selectStar: (star: number) => void;
 }) => {
-  const { starLevel, selectStar } = props;
+  const {starLevel, selectStar} = props;
 
   const stars = [...Array(3)].map((_, i) => (
     <DynamicStar
@@ -170,7 +170,7 @@ const StarSelector = (props: {
   starLevel: number;
   selectStar: (star: number) => void;
 }) => {
-  const { starLevel, selectStar } = props;
+  const {starLevel, selectStar} = props;
 
   function clickHandle(i: number) {
     if (i === starLevel) {
@@ -195,7 +195,7 @@ const ExtraChip = (props: {
   const {
     pile,
     /* isSuper, */
-    onClick
+    onClick,
   } = props;
 
   return (
@@ -212,7 +212,7 @@ export const StarSummaryChip = (props: {
   starLevel: number;
   onClick?: () => void;
 }) => {
-  const { starLevel, onClick } = props;
+  const {starLevel, onClick} = props;
 
   return (
     <Chip
@@ -231,7 +231,7 @@ export const ExtraSummaryChip = (props: {
   pile: IconSentiment;
   onClick?: () => void;
 }) => {
-  const { pile, onClick } = props;
+  const {pile, onClick} = props;
 
   return (
     <Chip
@@ -256,15 +256,15 @@ const DraggableIcon = (props: {
   setIsSuper: (isSuper: boolean) => void;
   onClick: (icon: IconData) => void;
 }) => {
-  const { icon, currentlyActive, pile, selectStar, setIsSuper, onClick } =
+  const {icon, currentlyActive, pile, selectStar, setIsSuper, onClick} =
     props;
 
-  const [{ isDragging }, drag] = useDrag(() => ({
+  const [{isDragging}, drag] = useDrag(() => ({
     type: 'icon',
     item: icon,
     collect: (monitor) => ({
-      isDragging: !!monitor.isDragging()
-    })
+      isDragging: !!monitor.isDragging(),
+    }),
   }));
 
   let borderStyle = {};
@@ -278,7 +278,7 @@ const DraggableIcon = (props: {
       borderColor: champColor(icon.icon),
       borderStyle: 'solid',
       borderWidth: '1px',
-      boxShadow: `0 0 ${shadowRadius} ${champColor(icon.icon)}`
+      boxShadow: `0 0 ${shadowRadius} ${champColor(icon.icon)}`,
     };
   }
 
@@ -287,7 +287,7 @@ const DraggableIcon = (props: {
   const dropdownVisible = isActive && showStarsNSuper;
 
   return (
-    <Box component="div" sx={{ position: 'relative' }}>
+    <Box component="div" sx={{position: 'relative'}}>
       <Box ref={drag}>
         <IconIcon
           icon={icon}
@@ -298,7 +298,7 @@ const DraggableIcon = (props: {
             opacity: isDragging ? '10%' : '100%',
             cursor: 'pointer',
             marginLeft: '15px',
-            marginBottom: '15px'
+            marginBottom: '15px',
           }}
         />
 
@@ -310,12 +310,12 @@ const DraggableIcon = (props: {
               position: 'absolute',
               bottom: 25,
               left: 20,
-              width: '78px'
+              width: '78px',
             }}
           >
             <Typography display="flex">
               {icon.starLevel > 0 && (
-                <Box component="span" sx={{ flexGrow: 1 }}>
+                <Box component="span" sx={{flexGrow: 1}}>
                   <StarSummaryChip
                     starLevel={icon.starLevel}
                     onClick={clickHandler}
@@ -323,7 +323,7 @@ const DraggableIcon = (props: {
                 </Box>
               )}
               {icon.isSuper && pile !== 'noop' && (
-                <Box component="span" sx={{ flexGrow: 1 }}>
+                <Box component="span" sx={{flexGrow: 1}}>
                   <ExtraSummaryChip pile={pile} onClick={clickHandler} />
                 </Box>
               )}
@@ -341,7 +341,7 @@ const DraggableIcon = (props: {
             position: 'absolute',
             top: '90px',
             left: '0',
-            zIndex: 999
+            zIndex: 999,
           }}
         >
           <CardActionArea>
@@ -380,26 +380,26 @@ const DroppableZone = (props: {
   onDrop: (icon: IconData) => void;
   children: JSX.Element | JSX.Element[];
 }) => {
-  const { onDrop, children, border, bgColor } = props;
+  const {onDrop, children, border, bgColor} = props;
 
-  const [{ isOver }, drop] = useDrop(
-    () => ({
-      accept: 'icon',
-      drop: (icon) => {
-        onDrop(icon as IconData);
-      },
-      collect: (monitor) => ({
-        isOver: !!monitor.isOver()
-      })
-    }),
-    []
+  const [{isOver}, drop] = useDrop(
+      () => ({
+        accept: 'icon',
+        drop: (icon) => {
+          onDrop(icon as IconData);
+        },
+        collect: (monitor) => ({
+          isOver: !!monitor.isOver(),
+        }),
+      }),
+      []
   );
 
   const zoneStyle = {
     opacity: isOver ? '10%' : '100%',
     backgroundColor: isOver ? bgColor : '',
     width: '95%',
-    height: '98%'
+    height: '98%',
   };
 
   return (
@@ -409,7 +409,7 @@ const DroppableZone = (props: {
       style={zoneStyle}
       sx={{
         borderRight: border === 'right' ? 1 : 0,
-        borderLeft: border === 'left' ? 1 : 0
+        borderLeft: border === 'left' ? 1 : 0,
       }}
     >
       {children}
@@ -418,24 +418,24 @@ const DroppableZone = (props: {
 };
 
 function convertData(
-  data: Array<string>,
-  kind: string,
-  blacklist: Array<string>
+    data: Array<string>,
+    kind: string,
+    blacklist: Array<string>
 ): Record<string, IconData> {
   const result: Record<string, IconData> = {};
 
   data
-    .filter((icon) => !blacklist.includes(icon))
-    .forEach(
-      (icon) =>
-        (result[icon] = {
-          icon: icon,
-          kind: kind,
-          sentiment: 'noop',
-          starLevel: 0,
-          isSuper: false
-        } as IconData)
-    );
+      .filter((icon) => !blacklist.includes(icon))
+      .forEach(
+          (icon) =>
+            (result[icon] = {
+              icon: icon,
+              kind: kind,
+              sentiment: 'noop',
+              starLevel: 0,
+              isSuper: false,
+            } as IconData)
+      );
 
   return result;
 }
@@ -446,18 +446,18 @@ TFTData.items.sort((a) => (a.includes('Emblem') ? 1 : -1));
 
 const champs = convertData(TFTData.champs.reverse(), 'champ', ['Nomsy']);
 const items = convertData(
-  TFTData.items.filter((icon) => {
-    return (
-      !icon.includes('Radiant') &&
+    TFTData.items.filter((icon) => {
+      return (
+        !icon.includes('Radiant') &&
       !icon.includes('Shimmerscale') &&
       !icon.includes('Ornn') &&
       !icon.includes('EmptyBag') &&
       !icon.includes('AstralEmblem') &&
       !icon.includes('Trainer')
-    );
-  }),
-  'item',
-  []
+      );
+    }),
+    'item',
+    []
 );
 const augs = convertData(TFTData.augs, 'aug', []);
 const traits = convertData(TFTData.traits, 'trait', []);
@@ -465,7 +465,7 @@ const allIcons = {
   champ: champs,
   item: items,
   trait: traits,
-  aug: augs
+  aug: augs,
 };
 
 const RenderIcons = (props: {
@@ -476,7 +476,7 @@ const RenderIcons = (props: {
   setIsSuper: (icon: IconData, isSuper: boolean) => void;
   onClick: (icon: IconData) => void;
 }) => {
-  const { icons, currentlyActive, pile, selectStar, setIsSuper, onClick } =
+  const {icons, currentlyActive, pile, selectStar, setIsSuper, onClick} =
     props;
 
   const iconsRendered = icons.map((icon) => (
@@ -495,7 +495,7 @@ const RenderIcons = (props: {
 };
 
 function moveFromTo(data: BalanceData, tok: IconSentiment, el: IconData) {
-  const clone = { ...data };
+  const clone = {...data};
 
   el.sentiment = tok;
   clone[el.kind][el.icon] = el;
@@ -508,16 +508,16 @@ export const tabFilters = {
   Champions: 'champ',
   Items: 'item',
   Traits: 'trait',
-  Augments: 'aug'
+  Augments: 'aug',
 } as Record<string, IconKind>;
 
 function prepareBalanceData(
-  balance: BalanceData,
-  k: IconKind,
-  // eslint-disable-next-line
+    balance: BalanceData,
+    k: IconKind,
+    // eslint-disable-next-line
   search: string
 ): BalanceDataForRendering {
-  const result: BalanceDataForRendering = { nerf: [], noop: [], buff: [] };
+  const result: BalanceDataForRendering = {nerf: [], noop: [], buff: []};
 
   const items = Object.values(balance[k]);
 
@@ -530,7 +530,7 @@ const emptyBalanceState: BalanceData = {
   champ: {},
   item: {},
   trait: {},
-  aug: {}
+  aug: {},
 };
 const defaultBalanceState: BalanceData = allIcons;
 
@@ -550,7 +550,7 @@ export const NavBar = (props: {
     showSubmit,
     submit,
     logout,
-    onSearch
+    onSearch,
   } = props;
   const [navAnchorEl, setNavAnchorEl] = useState<HTMLElement | null>(null);
   const [navMenuOpen, setNavMenuOpen] = useState(false);
@@ -580,7 +580,7 @@ export const NavBar = (props: {
         <Toolbar disableGutters>
           <Box
             component="div"
-            sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
+            sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}
           >
             <IconButton size="large" onClick={toggleNavMenu}>
               <MenuIcon />
@@ -602,7 +602,7 @@ export const NavBar = (props: {
           </Box>
 
           {matchesMd && (
-            <Box component="div" sx={{ flexGrow: 1 }}>
+            <Box component="div" sx={{flexGrow: 1}}>
               <Tabs value={currentTab} onChange={handleChange} centered>
                 {allTabs.map((tab) => (
                   <Tab label={tab} value={tab} key={tab} />
@@ -652,7 +652,7 @@ export const Column = (props: {
     pile,
     selectStar,
     setIsSuper,
-    onClick
+    onClick,
   } = props;
 
   return (
@@ -667,7 +667,7 @@ export const Column = (props: {
             display: 'flex',
             flexWrap: 'wrap',
             paddingTop: '5px',
-            justifyContent: 'flex-start'
+            justifyContent: 'flex-start',
           }}
         >
           <RenderIcons
@@ -685,7 +685,7 @@ export const Column = (props: {
 };
 
 export const Balance = (props: { uid: string | null; logout: () => void }) => {
-  const { uid, logout } = props;
+  const {uid, logout} = props;
   const [currentTab, setCurrentTab] = useState(allTabs[0]);
   const [loadedBalance, setLoadedBalance] = useState(false);
   const [allBalance, setAllBalance] = useState<BalanceData>(emptyBalanceState);
@@ -749,7 +749,7 @@ export const Balance = (props: { uid: string | null; logout: () => void }) => {
 
   const selectStar = (icon: IconData, star: number) => {
     setAllBalance((balance) => {
-      const clone = { ...balance };
+      const clone = {...balance};
       clone[icon.kind][icon.icon].starLevel = star;
       return clone;
     });
@@ -757,7 +757,7 @@ export const Balance = (props: { uid: string | null; logout: () => void }) => {
 
   const setIsSuper = (icon: IconData, isSuper: boolean) => {
     setAllBalance((balance) => {
-      const clone = { ...balance };
+      const clone = {...balance};
       clone[icon.kind][icon.icon].isSuper = isSuper;
       return clone;
     });
@@ -769,7 +769,7 @@ export const Balance = (props: { uid: string | null; logout: () => void }) => {
     fontSize: '18px',
     marginTop: '20px',
     marginBottom: '20px',
-    fontWeight: 'semi-bold'
+    fontWeight: 'semi-bold',
   };
 
   return (
@@ -786,7 +786,7 @@ export const Balance = (props: { uid: string | null; logout: () => void }) => {
 
       <Snackbar
         open={alertShown}
-        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        anchorOrigin={{vertical: 'top', horizontal: 'center'}}
         autoHideDuration={6000}
         onClose={closeAlert}
       >
@@ -799,7 +799,7 @@ export const Balance = (props: { uid: string | null; logout: () => void }) => {
         container
         alignItems="top"
         spacing={2}
-        sx={{ paddingTop: '5px', height: '100%' }}
+        sx={{paddingTop: '5px', height: '100%'}}
       >
         <Column
           onDrop={nerf}

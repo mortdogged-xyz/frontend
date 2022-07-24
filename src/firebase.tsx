@@ -1,9 +1,9 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import firebase from 'firebase/compat/app';
 import * as firebaseui from 'firebaseui';
 import 'firebaseui/dist/firebaseui.css';
 
-import { useNavigate } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
@@ -11,11 +11,11 @@ import Button from '@mui/material/Button';
 
 import EmailIcon from '@mui/icons-material/Email';
 
-import { Info } from './Info';
-import { Alert } from './Alert';
-import { isFirefox } from './browser';
-import { getUserData } from './SimpleAuth';
-import { submitURL, getSavedResultsURL } from './config';
+import {Info} from './Info';
+import {Alert} from './Alert';
+import {isFirefox} from './browser';
+import {getUserData} from './SimpleAuth';
+import {submitURL, getSavedResultsURL} from './config';
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -26,18 +26,18 @@ const firebaseConfig = {
   storageBucket: 'tft-meta-73571.appspot.com',
   messagingSenderId: '396966753051',
   appId: '1:396966753051:web:08f96ed782fbebc19c99be',
-  measurementId: 'G-11NJ6FYJQG'
+  measurementId: 'G-11NJ6FYJQG',
 };
 firebase.initializeApp(firebaseConfig);
 
 // eslint-disable-next-line
 export async function dbSet(storageKey: string, uid: string, data: any) {
   const auth = getUserData();
-  const payload = { auth, data, storageKey };
+  const payload = {auth, data, storageKey};
 
   const fetchBody = {
     method: 'POST',
-    body: JSON.stringify(payload)
+    body: JSON.stringify(payload),
   };
   await fetch(submitURL, fetchBody);
 }
@@ -51,10 +51,10 @@ interface SavedData<T> {
 // eslint-disable-next-line
 export async function dbGet<T>(storageKey: string, uid: string): Promise<T> {
   const auth = getUserData();
-  const payload = { auth, storageKey };
+  const payload = {auth, storageKey};
   const fetchBody = {
     method: 'POST',
-    body: JSON.stringify(payload)
+    body: JSON.stringify(payload),
   };
   const resp = await fetch(getSavedResultsURL, fetchBody);
   const state = (await resp.json()) as SavedData<T>;
@@ -70,7 +70,7 @@ const uiConfig = {
   signInOptions: [
     // Leave the lines as is for the providers you want to offer your users.
     firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-    firebase.auth.TwitterAuthProvider.PROVIDER_ID
+    firebase.auth.TwitterAuthProvider.PROVIDER_ID,
     // firebase.auth.EmailAuthProvider.PROVIDER_ID,
     // firebase.auth.FacebookAuthProvider.PROVIDER_ID,
     // firebase.auth.GithubAuthProvider.PROVIDER_ID,
@@ -82,9 +82,9 @@ const uiConfig = {
   // Terms of service url/callback.
   tosUrl: '/',
   // Privacy policy url/callback.
-  privacyPolicyUrl: function () {
+  privacyPolicyUrl: function() {
     window.location.assign('/');
-  }
+  },
 };
 
 export async function Logout() {
@@ -92,7 +92,7 @@ export async function Logout() {
 }
 
 export const FirefoxWarning = (props: { loggedIn: boolean }) => {
-  const { loggedIn } = props;
+  const {loggedIn} = props;
   const [visible, setVisible] = useState(isFirefox);
 
   return (
@@ -102,11 +102,11 @@ export const FirefoxWarning = (props: { loggedIn: boolean }) => {
       justifyContent="center"
       alignItems="center"
       sx={{
-        margin: '10px'
+        margin: '10px',
       }}
     >
       <Alert
-        sx={{ width: '300px' }}
+        sx={{width: '300px'}}
         severity="warning"
         onClose={() => setVisible(false)}
       >
@@ -126,9 +126,9 @@ export const AuthUI = (props: {
   children: JSX.Element | JSX.Element[];
   onLoginChange: (uid: string | null) => void;
 }) => {
-  const { children, onLoginChange } = props;
+  const {children, onLoginChange} = props;
   const [firebaseInstance] = useState(
-    firebaseui.auth.AuthUI.getInstance() ||
+      firebaseui.auth.AuthUI.getInstance() ||
       new firebaseui.auth.AuthUI(firebase.auth())
   );
   const [isAuthed, setIsAuthed] = useState(false);
@@ -148,7 +148,7 @@ export const AuthUI = (props: {
   }, [firebaseInstance, rootEl]);
 
   const info = (
-    <Box component="div" sx={{ position: 'absolute', top: '0', right: '0' }}>
+    <Box component="div" sx={{position: 'absolute', top: '0', right: '0'}}>
       <Info />
     </Box>
   );
@@ -165,7 +165,7 @@ export const AuthUI = (props: {
           justifyContent: 'center',
           alignItems: 'center',
           textAlign: 'center',
-          paddingTop: '20px'
+          paddingTop: '20px',
         }}
         component="div"
       >
@@ -177,7 +177,7 @@ export const AuthUI = (props: {
           onClick={() => navigate('/letmein')}
           sx={{
             textTransform: 'none',
-            width: '220px'
+            width: '220px',
           }}
         >
           Sign in with email

@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { useTheme } from '@mui/material/styles';
+import {useTheme} from '@mui/material/styles';
 
-import { LoadingModal } from './Loading';
+import {LoadingModal} from './Loading';
 
-import { DataGrid, GridColumnHeaderParams, GridColDef } from '@mui/x-data-grid';
+import {DataGrid, GridColumnHeaderParams, GridColDef} from '@mui/x-data-grid';
 
 import {
   NavBar,
@@ -20,9 +20,9 @@ import {
   tabFilters,
   SentimentColors,
   StarSummaryChip,
-  ExtraSummaryChip
+  ExtraSummaryChip,
 } from './Balance';
-import { exportURL } from './config';
+import {exportURL} from './config';
 
 function capitalize(s: string): string {
   return s.charAt(0).toUpperCase() + s.slice(1);
@@ -44,7 +44,7 @@ interface SummaryResponse {
 }
 
 const RenderIcon = (props: { icon: IconExport; width?: string }) => {
-  const { icon, width } = props;
+  const {icon, width} = props;
   const iconWidth = '70px';
 
   let borderStyle = {};
@@ -56,7 +56,7 @@ const RenderIcon = (props: { icon: IconExport; width?: string }) => {
       borderColor: champColor(icon.icon),
       borderStyle: 'solid',
       borderWidth: '1px',
-      boxShadow: `0 0 ${shadowRadius} ${champColor(icon.icon)}`
+      boxShadow: `0 0 ${shadowRadius} ${champColor(icon.icon)}`,
     };
   }
 
@@ -69,14 +69,14 @@ const RenderIcon = (props: { icon: IconExport; width?: string }) => {
         ...borderStyle,
         cursor: 'pointer',
         marginLeft: '15px',
-        marginBottom: '15px'
+        marginBottom: '15px',
       }}
     />
   );
 };
 
 const RenderSummary = (props: { summary: Array<Summary>; pile: IconKind }) => {
-  const { summary, pile } = props;
+  const {summary, pile} = props;
 
   const theme = useTheme();
   const matchesMd = useMediaQuery(theme.breakpoints.up('md'));
@@ -89,7 +89,7 @@ const RenderSummary = (props: { summary: Array<Summary>; pile: IconKind }) => {
     // eslint-disable-next-line
     renderCell: (params: any) => {
       return params.row.icon.icon;
-    }
+    },
   };
 
   let iconWidth = '70px';
@@ -115,9 +115,9 @@ const RenderSummary = (props: { summary: Array<Summary>; pile: IconKind }) => {
         return (
           <RenderIcon icon={params.row.icon as IconExport} width={iconWidth} />
         );
-      }
+      },
     },
-    { field: 'total', headerName: 'Total', width: 50, type: 'number' }
+    {field: 'total', headerName: 'Total', width: 50, type: 'number'},
   ];
 
   const sentiments: Array<IconSentiment> = ['buff', 'nerf'];
@@ -142,7 +142,7 @@ const RenderSummary = (props: { summary: Array<Summary>; pile: IconKind }) => {
                 justifyContent: 'space-evenly',
                 flexGrow: 1,
                 display: 'flex',
-                margin: '5px'
+                margin: '5px',
               }}
             >
               <Box component="span">
@@ -158,7 +158,7 @@ const RenderSummary = (props: { summary: Array<Summary>; pile: IconKind }) => {
         });
 
         return (
-          <Box component="div" flexDirection="column" sx={{ width: '100%' }}>
+          <Box component="div" flexDirection="column" sx={{width: '100%'}}>
             <Box component="div" textAlign="center">
               Total: {params[key] || 0}
             </Box>
@@ -175,7 +175,7 @@ const RenderSummary = (props: { summary: Array<Summary>; pile: IconKind }) => {
         <Typography color={SentimentColors[sentiment]}>
           {capitalize(sentiment)}
         </Typography>
-      )
+      ),
     });
   });
 
@@ -184,17 +184,17 @@ const RenderSummary = (props: { summary: Array<Summary>; pile: IconKind }) => {
   }
 
   const rows = summary.map((sum) => {
-    const { icon, numbers } = sum;
+    const {icon, numbers} = sum;
 
     return {
       ...numbers,
       id: `${icon.icon}|${icon.kind}`,
-      icon
+      icon,
     };
   });
 
   return (
-    <div style={{ height: '92vh', width: '100%' }}>
+    <div style={{height: '92vh', width: '100%'}}>
       <DataGrid
         rowHeight={rowHeight}
         rows={rows}
@@ -212,10 +212,10 @@ export const Dashboard = (props: {
   logout: () => void;
 }) => {
   const [currentTab, setCurrentTab] = useState(allTabs[0]);
-  const { uid, logout } = props;
+  const {uid, logout} = props;
   const [state, setState] = useState<SummaryResponse>({
     summary: [],
-    stats: { submissions: 0, items: 0 }
+    stats: {submissions: 0, items: 0},
   });
   const [loading, setLoading] = useState(true);
   const [searchFilter, setSearchFilter] = useState('');
@@ -242,7 +242,7 @@ export const Dashboard = (props: {
       const resp = await fetch(dataUrl);
       const data = (await resp.json()) as SummaryResponse;
       console.log(
-        `${data.stats.submissions} users submitted ${data.stats.items} individual entries`
+          `${data.stats.submissions} users submitted ${data.stats.items} individual entries`
       );
       setState(data);
       setLoading(false);
