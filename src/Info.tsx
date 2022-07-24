@@ -16,7 +16,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 import {TFTSet, TFTVersion} from './version';
 
-const InfoPopup = (props: { isOpen: boolean; handleClose: () => void }) => {
+const InfoPopup = (props: {isOpen: boolean; handleClose: () => void}) => {
   const {isOpen, handleClose} = props;
 
   return (
@@ -71,7 +71,7 @@ export const Info = () => {
   );
 };
 
-export const InfoMenu = (props: { logout: () => void }) => {
+export const InfoMenu = (props: {logout: () => void}) => {
   const {logout} = props;
   const [moreAnchorEl, setMoreAnchorEl] = useState<HTMLElement | null>(null);
   const [moreMenuOpen, setMoreMenuOpen] = useState(false);

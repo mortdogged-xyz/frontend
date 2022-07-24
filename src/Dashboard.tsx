@@ -43,7 +43,7 @@ interface SummaryResponse {
   stats: Stats;
 }
 
-const RenderIcon = (props: { icon: IconExport; width?: string }) => {
+const RenderIcon = (props: {icon: IconExport; width?: string}) => {
   const {icon, width} = props;
   const iconWidth = '70px';
 
@@ -75,7 +75,7 @@ const RenderIcon = (props: { icon: IconExport; width?: string }) => {
   );
 };
 
-const RenderSummary = (props: { summary: Array<Summary>; pile: IconKind }) => {
+const RenderSummary = (props: {summary: Array<Summary>; pile: IconKind}) => {
   const {summary, pile} = props;
 
   const theme = useTheme();
@@ -207,10 +207,7 @@ const RenderSummary = (props: { summary: Array<Summary>; pile: IconKind }) => {
   );
 };
 
-export const Dashboard = (props: {
-  uid: string | null;
-  logout: () => void;
-}) => {
+export const Dashboard = (props: {uid: string | null; logout: () => void}) => {
   const [currentTab, setCurrentTab] = useState(allTabs[0]);
   const {uid, logout} = props;
   const [state, setState] = useState<SummaryResponse>({
@@ -242,7 +239,7 @@ export const Dashboard = (props: {
       const resp = await fetch(dataUrl);
       const data = (await resp.json()) as SummaryResponse;
       console.log(
-          `${data.stats.submissions} users submitted ${data.stats.items} individual entries`
+        `${data.stats.submissions} users submitted ${data.stats.items} individual entries`,
       );
       setState(data);
       setLoading(false);

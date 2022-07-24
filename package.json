@@ -17,7 +17,6 @@
     "@types/node": "^16.11.44",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
-    "eslint-config-google": "^0.14.0",
     "firebase": "^9.9.0",
     "firebaseui": "^6.0.1",
     "react": "^18.2.0",
@@ -40,14 +39,11 @@
     "lint:format": "prettier --loglevel warn --write '**/*.{ts,tsx,css,scss}'"
   },
   "prettier": {
-    "semi": true,
-    "trailingComma": "none",
-    "endOfLine": "lf",
+    "bracketSpacing": false,
     "tabWidth": 2,
-    "bracketSpacing": true,
-    "singleQuote": true,
-    "arrowParens": "always",
-    "overrides": []
+    "useTabs": false,
+    "trailingComma": "all",
+    "singleQuote": true
   },
   "eslintConfig": {
     "extends": [
@@ -60,8 +56,10 @@
     "@typescript-eslint/parser": "^5.30.7",
     "eslint": "^8.20.0",
     "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-google": "^0.14.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.30.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "prettier": "^2.7.1"

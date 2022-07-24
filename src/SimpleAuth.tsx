@@ -31,7 +31,7 @@ const LoginForm = (props: {
     const data = new FormData(event.currentTarget);
     onSubmit(
       data.get('email') as string | null,
-      data.get('password') as string | null
+      data.get('password') as string | null,
     );
   };
 
@@ -53,12 +53,7 @@ const LoginForm = (props: {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box
-            component="form"
-            onSubmit={handleSubmit}
-            noValidate
-            sx={{mt: 1}}
-          >
+          <Box component="form" onSubmit={handleSubmit} noValidate sx={{mt: 1}}>
             <TextField
               margin="normal"
               required
@@ -101,7 +96,7 @@ const LoginForm = (props: {
               </Grid>
               <Grid item>
                 <Link href="#" variant="body2">
-                  {'Don\'t have an account? Sign Up'}
+                  {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
             </Grid>
@@ -162,8 +157,8 @@ export const SimpleAuth = (props: {
   }, [onLoginChange]);
 
   const handleSubmit = async (
-      email: string | null,
-      password: string | null
+    email: string | null,
+    password: string | null,
   ) => {
     setLoading(true);
     const fetchBody = {
@@ -180,7 +175,7 @@ export const SimpleAuth = (props: {
           uid: user.uid,
           ts: Date.now(),
           // eslint-disable-next-line
-          token: (user as any)['accessToken']
+          token: (user as any)['accessToken'],
         };
 
         setLoading(false);

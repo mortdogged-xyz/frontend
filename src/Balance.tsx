@@ -139,7 +139,7 @@ export const IconIcon = (props: {
   );
 };
 
-const DynamicStar = (props: { filled: boolean; onClick: () => void }) => {
+const DynamicStar = (props: {filled: boolean; onClick: () => void}) => {
   const {filled, onClick} = props;
 
   return filled ? (
@@ -256,8 +256,7 @@ const DraggableIcon = (props: {
   setIsSuper: (isSuper: boolean) => void;
   onClick: (icon: IconData) => void;
 }) => {
-  const {icon, currentlyActive, pile, selectStar, setIsSuper, onClick} =
-    props;
+  const {icon, currentlyActive, pile, selectStar, setIsSuper, onClick} = props;
 
   const [{isDragging}, drag] = useDrag(() => ({
     type: 'icon',
@@ -383,16 +382,16 @@ const DroppableZone = (props: {
   const {onDrop, children, border, bgColor} = props;
 
   const [{isOver}, drop] = useDrop(
-      () => ({
-        accept: 'icon',
-        drop: (icon) => {
-          onDrop(icon as IconData);
-        },
-        collect: (monitor) => ({
-          isOver: !!monitor.isOver(),
-        }),
+    () => ({
+      accept: 'icon',
+      drop: (icon) => {
+        onDrop(icon as IconData);
+      },
+      collect: (monitor) => ({
+        isOver: !!monitor.isOver(),
       }),
-      []
+    }),
+    [],
   );
 
   const zoneStyle = {
@@ -418,24 +417,24 @@ const DroppableZone = (props: {
 };
 
 function convertData(
-    data: Array<string>,
-    kind: string,
-    blacklist: Array<string>
+  data: Array<string>,
+  kind: string,
+  blacklist: Array<string>,
 ): Record<string, IconData> {
   const result: Record<string, IconData> = {};
 
   data
-      .filter((icon) => !blacklist.includes(icon))
-      .forEach(
-          (icon) =>
-            (result[icon] = {
-              icon: icon,
-              kind: kind,
-              sentiment: 'noop',
-              starLevel: 0,
-              isSuper: false,
-            } as IconData)
-      );
+    .filter((icon) => !blacklist.includes(icon))
+    .forEach(
+      (icon) =>
+        (result[icon] = {
+          icon: icon,
+          kind: kind,
+          sentiment: 'noop',
+          starLevel: 0,
+          isSuper: false,
+        } as IconData),
+    );
 
   return result;
 }
@@ -446,18 +445,18 @@ TFTData.items.sort((a) => (a.includes('Emblem') ? 1 : -1));
 
 const champs = convertData(TFTData.champs.reverse(), 'champ', ['Nomsy']);
 const items = convertData(
-    TFTData.items.filter((icon) => {
-      return (
-        !icon.includes('Radiant') &&
+  TFTData.items.filter((icon) => {
+    return (
+      !icon.includes('Radiant') &&
       !icon.includes('Shimmerscale') &&
       !icon.includes('Ornn') &&
       !icon.includes('EmptyBag') &&
       !icon.includes('AstralEmblem') &&
       !icon.includes('Trainer')
-      );
-    }),
-    'item',
-    []
+    );
+  }),
+  'item',
+  [],
 );
 const augs = convertData(TFTData.augs, 'aug', []);
 const traits = convertData(TFTData.traits, 'trait', []);
@@ -476,8 +475,7 @@ const RenderIcons = (props: {
   setIsSuper: (icon: IconData, isSuper: boolean) => void;
   onClick: (icon: IconData) => void;
 }) => {
-  const {icons, currentlyActive, pile, selectStar, setIsSuper, onClick} =
-    props;
+  const {icons, currentlyActive, pile, selectStar, setIsSuper, onClick} = props;
 
   const iconsRendered = icons.map((icon) => (
     <DraggableIcon
@@ -512,10 +510,10 @@ export const tabFilters = {
 } as Record<string, IconKind>;
 
 function prepareBalanceData(
-    balance: BalanceData,
-    k: IconKind,
-    // eslint-disable-next-line
-  search: string
+  balance: BalanceData,
+  k: IconKind,
+  // eslint-disable-next-line
+  search: string,
 ): BalanceDataForRendering {
   const result: BalanceDataForRendering = {nerf: [], noop: [], buff: []};
 
@@ -543,15 +541,8 @@ export const NavBar = (props: {
   logout: () => void;
   onSearch: (value: string) => void;
 }) => {
-  const {
-    setTab,
-    currentTab,
-    canSubmit,
-    showSubmit,
-    submit,
-    logout,
-    onSearch,
-  } = props;
+  const {setTab, currentTab, canSubmit, showSubmit, submit, logout, onSearch} =
+    props;
   const [navAnchorEl, setNavAnchorEl] = useState<HTMLElement | null>(null);
   const [navMenuOpen, setNavMenuOpen] = useState(false);
 
@@ -684,7 +675,7 @@ export const Column = (props: {
   );
 };
 
-export const Balance = (props: { uid: string | null; logout: () => void }) => {
+export const Balance = (props: {uid: string | null; logout: () => void}) => {
   const {uid, logout} = props;
   const [currentTab, setCurrentTab] = useState(allTabs[0]);
   const [loadedBalance, setLoadedBalance] = useState(false);
@@ -714,7 +705,7 @@ export const Balance = (props: { uid: string | null; logout: () => void }) => {
 
   const canSubmit =
     Object.values(allBalance).find((o) =>
-      Object.values(o).find((i) => i.sentiment !== 'noop')
+      Object.values(o).find((i) => i.sentiment !== 'noop'),
     ) !== undefined;
   const submit = async () => {
     await dbSet(StorageKey, uid || 'anon', allBalance);

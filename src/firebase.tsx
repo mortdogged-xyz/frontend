@@ -82,7 +82,7 @@ const uiConfig = {
   // Terms of service url/callback.
   tosUrl: '/',
   // Privacy policy url/callback.
-  privacyPolicyUrl: function() {
+  privacyPolicyUrl: function () {
     window.location.assign('/');
   },
 };
@@ -91,7 +91,7 @@ export async function Logout() {
   await firebase.auth().signOut();
 }
 
-export const FirefoxWarning = (props: { loggedIn: boolean }) => {
+export const FirefoxWarning = (props: {loggedIn: boolean}) => {
   const {loggedIn} = props;
   const [visible, setVisible] = useState(isFirefox);
 
@@ -128,8 +128,8 @@ export const AuthUI = (props: {
 }) => {
   const {children, onLoginChange} = props;
   const [firebaseInstance] = useState(
-      firebaseui.auth.AuthUI.getInstance() ||
-      new firebaseui.auth.AuthUI(firebase.auth())
+    firebaseui.auth.AuthUI.getInstance() ||
+      new firebaseui.auth.AuthUI(firebase.auth()),
   );
   const [isAuthed, setIsAuthed] = useState(false);
   const rootEl = useRef(null);

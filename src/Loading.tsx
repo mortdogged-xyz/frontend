@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import CircularProgress from '@mui/material/CircularProgress';
 
-export const LoadingModal = (props: { loading: boolean }) => {
+export const LoadingModal = (props: {loading: boolean}) => {
   const {loading} = props;
 
   const style = {
