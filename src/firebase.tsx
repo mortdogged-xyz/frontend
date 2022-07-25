@@ -136,6 +136,7 @@ export const AuthUI = (props: {
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
+      console.log(user);
       onLoginChange(user?.uid || null);
       setIsAuthed(!!user);
     });

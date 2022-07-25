@@ -160,41 +160,16 @@ export const SimpleAuth = (props: {
     const variables = {email, password};
 
     if (email && password) {
-      try {
-        const creds = await signInWithEmailAndPassword(auth, email, password);
-        const user = creds.user;
-        const data: LoginData = {
-          uid: user.uid,
-          ts: Date.now(),
-          // eslint-disable-next-line
-          token: (user as any)['accessToken'],
-        };
+      const result = await login(variables);
+      const data = result.data as LoginMutationResponse;
+      setLoading(false);
 
-        await login(variables);
-        setLoading(false);
-        setUserData(data);
-        onLoginChange(data.uid);
-        return;
-      } catch (e) {
-        console.log(e);
-        if (`${e}`.includes('(auth/wrong-password)')) {
-          setErr('Wrong password');
-          setLoading(false);
-          return;
-        }
-        console.log('Failed to find firebase account, continuing');
+      if (data.login.auth.uid && data.login.status === 200) {
+        setUserData(data.login.auth);
+        onLoginChange(data.login.auth.uid);
+      } else {
+        setErr('Could not login');
       }
-    }
-
-    const result = await login(variables);
-    const data = result.data as LoginMutationResponse;
-    setLoading(false);
-
-    if (data.login.auth.uid && data.login.status === 200) {
-      setUserData(data.login.auth);
-      onLoginChange(data.login.auth.uid);
-    } else {
-      setErr('Could not login');
     }
   };
 
