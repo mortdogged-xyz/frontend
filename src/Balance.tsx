@@ -734,6 +734,7 @@ export const Balance = (props: {uid: string | null; logout: () => void}) => {
     const result = await mutateSubmit(variables);
     const response = result.data as SubmitMutationResponse;
 
+    // TODO figure better solution on how to renew tokens
     if (result?.error?.message?.includes('Firebase ID token has expired.')) {
       document.location.reload();
     }
