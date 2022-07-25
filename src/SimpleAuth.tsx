@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import {useMutation} from 'urql';
 
 import {getAuth, signInWithEmailAndPassword} from 'firebase/auth';
 
@@ -19,7 +20,7 @@ import Snackbar from '@mui/material/Snackbar';
 import {Alert} from './Alert';
 import {Info} from './Info';
 import {LoadingModal} from './Loading';
-import {loginURL} from './config';
+import {loginMutation, LoginData, LoginMutationResponse} from './gql';
 
 const LoginForm = (props: {
   onSubmit: (email: string | null, password: string | null) => void;
@@ -107,13 +108,6 @@ const LoginForm = (props: {
   );
 };
 
-interface LoginData {
-  uid: string;
-  ts: number;
-  token?: string;
-  jwt?: string;
-}
-
 const lsKey = 'user-simple-auth';
 export const setUserData = (data: LoginData) => {
   localStorage.setItem(lsKey, JSON.stringify(data));
@@ -144,6 +138,8 @@ export const SimpleAuth = (props: {
   uid: string | null;
 }) => {
   const {children, onLoginChange, uid} = props;
+
+  const [, login] = useMutation(loginMutation);
   const [err, setErr] = useState('');
   const [loading, setLoading] = useState(false);
   const isAuthed = uid !== null;
@@ -161,15 +157,11 @@ export const SimpleAuth = (props: {
     password: string | null,
   ) => {
     setLoading(true);
-    const fetchBody = {
-      method: 'POST',
-      body: JSON.stringify({email, password}),
-    };
+    const variables = {email, password};
 
     if (email && password) {
       try {
         const creds = await signInWithEmailAndPassword(auth, email, password);
-        await fetch(loginURL, fetchBody);
         const user = creds.user;
         const data: LoginData = {
           uid: user.uid,
@@ -178,6 +170,7 @@ export const SimpleAuth = (props: {
           token: (user as any)['accessToken'],
         };
 
+        await login(variables);
         setLoading(false);
         setUserData(data);
         onLoginChange(data.uid);
@@ -193,13 +186,13 @@ export const SimpleAuth = (props: {
       }
     }
 
-    const resp = await fetch(loginURL, fetchBody);
-    const data = (await resp.json()) as LoginData;
+    const result = await login(variables);
+    const data = result.data as LoginMutationResponse;
     setLoading(false);
 
-    if (data.uid) {
-      setUserData(data);
-      onLoginChange(data.uid);
+    if (data.login.auth.uid && data.login.status === 200) {
+      setUserData(data.login.auth);
+      onLoginChange(data.login.auth.uid);
     } else {
       setErr('Could not login');
     }

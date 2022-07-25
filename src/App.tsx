@@ -1,5 +1,6 @@
 import './App.css';
 import React, {useState} from 'react';
+import {Provider} from 'urql';
 
 import {DndProvider} from 'react-dnd';
 import {HTML5Backend} from 'react-dnd-html5-backend';
@@ -15,6 +16,7 @@ import {AuthUI, Logout} from './firebase';
 import {SimpleAuth, removeUserData} from './SimpleAuth';
 import {Dashboard} from './Dashboard';
 import {TFTSet, TFTVersion} from './version';
+import {gqlClient} from './gql';
 
 const darkTheme = createTheme({
   palette: {
@@ -86,21 +88,23 @@ function App() {
   );
 
   return (
-    <ThemeProvider theme={darkTheme}>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={balance} />
-          <Route path="/letmein" element={simpleLoginBalance} />
-          <Route path="/food-fight-tactics" element={dashboard} />
-          <Route
-            path="/simple-food-fight-tactics"
-            element={simpleLoginDashboard}
-          />
-        </Routes>
-      </BrowserRouter>
+    <Provider value={gqlClient}>
+      <ThemeProvider theme={darkTheme}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={balance} />
+            <Route path="/letmein" element={simpleLoginBalance} />
+            <Route path="/food-fight-tactics" element={dashboard} />
+            <Route
+              path="/simple-food-fight-tactics"
+              element={simpleLoginDashboard}
+            />
+          </Routes>
+        </BrowserRouter>
 
-      <Plug />
-    </ThemeProvider>
+        <Plug />
+      </ThemeProvider>
+    </Provider>
   );
 }
 
