@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useDrag, useDrop} from 'react-dnd';
-import {useMutation} from 'urql';
+import {useMutation, useQuery} from 'urql';
 
 import useMediaQuery from '@mui/material/useMediaQuery';
 import {useTheme} from '@mui/material/styles';
@@ -33,7 +33,12 @@ import {InfoMenu} from './Info';
 import {Search} from './Search';
 import {showStarsNSuper} from './feature_flags';
 import {Alert} from './Alert';
-import {submitMutation, SubmitMutationResponse} from './gql';
+import {
+  submitMutation,
+  SubmitMutationResponse,
+  getSavedResultsQuery,
+  GetSavedResultsResponse,
+} from './gql';
 
 import TFTData from './set_data.json';
 
@@ -678,32 +683,37 @@ export const Column = (props: {
 };
 
 export const Balance = (props: {uid: string | null; logout: () => void}) => {
-  const {uid, logout} = props;
-  const [currentTab, setCurrentTab] = useState(allTabs[0]);
-  const [loadedBalance, setLoadedBalance] = useState(false);
+  const {logout} = props;
+  const [savedResults] = useQuery({
+    query: getSavedResultsQuery,
+    variables: {
+      storageKey: StorageKey,
+    },
+  });
   const [allBalance, setAllBalance] = useState<BalanceData>(emptyBalanceState);
+  const [dataLoaded, setDataLoaded] = useState(false);
+
+  const [currentTab, setCurrentTab] = useState(allTabs[0]);
   const [alertShown, setAlertShown] = useState(false);
   const [currentlyActiveIcon, setCurrentlyActiveIcon] =
     useState<IconData | null>(null);
   const [searchFilter, setSearchFilter] = useState('');
 
   useEffect(() => {
-    const loadData = async () => {
-      try {
-        /* const data = await dbGet<BalanceData>(StorageKey, uid || 'anon'); */
-        if (!loadedBalance) {
-          setAllBalance(defaultBalanceState);
-        }
-      } catch (e) {
-        console.log(e);
-        console.log('Did not find user data, initailizing default data');
+    if (!savedResults.fetching) {
+      if (savedResults.error || savedResults.data === null) {
         setAllBalance(defaultBalanceState);
+        setDataLoaded(true);
+      } else {
+        if (!dataLoaded) {
+          const data = savedResults.data as GetSavedResultsResponse;
+          const state = JSON.parse(data.getSavedResults) as BalanceData;
+          setAllBalance(state);
+          setDataLoaded(true);
+        }
       }
-      setLoadedBalance(true);
-    };
-
-    loadData().catch(console.error);
-  }, [uid, loadedBalance]);
+    }
+  }, [savedResults, setAllBalance, dataLoaded, setDataLoaded]);
 
   const canSubmit =
     Object.values(allBalance).find((o) =>

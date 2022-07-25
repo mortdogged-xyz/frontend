@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import {useQuery} from 'urql';
 
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
@@ -6,6 +7,8 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import {useTheme} from '@mui/material/styles';
 
 import {LoadingModal} from './Loading';
+import {exportResultsQuery, ExportResultsResponse} from './gql';
+import {StorageKey} from './version';
 
 import {DataGrid, GridColumnHeaderParams, GridColDef} from '@mui/x-data-grid';
 
@@ -210,13 +213,30 @@ const RenderSummary = (props: {summary: Array<Summary>; pile: IconKind}) => {
 export const Dashboard = (props: {uid: string | null; logout: () => void}) => {
   const [currentTab, setCurrentTab] = useState(allTabs[0]);
   const {uid, logout} = props;
-  const [state, setState] = useState<SummaryResponse>({
+  const defaultState = {
     summary: [],
     stats: {submissions: 0, items: 0},
-  });
-  const [loading, setLoading] = useState(true);
-  const [searchFilter, setSearchFilter] = useState('');
+  };
 
+  const [exportResults] = useQuery({
+    query: exportResultsQuery,
+    variables: {
+      storageKey: StorageKey,
+    },
+  });
+  const loading = exportResults.fetching;
+  const exportResponse = exportResults.data as ExportResultsResponse;
+  const state = loading
+    ? defaultState
+    : exportResponse.exportResults
+    ? (JSON.parse(exportResponse.exportResults) as SummaryResponse)
+    : defaultState;
+
+  if (exportResults.error) {
+    console.error(exportResults.error);
+  }
+
+  const [searchFilter, setSearchFilter] = useState('');
   const tabFilter: IconKind = tabFilters[currentTab] || 'champ';
   const filteredState = state.summary.filter((item) => {
     return (
@@ -224,33 +244,6 @@ export const Dashboard = (props: {uid: string | null; logout: () => void}) => {
       item.icon.kind === tabFilter
     );
   });
-
-  useEffect(() => {
-    let active = true;
-
-    const dataUrl = `${exportURL}${uid}`;
-
-    const f = async () => {
-      if (!active || state.summary.length > 0) {
-        return;
-      }
-
-      console.log('Fetching data');
-      const resp = await fetch(dataUrl);
-      const data = (await resp.json()) as SummaryResponse;
-      console.log(
-        `${data.stats.submissions} users submitted ${data.stats.items} individual entries`,
-      );
-      setState(data);
-      setLoading(false);
-    };
-
-    f().catch(console.error);
-
-    return () => {
-      active = false;
-    };
-  }, [uid, state.summary.length]);
 
   return (
     <>

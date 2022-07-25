@@ -57,3 +57,23 @@ export interface SubmitMutationResponse {
     status: number;
   };
 }
+
+export const getSavedResultsQuery = `
+query($storageKey: String!){
+  getSavedResults(storageKey: $storageKey)
+}
+`;
+
+export interface GetSavedResultsResponse {
+  getSavedResults: string;
+}
+
+export const exportResultsQuery = `
+query($storageKey: String!){
+  exportResults(storageKey: $storageKey)
+}
+`;
+
+export interface ExportResultsResponse {
+  exportResults: string | null;
+}
