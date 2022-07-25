@@ -41,3 +41,19 @@ export interface LoginMutationResponse {
     status: number;
   };
 }
+
+export const submitMutation = `
+mutation($data: String!, $storageKey: String!) {
+  submit(payload: {data: $data, storageKey: $storageKey}) {
+    status,
+    message
+  }
+}
+`;
+
+export interface SubmitMutationResponse {
+  submit: {
+    message: string;
+    status: number;
+  };
+}

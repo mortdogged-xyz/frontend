@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useDrag, useDrop} from 'react-dnd';
+import {useMutation} from 'urql';
 
 import useMediaQuery from '@mui/material/useMediaQuery';
 import {useTheme} from '@mui/material/styles';
@@ -32,6 +33,7 @@ import {InfoMenu} from './Info';
 import {Search} from './Search';
 import {showStarsNSuper} from './feature_flags';
 import {Alert} from './Alert';
+import {submitMutation, SubmitMutationResponse} from './gql';
 
 import TFTData from './set_data.json';
 
@@ -688,9 +690,9 @@ export const Balance = (props: {uid: string | null; logout: () => void}) => {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const data = await dbGet<BalanceData>(StorageKey, uid || 'anon');
+        /* const data = await dbGet<BalanceData>(StorageKey, uid || 'anon'); */
         if (!loadedBalance) {
-          setAllBalance(data || defaultBalanceState);
+          setAllBalance(defaultBalanceState);
         }
       } catch (e) {
         console.log(e);
@@ -707,9 +709,20 @@ export const Balance = (props: {uid: string | null; logout: () => void}) => {
     Object.values(allBalance).find((o) =>
       Object.values(o).find((i) => i.sentiment !== 'noop'),
     ) !== undefined;
+
+  const [, mutateSubmit] = useMutation(submitMutation);
   const submit = async () => {
-    await dbSet(StorageKey, uid || 'anon', allBalance);
-    setAlertShown(true);
+    const variables = {
+      storageKey: StorageKey,
+      data: JSON.stringify(allBalance),
+    };
+
+    const result = await mutateSubmit(variables);
+    const response = result.data as SubmitMutationResponse;
+
+    if (response.submit.status === 200) {
+      setAlertShown(true);
+    }
   };
 
   const closeAlert = () => setAlertShown(false);
