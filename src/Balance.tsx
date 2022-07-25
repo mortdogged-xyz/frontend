@@ -707,8 +707,13 @@ export const Balance = (props: {uid: string | null; logout: () => void}) => {
       } else {
         if (!dataLoaded) {
           const data = savedResults.data as GetSavedResultsResponse;
-          const state = JSON.parse(data.getSavedResults) as BalanceData;
-          setAllBalance(state);
+          if (data.getSavedResults) {
+            const state = JSON.parse(data.getSavedResults) as BalanceData;
+            setAllBalance(state);
+          } else {
+            setAllBalance(defaultBalanceState);
+          }
+
           setDataLoaded(true);
         }
       }
