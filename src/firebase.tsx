@@ -14,7 +14,7 @@ import EmailIcon from '@mui/icons-material/Email';
 import {Info} from './Info';
 import {Alert} from './Alert';
 import {isFirefox} from './browser';
-import {getUserData} from './SimpleAuth';
+import {setUserData, removeUserData} from './SimpleAuth';
 import {submitURL, getSavedResultsURL} from './config';
 
 // Your web app's Firebase configuration
@@ -30,39 +30,10 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 
-// eslint-disable-next-line
-export async function dbSet(storageKey: string, uid: string, data: any) {
-  const auth = getUserData();
-  const payload = {auth, data, storageKey};
-
-  const fetchBody = {
-    method: 'POST',
-    body: JSON.stringify(payload),
-  };
-  await fetch(submitURL, fetchBody);
-}
-
 interface SavedData<T> {
   data: T;
   version: number;
   loginSource: string;
-}
-
-// eslint-disable-next-line
-export async function dbGet<T>(storageKey: string, uid: string): Promise<T> {
-  const auth = getUserData();
-  const payload = {auth, storageKey};
-  const fetchBody = {
-    method: 'POST',
-    body: JSON.stringify(payload),
-  };
-  const resp = await fetch(getSavedResultsURL, fetchBody);
-  const state = (await resp.json()) as SavedData<T>;
-  if (!state.data) {
-    throw new Error('Could not find data');
-  }
-
-  return state.data as T;
 }
 
 const uiConfig = {
@@ -135,8 +106,17 @@ export const AuthUI = (props: {
   const rootEl = useRef(null);
 
   useEffect(() => {
-    firebase.auth().onAuthStateChanged((user) => {
-      console.log(user?.accessToken);
+    firebase.auth().onAuthStateChanged(async (user) => {
+      if (user) {
+        const uid = user.uid;
+        const token = await user.getIdToken();
+        const ts = Date.now();
+
+        setUserData({uid, token, ts});
+      } else {
+        removeUserData();
+      }
+
       onLoginChange(user?.uid || null);
       setIsAuthed(!!user);
     });

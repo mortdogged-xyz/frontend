@@ -28,7 +28,6 @@ import MenuIcon from '@mui/icons-material/Menu';
 import StarIcon from '@mui/icons-material/Star';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 
-import {dbSet, dbGet} from './firebase';
 import {InfoMenu} from './Info';
 import {Search} from './Search';
 import {showStarsNSuper} from './feature_flags';
