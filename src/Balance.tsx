@@ -27,6 +27,7 @@ import Snackbar from '@mui/material/Snackbar';
 import MenuIcon from '@mui/icons-material/Menu';
 import StarIcon from '@mui/icons-material/Star';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
+import LinkIcon from '@mui/icons-material/Link';
 
 import {InfoMenu} from './Info';
 import {Search} from './Search';
@@ -682,7 +683,7 @@ export const Column = (props: {
 };
 
 export const Balance = (props: {uid: string | null; logout: () => void}) => {
-  const {logout} = props;
+  const {logout, uid} = props;
   const [savedResults] = useQuery({
     query: getSavedResultsQuery,
     variables: {
@@ -691,6 +692,7 @@ export const Balance = (props: {uid: string | null; logout: () => void}) => {
   });
   const [allBalance, setAllBalance] = useState<BalanceData>(emptyBalanceState);
   const [dataLoaded, setDataLoaded] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   const [currentTab, setCurrentTab] = useState(allTabs[0]);
   const [alertShown, setAlertShown] = useState(false);
@@ -741,6 +743,7 @@ export const Balance = (props: {uid: string | null; logout: () => void}) => {
 
     if (response.submit.status === 200) {
       setAlertShown(true);
+      setSubmitted(true);
     }
   };
 
@@ -818,6 +821,8 @@ export const Balance = (props: {uid: string | null; logout: () => void}) => {
         </Alert>
       </Snackbar>
 
+      <ShareChip uid={uid} />
+
       <Grid
         container
         alignItems="top"
@@ -870,5 +875,31 @@ export const Balance = (props: {uid: string | null; logout: () => void}) => {
         />
       </Grid>
     </>
+  );
+};
+
+const ShareChip = (props: {uid: string | null}) => {
+  const {uid} = props;
+  const share = async () => {
+    if (uid) {
+      const origin = document.location.origin;
+      const url = `${origin}/view/${uid}`;
+      navigator.clipboard.writeText(url);
+    }
+  };
+
+  return (
+    <Chip
+      sx={{
+        position: 'fixed',
+        right: 5,
+        bottom: 5,
+      }}
+      onClick={share}
+      color="warning"
+      variant="outlined"
+      icon={<LinkIcon />}
+      label="Share"
+    />
   );
 };
