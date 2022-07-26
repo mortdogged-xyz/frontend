@@ -782,40 +782,52 @@ export const Balance = (props: {uid: string | null; logout: () => void}) => {
   const balance = prepareBalanceData(allBalance, tabFilter, searchFilter);
 
   const nerf = (icon: IconData) => {
-    setCurrentlyActiveIcon(icon);
-    setAllBalance((balance) => moveFromTo(balance, 'nerf', icon));
+    if (!viewOnly) {
+      setCurrentlyActiveIcon(icon);
+      setAllBalance((balance) => moveFromTo(balance, 'nerf', icon));
+    }
   };
   const noop = (icon: IconData) => {
-    setCurrentlyActiveIcon(icon);
-    setAllBalance((balance) => moveFromTo(balance, 'noop', icon));
+    if (!viewOnly) {
+      setCurrentlyActiveIcon(icon);
+      setAllBalance((balance) => moveFromTo(balance, 'noop', icon));
+    }
   };
   const buff = (icon: IconData) => {
-    setCurrentlyActiveIcon(icon);
-    setAllBalance((balance) => moveFromTo(balance, 'buff', icon));
+    if (!viewOnly) {
+      setCurrentlyActiveIcon(icon);
+      setAllBalance((balance) => moveFromTo(balance, 'buff', icon));
+    }
   };
 
   const clickIcon = (icon: IconData) => {
-    if (currentlyActiveIcon === icon) {
-      setCurrentlyActiveIcon(null);
-    } else {
-      setCurrentlyActiveIcon(icon);
+    if (!viewOnly) {
+      if (currentlyActiveIcon === icon) {
+        setCurrentlyActiveIcon(null);
+      } else {
+        setCurrentlyActiveIcon(icon);
+      }
     }
   };
 
   const selectStar = (icon: IconData, star: number) => {
-    setAllBalance((balance) => {
-      const clone = {...balance};
-      clone[icon.kind][icon.icon].starLevel = star;
-      return clone;
-    });
+    if (!viewOnly) {
+      setAllBalance((balance) => {
+        const clone = {...balance};
+        clone[icon.kind][icon.icon].starLevel = star;
+        return clone;
+      });
+    }
   };
 
   const setIsSuper = (icon: IconData, isSuper: boolean) => {
-    setAllBalance((balance) => {
-      const clone = {...balance};
-      clone[icon.kind][icon.icon].isSuper = isSuper;
-      return clone;
-    });
+    if (!viewOnly) {
+      setAllBalance((balance) => {
+        const clone = {...balance};
+        clone[icon.kind][icon.icon].isSuper = isSuper;
+        return clone;
+      });
+    }
   };
 
   const search = (value: string) => setSearchFilter(value);
