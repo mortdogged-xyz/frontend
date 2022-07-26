@@ -14,7 +14,7 @@ import EmailIcon from '@mui/icons-material/Email';
 import {Info} from './Info';
 import {Alert} from './Alert';
 import {isFirefox} from './browser';
-import {setUserData, removeUserData} from './SimpleAuth';
+import {getUserData, setUserData, removeUserData} from './SimpleAuth';
 import {submitURL, getSavedResultsURL} from './config';
 
 // Your web app's Firebase configuration
@@ -115,7 +115,10 @@ export const AuthUI = (props: {
 
         setUserData({uid, email, token, ts});
       } else {
-        removeUserData();
+        const userData = getUserData();
+        if (!userData) {
+          removeUserData();
+        }
       }
 
       onLoginChange(user?.uid || null);
