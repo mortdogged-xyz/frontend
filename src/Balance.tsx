@@ -35,6 +35,7 @@ import {InfoMenu} from './Info';
 import {Search} from './Search';
 import {showStarsNSuper} from './feature_flags';
 import {Alert} from './Alert';
+import {LoadingModal} from './Loading';
 import {
   submitMutation,
   SubmitMutationResponse,
@@ -828,6 +829,8 @@ export const Balance = (props: {uid: string | null; logout: () => void}) => {
 
   return (
     <>
+      <LoadingModal loading={savedResults.fetching} />
+
       <NavBar
         setTab={setCurrentTab}
         currentTab={currentTab}
