@@ -948,7 +948,7 @@ const ShareChip = (props: {uid: string | null}) => {
       color="warning"
       variant="outlined"
       icon={<LinkIcon />}
-      label="Copy sharable link!"
+      label="Copy shareable link!"
     />
   );
 };
