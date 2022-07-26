@@ -1,6 +1,7 @@
 /letmein / 200
 /food-fight-tactics / 200
 /simple-food-fight-tactics / 200
+/view/* / 200
 
 /graphql https://us-central1-tft-meta-73571.cloudfunctions.net/graphql 200
 
