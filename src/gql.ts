@@ -29,6 +29,7 @@ mutation($email: String!, $password: String!) {
 
 export interface LoginData {
   uid: string;
+  email: string | null;
   ts: number;
   token?: string;
   jwt?: string;

@@ -111,8 +111,9 @@ export const AuthUI = (props: {
         const uid = user.uid;
         const token = await user.getIdToken();
         const ts = Date.now();
+        const email = user.email;
 
-        setUserData({uid, token, ts});
+        setUserData({uid, email, token, ts});
       } else {
         removeUserData();
       }
