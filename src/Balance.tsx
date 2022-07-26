@@ -548,12 +548,21 @@ export const NavBar = (props: {
   currentTab: string;
   canSubmit: boolean;
   showSubmit: boolean;
+  hideLogout?: boolean;
   submit: () => void;
   logout: () => void;
   onSearch: (value: string) => void;
 }) => {
-  const {setTab, currentTab, canSubmit, showSubmit, submit, logout, onSearch} =
-    props;
+  const {
+    setTab,
+    currentTab,
+    canSubmit,
+    showSubmit,
+    submit,
+    logout,
+    onSearch,
+    hideLogout,
+  } = props;
   const [navAnchorEl, setNavAnchorEl] = useState<HTMLElement | null>(null);
   const [navMenuOpen, setNavMenuOpen] = useState(false);
 
@@ -620,7 +629,7 @@ export const NavBar = (props: {
               Submit
             </Button>
           )}
-          <InfoMenu logout={logout} />
+          <InfoMenu logout={logout} hideLogout={hideLogout} />
         </Toolbar>
       </Container>
     </AppBar>
@@ -729,7 +738,7 @@ export const Balance = (props: {uid: string | null; logout: () => void}) => {
           if (json) {
             const state = JSON.parse(json) as BalanceData;
             setAllBalance(state);
-            setSubmitted(true);
+            setSubmitted(!viewOnly && true);
           } else {
             setAllBalance(defaultBalanceState);
           }
@@ -826,6 +835,7 @@ export const Balance = (props: {uid: string | null; logout: () => void}) => {
         showSubmit={!viewOnly}
         submit={submit}
         logout={logout}
+        hideLogout={viewOnly}
         onSearch={search}
       />
 

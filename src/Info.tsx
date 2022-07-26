@@ -71,8 +71,8 @@ export const Info = () => {
   );
 };
 
-export const InfoMenu = (props: {logout: () => void}) => {
-  const {logout} = props;
+export const InfoMenu = (props: {logout: () => void; hideLogout?: boolean}) => {
+  const {logout, hideLogout} = props;
   const [moreAnchorEl, setMoreAnchorEl] = useState<HTMLElement | null>(null);
   const [moreMenuOpen, setMoreMenuOpen] = useState(false);
   const [open, setOpen] = useState(false);
@@ -105,7 +105,7 @@ export const InfoMenu = (props: {logout: () => void}) => {
         anchorEl={moreAnchorEl}
       >
         <MenuItem onClick={handleClick}>Info</MenuItem>
-        <MenuItem onClick={logout}>Logout</MenuItem>
+        {!hideLogout && <MenuItem onClick={logout}>Logout</MenuItem>}
       </Menu>
     </>
   );
