@@ -6,7 +6,7 @@ import {DndProvider} from 'react-dnd';
 import {HTML5Backend} from 'react-dnd-html5-backend';
 import {TouchBackend} from 'react-dnd-touch-backend';
 
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import {BrowserRouter, Routes, Route, useParams} from 'react-router-dom';
 
 import Chip from '@mui/material/Chip';
 import {ThemeProvider, createTheme} from '@mui/material/styles';
@@ -87,6 +87,12 @@ function App() {
     </SimpleAuth>
   );
 
+  const view = (
+    <DndProvider backend={backend}>
+      <Balance uid={uid} logout={() => {}} />;
+    </DndProvider>
+  );
+
   return (
     <Provider value={gqlClient}>
       <ThemeProvider theme={darkTheme}>
@@ -95,6 +101,7 @@ function App() {
             <Route path="/" element={balance} />
             <Route path="/letmein" element={simpleLoginBalance} />
             <Route path="/food-fight-tactics" element={dashboard} />
+            <Route path="/view/:viewUserId" element={view} />
             <Route
               path="/simple-food-fight-tactics"
               element={simpleLoginDashboard}

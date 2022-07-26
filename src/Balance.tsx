@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {useDrag, useDrop} from 'react-dnd';
 import {useMutation, useQuery} from 'urql';
+import {useParams} from 'react-router-dom';
 
 import useMediaQuery from '@mui/material/useMediaQuery';
 import {useTheme} from '@mui/material/styles';
@@ -28,6 +29,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import StarIcon from '@mui/icons-material/Star';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import LinkIcon from '@mui/icons-material/Link';
+import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
 
 import {InfoMenu} from './Info';
 import {Search} from './Search';
@@ -38,6 +40,8 @@ import {
   SubmitMutationResponse,
   getSavedResultsQuery,
   GetSavedResultsResponse,
+  viewSavedResultsQuery,
+  ViewSavedResultsResponse,
 } from './gql';
 
 import TFTData from './set_data.json';
@@ -683,13 +687,23 @@ export const Column = (props: {
 };
 
 export const Balance = (props: {uid: string | null; logout: () => void}) => {
+  const {viewUserId} = useParams();
   const {logout, uid} = props;
-  const [savedResults] = useQuery({
+  const viewOnly = viewUserId !== undefined;
+  const variables: {storageKey: string; userId?: string} = {
+    storageKey: StorageKey,
+  };
+  const query = {
     query: getSavedResultsQuery,
-    variables: {
-      storageKey: StorageKey,
-    },
-  });
+    variables,
+  };
+
+  if (viewUserId) {
+    query.query = viewSavedResultsQuery;
+    query.variables.userId = viewUserId;
+  }
+
+  const [savedResults] = useQuery(query);
   const [allBalance, setAllBalance] = useState<BalanceData>(emptyBalanceState);
   const [dataLoaded, setDataLoaded] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -708,9 +722,14 @@ export const Balance = (props: {uid: string | null; logout: () => void}) => {
       } else {
         if (!dataLoaded) {
           const data = savedResults.data as GetSavedResultsResponse;
-          if (data.getSavedResults) {
-            const state = JSON.parse(data.getSavedResults) as BalanceData;
+          const json = viewOnly
+            ? (savedResults.data as ViewSavedResultsResponse).viewSavedResults
+            : (savedResults.data as GetSavedResultsResponse).getSavedResults;
+
+          if (json) {
+            const state = JSON.parse(json) as BalanceData;
             setAllBalance(state);
+            setSubmitted(true);
           } else {
             setAllBalance(defaultBalanceState);
           }
@@ -804,7 +823,7 @@ export const Balance = (props: {uid: string | null; logout: () => void}) => {
         setTab={setCurrentTab}
         currentTab={currentTab}
         canSubmit={canSubmit}
-        showSubmit={true}
+        showSubmit={!viewOnly}
         submit={submit}
         logout={logout}
         onSearch={search}
@@ -821,7 +840,8 @@ export const Balance = (props: {uid: string | null; logout: () => void}) => {
         </Alert>
       </Snackbar>
 
-      <ShareChip uid={uid} />
+      {submitted && <ShareChip uid={uid} />}
+      {viewOnly && <MakeYourOwnChip />}
 
       <Grid
         container
@@ -900,6 +920,28 @@ const ShareChip = (props: {uid: string | null}) => {
       variant="outlined"
       icon={<LinkIcon />}
       label="Share"
+    />
+  );
+};
+
+const MakeYourOwnChip = () => {
+  const click = async () => {
+    const origin = document.location.origin;
+    document.location = origin;
+  };
+
+  return (
+    <Chip
+      sx={{
+        position: 'fixed',
+        right: 5,
+        bottom: 5,
+      }}
+      onClick={click}
+      color="success"
+      variant="outlined"
+      icon={<EmojiEmotionsIcon />}
+      label="Submit your own!"
     />
   );
 };

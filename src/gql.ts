@@ -20,7 +20,7 @@ export const gqlClient = createClient({
 export const loginMutation = `
 mutation($email: String!, $password: String!) {
   login(auth: {email: $email, password: $password}) {
-    auth { uid, jwt },
+    auth { uid, email, jwt },
     status,
     message
   }
@@ -58,16 +58,6 @@ export interface SubmitMutationResponse {
   };
 }
 
-export const getSavedResultsQuery = `
-query($storageKey: String!){
-  getSavedResults(storageKey: $storageKey)
-}
-`;
-
-export interface GetSavedResultsResponse {
-  getSavedResults: string;
-}
-
 export const exportResultsQuery = `
 query($storageKey: String!){
   exportResults(storageKey: $storageKey)
@@ -76,4 +66,24 @@ query($storageKey: String!){
 
 export interface ExportResultsResponse {
   exportResults: string | null;
+}
+
+export const getSavedResultsQuery = `
+query($storageKey: String!, $userId: String){
+  getSavedResults(storageKey: $storageKey, userId: $userId)
+}
+`;
+
+export interface GetSavedResultsResponse {
+  getSavedResults: string | null;
+}
+
+export const viewSavedResultsQuery = `
+query($storageKey: String!, $userId: String!){
+  viewSavedResults(storageKey: $storageKey, userId: $userId)
+}
+`;
+
+export interface ViewSavedResultsResponse {
+  viewSavedResults: string | null;
 }
