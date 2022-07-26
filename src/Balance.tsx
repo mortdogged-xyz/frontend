@@ -531,7 +531,11 @@ function prepareBalanceData(
 
   const items = Object.values(balance[k]);
 
-  items.forEach((item) => result[item.sentiment].push(item));
+  items.forEach((item) => {
+    if (item.icon.toLowerCase().includes(search.toLowerCase())) {
+      result[item.sentiment].push(item);
+    }
+  });
 
   return result;
 }
