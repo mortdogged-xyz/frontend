@@ -1,5 +1,8 @@
 ENV = env GOOGLE_APPLICATION_CREDENTIALS=$(PWD)/secrets/service-account-file.json
 
+build:
+	npm run build
+
 run:
 	npm run start
 
