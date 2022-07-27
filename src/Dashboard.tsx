@@ -120,7 +120,7 @@ const RenderSummary = (props: {summary: Array<Summary>; pile: IconKind}) => {
         );
       },
     },
-    {field: 'total', headerName: 'Total', width: 50, type: 'number'},
+    {field: 'total', headerName: 'Total', width: 80, type: 'number'},
   ];
 
   const sentiments: Array<IconSentiment> = ['buff', 'nerf'];
@@ -163,7 +163,10 @@ const RenderSummary = (props: {summary: Array<Summary>; pile: IconKind}) => {
         return (
           <Box component="div" flexDirection="column" sx={{width: '100%'}}>
             <Box component="div" textAlign="center">
-              Total: {params[key] || 0}
+              Total:{' '}
+              <Typography component="span" color={SentimentColors[sentiment]}>
+                {params[key] || 0}
+              </Typography>
             </Box>
             <Box component="div" textAlign="center">
               {params[`${sentiment}SuperAny`] || 0}{' '}
