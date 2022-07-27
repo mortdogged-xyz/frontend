@@ -1,206 +1,264 @@
 import React, {useState, useEffect} from 'react';
+import {useQuery} from 'urql';
 
-import CircularProgress from '@mui/material/CircularProgress';
+import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { useTheme } from '@mui/material/styles';
+import {useTheme} from '@mui/material/styles';
 
-import { DataGrid } from '@mui/x-data-grid';
+import {LoadingModal} from './Loading';
+import {exportResultsQuery, ExportResultsResponse} from './gql';
+import {StorageKey} from './version';
 
-import { NavBar, IconIcon, IconData, champColor, allTabs, tabFilters } from './Balance';
-import { TFTSet, TFTVersion } from './version';
+import {DataGrid, GridColumnHeaderParams, GridColDef} from '@mui/x-data-grid';
 
-const url = `https://us-central1-tft-meta-73571.cloudfunctions.net/exportResponses?TFTSet=${TFTSet}&TFTVersion=${TFTVersion}&token=`;
+import {
+  NavBar,
+  IconIcon,
+  IconExport,
+  IconKind,
+  IconSentiment,
+  champColor,
+  allTabs,
+  tabFilters,
+  SentimentColors,
+  StarSummaryChip,
+  ExtraSummaryChip,
+} from './Balance';
+import {exportURL} from './config';
+
+function capitalize(s: string): string {
+  return s.charAt(0).toUpperCase() + s.slice(1);
+}
 
 interface Summary {
-    icon: IconData
-    buff: number,
-    nerf: number,
+  icon: IconExport;
+  numbers: Record<string, number>;
 }
 
 interface Stats {
-    submissions: number,
-    items: number,
+  submissions: number;
+  items: number;
 }
 
 interface SummaryResponse {
-    summary: Array<Summary>,
-    stats: Stats,
+  summary: Array<Summary>;
+  stats: Stats;
+}
+
+const RenderIcon = (props: {icon: IconExport; width?: string}) => {
+  const {icon, width} = props;
+  const iconWidth = '70px';
+
+  let borderStyle = {};
+
+  if (icon.kind === 'champ') {
+    const shadowRadius = '5px';
+
+    borderStyle = {
+      borderColor: champColor(icon.icon),
+      borderStyle: 'solid',
+      borderWidth: '1px',
+      boxShadow: `0 0 ${shadowRadius} ${champColor(icon.icon)}`,
+    };
+  }
+
+  return (
+    <IconIcon
+      icon={icon}
+      width={width || iconWidth}
+      onClick={() => console.log('nothing')}
+      style={{
+        ...borderStyle,
+        cursor: 'pointer',
+        marginLeft: '15px',
+        marginBottom: '15px',
+      }}
+    />
+  );
 };
 
-const RenderIcon = (props: {icon: IconData, width?: string}) => {
-    const { icon, width } = props;
-    const iconWidth = "70px";
+const RenderSummary = (props: {summary: Array<Summary>; pile: IconKind}) => {
+  const {summary, pile} = props;
 
-    let borderStyle = {};
+  const theme = useTheme();
+  const matchesMd = useMediaQuery(theme.breakpoints.up('md'));
 
-    if (icon.kind === "champ") {
-        const shadowRadius = '5px';
+  const nameColumn = {
+    field: 'name',
+    headerName: 'Name',
+    width: 130,
+    sortable: true,
+    // eslint-disable-next-line
+    renderCell: (params: any) => {
+      return params.row.icon.icon;
+    },
+  };
 
-        borderStyle = {
-            borderColor: champColor(icon.icon),
-            borderStyle: 'solid',
-            borderWidth: '1px',
-            boxShadow: `0 0 ${shadowRadius} ${champColor(icon.icon)}`,
-        }
-    }
-    
-    return (
-        <IconIcon
-        icon={icon}
-        width={width || iconWidth}
-        onClick={() => console.log("nothing")}
-        style={{ ...borderStyle,
-                 cursor: 'pointer',
-                 marginLeft: '15px',
-                 marginBottom: '15px' }}
-        />
-    )
-}
+  let iconWidth = '70px';
+  let iconColWidth = 130;
+  let rowHeight = pile === 'champ' ? 200 : 100;
+  let numberColWidth = 90;
 
-const RenderSummary = (props: {summary: Array<Summary>}) => {
-    const { summary } = props;
+  if (!matchesMd) {
+    iconWidth = '40px';
+    iconColWidth = 80;
+    rowHeight = pile === 'champ' ? 165 : 80;
+    numberColWidth = 80;
+  }
 
-    const theme = useTheme();
-    const matches = useMediaQuery(theme.breakpoints.up('md'));
+  const columns: GridColDef[] = [
+    {
+      field: 'icon',
+      headerName: 'Icon',
+      width: iconColWidth,
+      sortable: false,
+      // eslint-disable-next-line
+      renderCell: (params: any) => {
+        return (
+          <RenderIcon icon={params.row.icon as IconExport} width={iconWidth} />
+        );
+      },
+    },
+    {field: 'total', headerName: 'Total', width: 50, type: 'number'},
+  ];
 
-    const nameColumn = {
-        field: 'name',
-        headerName: 'Name',
-        width: 130,
-        sortable: true,
-        renderCell: (params: any) => {
-            return params.row.icon.icon;
-        }
-    };
+  const sentiments: Array<IconSentiment> = ['buff', 'nerf'];
+  sentiments.forEach((sentiment) => {
+    const key = `${sentiment}Total`;
 
-    let iconWidth = "70px";
-    let iconColWidth = 130;
-    let rowHeight = 100;
-    let numberColWidth = 70;
+    columns.push({
+      field: key,
+      width: numberColWidth * 2,
+      type: 'number',
+      renderCell: (p) => {
+        const params = p.row as Record<string, number>;
+        const icon = p.row.icon as IconExport;
 
-    if (!matches) {
-        iconWidth = "40px";
-        iconColWidth = 80;
-        rowHeight = 75;
-        numberColWidth = 60;
-    }
+        const stars = [...Array(3)].map((_, i) => {
+          const star = i + 1;
 
-    const columns = [
-        {
-            field: 'icon',
-            headerName: 'Icon',
-            width: iconColWidth,
-            sortable: false,
-            renderCell: (params: any) => {
-                return <RenderIcon icon={params.row.icon as IconData} width={iconWidth} />
-            }
-        },
-        { field: 'buff',  headerName: 'Buff',  width: numberColWidth, type: 'number' },
-        { field: 'nerf',  headerName: 'Nerf',  width: numberColWidth, type: 'number' },
-        { field: 'total', headerName: 'Total', width: numberColWidth, type: 'number' },
-    ];
-
-    if (matches) {
-        columns.splice(0, 0, nameColumn);
-    }
-
-    const rows = summary.map((sum) => {
-        const { icon, nerf, buff } = sum;
-
-        return {
-            total: nerf + buff,
-            id: `${icon.icon}|${icon.kind}`,
-            icon, nerf, buff,
-        }
-    });
-
-    return (
-        <div style={{ height: '92vh', width: '100%' }}>
-            <DataGrid
-                rowHeight={rowHeight}
-                rows={rows}
-                columns={columns}
-                pageSize={100}
-                rowsPerPageOptions={[100]}
-                checkboxSelection
-            />
-        </div>
-    )
-}
-
-export const LoadingModal = (props: {loading: boolean}) => {
-    const { loading } = props;
-
-    const style = {
-        position: 'absolute' as 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-    };
-
-    return (
-        <Modal
-            open={loading}
-            onClose={() => {}}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-        >
-            <Box component="div" sx={style}>
-                <CircularProgress />
+          return (
+            <Box
+              component="div"
+              sx={{
+                justifyContent: 'space-evenly',
+                flexGrow: 1,
+                display: 'flex',
+                margin: '5px',
+              }}
+            >
+              <Box component="span">
+                {params[`${key}${star}`] || 0}{' '}
+                <StarSummaryChip starLevel={star} />
+              </Box>
+              <Box component="span">
+                {params[`${sentiment}Super${star}`] || 0}{' '}
+                <ExtraSummaryChip pile={sentiment} />
+              </Box>
             </Box>
-        </Modal>
-    )
-}
+          );
+        });
 
-export const Dashboard = (props: {uid: string | null}) => {
-    const [currentTab, setCurrentTab] = useState(allTabs[0]);
-    const { uid } = props;
-    const [state, setState] = useState<SummaryResponse>({summary: [], stats: {submissions: 0, items: 0}})
-    const [loading, setLoading] = useState(true);
-    const [searchFilter, setSearchFilter] = useState("");
+        return (
+          <Box component="div" flexDirection="column" sx={{width: '100%'}}>
+            <Box component="div" textAlign="center">
+              Total: {params[key] || 0}
+            </Box>
+            <Box component="div" textAlign="center">
+              {params[`${sentiment}SuperAny`] || 0}{' '}
+              <ExtraSummaryChip pile={sentiment} />
+            </Box>
+            {icon.kind === 'champ' && stars}
+          </Box>
+        );
+      },
+      // eslint-disable-next-line
+      renderHeader: (params: GridColumnHeaderParams) => (
+        <Typography color={SentimentColors[sentiment]}>
+          {capitalize(sentiment)}
+        </Typography>
+      ),
+    });
+  });
 
+  if (matchesMd) {
+    columns.splice(0, 0, nameColumn);
+  }
 
-    const tabFilter = tabFilters[currentTab] || 'champ';
-    const filteredState = state.summary.filter((item) => {
-        return item.icon.icon.toLowerCase().includes(searchFilter.toLowerCase()) &&
-               item.icon.kind === tabFilter;
-    })
+  const rows = summary.map((sum) => {
+    const {icon, numbers} = sum;
 
-    useEffect(() => {
-        let active = true;
+    return {
+      ...numbers,
+      id: `${icon.icon}|${icon.kind}`,
+      icon,
+    };
+  });
 
-        const dataUrl = `${url}${uid}`;
+  return (
+    <div style={{height: '92vh', width: '100%'}}>
+      <DataGrid
+        rowHeight={rowHeight}
+        rows={rows}
+        columns={columns}
+        pageSize={100}
+        rowsPerPageOptions={[100]}
+        checkboxSelection
+      />
+    </div>
+  );
+};
 
-        const f = async () => {
-            if (!active || state.summary.length > 0) { return }
+export const Dashboard = (props: {uid: string | null; logout: () => void}) => {
+  const [currentTab, setCurrentTab] = useState(allTabs[0]);
+  const {uid, logout} = props;
+  const defaultState = {
+    summary: [],
+    stats: {submissions: 0, items: 0},
+  };
 
-            console.log("Fetching data");
-            const resp = await fetch(dataUrl);
-            const data = await resp.json() as SummaryResponse;
-            console.log(`${data.stats.submissions} users submitted ${data.stats.items} individual entries`);
-            setState(data);
-            setLoading(false);
-        }
+  const [exportResults] = useQuery({
+    query: exportResultsQuery,
+    variables: {
+      storageKey: StorageKey,
+    },
+  });
+  const loading = exportResults.fetching;
+  const exportResponse = exportResults.data as ExportResultsResponse;
+  const state = loading
+    ? defaultState
+    : exportResponse.exportResults
+    ? (JSON.parse(exportResponse.exportResults) as SummaryResponse)
+    : defaultState;
 
-        f().catch(console.error);
+  if (exportResults.error) {
+    console.error(exportResults.error);
+  }
 
-        return () => { active = false };
-    }, [uid, state.summary.length])
-
+  const [searchFilter, setSearchFilter] = useState('');
+  const tabFilter: IconKind = tabFilters[currentTab] || 'champ';
+  const filteredState = state.summary.filter((item) => {
     return (
-        <>
-            <LoadingModal loading={loading} />
-            <NavBar
-                setTab={setCurrentTab}
-                currentTab={currentTab}
-                canSubmit={false}
-                showSubmit={false}
-                submit={() => {}}
-                onSearch={setSearchFilter}
-            />
-            <RenderSummary summary={filteredState} />
-        </>
-    )
-}
+      item.icon.icon.toLowerCase().includes(searchFilter.toLowerCase()) &&
+      item.icon.kind === tabFilter
+    );
+  });
+
+  return (
+    <>
+      <LoadingModal loading={loading} />
+      <NavBar
+        setTab={setCurrentTab}
+        currentTab={currentTab}
+        canSubmit={false}
+        showSubmit={false}
+        // eslint-disable-next-line
+        submit={() => {}}
+        logout={logout}
+        onSearch={setSearchFilter}
+      />
+      <RenderSummary summary={filteredState} pile={tabFilter} />
+    </>
+  );
+};

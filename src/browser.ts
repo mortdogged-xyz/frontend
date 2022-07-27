@@ -1,1 +1,3 @@
-export const isFirefox = (window as { [key: string]: any })['InstallTrigger'] !== undefined;
+export const isFirefox =
+  // eslint-disable-next-line
+  (window as {[key: string]: any})['InstallTrigger'] !== undefined;
