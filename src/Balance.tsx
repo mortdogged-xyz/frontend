@@ -936,6 +936,14 @@ const ShareChip = (props: {uid: string | null}) => {
       navigator.clipboard.writeText(url);
     }
   };
+  const theme = useTheme();
+  const matchesMd = useMediaQuery(theme.breakpoints.up('md'));
+
+  let label = 'Copy shareable link!';
+
+  if (!matchesMd) {
+    label = 'Copy';
+  }
 
   return (
     <Chip
@@ -948,7 +956,7 @@ const ShareChip = (props: {uid: string | null}) => {
       color="warning"
       variant="outlined"
       icon={<LinkIcon />}
-      label="Copy shareable link!"
+      label={label}
     />
   );
 };
@@ -958,6 +966,15 @@ const MakeYourOwnChip = () => {
     const origin = document.location.origin;
     document.location = origin;
   };
+
+  const theme = useTheme();
+  const matchesMd = useMediaQuery(theme.breakpoints.up('md'));
+
+  let label = 'Submit your own!';
+
+  if (!matchesMd) {
+    label = 'Create';
+  }
 
   return (
     <Chip
@@ -970,7 +987,7 @@ const MakeYourOwnChip = () => {
       color="success"
       variant="outlined"
       icon={<EmojiEmotionsIcon />}
-      label="Submit your own!"
+      label={label}
     />
   );
 };
