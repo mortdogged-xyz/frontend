@@ -1,6 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import {useQuery} from 'urql';
 
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+
+import Chip from '@mui/material/Chip';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -213,6 +216,32 @@ const RenderSummary = (props: {summary: Array<Summary>; pile: IconKind}) => {
   );
 };
 
+const CopyDataChip = (props: {data: any}) => {
+  const {data} = props;
+  const share = async () => {
+    if (data) {
+      navigator.clipboard.writeText(JSON.stringify(data));
+    }
+  };
+
+  const label = 'Copy data';
+
+  return (
+    <Chip
+      sx={{
+        position: 'fixed',
+        right: 5,
+        bottom: 60,
+      }}
+      onClick={share}
+      color="success"
+      variant="outlined"
+      icon={<ContentCopyIcon />}
+      label={label}
+    />
+  );
+};
+
 export const Dashboard = (props: {uid: string | null; logout: () => void}) => {
   const [currentTab, setCurrentTab] = useState(allTabs[0]);
   const {uid, logout} = props;
@@ -262,6 +291,7 @@ export const Dashboard = (props: {uid: string | null; logout: () => void}) => {
         onSearch={setSearchFilter}
       />
       <RenderSummary summary={filteredState} pile={tabFilter} />
+      <CopyDataChip data={state} />
     </>
   );
 };
