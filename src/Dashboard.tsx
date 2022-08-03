@@ -230,8 +230,8 @@ const CopyDataChip = (props: {data: any}) => {
     <Chip
       sx={{
         position: 'fixed',
-        right: 5,
-        bottom: 60,
+        right: 180,
+        bottom: {md: 5, sm: 10, xs: 20},
       }}
       onClick={share}
       color="success"
