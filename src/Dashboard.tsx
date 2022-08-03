@@ -135,6 +135,12 @@ const RenderSummary = (props: {summary: Array<Summary>; pile: IconKind}) => {
       width: numberColWidth * 2,
       type: 'number',
       renderCell: (p) => {
+        const labelStyles = {
+          minWidth: 42,
+          marginRight: 0.5,
+          textAlign: 'right',
+          display: 'inline-block',
+        };
         const params = p.row as Record<string, number>;
         const icon = p.row.icon as IconExport;
 
@@ -152,11 +158,15 @@ const RenderSummary = (props: {summary: Array<Summary>; pile: IconKind}) => {
               }}
             >
               <Box component="span">
-                {params[`${key}${star}`] || 0}{' '}
+                <Box component="span" sx={labelStyles}>
+                  {params[`${key}${star}`] || 0}{' '}
+                </Box>
                 <StarSummaryChip starLevel={star} />
               </Box>
               <Box component="span">
-                {params[`${sentiment}Super${star}`] || 0}{' '}
+                <Box component="span" sx={labelStyles}>
+                  {params[`${sentiment}Super${star}`] || 0}{' '}
+                </Box>
                 <ExtraSummaryChip pile={sentiment} />
               </Box>
             </Box>
@@ -172,7 +182,9 @@ const RenderSummary = (props: {summary: Array<Summary>; pile: IconKind}) => {
               </Typography>
             </Box>
             <Box component="div" textAlign="center">
-              {params[`${sentiment}SuperAny`] || 0}{' '}
+              <Box component="span" sx={labelStyles}>
+                {params[`${sentiment}SuperAny`] || 0}{' '}
+              </Box>
               <ExtraSummaryChip pile={sentiment} />
             </Box>
             {icon.kind === 'champ' && stars}
