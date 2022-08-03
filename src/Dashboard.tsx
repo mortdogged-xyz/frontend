@@ -215,7 +215,7 @@ const RenderSummary = (props: {summary: Array<Summary>; pile: IconKind}) => {
   });
 
   return (
-    <div style={{height: '92vh', width: '100%'}}>
+    <div style={{height: 'calc(100vh - 64px)', width: '100%'}}>
       <DataGrid
         rowHeight={rowHeight}
         rows={rows}
