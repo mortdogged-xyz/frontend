@@ -280,6 +280,10 @@ export const Dashboard = (props: {uid: string | null; logout: () => void}) => {
     console.error(exportResults.error);
   }
 
+  if (!loading) {
+    console.log(state.stats);
+  }
+
   const [searchFilter, setSearchFilter] = useState('');
   const tabFilter: IconKind = tabFilters[currentTab] || 'champ';
   const filteredState = state.summary.filter((item) => {
