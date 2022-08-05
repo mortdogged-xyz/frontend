@@ -8,7 +8,7 @@ import * as Sentry from '@sentry/react';
 import {BrowserTracing} from '@sentry/tracing';
 
 Sentry.init({
-  dsn: 'https://5ce2c1d69c094f39ba8517194fee1143@gonzih-glitchtip.herokuapp.com/1',
+  dsn: 'https://184e241574e4486eb046e6f0f92b362b@glitch.gonzih.me/1',
   integrations: [new BrowserTracing()],
 
   // Set tracesSampleRate to 1.0 to capture 100%
