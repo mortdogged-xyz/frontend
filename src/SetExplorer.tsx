@@ -8,38 +8,24 @@ import Paper from '@mui/material/Paper';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import {TFTSetNumber} from './version';
+import {CurrentSet, icon2Src} from './set_data';
 
-const CurrentSet = `TFT_Set${TFTSetNumber}`;
+const Item = (props: {item: any; tab: string}) => {
+  const {item, tab} = props;
 
-function championIcon(apiName: string): string {
-  const an = apiName.toLowerCase();
-  const sn = CurrentSet.toLowerCase();
-
-  return `assets/characters/${an}/hud/${an}_square.${sn}.png`;
-}
-
-function icon2Src(icon: string): string {
-  const prefix = 'https://raw.communitydragon.org/latest/game/';
-  const ico = icon
-    .toLowerCase()
-    .replace('.dds', '.png')
-    .replace('.tex', '.png');
-  const src = `${prefix}${ico}`;
-
-  return src;
-}
-
-const Item = (props: {item: any}) => {
-  const {item} = props;
+  let folder = 'item';
+  if (tab === 'Champions') {
+    folder = 'champion';
+  }
+  if (tab === 'Traits') {
+    folder = 'trait';
+  }
 
   return (
     <Box>
       <Paper>
         <Typography color="primary">
-          {item['traits'] && item['apiName'] && (
-            <img src={icon2Src(championIcon(item['apiName']))} />
-          )}
-          {item['icon'] && <img src={icon2Src(item['icon'])} />}
+          <img src={icon2Src(folder, item['name'])} />
           <pre>{JSON.stringify(item, null, 2)}</pre>
         </Typography>
       </Paper>
@@ -75,7 +61,7 @@ export const SetExplorer = () => {
       </Box>
 
       {items.map((item) => (
-        <Item item={item} />
+        <Item item={item} tab={value} />
       ))}
     </div>
   );
