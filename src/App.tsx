@@ -11,6 +11,7 @@ import {BrowserRouter, Routes, Route, useParams} from 'react-router-dom';
 import Chip from '@mui/material/Chip';
 import {ThemeProvider, createTheme} from '@mui/material/styles';
 
+import {SetExplorer} from './SetExplorer';
 import {Balance} from './Balance';
 import {AuthUI, Logout} from './firebase';
 import {SimpleAuth, removeUserData} from './SimpleAuth';
@@ -93,6 +94,8 @@ function App() {
     </DndProvider>
   );
 
+  const setExplorer = <SetExplorer />;
+
   return (
     <Provider value={gqlClient}>
       <ThemeProvider theme={darkTheme}>
@@ -102,6 +105,7 @@ function App() {
             <Route path="/letmein" element={simpleLoginBalance} />
             <Route path="/food-fight-tactics" element={dashboard} />
             <Route path="/view/:viewUserId" element={view} />
+            <Route path="/set-explorer" element={setExplorer} />
             <Route
               path="/simple-food-fight-tactics"
               element={simpleLoginDashboard}
