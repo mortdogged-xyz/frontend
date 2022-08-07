@@ -7,10 +7,13 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
+import {TFTSetNumber} from './version';
 
-function championIcon(apiName: string, setName: string): string {
+const CurrentSet = `TFT_Set${TFTSetNumber}`;
+
+function championIcon(apiName: string): string {
   const an = apiName.toLowerCase();
-  const sn = setName.toLowerCase();
+  const sn = CurrentSet.toLowerCase();
 
   return `assets/characters/${an}/hud/${an}_square.${sn}.png`;
 }
@@ -34,7 +37,7 @@ const Item = (props: {item: any}) => {
       <Paper>
         <Typography color="primary">
           {item['traits'] && item['apiName'] && (
-            <img src={icon2Src(championIcon(item['apiName'], 'TFT_Set7'))} />
+            <img src={icon2Src(championIcon(item['apiName']))} />
           )}
           {item['icon'] && <img src={icon2Src(item['icon'])} />}
           <pre>{JSON.stringify(item, null, 2)}</pre>
@@ -55,7 +58,7 @@ export const SetExplorer = () => {
 
   let items: Array<any> = RawData.items;
   if (value == 'Champions') {
-    items = RawData.sets[7].champions;
+    items = RawData.sets[TFTSetNumber].champions;
   }
   if (value == 'Traits') {
     items = RawData.sets[7].traits;
