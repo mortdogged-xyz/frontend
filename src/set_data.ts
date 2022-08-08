@@ -12,6 +12,7 @@ interface DataItem {
   desc?: string;
   icon: string;
   apiName: string;
+  id?: number;
   cost?: number;
 }
 
@@ -110,7 +111,15 @@ export const traits = data.sets[TFTSetNumber].traits
 
 export const items = data.items
   .filter(offBlacklist)
-  .filter((item: DataItem) => !item.icon.includes('Augments/Hexcore'))
+  .filter(
+    (item: DataItem) =>
+      !item.icon.includes('Augments/Hexcore') &&
+      ((item.name?.includes('Emblem') &&
+        traits.some((trait) => item.name?.includes(trait))) ||
+        item.icon.includes('OrnnItem') ||
+        item.icon.includes('Radiant') ||
+        (item.id && item.id > 0)),
+  )
   .map((item: DataItem) => item.name || '');
 
 export const augs = data.items
