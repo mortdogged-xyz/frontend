@@ -34,6 +34,7 @@ const blacklist = [
   'Cram Session',
   'Dominance',
   'Dual Rule',
+  'Nomsy',
   'Jade Statue',
   'The Golden Egg',
   "Zoe's Daisy",

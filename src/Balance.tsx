@@ -769,7 +769,7 @@ export const Balance = (props: {uid: string | null; logout: () => void}) => {
       document.location.reload();
     }
 
-    if (response.submit.status === 200) {
+    if (response?.submit?.status === 200) {
       setAlertShown(true);
       setSubmitted(true);
     }
