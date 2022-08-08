@@ -105,7 +105,15 @@ function iconURL(icon: IconExport): string {
 }
 
 function champCost(icon: string): number {
-  const cost = (TFTData.champ_cost as Record<string, number>)[icon];
+  const cost = TFTData.champ_cost[icon];
+  if (cost) {
+    return cost;
+  }
+  return -1;
+}
+
+function itemCost(icon: string): number {
+  const cost = TFTData.item_cost[icon];
   if (cost) {
     return cost;
   }
@@ -448,7 +456,7 @@ function convertData(
 
 TFTData.champs.sort((a, b) => champCost(a) - champCost(b));
 TFTData.augs.sort();
-TFTData.items.sort((a) => (a.includes('Emblem') ? 1 : -1));
+TFTData.items.sort((a, b) => itemCost(b) - itemCost(a));
 
 const champs = convertData(TFTData.champs.reverse(), 'champ', ['Nomsy']);
 const items = convertData(

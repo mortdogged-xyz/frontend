@@ -206,3 +206,24 @@ export const champ_cost: Record<string, number> = data.sets[
 
   return acc;
 }, {});
+
+const itemCostMapping: Record<string, number> = {
+  Shimmerscale: 3,
+  Ornn: 2,
+  Emblem: 10,
+  Radiant: 1,
+};
+
+export const item_cost: Record<string, number> = data.items.reduce(
+  (acc: Record<string, number>, item: DataItem) => {
+    const costK = Object.keys(itemCostMapping).find(
+      (k) => item.icon.includes(k) || item.name?.includes(k),
+    );
+
+    const cost = costK ? itemCostMapping[costK] : 0;
+    acc[item.name] = cost;
+
+    return acc;
+  },
+  {},
+);
