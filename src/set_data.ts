@@ -65,7 +65,6 @@ const blacklist = [
   'Hustler',
   "Knife's Edge",
   'Lifelong Learning',
-  'Inspire',
   'Instant Injection',
   'Irresistible',
   'Junkyard',
@@ -97,11 +96,68 @@ const blacklist = [
   'Share-o-sel',
   'Share the Spotlight',
   'Self Repair',
+
+  // ITEMS
+  'Unusable Slot',
+  'MountainHexBuff',
+  'Three tier',
 ];
-const whitelist = ['Tri'];
+const whitelist = [
+  'OrnnItem',
+  'Radiant',
+  'Shimmerscale',
+  'Morello',
+  'Zeke',
+  'Crown',
+  'Rabadon',
+  'Infinity_Edge',
+  'Frozen_Heart',
+  'Shroud_of_Stillnes',
+  'Redemption',
+  'Zephyr',
+  "Thiefe's Gloves",
+  'Guinsoo',
+  'Ionic_Spark',
+  'Dragons_Claw',
+  'Trap_Claw',
+  'Blue_Buff',
+  'Chain_Vest',
+  'BF_Sword',
+  'Stoneplate',
+  'Bramble',
+  'Giant_Slayer',
+  'Sunfire_Cape',
+  'Hand_of_Justice',
+  'Edge_Of_Night',
+  'Death_Blade',
+  'Negatron',
+  'Titans_Resolve',
+  'Runaans',
+  'Sparring_Gloves',
+  'Bloodthirster',
+  'ArchangelsStaff',
+  'ZZRot',
+  'Shojin',
+  'Solari',
+  'Rapid_Fire_Cannon',
+  'Last_Whisper',
+  'Jeweled_Guantlet',
+  'Gaints_Belt',
+  'Needlessly_Large_Rod',
+  'Quicksilver',
+  'Chalice_of_Power',
+  'Warmogs_Armor',
+  'Statikk',
+  'Thieves_Gloves',
+  'Gunblade',
+];
 
 function offBlacklist(item: DataItem) {
   return !blacklist.some((bl) => item.name?.includes(bl));
+}
+
+function onWhitelist(item: DataItem) {
+  return whitelist.some((wl) => item.icon.includes(wl));
 }
 
 const data = rawData as unknown as RawData;
@@ -117,9 +173,7 @@ export const items = data.items
       !item.icon.includes('Augments/Hexcore') &&
       ((item.name?.includes('Emblem') &&
         traits.some((trait) => item.name?.includes(trait))) ||
-        item.icon.includes('OrnnItem') ||
-        item.icon.includes('Radiant') ||
-        (item.id && item.id > 0)),
+        onWhitelist(item)),
   )
   .map((item: DataItem) => item.name || '');
 
@@ -132,7 +186,7 @@ export const augs = data.items
         !item.name?.includes('Heart') &&
         !item.name?.includes('Crest') &&
         !item.name?.includes('Crown')) ||
-      whitelist.some((wl) => item.icon.includes(wl)) ||
+      onWhitelist(item) ||
       traits.some((trait) => item.icon.includes(trait)),
   )
   .filter((item: DataItem) => item.icon.includes('Augments/Hexcore'))
