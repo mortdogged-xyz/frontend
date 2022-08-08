@@ -112,23 +112,16 @@ function champCost(icon: string): number {
   return -1;
 }
 
+const colormap: Record<number, string> = {
+  5: 'gold',
+  4: 'purple',
+  3: 'blue',
+  2: 'green',
+};
+
 export function champColor(icon: string): string {
   const cost = champCost(icon);
-
-  if (cost === 5) {
-    return 'gold';
-  }
-  if (cost === 4) {
-    return 'purple';
-  }
-  if (cost === 3) {
-    return 'blue';
-  }
-  if (cost === 2) {
-    return 'green';
-  }
-
-  return 'gray';
+  return colormap[cost] || 'gray';
 }
 
 export const IconIcon = (props: {
