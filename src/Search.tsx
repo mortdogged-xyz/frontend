@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useCallback} from 'react';
+import debounce from 'lodash.debounce';
 
 import {styled, alpha} from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
@@ -51,10 +52,17 @@ export const Search = (props: {
 }) => {
   const {placeholder, onChange} = props;
 
+  const debounced = useCallback(
+    debounce((value: string) => {
+      onChange(value);
+    }, 500),
+    [],
+  );
+
   const handleChange = (
     event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
   ) => {
-    onChange(event.target.value);
+    debounced(event.target.value);
   };
 
   return (

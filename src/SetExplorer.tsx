@@ -76,9 +76,9 @@ export const SetExplorer = () => {
         </Tabs>
       </Box>
 
-      <Box sx={{margin: '50px 60px'}}>
+      <Paper component="div" sx={{margin: '50px 60px'}}>
         <Search placeholder={'Search...'} onChange={setFilter} />
-      </Box>
+      </Paper>
 
       {items.map((item) => (
         <Item

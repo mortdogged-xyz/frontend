@@ -19,6 +19,7 @@
         "@types/react-dom": "^18.0.6",
         "firebase": "^9.9.1",
         "firebaseui": "^6.0.1",
+        "lodash.debounce": "^4.0.8",
         "react": "^18.2.0",
         "react-dnd": "^16.0.1",
         "react-dnd-html5-backend": "^16.0.1",
@@ -52,6 +53,7 @@
         ]
     },
     "devDependencies": {
+        "@types/lodash.debounce": "^4.0.7",
         "@typescript-eslint/eslint-plugin": "^5.31.0",
         "@typescript-eslint/parser": "^5.32.0",
         "eslint": "^8.20.0",
