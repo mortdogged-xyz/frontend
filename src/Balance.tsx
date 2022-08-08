@@ -115,16 +115,16 @@ function champCost(icon: string): number {
 export function champColor(icon: string): string {
   const cost = champCost(icon);
 
-  if (cost === 6 || cost === 5) {
+  if (cost === 5) {
     return 'gold';
   }
-  if (cost === 4 || cost === 3) {
+  if (cost === 4) {
     return 'purple';
   }
-  if (cost === 2) {
+  if (cost === 3) {
     return 'blue';
   }
-  if (cost === 1) {
+  if (cost === 2) {
     return 'green';
   }
 
