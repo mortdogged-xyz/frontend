@@ -101,8 +101,10 @@ const blacklist = [
   'Unusable Slot',
   'MountainHexBuff',
   'Three tier',
-  'champions',
+  'Two tier',
+  'One tier',
 ];
+
 const whitelist = [
   'OrnnItem',
   'Radiant',
