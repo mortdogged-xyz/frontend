@@ -26,11 +26,17 @@ interface RawData {
 
 const data = rawData as unknown as RawData;
 
-export const items = data.items.map((item: DataItem) => item.name || '');
-export const augs = data.items.map((item: DataItem) => item.name || '');
+export const items = data.items
+  .filter((item: DataItem) => !item.icon.includes('Augments/Hexcore'))
+  .map((item: DataItem) => item.name || '');
+export const augs = data.items
+  .filter((item: DataItem) => item.icon.includes('Augments/Hexcore'))
+  .map((item: DataItem) => item.name || '');
+
 export const traits = data.sets[TFTSetNumber].traits.map(
   (item: DataItem) => item.name,
 );
+
 export const champs = data.sets[TFTSetNumber].champions.map(
   (item: DataItem) => item.name,
 );
