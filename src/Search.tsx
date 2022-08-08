@@ -55,7 +55,7 @@ export const Search = (props: {
   const debounced = useCallback(
     debounce((value: string) => {
       onChange(value);
-    }, 500),
+    }, 300),
     [],
   );
 
