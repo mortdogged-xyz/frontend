@@ -26,6 +26,7 @@ const Item = (props: {item: any; tab: string}) => {
       <Paper>
         <Typography color="primary">
           <img src={icon2Src(folder, item['name'])} />
+          <Box>{item.desc}</Box>
           <pre>{JSON.stringify(item, null, 2)}</pre>
         </Typography>
       </Paper>
