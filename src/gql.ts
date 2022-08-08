@@ -1,6 +1,7 @@
 import {createClient} from 'urql';
 import {getUserData} from './SimpleAuth';
 
+// let url = 'https://us-central1-tft-meta-73571.cloudfunctions.net/graphql';
 let url = '/graphql';
 
 if (process.env.NODE_ENV !== 'production') {

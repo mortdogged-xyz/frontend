@@ -15,7 +15,6 @@ import {Info} from './Info';
 import {Alert} from './Alert';
 import {isFirefox} from './browser';
 import {getUserData, setUserData, removeUserData} from './SimpleAuth';
-import {submitURL, getSavedResultsURL} from './config';
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
