@@ -45,7 +45,7 @@ import {
   ViewSavedResultsResponse,
 } from './gql';
 
-import TFTData from './set_data.json';
+import * as TFTData from './set_data';
 
 import {TFTSet, StorageKey} from './version';
 
@@ -88,15 +88,17 @@ const StarLevelChipColor = {
   3: 'warning',
 } as Record<number, 'primary' | 'info' | 'warning'>;
 
+const prefix = 'https://assets.mortdogged.xyz';
+
 function iconURL(icon: IconExport): string {
   if (icon.kind === 'champ') {
-    return `https://rerollcdn.com/characters/Skin/${TFTSet}/${icon.icon}.png`;
+    return `${prefix}/champion/${icon.icon}`;
   } else if (icon.kind === 'item') {
-    return `https://rerollcdn.com/items/${icon.icon}.png`;
+    return `${prefix}/item/${icon.icon}`;
   } else if (icon.kind === 'aug') {
-    return `https://rerollcdn.com/augments/${TFTSet}/${icon.icon}.png`;
+    return `${prefix}/item/${icon.icon}`;
   } else if (icon.kind === 'trait') {
-    return `https://rerollcdn.com/icons/${icon.icon}.png`;
+    return `${prefix}/trait/${icon.icon}`;
   }
 
   return '';
