@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {useDrag, useDrop} from 'react-dnd';
 import {useMutation, useQuery} from 'urql';
-import {useParams} from 'react-router-dom';
+import {useParams, useNavigate} from 'react-router-dom';
 
 import useMediaQuery from '@mui/material/useMediaQuery';
 import {useTheme} from '@mui/material/styles';
@@ -30,10 +30,11 @@ import StarIcon from '@mui/icons-material/Star';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import LinkIcon from '@mui/icons-material/Link';
 import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 import {InfoMenu} from './Info';
 import {Search} from './Search';
-import {showStarsNSuper} from './feature_flags';
+import {letLemmingsIn, showStarsNSuper} from './feature_flags';
 import {Alert} from './Alert';
 import {LoadingModal} from './Loading';
 import {
@@ -872,6 +873,7 @@ export const Balance = (props: {uid: string | null; logout: () => void}) => {
         </Alert>
       </Snackbar>
 
+      {submitted && letLemmingsIn && <SeeResultsChip />}
       {submitted && <ShareChip uid={uid} />}
       {viewOnly && <MakeYourOwnChip />}
 
@@ -959,6 +961,39 @@ const ShareChip = (props: {uid: string | null}) => {
       color="warning"
       variant="outlined"
       icon={<LinkIcon />}
+      label={label}
+    />
+  );
+};
+
+const SeeResultsChip = () => {
+  const navigate = useNavigate();
+  const theme = useTheme();
+  const matchesMd = useMediaQuery(theme.breakpoints.up('md'));
+  const seeResults = async () =>
+    navigate(
+      document.location.pathname === '/letmein'
+        ? '/simple-food-fight-tactics'
+        : '/food-fight-tactics',
+    );
+
+  let label = 'Show Results';
+
+  if (!matchesMd) {
+    label = 'Results';
+  }
+
+  return (
+    <Chip
+      sx={{
+        position: 'fixed',
+        right: 5,
+        bottom: 50,
+      }}
+      onClick={seeResults}
+      color="success"
+      variant="filled"
+      icon={<CheckCircleIcon />}
       label={label}
     />
   );
