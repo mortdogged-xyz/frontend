@@ -12,6 +12,7 @@ import {useTheme} from '@mui/material/styles';
 import {LoadingModal} from './Loading';
 import {exportResultsQuery, ExportResultsResponse} from './gql';
 import {StorageKey} from './version';
+import {letLemmingsIn} from './feature_flags';
 
 import {DataGrid, GridColumnHeaderParams, GridColDef} from '@mui/x-data-grid';
 
@@ -266,6 +267,7 @@ export const Dashboard = (props: {uid: string | null; logout: () => void}) => {
     query: exportResultsQuery,
     variables: {
       storageKey: StorageKey,
+      letLemmingsIn,
     },
   });
   const loading = exportResults.fetching;

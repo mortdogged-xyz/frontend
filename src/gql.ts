@@ -60,8 +60,8 @@ export interface SubmitMutationResponse {
 }
 
 export const exportResultsQuery = `
-query($storageKey: String!){
-  exportResults(storageKey: $storageKey)
+query($storageKey: String!, $letLemmingsIn: Boolean){
+  exportResults(storageKey: $storageKey, letLemmingsIn: $letLemmingsIn)
 }
 `;
 
