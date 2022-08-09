@@ -153,6 +153,8 @@ const whitelist = [
   'Statikk',
   'Thieves_Gloves',
   'Gunblade',
+  'Recurve_Bow',
+  'Tear_of_the_Goddess',
 ];
 
 function offBlacklist(item: DataItem) {
