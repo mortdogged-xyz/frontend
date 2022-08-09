@@ -103,6 +103,7 @@ const blacklist = [
   'Three tier',
   'Two tier',
   'One tier',
+  'Special item',
 ];
 
 const whitelist = [
