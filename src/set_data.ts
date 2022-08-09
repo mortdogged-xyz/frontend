@@ -104,6 +104,7 @@ const blacklist = [
   'Two tier',
   'One tier',
   'Special item',
+  'Astral Emblem',
 ];
 
 const whitelist = [
