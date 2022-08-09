@@ -96,6 +96,8 @@ const blacklist = [
   'Share-o-sel',
   'Share the Spotlight',
   'Self Repair',
+  'Striker',
+  'Hextech Crown',
 
   // ITEMS
   'Unusable Slot',
