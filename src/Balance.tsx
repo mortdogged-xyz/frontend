@@ -302,7 +302,10 @@ const DraggableIcon = (props: {
   const dropdownVisible = isActive && showStarsNSuper;
 
   return (
-    <Box component="div" sx={{position: 'relative'}}>
+    <Box
+      component="div"
+      sx={{position: 'relative', marginLeft: '15px', marginBottom: '15px'}}
+    >
       <Box ref={drag}>
         <IconIcon
           icon={icon}
@@ -312,8 +315,6 @@ const DraggableIcon = (props: {
             ...borderStyle,
             opacity: isDragging ? '10%' : '100%',
             cursor: 'pointer',
-            marginLeft: '15px',
-            marginBottom: '15px',
           }}
         />
 
@@ -687,7 +688,7 @@ export const Column = (props: {
             display: 'flex',
             flexWrap: 'wrap',
             paddingTop: '5px',
-            justifyContent: 'flex-start',
+            justifyContent: 'space-evenly',
           }}
         >
           <RenderIcons
