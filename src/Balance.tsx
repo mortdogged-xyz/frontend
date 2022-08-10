@@ -302,10 +302,7 @@ const DraggableIcon = (props: {
   const dropdownVisible = isActive && showStarsNSuper;
 
   return (
-    <Box
-      component="div"
-      sx={{position: 'relative', marginLeft: '15px', marginBottom: '15px'}}
-    >
+    <Box component="div" sx={{position: 'relative', marginBottom: '15px'}}>
       <Box ref={drag}>
         <IconIcon
           icon={icon}
@@ -324,8 +321,8 @@ const DraggableIcon = (props: {
             onClick={clickHandler}
             sx={{
               position: 'absolute',
-              bottom: 25,
-              left: 20,
+              bottom: 10,
+              left: 5,
               width: '78px',
             }}
           >
@@ -353,10 +350,10 @@ const DraggableIcon = (props: {
           component="div"
           sx={{
             ...borderStyle,
-            width: '110px',
+            width: '120px',
             position: 'absolute',
             top: '90px',
-            left: '0',
+            left: '-20px',
             zIndex: 999,
           }}
         >
