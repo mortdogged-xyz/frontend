@@ -302,7 +302,10 @@ const DraggableIcon = (props: {
   const dropdownVisible = isActive && showStarsNSuper;
 
   return (
-    <Box component="div" sx={{position: 'relative', marginBottom: '15px'}}>
+    <Box
+      component="div"
+      sx={{position: 'relative', marginBottom: '15px', marginLeft: '15px'}}
+    >
       <Box ref={drag}>
         <IconIcon
           icon={icon}
@@ -685,7 +688,7 @@ export const Column = (props: {
             display: 'flex',
             flexWrap: 'wrap',
             paddingTop: '5px',
-            justifyContent: 'space-evenly',
+            justifyContent: {md: 'flex-start', xs: 'space-evenly'},
           }}
         >
           <RenderIcons
@@ -975,7 +978,7 @@ const SeeResultsChip = () => {
         : '/food-fight-tactics',
     );
 
-  let label = 'Show Results';
+  let label = 'See Results';
 
   if (!matchesMd) {
     label = 'Results';
