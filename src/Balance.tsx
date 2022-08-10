@@ -325,7 +325,7 @@ const DraggableIcon = (props: {
             sx={{
               position: 'absolute',
               bottom: 10,
-              left: 5,
+              left: 4,
               width: '78px',
             }}
           >
