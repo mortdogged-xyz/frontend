@@ -304,7 +304,11 @@ const DraggableIcon = (props: {
   return (
     <Box
       component="div"
-      sx={{position: 'relative', marginBottom: '15px', marginLeft: '15px'}}
+      sx={{
+        position: 'relative',
+        marginBottom: '15px',
+        marginLeft: {md: '15px', xs: 0},
+      }}
     >
       <Box ref={drag}>
         <IconIcon
@@ -361,7 +365,7 @@ const DraggableIcon = (props: {
           }}
         >
           <CardActionArea>
-            <CardContent>
+            <CardContent sx={{textAlign: 'center'}}>
               <Typography>{formatIconName(icon.icon)}</Typography>
 
               {icon.kind === 'champ' && (
