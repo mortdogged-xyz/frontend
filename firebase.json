@@ -7,13 +7,12 @@
       "**/node_modules/**"
     ],
     "redirects": [
-      {
-        "source": "/graphql",
-        "destination": "https://us-central1-tft-meta-73571.cloudfunctions.net/graphql",
-        "type": 302
-      }
     ],
     "rewrites": [
+      {
+        "source": "/graphql",
+        "function": "graphql"
+      },
       {
         "source": "**",
         "destination": "/index.html"

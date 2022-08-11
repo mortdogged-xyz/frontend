@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {useDrag, useDrop} from 'react-dnd';
 import {useMutation, useQuery} from 'urql';
-import {useParams} from 'react-router-dom';
+import {useParams, useNavigate} from 'react-router-dom';
 
 import useMediaQuery from '@mui/material/useMediaQuery';
 import {useTheme} from '@mui/material/styles';
@@ -30,10 +30,11 @@ import StarIcon from '@mui/icons-material/Star';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import LinkIcon from '@mui/icons-material/Link';
 import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 import {InfoMenu} from './Info';
 import {Search} from './Search';
-import {showStarsNSuper} from './feature_flags';
+import {letLemmingsIn, showStarsNSuper} from './feature_flags';
 import {Alert} from './Alert';
 import {LoadingModal} from './Loading';
 import {
@@ -45,7 +46,7 @@ import {
   ViewSavedResultsResponse,
 } from './gql';
 
-import TFTData from './set_data.json';
+import * as TFTData from './set_data';
 
 import {TFTSet, StorageKey} from './version';
 
@@ -88,45 +89,48 @@ const StarLevelChipColor = {
   3: 'warning',
 } as Record<number, 'primary' | 'info' | 'warning'>;
 
+const prefix = 'https://assets.mortdogged.xyz';
+
 function iconURL(icon: IconExport): string {
   if (icon.kind === 'champ') {
-    return `https://rerollcdn.com/characters/Skin/${TFTSet}/${icon.icon}.png`;
+    return `${prefix}/champion/${icon.icon}`;
   } else if (icon.kind === 'item') {
-    return `https://rerollcdn.com/items/${icon.icon}.png`;
+    return `${prefix}/item/${icon.icon}`;
   } else if (icon.kind === 'aug') {
-    return `https://rerollcdn.com/augments/${TFTSet}/${icon.icon}.png`;
+    return `${prefix}/item/${icon.icon}`;
   } else if (icon.kind === 'trait') {
-    return `https://rerollcdn.com/icons/${icon.icon}.png`;
+    return `${prefix}/trait/${icon.icon}`;
   }
 
   return '';
 }
 
 function champCost(icon: string): number {
-  const cost = (TFTData.champ_cost as Record<string, number>)[icon];
+  const cost = TFTData.champ_cost[icon];
   if (cost) {
     return cost;
   }
   return -1;
 }
 
+function itemCost(icon: string): number {
+  const cost = TFTData.item_cost[icon];
+  if (cost) {
+    return cost;
+  }
+  return -1;
+}
+
+const colormap: Record<number, string> = {
+  5: 'gold',
+  4: 'purple',
+  3: 'blue',
+  2: 'green',
+};
+
 export function champColor(icon: string): string {
   const cost = champCost(icon);
-
-  if (cost === 6 || cost === 5) {
-    return 'gold';
-  }
-  if (cost === 4 || cost === 3) {
-    return 'purple';
-  }
-  if (cost === 2) {
-    return 'blue';
-  }
-  if (cost === 1) {
-    return 'green';
-  }
-
-  return 'gray';
+  return colormap[cost] || 'gray';
 }
 
 export const IconIcon = (props: {
@@ -298,7 +302,14 @@ const DraggableIcon = (props: {
   const dropdownVisible = isActive && showStarsNSuper;
 
   return (
-    <Box component="div" sx={{position: 'relative'}}>
+    <Box
+      component="div"
+      sx={{
+        position: 'relative',
+        marginBottom: '15px',
+        marginLeft: {md: '15px', xs: 0},
+      }}
+    >
       <Box ref={drag}>
         <IconIcon
           icon={icon}
@@ -308,8 +319,6 @@ const DraggableIcon = (props: {
             ...borderStyle,
             opacity: isDragging ? '10%' : '100%',
             cursor: 'pointer',
-            marginLeft: '15px',
-            marginBottom: '15px',
           }}
         />
 
@@ -319,8 +328,8 @@ const DraggableIcon = (props: {
             onClick={clickHandler}
             sx={{
               position: 'absolute',
-              bottom: 25,
-              left: 20,
+              bottom: 10,
+              left: 4,
               width: '78px',
             }}
           >
@@ -348,15 +357,15 @@ const DraggableIcon = (props: {
           component="div"
           sx={{
             ...borderStyle,
-            width: '110px',
+            width: '120px',
             position: 'absolute',
             top: '90px',
-            left: '0',
+            left: '-20px',
             zIndex: 999,
           }}
         >
           <CardActionArea>
-            <CardContent>
+            <CardContent sx={{textAlign: 'center'}}>
               <Typography>{formatIconName(icon.icon)}</Typography>
 
               {icon.kind === 'champ' && (
@@ -453,7 +462,7 @@ function convertData(
 
 TFTData.champs.sort((a, b) => champCost(a) - champCost(b));
 TFTData.augs.sort();
-TFTData.items.sort((a) => (a.includes('Emblem') ? 1 : -1));
+TFTData.items.sort((a, b) => itemCost(b) - itemCost(a));
 
 const champs = convertData(TFTData.champs.reverse(), 'champ', ['Nomsy']);
 const items = convertData(
@@ -683,7 +692,8 @@ export const Column = (props: {
             display: 'flex',
             flexWrap: 'wrap',
             paddingTop: '5px',
-            justifyContent: 'flex-start',
+            marginBottom: {md: 0, xs: '200px'},
+            justifyContent: {md: 'flex-start', xs: 'space-evenly'},
           }}
         >
           <RenderIcons
@@ -774,7 +784,7 @@ export const Balance = (props: {uid: string | null; logout: () => void}) => {
       document.location.reload();
     }
 
-    if (response.submit.status === 200) {
+    if (response?.submit?.status === 200) {
       setAlertShown(true);
       setSubmitted(true);
     }
@@ -869,6 +879,7 @@ export const Balance = (props: {uid: string | null; logout: () => void}) => {
         </Alert>
       </Snackbar>
 
+      {submitted && letLemmingsIn && <SeeResultsChip />}
       {submitted && <ShareChip uid={uid} />}
       {viewOnly && <MakeYourOwnChip />}
 
@@ -948,14 +959,49 @@ const ShareChip = (props: {uid: string | null}) => {
   return (
     <Chip
       sx={{
+        zIndex: 100,
         position: 'fixed',
         right: 5,
         bottom: 5,
       }}
       onClick={share}
       color="warning"
-      variant="outlined"
+      variant="filled"
       icon={<LinkIcon />}
+      label={label}
+    />
+  );
+};
+
+const SeeResultsChip = () => {
+  const navigate = useNavigate();
+  const theme = useTheme();
+  const matchesMd = useMediaQuery(theme.breakpoints.up('md'));
+  const seeResults = async () =>
+    navigate(
+      document.location.pathname === '/letmein'
+        ? '/simple-food-fight-tactics'
+        : '/food-fight-tactics',
+    );
+
+  let label = 'See Results';
+
+  if (!matchesMd) {
+    label = 'Results';
+  }
+
+  return (
+    <Chip
+      sx={{
+        zIndex: 100,
+        position: 'fixed',
+        right: 5,
+        bottom: 50,
+      }}
+      onClick={seeResults}
+      color="success"
+      variant="filled"
+      icon={<CheckCircleIcon />}
       label={label}
     />
   );
@@ -979,6 +1025,7 @@ const MakeYourOwnChip = () => {
   return (
     <Chip
       sx={{
+        zIndex: 100,
         position: 'fixed',
         right: 5,
         bottom: 5,
