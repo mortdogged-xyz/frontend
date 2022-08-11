@@ -692,6 +692,7 @@ export const Column = (props: {
             display: 'flex',
             flexWrap: 'wrap',
             paddingTop: '5px',
+            marginBottom: {md: 0, xs: '200px'},
             justifyContent: {md: 'flex-start', xs: 'space-evenly'},
           }}
         >
