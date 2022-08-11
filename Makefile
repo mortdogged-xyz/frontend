@@ -1,5 +1,6 @@
 ENV = env GOOGLE_APPLICATION_CREDENTIALS=$(PWD)/secrets/service-account-file.json
 
+.PHONY: build
 build:
 	npm run build
 
