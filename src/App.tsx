@@ -34,6 +34,7 @@ const Plug = () => {
   return (
     <Chip
       sx={{
+        zIndex: 100,
         position: 'fixed',
         left: 5,
         bottom: 5,

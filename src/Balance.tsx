@@ -958,13 +958,14 @@ const ShareChip = (props: {uid: string | null}) => {
   return (
     <Chip
       sx={{
+        zIndex: 100,
         position: 'fixed',
         right: 5,
         bottom: 5,
       }}
       onClick={share}
       color="warning"
-      variant="outlined"
+      variant="filled"
       icon={<LinkIcon />}
       label={label}
     />
@@ -991,6 +992,7 @@ const SeeResultsChip = () => {
   return (
     <Chip
       sx={{
+        zIndex: 100,
         position: 'fixed',
         right: 5,
         bottom: 50,
@@ -1022,6 +1024,7 @@ const MakeYourOwnChip = () => {
   return (
     <Chip
       sx={{
+        zIndex: 100,
         position: 'fixed',
         right: 5,
         bottom: 5,
