@@ -10,7 +10,7 @@ import {BrowserRouter, Routes, Route, useParams} from 'react-router-dom';
 
 import Chip from '@mui/material/Chip';
 import {ThemeProvider, createTheme} from '@mui/material/styles';
-import TwitterIcon from '@mui/icons-material/Twitter';
+import {DiscordIcon} from './Icons';
 
 import {SetExplorer} from './SetExplorer';
 import {Balance} from './Balance';
@@ -40,11 +40,11 @@ const Plug = () => {
         bottom: 5,
         display: 'flex',
       }}
-      onClick={() => window?.open('https://twitter.com/Gonzih')?.focus()}
+      onClick={() => window?.open('https://discord.gg/nA4wpEGjKV')?.focus()}
       color="info"
       variant="filled"
       label={`Set ${TFTSet} v${TFTVersion}`}
-      icon={<TwitterIcon />}
+      icon={<DiscordIcon />}
     />
   );
 };
