@@ -38,7 +38,6 @@ const blacklist = [
   'Jade Statue',
   'The Golden Egg',
   "Zoe's Daisy",
-  'Woodland',
   'Academy',
   'Arcane',
   'Arcanist',
@@ -63,7 +62,6 @@ const blacklist = [
   'Hextech Unity',
   'Huge-ification',
   'Hustler',
-  "Knife's Edge",
   'Lifelong Learning',
   'Instant Injection',
   'Irresistible',
@@ -78,7 +76,7 @@ const blacklist = [
   'Pirates',
   'Profit Sharing',
   'Runic Shield',
-  'Scoped Weapons',
+  // 'Scoped Weapons',
   'Rascals',
   'Very VIP',
   'Unstable Evolution',
@@ -107,6 +105,16 @@ const blacklist = [
   'One tier',
   'Special item',
   'Astral Emblem',
+
+  // Midset changes
+  'Ragewing Emblem',
+  'Assasin Crest',
+  'High Roller',
+  'Makeshift Armor',
+  'Meditation',
+  'Phony Frontline',
+  'Dragon Horde',
+  'Dragon Alliance',
 ];
 
 const whitelist = [
@@ -159,6 +167,8 @@ const whitelist = [
   'Gunblade',
   'Recurve_Bow',
   'Tear_of_the_Goddess',
+
+  // Midset
 ];
 
 function offBlacklist(item: DataItem) {
