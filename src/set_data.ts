@@ -118,7 +118,7 @@ const whitelist = [
   'Crown',
   'Rabadon',
   'Infinity_Edge',
-  'Frozen_Heart',
+  "Protector's Vow",
   'Shroud_of_Stillnes',
   'Redemption',
   'Zephyr',
