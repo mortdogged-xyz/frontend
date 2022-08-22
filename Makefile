@@ -15,3 +15,6 @@ lint:
 
 lint-fix:
 	npm run lint:fix
+
+update-dragon-data:
+	curl https://raw.communitydragon.org/latest/cdragon/tft/en_us.json > src/data/en_us.json
