@@ -243,9 +243,10 @@ export const item_cost: Record<string, number> = data.items.reduce(
 );
 
 interface Mappings {
-  item: Record<string, string>;
-  trait: Record<string, string>;
-  champ: Record<string, string>;
+  items: Record<string, string>;
+  traits: Record<string, string>;
+  championsL: Record<string, string>;
+  champions: Record<string, string>;
 }
 
 function toMappings(
@@ -294,10 +295,10 @@ export function icon2Src(icon: string): string {
 }
 
 const mappings: Mappings = {
-  item: data.items.reduce(toMappings, {}),
-  trait: data.sets[TFTSetNumber].traits.reduce(toMappings, {}),
-  // championsL: data.sets[TFTSetNumber].champions.reduce(toMappings, {}),
-  champ: data.sets[TFTSetNumber].champions.reduce(toMappingsChamp, {}),
+  items: data.items.reduce(toMappings, {}),
+  traits: data.sets[TFTSetNumber].traits.reduce(toMappings, {}),
+  championsL: data.sets[TFTSetNumber].champions.reduce(toMappings, {}),
+  champions: data.sets[TFTSetNumber].champions.reduce(toMappingsChamp, {}),
 };
 
 console.log(mappings);
@@ -307,16 +308,16 @@ export function iconFor(folder: string, name: string): string {
 
   switch (folder) {
     case 'aug': {
-      return mappings['item'][n];
+      return mappings.items[n];
     }
     case 'item': {
-      return mappings['item'][n];
+      return mappings.items[n];
     }
     case 'trait': {
-      return mappings['trait'][n];
+      return mappings.traits[n];
     }
     case 'champ': {
-      return mappings['champ'][n];
+      return mappings.champions[n];
     }
     default: {
       return n;
