@@ -2,7 +2,7 @@ import React from 'react';
 
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import { ChaoticOrbit } from "@uiball/loaders";
+import {ChaoticOrbit} from '@uiball/loaders';
 
 export const LoadingModal = (props: {loading: boolean}) => {
   const {loading} = props;

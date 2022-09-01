@@ -3,10 +3,6 @@ import rawData from './data/en_us.json';
 
 export const CurrentSet = `TFT_Set${TFTSetNumber}`;
 
-export function icon2Src(folder: string, name: string): string {
-  return `https://assets.mortdogged.xyz/${folder}/${name}`;
-}
-
 interface DataItem {
   name: string;
   desc?: string;
@@ -245,3 +241,85 @@ export const item_cost: Record<string, number> = data.items.reduce(
   },
   {},
 );
+
+interface Mappings {
+  item: Record<string, string>;
+  trait: Record<string, string>;
+  champ: Record<string, string>;
+}
+
+function toMappings(
+  acc: Record<string, string>,
+  item: DataItem,
+): Record<string, string> {
+  const icon = icon2Src(item.icon);
+  acc[item.name?.toLowerCase()] = icon;
+  acc[item.apiName?.toLowerCase()] = icon;
+
+  return acc;
+}
+
+function toMappingsChamp(acc: Record<string, string>, item: DataItem) {
+  const icon = icon2Src(championIcon(item.apiName));
+  acc[item.name?.toLowerCase()] = icon;
+  acc[item.apiName?.toLowerCase()] = icon;
+
+  return acc;
+}
+
+const champMapping: Record<string, string> = {
+  tft7_dragonblue: 'tft7_miragedragon',
+  tft7_dragongold: 'tft7_shimmerscaledragon',
+  tft7_dragongreen: 'tft7_jadedragon',
+  tft7_dragonpurple: 'tft7_whispersdragon',
+};
+
+function championIcon(apiName: string): string {
+  const an = apiName.toLowerCase();
+  let san = champMapping[an] || an;
+  const sn = CurrentSet.toLowerCase();
+
+  return `assets/characters/${an}/hud/${san}_square.${sn}.png`;
+}
+
+export function icon2Src(icon: string): string {
+  const prefix = 'https://raw.communitydragon.org/latest/game/';
+  const ico = icon
+    .toLowerCase()
+    .replace('.dds', '.png')
+    .replace('.tex', '.png');
+  const src = `${prefix}${ico}`;
+
+  return src;
+}
+
+const mappings: Mappings = {
+  item: data.items.reduce(toMappings, {}),
+  trait: data.sets[TFTSetNumber].traits.reduce(toMappings, {}),
+  // championsL: data.sets[TFTSetNumber].champions.reduce(toMappings, {}),
+  champ: data.sets[TFTSetNumber].champions.reduce(toMappingsChamp, {}),
+};
+
+console.log(mappings);
+
+export function iconFor(folder: string, name: string): string {
+  const n = name.toLowerCase();
+
+  switch (folder) {
+    case 'aug': {
+      return mappings['item'][n];
+    }
+    case 'item': {
+      return mappings['item'][n];
+    }
+    case 'trait': {
+      return mappings['trait'][n];
+    }
+    case 'champ': {
+      return mappings['champ'][n];
+    }
+    default: {
+      return n;
+    }
+  }
+}
