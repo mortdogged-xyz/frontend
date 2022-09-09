@@ -12,14 +12,17 @@ interface DataItem {
   cost?: number;
 }
 
+interface SetData {
+  champions: Array<DataItem>;
+  traits: Array<DataItem>;
+  number: number;
+  name: string;
+  mutator: string;
+}
+
 interface RawData {
   items: Array<DataItem>;
-  sets: {
-    [key: number]: {
-      champions: Array<DataItem>;
-      traits: Array<DataItem>;
-    };
-  };
+  setData: Array<SetData>;
 }
 
 const blacklist = [
@@ -165,6 +168,7 @@ const whitelist = [
   'Tear_of_the_Goddess',
 
   // Midset
+  'Winters_Approach',
 ];
 
 function offBlacklist(item: DataItem) {
@@ -176,8 +180,11 @@ function onWhitelist(item: DataItem) {
 }
 
 const data = rawData as unknown as RawData;
+const setData: SetData = data.setData.find(
+  (data) => data.number === TFTSetNumber,
+)!;
 
-export const traits = data.sets[TFTSetNumber].traits
+export const traits = setData.traits
   .filter(offBlacklist)
   .map((item: DataItem) => item.name);
 
@@ -207,19 +214,20 @@ export const augs = data.items
   .filter((item: DataItem) => item.icon.includes('Augments/Hexcore'))
   .map((item: DataItem) => item.name || '');
 
-export const champs = data.sets[TFTSetNumber].champions
+export const champs = setData.champions
   .filter(offBlacklist)
   .map((item: DataItem) => item.name);
 
-export const champ_cost: Record<string, number> = data.sets[
-  TFTSetNumber
-].champions.reduce((acc: Record<string, number>, item: DataItem) => {
-  if (item && item.cost) {
-    acc[item.name] = item.cost;
-  }
+export const champ_cost: Record<string, number> = setData.champions.reduce(
+  (acc: Record<string, number>, item: DataItem) => {
+    if (item && item.cost) {
+      acc[item.name] = item.cost;
+    }
 
-  return acc;
-}, {});
+    return acc;
+  },
+  {},
+);
 
 const itemCostMapping: Record<string, number> = {
   Shimmerscale: 3,
@@ -296,9 +304,9 @@ export function icon2Src(icon: string): string {
 
 const mappings: Mappings = {
   items: data.items.reduce(toMappings, {}),
-  traits: data.sets[TFTSetNumber].traits.reduce(toMappings, {}),
-  championsL: data.sets[TFTSetNumber].champions.reduce(toMappings, {}),
-  champions: data.sets[TFTSetNumber].champions.reduce(toMappingsChamp, {}),
+  traits: setData.traits.reduce(toMappings, {}),
+  championsL: setData.champions.reduce(toMappings, {}),
+  champions: setData.champions.reduce(toMappingsChamp, {}),
 };
 
 console.log(mappings);

@@ -42,6 +42,8 @@ const Item = (props: {item: any; tab: string}) => {
   );
 };
 
+const setData = RawData.setData.find((data) => data.number === TFTSetNumber)!;
+
 export const SetExplorer = () => {
   const [value, setValue] = useState('Items');
   const [filter, setFilter] = useState('');
@@ -54,10 +56,10 @@ export const SetExplorer = () => {
 
   let items: Array<any> = RawData.items;
   if (value == 'Champions') {
-    items = RawData.sets[TFTSetNumber].champions;
+    items = setData.champions;
   }
   if (value == 'Traits') {
-    items = RawData.sets[7].traits;
+    items = setData.traits;
   }
 
   const matchesFilter = (thing: string | undefined) =>
