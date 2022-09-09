@@ -3,10 +3,6 @@ import rawData from './data/en_us.json';
 
 export const CurrentSet = `TFT_Set${TFTSetNumber}`;
 
-export function icon2Src(folder: string, name: string): string {
-  return `https://assets.mortdogged.xyz/${folder}/${name}`;
-}
-
 interface DataItem {
   name: string;
   desc?: string;
@@ -16,14 +12,17 @@ interface DataItem {
   cost?: number;
 }
 
+interface SetData {
+  champions: Array<DataItem>;
+  traits: Array<DataItem>;
+  number: number;
+  name: string;
+  mutator: string;
+}
+
 interface RawData {
   items: Array<DataItem>;
-  sets: {
-    [key: number]: {
-      champions: Array<DataItem>;
-      traits: Array<DataItem>;
-    };
-  };
+  setData: Array<SetData>;
 }
 
 const blacklist = [
@@ -34,11 +33,9 @@ const blacklist = [
   'Cram Session',
   'Dominance',
   'Dual Rule',
-  'Nomsy',
   'Jade Statue',
   'The Golden Egg',
   "Zoe's Daisy",
-  'Woodland',
   'Academy',
   'Arcane',
   'Arcanist',
@@ -63,7 +60,6 @@ const blacklist = [
   'Hextech Unity',
   'Huge-ification',
   'Hustler',
-  "Knife's Edge",
   'Lifelong Learning',
   'Instant Injection',
   'Irresistible',
@@ -78,7 +74,7 @@ const blacklist = [
   'Pirates',
   'Profit Sharing',
   'Runic Shield',
-  'Scoped Weapons',
+  // 'Scoped Weapons',
   'Rascals',
   'Very VIP',
   'Unstable Evolution',
@@ -107,6 +103,20 @@ const blacklist = [
   'One tier',
   'Special item',
   'Astral Emblem',
+
+  // Midset changes
+  'Ragewing Emblem',
+  'Assasin Crest',
+  'High Roller',
+  'Makeshift Armor',
+  'Meditation',
+  'Phony Frontline',
+  'Dragon Horde',
+  'Dragon Alliance',
+  'Seastone',
+  'NomsyMage',
+  'NomsyEvoker',
+  'NomsyCannoneer',
 ];
 
 const whitelist = [
@@ -118,7 +128,7 @@ const whitelist = [
   'Crown',
   'Rabadon',
   'Infinity_Edge',
-  'Frozen_Heart',
+  "Protector's Vow",
   'Shroud_of_Stillnes',
   'Redemption',
   'Zephyr',
@@ -159,10 +169,31 @@ const whitelist = [
   'Gunblade',
   'Recurve_Bow',
   'Tear_of_the_Goddess',
+
+  // Midset
+  'Winters_Approach',
+  'SoulSiphon',
+  'Consistency',
+  'Scoped Weapons',
+  'Protectors of the Cosmos',
+  'Dragon Imperialist',
+  'Hero-In-Training',
+  'High Tide',
+  'Oasis',
+  'Essence-Theft-Mage',
+  'Base Camp',
+  'Terrify',
+  'Lucky Gloves',
+  'Age of Dragons',
+  'Birthday Present',
 ];
 
 function offBlacklist(item: DataItem) {
-  return !blacklist.some((bl) => item.name?.includes(bl));
+  return (
+    !blacklist.some(
+      (bl) => item.name?.includes(bl) || item.apiName?.includes(bl),
+    ) || item.icon?.includes('SoulSiphon')
+  );
 }
 
 function onWhitelist(item: DataItem) {
@@ -170,8 +201,11 @@ function onWhitelist(item: DataItem) {
 }
 
 const data = rawData as unknown as RawData;
+const setData: SetData = data.setData.find(
+  (data) => data.number === TFTSetNumber,
+)!;
 
-export const traits = data.sets[TFTSetNumber].traits
+export const traits = setData.traits
   .filter(offBlacklist)
   .map((item: DataItem) => item.name);
 
@@ -201,19 +235,22 @@ export const augs = data.items
   .filter((item: DataItem) => item.icon.includes('Augments/Hexcore'))
   .map((item: DataItem) => item.name || '');
 
-export const champs = data.sets[TFTSetNumber].champions
+console.log(augs);
+
+export const champs = setData.champions
   .filter(offBlacklist)
   .map((item: DataItem) => item.name);
 
-export const champ_cost: Record<string, number> = data.sets[
-  TFTSetNumber
-].champions.reduce((acc: Record<string, number>, item: DataItem) => {
-  if (item && item.cost) {
-    acc[item.name] = item.cost;
-  }
+export const champ_cost: Record<string, number> = setData.champions.reduce(
+  (acc: Record<string, number>, item: DataItem) => {
+    if (item && item.cost) {
+      acc[item.name] = item.cost;
+    }
 
-  return acc;
-}, {});
+    return acc;
+  },
+  {},
+);
 
 const itemCostMapping: Record<string, number> = {
   Shimmerscale: 3,
@@ -235,3 +272,93 @@ export const item_cost: Record<string, number> = data.items.reduce(
   },
   {},
 );
+
+interface Mappings {
+  items: Record<string, string>;
+  traits: Record<string, string>;
+  championsL: Record<string, string>;
+  champions: Record<string, string>;
+}
+
+function toMappings(
+  acc: Record<string, string>,
+  item: DataItem,
+): Record<string, string> {
+  const icon = icon2Src(item.icon);
+  acc[item.name?.toLowerCase()] = icon;
+  acc[item.apiName?.toLowerCase()] = icon;
+
+  return acc;
+}
+
+function toMappingsChamp(acc: Record<string, string>, item: DataItem) {
+  const icon = icon2Src(championIcon(item.apiName, item.icon));
+  acc[item.name?.toLowerCase()] = icon;
+  acc[item.apiName?.toLowerCase()] = icon;
+
+  return acc;
+}
+
+const champMapping: Record<string, string> = {
+  tft7_dragonblue: 'tft7_miragedragon',
+  tft7_dragongold: 'tft7_shimmerscaledragon',
+  tft7_dragongreen: 'tft7_jadedragon',
+  tft7_dragonpurple: 'tft7_whispersdragon',
+  tft7_aquaticdragon: 'tft7_sohm',
+  tft7_nomsyevoker: 'tft7_nomsy',
+  tft7_nomsymage: 'tft7_nomsy',
+  tft7_nomsycannoner: 'tft7_nomsy',
+};
+
+function championIcon(apiName: string, icon: string): string {
+  const an = apiName.toLowerCase();
+  let san = champMapping[an] || an;
+  let sn = CurrentSet.toLowerCase();
+  if (icon.toLowerCase().includes('_stage2')) {
+    sn += '_stage2';
+  }
+
+  return `assets/characters/${an}/hud/${san}_square.${sn}.png`;
+}
+
+export function icon2Src(icon: string): string {
+  const prefix = 'https://raw.communitydragon.org/latest/game/';
+  const ico = icon
+    .toLowerCase()
+    .replace('.dds', '.png')
+    .replace('.tex', '.png');
+  const src = `${prefix}${ico}`;
+
+  return src;
+}
+
+const mappings: Mappings = {
+  items: data.items.reduce(toMappings, {}),
+  traits: setData.traits.reduce(toMappings, {}),
+  championsL: setData.champions.reduce(toMappings, {}),
+  champions: setData.champions.reduce(toMappingsChamp, {}),
+};
+
+console.log(mappings);
+
+export function iconFor(folder: string, name: string): string {
+  const n = name.toLowerCase();
+
+  switch (folder) {
+    case 'aug': {
+      return mappings.items[n];
+    }
+    case 'item': {
+      return mappings.items[n];
+    }
+    case 'trait': {
+      return mappings.traits[n];
+    }
+    case 'champ': {
+      return mappings.champions[n];
+    }
+    default: {
+      return n;
+    }
+  }
+}

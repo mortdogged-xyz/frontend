@@ -2,7 +2,7 @@ import React from 'react';
 
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import CircularProgress from '@mui/material/CircularProgress';
+import {ChaoticOrbit} from '@uiball/loaders';
 
 export const LoadingModal = (props: {loading: boolean}) => {
   const {loading} = props;
@@ -23,7 +23,7 @@ export const LoadingModal = (props: {loading: boolean}) => {
       aria-describedby="modal-modal-description"
     >
       <Box component="div" sx={style}>
-        <CircularProgress />
+        <ChaoticOrbit size={25} speed={1.5} color="white" />
       </Box>
     </Modal>
   );

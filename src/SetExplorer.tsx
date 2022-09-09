@@ -12,7 +12,7 @@ import Tab from '@mui/material/Tab';
 import Toolbar from '@mui/material/Toolbar';
 
 import {TFTSetNumber} from './version';
-import {CurrentSet, icon2Src} from './set_data';
+import {CurrentSet, iconFor} from './set_data';
 
 import {Search} from './Search';
 
@@ -21,7 +21,7 @@ const Item = (props: {item: any; tab: string}) => {
 
   let folder = 'item';
   if (tab === 'Champions') {
-    folder = 'champion';
+    folder = 'champ';
   }
   if (tab === 'Traits') {
     folder = 'trait';
@@ -32,7 +32,7 @@ const Item = (props: {item: any; tab: string}) => {
       {item.name && (
         <Paper component="div">
           <Typography color="primary" component="span">
-            <img src={icon2Src(folder, item['name'])} />
+            <img src={iconFor(folder, item['name'])} />
             <Box>{item.desc}</Box>
             <pre>{JSON.stringify(item, null, 2)}</pre>
           </Typography>
@@ -41,6 +41,8 @@ const Item = (props: {item: any; tab: string}) => {
     </Box>
   );
 };
+
+const setData = RawData.setData.find((data) => data.number === TFTSetNumber)!;
 
 export const SetExplorer = () => {
   const [value, setValue] = useState('Items');
@@ -54,10 +56,10 @@ export const SetExplorer = () => {
 
   let items: Array<any> = RawData.items;
   if (value == 'Champions') {
-    items = RawData.sets[TFTSetNumber].champions;
+    items = setData.champions;
   }
   if (value == 'Traits') {
-    items = RawData.sets[7].traits;
+    items = setData.traits;
   }
 
   const matchesFilter = (thing: string | undefined) =>

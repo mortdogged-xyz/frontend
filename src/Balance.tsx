@@ -89,20 +89,8 @@ const StarLevelChipColor = {
   3: 'warning',
 } as Record<number, 'primary' | 'info' | 'warning'>;
 
-const prefix = 'https://assets.mortdogged.xyz';
-
 function iconURL(icon: IconExport): string {
-  if (icon.kind === 'champ') {
-    return `${prefix}/champion/${icon.icon}`;
-  } else if (icon.kind === 'item') {
-    return `${prefix}/item/${icon.icon}`;
-  } else if (icon.kind === 'aug') {
-    return `${prefix}/item/${icon.icon}`;
-  } else if (icon.kind === 'trait') {
-    return `${prefix}/trait/${icon.icon}`;
-  }
-
-  return '';
+  return TFTData.iconFor(icon.kind, icon.icon);
 }
 
 function champCost(icon: string): number {
@@ -464,7 +452,7 @@ TFTData.champs.sort((a, b) => champCost(a) - champCost(b));
 TFTData.augs.sort();
 TFTData.items.sort((a, b) => itemCost(b) - itemCost(a));
 
-const champs = convertData(TFTData.champs.reverse(), 'champ', ['Nomsy']);
+const champs = convertData(TFTData.champs.reverse(), 'champ', []);
 const items = convertData(
   TFTData.items.filter((icon) => {
     return (
