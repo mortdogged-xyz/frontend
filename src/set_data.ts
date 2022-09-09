@@ -235,8 +235,6 @@ export const augs = data.items
   .filter((item: DataItem) => item.icon.includes('Augments/Hexcore'))
   .map((item: DataItem) => item.name || '');
 
-console.log(augs);
-
 export const champs = setData.champions
   .filter(offBlacklist)
   .map((item: DataItem) => item.name);
