@@ -452,7 +452,7 @@ TFTData.champs.sort((a, b) => champCost(a) - champCost(b));
 TFTData.augs.sort();
 TFTData.items.sort((a, b) => itemCost(b) - itemCost(a));
 
-const champs = convertData(TFTData.champs.reverse(), 'champ', ['Nomsy']);
+const champs = convertData(TFTData.champs.reverse(), 'champ', []);
 const items = convertData(
   TFTData.items.filter((icon) => {
     return (

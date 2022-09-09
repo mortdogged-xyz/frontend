@@ -33,7 +33,6 @@ const blacklist = [
   'Cram Session',
   'Dominance',
   'Dual Rule',
-  'Nomsy',
   'Jade Statue',
   'The Golden Egg',
   "Zoe's Daisy",
@@ -114,6 +113,10 @@ const blacklist = [
   'Phony Frontline',
   'Dragon Horde',
   'Dragon Alliance',
+  'Seastone',
+  'NomsyMage',
+  'NomsyEvoker',
+  'NomsyCannoneer',
 ];
 
 const whitelist = [
@@ -169,10 +172,28 @@ const whitelist = [
 
   // Midset
   'Winters_Approach',
+  'SoulSiphon',
+  'Consistency',
+  'Scoped Weapons',
+  'Protectors of the Cosmos',
+  'Dragon Imperialist',
+  'Hero-In-Training',
+  'High Tide',
+  'Oasis',
+  'Essence-Theft-Mage',
+  'Base Camp',
+  'Terrify',
+  'Lucky Gloves',
+  'Age of Dragons',
+  'Birthday Present',
 ];
 
 function offBlacklist(item: DataItem) {
-  return !blacklist.some((bl) => item.name?.includes(bl));
+  return (
+    !blacklist.some(
+      (bl) => item.name?.includes(bl) || item.apiName?.includes(bl),
+    ) || item.icon?.includes('SoulSiphon')
+  );
 }
 
 function onWhitelist(item: DataItem) {
@@ -213,6 +234,8 @@ export const augs = data.items
   )
   .filter((item: DataItem) => item.icon.includes('Augments/Hexcore'))
   .map((item: DataItem) => item.name || '');
+
+console.log(augs);
 
 export const champs = setData.champions
   .filter(offBlacklist)
@@ -269,7 +292,7 @@ function toMappings(
 }
 
 function toMappingsChamp(acc: Record<string, string>, item: DataItem) {
-  const icon = icon2Src(championIcon(item.apiName));
+  const icon = icon2Src(championIcon(item.apiName, item.icon));
   acc[item.name?.toLowerCase()] = icon;
   acc[item.apiName?.toLowerCase()] = icon;
 
@@ -281,12 +304,19 @@ const champMapping: Record<string, string> = {
   tft7_dragongold: 'tft7_shimmerscaledragon',
   tft7_dragongreen: 'tft7_jadedragon',
   tft7_dragonpurple: 'tft7_whispersdragon',
+  tft7_aquaticdragon: 'tft7_sohm',
+  tft7_nomsyevoker: 'tft7_nomsy',
+  tft7_nomsymage: 'tft7_nomsy',
+  tft7_nomsycannoner: 'tft7_nomsy',
 };
 
-function championIcon(apiName: string): string {
+function championIcon(apiName: string, icon: string): string {
   const an = apiName.toLowerCase();
   let san = champMapping[an] || an;
-  const sn = CurrentSet.toLowerCase();
+  let sn = CurrentSet.toLowerCase();
+  if (icon.toLowerCase().includes('_stage2')) {
+    sn += '_stage2';
+  }
 
   return `assets/characters/${an}/hud/${san}_square.${sn}.png`;
 }
