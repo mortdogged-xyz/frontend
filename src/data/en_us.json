@@ -1361,14 +1361,14 @@
         {
             "desc": "Your units with no Traits active gain @HP1@-@HP4@ Health and @AS1@-@AS4@% Attack Speed (based on current Stage).",
             "effects": {
-                "{30991583}": 350.0,
-                "{33991a3c}": 200.0,
-                "{35991d62}": 300.0,
-                "{36991ef5}": 250.0,
-                "{ed72833b}": 75.0,
-                "{f07287f4}": 30.0,
+                "{30991583}": 400.0,
+                "{33991a3c}": 250.0,
+                "{35991d62}": 350.0,
+                "{36991ef5}": 300.0,
+                "{ed72833b}": 70.0,
+                "{f07287f4}": 40.0,
                 "{f2728b1a}": 60.0,
-                "{f3728cad}": 45.0
+                "{f3728cad}": 50.0
             },
             "from": [],
             "icon": "ASSETS/Maps/Particles/TFT/Item_Icons/Augments/Hexcore/BuiltDifferent1.TFT_Set6.dds",
@@ -1388,14 +1388,14 @@
         {
             "desc": "Your units with no Traits active gain @HP1@-@HP4@ Health and @AS1@-@AS4@% Attack Speed (based on current Stage).",
             "effects": {
-                "{30991583}": 475.0,
-                "{33991a3c}": 250.0,
-                "{35991d62}": 400.0,
-                "{36991ef5}": 325.0,
-                "{ed72833b}": 85.0,
-                "{f07287f4}": 40.0,
+                "{30991583}": 600.0,
+                "{33991a3c}": 300.0,
+                "{35991d62}": 500.0,
+                "{36991ef5}": 400.0,
+                "{ed72833b}": 80.0,
+                "{f07287f4}": 50.0,
                 "{f2728b1a}": 70.0,
-                "{f3728cad}": 55.0
+                "{f3728cad}": 60.0
             },
             "from": [],
             "icon": "ASSETS/Maps/Particles/TFT/Item_Icons/Augments/Hexcore/BuiltDifferent2.TFT_Set6.dds",
@@ -1429,14 +1429,14 @@
         {
             "desc": "Your units with no Traits active gain @HP1@-@HP4@ Health and @AS1@-@AS4@% Attack Speed (based on current Stage).",
             "effects": {
-                "{30991583}": 600.0,
-                "{33991a3c}": 300.0,
-                "{35991d62}": 500.0,
-                "{36991ef5}": 400.0,
-                "{ed72833b}": 95.0,
-                "{f07287f4}": 50.0,
+                "{30991583}": 700.0,
+                "{33991a3c}": 400.0,
+                "{35991d62}": 600.0,
+                "{36991ef5}": 500.0,
+                "{ed72833b}": 90.0,
+                "{f07287f4}": 60.0,
                 "{f2728b1a}": 80.0,
-                "{f3728cad}": 65.0
+                "{f3728cad}": 70.0
             },
             "from": [],
             "icon": "ASSETS/Maps/Particles/TFT/Item_Icons/Augments/Hexcore/BuiltDifferent3.TFT_Set6.dds",
@@ -4036,7 +4036,7 @@
             "desc": "Every @DamageFrequency@th instance of Ragewing champion's damage deals @DamageIncrease@% more damage and is converted to true damage. Gain a Senna.",
             "effects": {
                 "{92037b9e}": 5.0,
-                "{cf7f7148}": 20.0
+                "{cf7f7148}": 25.0
             },
             "from": [],
             "icon": "ASSETS/Maps/Particles/TFT/Item_Icons/Augments/Hexcore/Scorch-II.TFT_Set7.dds",
@@ -4335,7 +4335,7 @@
         {
             "desc": "If your team has @NumDragons@ or more Dragons, every @AttackNum@th attack from a Dragon fires a dragon soul blast that deals magic damage equal to @HealthPct@% of the target's maximum Health. Gain a Nomsy, Zippy, and a Tier 4 Dragon.",
             "effects": {
-                "{6266505a}": 30.0,
+                "{6266505a}": 25.0,
                 "{773fa97b}": 4.0,
                 "{875db1bd}": 3.0
             },
@@ -5464,7 +5464,7 @@
         {
             "desc": "Your units that start combat in the back 2 rows gain +@HexRangeIncrease@ Attack Range and @AS*100@% Attack Speed.",
             "effects": {
-                "AS": 0.10000000149011612,
+                "AS": 0.05000000074505806,
                 "{16394c87}": 1.0
             },
             "from": [],
@@ -5895,11 +5895,11 @@
                 "Armor": 20.0,
                 "HealthThreshold": 50.0,
                 "Mana": 15.0,
-                "ShieldDuration": 3.0,
+                "ShieldDuration": 5.0,
                 "{0034a6ef}": 20.0,
                 "{43012963}": 30.0,
                 "{5cc52ba8}": 8.0,
-                "{6a311cec}": 30.0
+                "{6a311cec}": 40.0
             },
             "from": [],
             "icon": "ASSETS/Maps/Particles/TFT/Item_Icons/Radiant/Fimbulwinter_Radiant.dds",
@@ -5946,7 +5946,7 @@
                 "{2161bfa2}": 50.0,
                 "{57706a69}": 60.0,
                 "{97e52ce8}": 30.0,
-                "{d49caf5d}": 35.0
+                "{d49caf5d}": 50.0
             },
             "from": [],
             "icon": "ASSETS/Maps/Particles/TFT/Item_Icons/Radiant/Morellonomicon_Radiant.dds",
@@ -6319,7 +6319,7 @@
                 "AD": 10.0,
                 "Mana": 15.0,
                 "{4b9a3b61}": 10.0,
-                "{d49caf5d}": 40.0
+                "{d49caf5d}": 50.0
             },
             "from": [],
             "icon": "ASSETS/Maps/Particles/TFT/Item_Icons/Radiant/Spear_of_Shojin_Radiant.dds",
@@ -6377,11 +6377,11 @@
                 "Armor": 20.0,
                 "HealthThreshold": 50.0,
                 "Mana": 15.0,
-                "ShieldDuration": 2.0,
+                "ShieldDuration": 3.0,
                 "{0034a6ef}": 20.0,
                 "{43012963}": 15.0,
                 "{5cc52ba8}": 3.0,
-                "{6a311cec}": 15.0
+                "{6a311cec}": 20.0
             },
             "from": [
                 4,
@@ -6582,9 +6582,9 @@
         {
             "desc": "Grant %i:scaleAP% @AbilityPowerPerGold@ Ability Power per %i:goldCoins% gold in your bank (up to %i:goldCoins% @AbilityPowerGoldMax@ gold) and a @OnKillProcChance*100@% chance to drop %i:goldCoins% @OnKillProcGold@ gold on enemy kill.",
             "effects": {
-                "AP": 15.0,
-                "Mana": 15.0,
-                "{0bb22e54}": 0.33000001311302185,
+                "AP": 20.0,
+                "Mana": 20.0,
+                "{0bb22e54}": 0.5,
                 "{534c4ace}": 80.0,
                 "{c08bc0df}": 1.0,
                 "{caeb0d5e}": 2.0
@@ -6600,7 +6600,7 @@
             "effects": {
                 "Health": 150.0,
                 "{a29511ea}": 4.0,
-                "{d6981e5a}": 10.0
+                "{d6981e5a}": 15.0
             },
             "from": [],
             "icon": "ASSETS/Maps/Particles/TFT/Item_Icons/Shimmerscale/Shimmerscale_DeterminedInvestor_Base.TFT_Set7.dds",
@@ -6611,7 +6611,7 @@
         {
             "desc": "Grants %i:scaleArmor% @BaseResistsPerStack@ Armor, %i:scaleMR% @BaseResistsPerStack@ Magic Resist, and %i:scaleHealth% @BaseHealthPerStack@ Health when taking damage, stacking up to @StackCap@ times.<br><br>At full stacks, grant %i:goldCoins% @GoldAtFullStacks@ gold.",
             "effects": {
-                "Health": 200.0,
+                "Health": 300.0,
                 "{10fb38da}": 1.0,
                 "{28188627}": 8.0,
                 "{9396f00d}": 40.0,
@@ -6626,7 +6626,7 @@
         {
             "desc": "Grants %i:scaleArmor% @BaseResistsPerStack@ Armor, %i:scaleMR% @BaseResistsPerStack@ Magic Resist, and %i:scaleHealth% @BaseHealthPerStack@ Health when taking damage, stacking up to @StackCap@ times.<br><br>At full stacks, grant %i:goldCoins% @GoldAtFullStacks@ gold.",
             "effects": {
-                "Health": 200.0,
+                "Health": 300.0,
                 "{10fb38da}": 1.0,
                 "{28188627}": 8.0,
                 "{9396f00d}": 40.0,
@@ -6641,8 +6641,8 @@
         {
             "desc": "Grant %i:scaleAS% @AttackSpeedPerGold*100@% bonus Attack Speed per %i:goldCoins% gold in your bank (up to %i:goldCoins% @AttackSpeedGoldLimit@ gold).<br><br>Each attack has a @ChanceToProc*100@% chance to drop %i:goldCoins% @GoldPerProc@ gold.",
             "effects": {
-                "AP": 10.0,
-                "AS": 10.0,
+                "AP": 15.0,
+                "AS": 30.0,
                 "{267dbafd}": 0.029999999329447746,
                 "{46736b3f}": 4.0,
                 "{48ea2af8}": 0.10000000149011612,
@@ -6662,7 +6662,7 @@
                 "Health": 500.0,
                 "{354df8e4}": 15.0,
                 "{3bd431ee}": 80.0,
-                "{3c8420c1}": 3.0,
+                "{3c8420c1}": 2.0,
                 "{d91fb8ba}": 0.009999999776482582
             },
             "from": [],
@@ -6674,12 +6674,12 @@
         {
             "desc": "Gain %i:scaleAD% @AttackDamagePerGold@ Attack Damage per %i:goldCoins% gold in your bank (up to %i:goldCoins% @AttackDamageGoldLimit@ gold).<br><br>Attacks grant @StacksPerAttack@ stack, up to @CashoutStacks@ times. At full stacks, grant %i:goldCoins% @CashoutGold@ gold and @CashoutComponents@ item component(s).",
             "effects": {
-                "AD": 5.0,
-                "AS": 5.0,
+                "AD": 10.0,
+                "AS": 10.0,
                 "{08083372}": 1.0,
                 "{1ea4eaf3}": 1.0,
                 "{795d929d}": 3.0,
-                "{a3ea3744}": 5.0,
+                "{a3ea3744}": 7.0,
                 "{d2d1721f}": 50.0,
                 "{fc26a82d}": 15.0,
                 "{fd493b8a}": 2.0
@@ -6709,12 +6709,12 @@
         {
             "desc": "Gain %i:scaleAD% @AttackDamagePerGold@ Attack Damage per %i:goldCoins% gold in your bank (up to %i:goldCoins% @AttackDamageGoldLimit@ gold).<br><br>Attacks grant @StacksPerAttack@ stack, up to @CashoutStacks@ times. At full stacks, grant %i:goldCoins% @CashoutGold@ gold and @CashoutComponents@ item component(s).",
             "effects": {
-                "AD": 5.0,
-                "AS": 5.0,
+                "AD": 10.0,
+                "AS": 10.0,
                 "{08083372}": 1.0,
                 "{1ea4eaf3}": 1.0,
                 "{795d929d}": 1.0,
-                "{a3ea3744}": 5.0,
+                "{a3ea3744}": 7.0,
                 "{d2d1721f}": 100.0,
                 "{fc26a82d}": 80.0,
                 "{fd493b8a}": 2.0
@@ -6728,13 +6728,13 @@
         {
             "desc": "Grant %i:scaleAS% @AttackSpeedPerGold*100@% bonus Attack Speed per %i:goldCoins% gold in your bank (up to %i:goldCoins% @AttackSpeedGoldLimit@ gold).<br><br>Each attack has a @ChanceToProc*100@% chance to drop %i:goldCoins% @GoldPerProc@ gold.",
             "effects": {
-                "AP": 10.0,
-                "AS": 10.0,
+                "AP": 15.0,
+                "AS": 15.0,
                 "{267dbafd}": 0.009999999776482582,
                 "{46736b3f}": 4.0,
-                "{48ea2af8}": 0.07000000029802322,
+                "{48ea2af8}": 0.10000000149011612,
                 "{5c7e25fe}": 1.0,
-                "{b38e1643}": 14.0,
+                "{b38e1643}": 10.0,
                 "{ba231e8d}": 80.0
             },
             "from": [],
@@ -6747,8 +6747,8 @@
             "desc": "After dying during combat @StackLimit@ times, this item is destroyed. Upon destruction, grant the item Diamond Hands, 1 Champion Duplicator, and %i:goldCoins% @GoldGranted@ gold.",
             "effects": {
                 "Health": 150.0,
-                "{a29511ea}": 8.0,
-                "{d6981e5a}": 10.0
+                "{a29511ea}": 7.0,
+                "{d6981e5a}": 15.0
             },
             "from": [],
             "icon": "ASSETS/Maps/Particles/TFT/Item_Icons/Shimmerscale/Shimmerscale_DeterminedInvestor_Base.TFT_Set7.dds",
@@ -6775,9 +6775,9 @@
         {
             "desc": "Grant %i:scaleAP% @AbilityPowerPerGold@ Ability Power per %i:goldCoins% gold in your bank (up to %i:goldCoins% @AbilityPowerGoldMax@ gold) and a @OnKillProcChance*100@% chance to drop %i:goldCoins% @OnKillProcGold@ gold on enemy kill.",
             "effects": {
-                "AP": 15.0,
-                "Mana": 15.0,
-                "{0bb22e54}": 0.5,
+                "AP": 20.0,
+                "Mana": 20.0,
+                "{0bb22e54}": 0.800000011920929,
                 "{534c4ace}": 15.0,
                 "{c08bc0df}": 4.0,
                 "{caeb0d5e}": 2.0
@@ -6808,7 +6808,7 @@
             "desc": "Every @SecondsForEmpoweredAttack@ seconds, the next attack deals @AttackGoldMultiplier@x the amount of %i:goldCoins% gold in your bank in true damage.",
             "effects": {
                 "Health": 100.0,
-                "{a2aa9545}": 6.0,
+                "{a2aa9545}": 5.0,
                 "{f296e3f0}": 9001.0
             },
             "from": [],
@@ -8182,7 +8182,7 @@
                 "AD": 10.0,
                 "Mana": 15.0,
                 "{4b9a3b61}": 5.0,
-                "{d49caf5d}": 20.0
+                "{d49caf5d}": 25.0
             },
             "from": [
                 1,
@@ -8351,7 +8351,7 @@
                 "{2161bfa2}": 50.0,
                 "{57706a69}": 10.0,
                 "{97e52ce8}": 10.0,
-                "{d49caf5d}": 20.0
+                "{d49caf5d}": 30.0
             },
             "from": [
                 3,
@@ -9207,13 +9207,13 @@
                             {
                                 "name": "FractionMaxHealth",
                                 "value": [
-                                    0.05000000074505806,
-                                    0.05000000074505806,
-                                    0.05000000074505806,
-                                    0.05000000074505806,
-                                    0.05000000074505806,
-                                    0.05000000074505806,
-                                    0.05000000074505806
+                                    0.05999999865889549,
+                                    0.05999999865889549,
+                                    0.05999999865889549,
+                                    0.05999999865889549,
+                                    0.05999999865889549,
+                                    0.05999999865889549,
+                                    0.05999999865889549
                                 ]
                             },
                             {
@@ -11210,9 +11210,9 @@
                                 "name": "ShieldBase",
                                 "value": [
                                     150.0,
-                                    200.0,
-                                    250.0,
-                                    325.0,
+                                    185.0,
+                                    230.0,
+                                    270.0,
                                     350.0,
                                     400.0,
                                     450.0
@@ -12378,8 +12378,8 @@
                                 "name": "Damage",
                                 "value": [
                                     0.0,
-                                    130.0,
-                                    200.0,
+                                    150.0,
+                                    225.0,
                                     1000.0,
                                     0.0,
                                     0.0,
@@ -12455,9 +12455,9 @@
                                 "name": "Damage",
                                 "value": [
                                     0.0,
-                                    70.0,
-                                    100.0,
-                                    600.0,
+                                    135.0,
+                                    195.0,
+                                    1000.0,
                                     0.0,
                                     0.0,
                                     0.0
@@ -12533,9 +12533,9 @@
                                 "name": "MagicDamage",
                                 "value": [
                                     0.0,
-                                    210.0,
-                                    300.0,
-                                    480.0,
+                                    180.0,
+                                    260.0,
+                                    420.0,
                                     0.0,
                                     0.0,
                                     0.0
@@ -13120,9 +13120,9 @@
                                 "name": "LesserDamage",
                                 "value": [
                                     0.0,
-                                    175.0,
-                                    200.0,
-                                    230.0,
+                                    150.0,
+                                    170.0,
+                                    190.0,
                                     0.0,
                                     0.0,
                                     0.0
@@ -13161,8 +13161,8 @@
                                 "name": "ShieldAmount",
                                 "value": [
                                     0.0,
-                                    375.0,
-                                    450.0,
+                                    425.0,
+                                    500.0,
                                     650.0,
                                     0.0,
                                     0.0,
@@ -13173,9 +13173,9 @@
                                 "name": "AttackDamageRatio",
                                 "value": [
                                     0.0,
-                                    4.0,
-                                    4.25,
-                                    5.5,
+                                    3.5,
+                                    3.75,
+                                    4.75,
                                     2.0999999046325684,
                                     2.0999999046325684,
                                     2.0999999046325684
@@ -13512,9 +13512,9 @@
                                 "name": "MagicDamage",
                                 "value": [
                                     0.0,
-                                    210.0,
-                                    300.0,
-                                    480.0,
+                                    180.0,
+                                    260.0,
+                                    420.0,
                                     0.0,
                                     0.0,
                                     0.0
@@ -13566,9 +13566,9 @@
                                 "name": "MagicDamage",
                                 "value": [
                                     0.0,
-                                    210.0,
-                                    300.0,
-                                    480.0,
+                                    180.0,
+                                    260.0,
+                                    420.0,
                                     0.0,
                                     0.0,
                                     0.0
@@ -13620,9 +13620,9 @@
                                 "name": "MagicDamage",
                                 "value": [
                                     0.0,
-                                    210.0,
-                                    300.0,
-                                    480.0,
+                                    180.0,
+                                    260.0,
+                                    420.0,
                                     0.0,
                                     0.0,
                                     0.0
@@ -13725,7 +13725,7 @@
                             "variables": {
                                 "BuffDuration": 60.0,
                                 "DamageAmp": 30.0,
-                                "PercentHealthDamage": 15.0,
+                                "PercentHealthDamage": 20.0,
                                 "StunDuration": 1.0,
                                 "{17f82fb1}": 8.0,
                                 "{81ce23cf}": 2.0
@@ -13738,7 +13738,7 @@
                             "variables": {
                                 "BuffDuration": 60.0,
                                 "DamageAmp": 60.0,
-                                "PercentHealthDamage": 25.0,
+                                "PercentHealthDamage": 35.0,
                                 "StunDuration": 1.0,
                                 "{17f82fb1}": 8.0,
                                 "{81ce23cf}": 3.0
@@ -13751,7 +13751,7 @@
                             "variables": {
                                 "BuffDuration": 60.0,
                                 "DamageAmp": 120.0,
-                                "PercentHealthDamage": 35.0,
+                                "PercentHealthDamage": 50.0,
                                 "StunDuration": 1.0,
                                 "{17f82fb1}": 8.0,
                                 "{81ce23cf}": 4.0
@@ -13934,13 +13934,13 @@
                             "style": 1,
                             "variables": {
                                 "{17a721be}": 5.0,
-                                "{4a1c6695}": 130.0,
+                                "{4a1c6695}": 120.0,
                                 "{6a4951ed}": 2.0,
-                                "{a4bd7571}": 8.0,
+                                "{a4bd7571}": 6.0,
                                 "{a7c768e7}": 100.0,
                                 "{f809601e}": 0.03999999910593033,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.12999999523162842
+                                "{fe9fc6fd}": 0.11999999731779099
                             }
                         },
                         {
@@ -13949,13 +13949,13 @@
                             "style": 1,
                             "variables": {
                                 "{17a721be}": 5.5,
-                                "{4a1c6695}": 143.0,
+                                "{4a1c6695}": 132.0,
                                 "{6a4951ed}": 2.200000047683716,
-                                "{a4bd7571}": 8.800000190734863,
+                                "{a4bd7571}": 6.599999904632568,
                                 "{a7c768e7}": 110.0,
                                 "{f809601e}": 0.04399999976158142,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.14300000667572021
+                                "{fe9fc6fd}": 0.13199999928474426
                             }
                         },
                         {
@@ -13964,13 +13964,13 @@
                             "style": 2,
                             "variables": {
                                 "{17a721be}": 6.0,
-                                "{4a1c6695}": 156.0,
+                                "{4a1c6695}": 144.0,
                                 "{6a4951ed}": 2.4000000953674316,
-                                "{a4bd7571}": 9.600000381469727,
+                                "{a4bd7571}": 7.199999809265137,
                                 "{a7c768e7}": 120.0,
                                 "{f809601e}": 0.04800000041723251,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.15600000321865082
+                                "{fe9fc6fd}": 0.14399999380111694
                             }
                         },
                         {
@@ -13979,13 +13979,13 @@
                             "style": 2,
                             "variables": {
                                 "{17a721be}": 6.5,
-                                "{4a1c6695}": 169.0,
+                                "{4a1c6695}": 156.0,
                                 "{6a4951ed}": 2.5999999046325684,
-                                "{a4bd7571}": 10.399999618530273,
+                                "{a4bd7571}": 7.800000190734863,
                                 "{a7c768e7}": 130.0,
                                 "{f809601e}": 0.052000001072883606,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.16899999976158142
+                                "{fe9fc6fd}": 0.15600000321865082
                             }
                         },
                         {
@@ -13994,13 +13994,13 @@
                             "style": 2,
                             "variables": {
                                 "{17a721be}": 7.0,
-                                "{4a1c6695}": 182.0,
+                                "{4a1c6695}": 168.0,
                                 "{6a4951ed}": 2.799999952316284,
-                                "{a4bd7571}": 11.199999809265137,
+                                "{a4bd7571}": 8.399999618530273,
                                 "{a7c768e7}": 140.0,
                                 "{f809601e}": 0.0560000017285347,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.18199999630451202
+                                "{fe9fc6fd}": 0.1679999977350235
                             }
                         },
                         {
@@ -14009,13 +14009,13 @@
                             "style": 2,
                             "variables": {
                                 "{17a721be}": 7.5,
-                                "{4a1c6695}": 195.0,
+                                "{4a1c6695}": 180.0,
                                 "{6a4951ed}": 3.0,
-                                "{a4bd7571}": 12.0,
+                                "{a4bd7571}": 9.0,
                                 "{a7c768e7}": 150.0,
                                 "{f809601e}": 0.05999999865889549,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.19499999284744263
+                                "{fe9fc6fd}": 0.18000000715255737
                             }
                         },
                         {
@@ -14023,14 +14023,14 @@
                             "minUnits": 7,
                             "style": 3,
                             "variables": {
-                                "{17a721be}": 8.25,
-                                "{4a1c6695}": 215.0,
-                                "{6a4951ed}": 3.299999952316284,
-                                "{a4bd7571}": 13.199999809265137,
-                                "{a7c768e7}": 165.0,
-                                "{f809601e}": 0.06599999964237213,
+                                "{17a721be}": 8.0,
+                                "{4a1c6695}": 192.0,
+                                "{6a4951ed}": 3.200000047683716,
+                                "{a4bd7571}": 9.600000381469727,
+                                "{a7c768e7}": 160.0,
+                                "{f809601e}": 0.06400000303983688,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.2150000035762787
+                                "{fe9fc6fd}": 0.19200000166893005
                             }
                         },
                         {
@@ -14038,14 +14038,14 @@
                             "minUnits": 8,
                             "style": 4,
                             "variables": {
-                                "{17a721be}": 9.0,
-                                "{4a1c6695}": 234.0,
-                                "{6a4951ed}": 3.5999999046325684,
-                                "{a4bd7571}": 14.399999618530273,
-                                "{a7c768e7}": 180.0,
-                                "{f809601e}": 0.07199999690055847,
+                                "{17a721be}": 8.75,
+                                "{4a1c6695}": 210.0,
+                                "{6a4951ed}": 3.5,
+                                "{a4bd7571}": 10.5,
+                                "{a7c768e7}": 175.0,
+                                "{f809601e}": 0.07000000029802322,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.23399999737739563
+                                "{fe9fc6fd}": 0.20999999344348907
                             }
                         }
                     ],
@@ -14296,9 +14296,9 @@
                             "minUnits": 6,
                             "style": 3,
                             "variables": {
-                                "BonusHealth": 900.0,
+                                "BonusHealth": 1000.0,
                                 "{89626cbc}": 20.0,
-                                "{d49caf5d}": 50.0
+                                "{d49caf5d}": 55.0
                             }
                         },
                         {
@@ -14306,9 +14306,9 @@
                             "minUnits": 8,
                             "style": 4,
                             "variables": {
-                                "BonusHealth": 1200.0,
+                                "BonusHealth": 1450.0,
                                 "{89626cbc}": 20.0,
-                                "{d49caf5d}": 75.0
+                                "{d49caf5d}": 85.0
                             }
                         }
                     ],
@@ -14381,7 +14381,7 @@
                             "style": 3,
                             "variables": {
                                 "Duration": 6.0,
-                                "{08a84200}": 6.0
+                                "{08a84200}": 7.0
                             }
                         }
                     ],
@@ -14900,8 +14900,8 @@
                             "minUnits": 9,
                             "style": 3,
                             "variables": {
-                                "AttackSpeed": 0.550000011920929,
-                                "{7f1304b2}": 55.0
+                                "AttackSpeed": 0.699999988079071,
+                                "{7f1304b2}": 70.0
                             }
                         },
                         {
@@ -15565,13 +15565,13 @@
                             {
                                 "name": "FractionMaxHealth",
                                 "value": [
-                                    0.05000000074505806,
-                                    0.05000000074505806,
-                                    0.05000000074505806,
-                                    0.05000000074505806,
-                                    0.05000000074505806,
-                                    0.05000000074505806,
-                                    0.05000000074505806
+                                    0.05999999865889549,
+                                    0.05999999865889549,
+                                    0.05999999865889549,
+                                    0.05999999865889549,
+                                    0.05999999865889549,
+                                    0.05999999865889549,
+                                    0.05999999865889549
                                 ]
                             },
                             {
@@ -19503,7 +19503,7 @@
                             "variables": {
                                 "BuffDuration": 60.0,
                                 "DamageAmp": 30.0,
-                                "PercentHealthDamage": 15.0,
+                                "PercentHealthDamage": 20.0,
                                 "StunDuration": 1.0,
                                 "{17f82fb1}": 8.0,
                                 "{81ce23cf}": 2.0
@@ -19516,7 +19516,7 @@
                             "variables": {
                                 "BuffDuration": 60.0,
                                 "DamageAmp": 60.0,
-                                "PercentHealthDamage": 25.0,
+                                "PercentHealthDamage": 35.0,
                                 "StunDuration": 1.0,
                                 "{17f82fb1}": 8.0,
                                 "{81ce23cf}": 3.0
@@ -19529,7 +19529,7 @@
                             "variables": {
                                 "BuffDuration": 60.0,
                                 "DamageAmp": 120.0,
-                                "PercentHealthDamage": 35.0,
+                                "PercentHealthDamage": 50.0,
                                 "StunDuration": 1.0,
                                 "{17f82fb1}": 8.0,
                                 "{81ce23cf}": 4.0
@@ -19696,13 +19696,13 @@
                             "style": 1,
                             "variables": {
                                 "{17a721be}": 5.0,
-                                "{4a1c6695}": 130.0,
+                                "{4a1c6695}": 120.0,
                                 "{6a4951ed}": 2.0,
-                                "{a4bd7571}": 8.0,
+                                "{a4bd7571}": 6.0,
                                 "{a7c768e7}": 100.0,
                                 "{f809601e}": 0.03999999910593033,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.12999999523162842
+                                "{fe9fc6fd}": 0.11999999731779099
                             }
                         },
                         {
@@ -19711,13 +19711,13 @@
                             "style": 1,
                             "variables": {
                                 "{17a721be}": 5.5,
-                                "{4a1c6695}": 143.0,
+                                "{4a1c6695}": 132.0,
                                 "{6a4951ed}": 2.200000047683716,
-                                "{a4bd7571}": 8.800000190734863,
+                                "{a4bd7571}": 6.599999904632568,
                                 "{a7c768e7}": 110.0,
                                 "{f809601e}": 0.04399999976158142,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.14300000667572021
+                                "{fe9fc6fd}": 0.13199999928474426
                             }
                         },
                         {
@@ -19726,13 +19726,13 @@
                             "style": 2,
                             "variables": {
                                 "{17a721be}": 6.0,
-                                "{4a1c6695}": 156.0,
+                                "{4a1c6695}": 144.0,
                                 "{6a4951ed}": 2.4000000953674316,
-                                "{a4bd7571}": 9.600000381469727,
+                                "{a4bd7571}": 7.199999809265137,
                                 "{a7c768e7}": 120.0,
                                 "{f809601e}": 0.04800000041723251,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.15600000321865082
+                                "{fe9fc6fd}": 0.14399999380111694
                             }
                         },
                         {
@@ -19741,13 +19741,13 @@
                             "style": 2,
                             "variables": {
                                 "{17a721be}": 6.5,
-                                "{4a1c6695}": 169.0,
+                                "{4a1c6695}": 156.0,
                                 "{6a4951ed}": 2.5999999046325684,
-                                "{a4bd7571}": 10.399999618530273,
+                                "{a4bd7571}": 7.800000190734863,
                                 "{a7c768e7}": 130.0,
                                 "{f809601e}": 0.052000001072883606,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.16899999976158142
+                                "{fe9fc6fd}": 0.15600000321865082
                             }
                         },
                         {
@@ -19756,13 +19756,13 @@
                             "style": 2,
                             "variables": {
                                 "{17a721be}": 7.0,
-                                "{4a1c6695}": 182.0,
+                                "{4a1c6695}": 168.0,
                                 "{6a4951ed}": 2.799999952316284,
-                                "{a4bd7571}": 11.199999809265137,
+                                "{a4bd7571}": 8.399999618530273,
                                 "{a7c768e7}": 140.0,
                                 "{f809601e}": 0.0560000017285347,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.18199999630451202
+                                "{fe9fc6fd}": 0.1679999977350235
                             }
                         },
                         {
@@ -19771,13 +19771,13 @@
                             "style": 2,
                             "variables": {
                                 "{17a721be}": 7.5,
-                                "{4a1c6695}": 195.0,
+                                "{4a1c6695}": 180.0,
                                 "{6a4951ed}": 3.0,
-                                "{a4bd7571}": 12.0,
+                                "{a4bd7571}": 9.0,
                                 "{a7c768e7}": 150.0,
                                 "{f809601e}": 0.05999999865889549,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.19499999284744263
+                                "{fe9fc6fd}": 0.18000000715255737
                             }
                         },
                         {
@@ -19785,14 +19785,14 @@
                             "minUnits": 7,
                             "style": 3,
                             "variables": {
-                                "{17a721be}": 8.25,
-                                "{4a1c6695}": 215.0,
-                                "{6a4951ed}": 3.299999952316284,
-                                "{a4bd7571}": 13.199999809265137,
-                                "{a7c768e7}": 165.0,
-                                "{f809601e}": 0.06599999964237213,
+                                "{17a721be}": 8.0,
+                                "{4a1c6695}": 192.0,
+                                "{6a4951ed}": 3.200000047683716,
+                                "{a4bd7571}": 9.600000381469727,
+                                "{a7c768e7}": 160.0,
+                                "{f809601e}": 0.06400000303983688,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.2150000035762787
+                                "{fe9fc6fd}": 0.19200000166893005
                             }
                         },
                         {
@@ -19800,14 +19800,14 @@
                             "minUnits": 8,
                             "style": 4,
                             "variables": {
-                                "{17a721be}": 9.0,
-                                "{4a1c6695}": 234.0,
-                                "{6a4951ed}": 3.5999999046325684,
-                                "{a4bd7571}": 14.399999618530273,
-                                "{a7c768e7}": 180.0,
-                                "{f809601e}": 0.07199999690055847,
+                                "{17a721be}": 8.75,
+                                "{4a1c6695}": 210.0,
+                                "{6a4951ed}": 3.5,
+                                "{a4bd7571}": 10.5,
+                                "{a7c768e7}": 175.0,
+                                "{f809601e}": 0.07000000029802322,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.23399999737739563
+                                "{fe9fc6fd}": 0.20999999344348907
                             }
                         }
                     ],
@@ -20018,9 +20018,9 @@
                             "minUnits": 6,
                             "style": 3,
                             "variables": {
-                                "BonusHealth": 900.0,
+                                "BonusHealth": 1000.0,
                                 "{89626cbc}": 20.0,
-                                "{d49caf5d}": 50.0
+                                "{d49caf5d}": 55.0
                             }
                         },
                         {
@@ -20028,9 +20028,9 @@
                             "minUnits": 8,
                             "style": 4,
                             "variables": {
-                                "BonusHealth": 1200.0,
+                                "BonusHealth": 1450.0,
                                 "{89626cbc}": 20.0,
-                                "{d49caf5d}": 75.0
+                                "{d49caf5d}": 85.0
                             }
                         }
                     ],
@@ -20103,7 +20103,7 @@
                             "style": 3,
                             "variables": {
                                 "Duration": 6.0,
-                                "{08a84200}": 6.0
+                                "{08a84200}": 7.0
                             }
                         }
                     ],
@@ -26946,13 +26946,13 @@
                             {
                                 "name": "FractionMaxHealth",
                                 "value": [
-                                    0.05000000074505806,
-                                    0.05000000074505806,
-                                    0.05000000074505806,
-                                    0.05000000074505806,
-                                    0.05000000074505806,
-                                    0.05000000074505806,
-                                    0.05000000074505806
+                                    0.05999999865889549,
+                                    0.05999999865889549,
+                                    0.05999999865889549,
+                                    0.05999999865889549,
+                                    0.05999999865889549,
+                                    0.05999999865889549,
+                                    0.05999999865889549
                                 ]
                             },
                             {
@@ -28949,9 +28949,9 @@
                                 "name": "ShieldBase",
                                 "value": [
                                     150.0,
-                                    200.0,
-                                    250.0,
-                                    325.0,
+                                    185.0,
+                                    230.0,
+                                    270.0,
                                     350.0,
                                     400.0,
                                     450.0
@@ -30117,8 +30117,8 @@
                                 "name": "Damage",
                                 "value": [
                                     0.0,
-                                    130.0,
-                                    200.0,
+                                    150.0,
+                                    225.0,
                                     1000.0,
                                     0.0,
                                     0.0,
@@ -30194,9 +30194,9 @@
                                 "name": "Damage",
                                 "value": [
                                     0.0,
-                                    70.0,
-                                    100.0,
-                                    600.0,
+                                    135.0,
+                                    195.0,
+                                    1000.0,
                                     0.0,
                                     0.0,
                                     0.0
@@ -30272,9 +30272,9 @@
                                 "name": "MagicDamage",
                                 "value": [
                                     0.0,
-                                    210.0,
-                                    300.0,
-                                    480.0,
+                                    180.0,
+                                    260.0,
+                                    420.0,
                                     0.0,
                                     0.0,
                                     0.0
@@ -30859,9 +30859,9 @@
                                 "name": "LesserDamage",
                                 "value": [
                                     0.0,
-                                    175.0,
-                                    200.0,
-                                    230.0,
+                                    150.0,
+                                    170.0,
+                                    190.0,
                                     0.0,
                                     0.0,
                                     0.0
@@ -30900,8 +30900,8 @@
                                 "name": "ShieldAmount",
                                 "value": [
                                     0.0,
-                                    375.0,
-                                    450.0,
+                                    425.0,
+                                    500.0,
                                     650.0,
                                     0.0,
                                     0.0,
@@ -30912,9 +30912,9 @@
                                 "name": "AttackDamageRatio",
                                 "value": [
                                     0.0,
-                                    4.0,
-                                    4.25,
-                                    5.5,
+                                    3.5,
+                                    3.75,
+                                    4.75,
                                     2.0999999046325684,
                                     2.0999999046325684,
                                     2.0999999046325684
@@ -31251,9 +31251,9 @@
                                 "name": "MagicDamage",
                                 "value": [
                                     0.0,
-                                    210.0,
-                                    300.0,
-                                    480.0,
+                                    180.0,
+                                    260.0,
+                                    420.0,
                                     0.0,
                                     0.0,
                                     0.0
@@ -31305,9 +31305,9 @@
                                 "name": "MagicDamage",
                                 "value": [
                                     0.0,
-                                    210.0,
-                                    300.0,
-                                    480.0,
+                                    180.0,
+                                    260.0,
+                                    420.0,
                                     0.0,
                                     0.0,
                                     0.0
@@ -31359,9 +31359,9 @@
                                 "name": "MagicDamage",
                                 "value": [
                                     0.0,
-                                    210.0,
-                                    300.0,
-                                    480.0,
+                                    180.0,
+                                    260.0,
+                                    420.0,
                                     0.0,
                                     0.0,
                                     0.0
@@ -31464,7 +31464,7 @@
                             "variables": {
                                 "BuffDuration": 60.0,
                                 "DamageAmp": 30.0,
-                                "PercentHealthDamage": 15.0,
+                                "PercentHealthDamage": 20.0,
                                 "StunDuration": 1.0,
                                 "{17f82fb1}": 8.0,
                                 "{81ce23cf}": 2.0
@@ -31477,7 +31477,7 @@
                             "variables": {
                                 "BuffDuration": 60.0,
                                 "DamageAmp": 60.0,
-                                "PercentHealthDamage": 25.0,
+                                "PercentHealthDamage": 35.0,
                                 "StunDuration": 1.0,
                                 "{17f82fb1}": 8.0,
                                 "{81ce23cf}": 3.0
@@ -31490,7 +31490,7 @@
                             "variables": {
                                 "BuffDuration": 60.0,
                                 "DamageAmp": 120.0,
-                                "PercentHealthDamage": 35.0,
+                                "PercentHealthDamage": 50.0,
                                 "StunDuration": 1.0,
                                 "{17f82fb1}": 8.0,
                                 "{81ce23cf}": 4.0
@@ -31673,13 +31673,13 @@
                             "style": 1,
                             "variables": {
                                 "{17a721be}": 5.0,
-                                "{4a1c6695}": 130.0,
+                                "{4a1c6695}": 120.0,
                                 "{6a4951ed}": 2.0,
-                                "{a4bd7571}": 8.0,
+                                "{a4bd7571}": 6.0,
                                 "{a7c768e7}": 100.0,
                                 "{f809601e}": 0.03999999910593033,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.12999999523162842
+                                "{fe9fc6fd}": 0.11999999731779099
                             }
                         },
                         {
@@ -31688,13 +31688,13 @@
                             "style": 1,
                             "variables": {
                                 "{17a721be}": 5.5,
-                                "{4a1c6695}": 143.0,
+                                "{4a1c6695}": 132.0,
                                 "{6a4951ed}": 2.200000047683716,
-                                "{a4bd7571}": 8.800000190734863,
+                                "{a4bd7571}": 6.599999904632568,
                                 "{a7c768e7}": 110.0,
                                 "{f809601e}": 0.04399999976158142,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.14300000667572021
+                                "{fe9fc6fd}": 0.13199999928474426
                             }
                         },
                         {
@@ -31703,13 +31703,13 @@
                             "style": 2,
                             "variables": {
                                 "{17a721be}": 6.0,
-                                "{4a1c6695}": 156.0,
+                                "{4a1c6695}": 144.0,
                                 "{6a4951ed}": 2.4000000953674316,
-                                "{a4bd7571}": 9.600000381469727,
+                                "{a4bd7571}": 7.199999809265137,
                                 "{a7c768e7}": 120.0,
                                 "{f809601e}": 0.04800000041723251,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.15600000321865082
+                                "{fe9fc6fd}": 0.14399999380111694
                             }
                         },
                         {
@@ -31718,13 +31718,13 @@
                             "style": 2,
                             "variables": {
                                 "{17a721be}": 6.5,
-                                "{4a1c6695}": 169.0,
+                                "{4a1c6695}": 156.0,
                                 "{6a4951ed}": 2.5999999046325684,
-                                "{a4bd7571}": 10.399999618530273,
+                                "{a4bd7571}": 7.800000190734863,
                                 "{a7c768e7}": 130.0,
                                 "{f809601e}": 0.052000001072883606,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.16899999976158142
+                                "{fe9fc6fd}": 0.15600000321865082
                             }
                         },
                         {
@@ -31733,13 +31733,13 @@
                             "style": 2,
                             "variables": {
                                 "{17a721be}": 7.0,
-                                "{4a1c6695}": 182.0,
+                                "{4a1c6695}": 168.0,
                                 "{6a4951ed}": 2.799999952316284,
-                                "{a4bd7571}": 11.199999809265137,
+                                "{a4bd7571}": 8.399999618530273,
                                 "{a7c768e7}": 140.0,
                                 "{f809601e}": 0.0560000017285347,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.18199999630451202
+                                "{fe9fc6fd}": 0.1679999977350235
                             }
                         },
                         {
@@ -31748,13 +31748,13 @@
                             "style": 2,
                             "variables": {
                                 "{17a721be}": 7.5,
-                                "{4a1c6695}": 195.0,
+                                "{4a1c6695}": 180.0,
                                 "{6a4951ed}": 3.0,
-                                "{a4bd7571}": 12.0,
+                                "{a4bd7571}": 9.0,
                                 "{a7c768e7}": 150.0,
                                 "{f809601e}": 0.05999999865889549,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.19499999284744263
+                                "{fe9fc6fd}": 0.18000000715255737
                             }
                         },
                         {
@@ -31762,14 +31762,14 @@
                             "minUnits": 7,
                             "style": 3,
                             "variables": {
-                                "{17a721be}": 8.25,
-                                "{4a1c6695}": 215.0,
-                                "{6a4951ed}": 3.299999952316284,
-                                "{a4bd7571}": 13.199999809265137,
-                                "{a7c768e7}": 165.0,
-                                "{f809601e}": 0.06599999964237213,
+                                "{17a721be}": 8.0,
+                                "{4a1c6695}": 192.0,
+                                "{6a4951ed}": 3.200000047683716,
+                                "{a4bd7571}": 9.600000381469727,
+                                "{a7c768e7}": 160.0,
+                                "{f809601e}": 0.06400000303983688,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.2150000035762787
+                                "{fe9fc6fd}": 0.19200000166893005
                             }
                         },
                         {
@@ -31777,14 +31777,14 @@
                             "minUnits": 8,
                             "style": 4,
                             "variables": {
-                                "{17a721be}": 9.0,
-                                "{4a1c6695}": 234.0,
-                                "{6a4951ed}": 3.5999999046325684,
-                                "{a4bd7571}": 14.399999618530273,
-                                "{a7c768e7}": 180.0,
-                                "{f809601e}": 0.07199999690055847,
+                                "{17a721be}": 8.75,
+                                "{4a1c6695}": 210.0,
+                                "{6a4951ed}": 3.5,
+                                "{a4bd7571}": 10.5,
+                                "{a7c768e7}": 175.0,
+                                "{f809601e}": 0.07000000029802322,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.23399999737739563
+                                "{fe9fc6fd}": 0.20999999344348907
                             }
                         }
                     ],
@@ -32035,9 +32035,9 @@
                             "minUnits": 6,
                             "style": 3,
                             "variables": {
-                                "BonusHealth": 900.0,
+                                "BonusHealth": 1000.0,
                                 "{89626cbc}": 20.0,
-                                "{d49caf5d}": 50.0
+                                "{d49caf5d}": 55.0
                             }
                         },
                         {
@@ -32045,9 +32045,9 @@
                             "minUnits": 8,
                             "style": 4,
                             "variables": {
-                                "BonusHealth": 1200.0,
+                                "BonusHealth": 1450.0,
                                 "{89626cbc}": 20.0,
-                                "{d49caf5d}": 75.0
+                                "{d49caf5d}": 85.0
                             }
                         }
                     ],
@@ -32120,7 +32120,7 @@
                             "style": 3,
                             "variables": {
                                 "Duration": 6.0,
-                                "{08a84200}": 6.0
+                                "{08a84200}": 7.0
                             }
                         }
                     ],
@@ -32639,8 +32639,8 @@
                             "minUnits": 9,
                             "style": 3,
                             "variables": {
-                                "AttackSpeed": 0.550000011920929,
-                                "{7f1304b2}": 55.0
+                                "AttackSpeed": 0.699999988079071,
+                                "{7f1304b2}": 70.0
                             }
                         },
                         {
@@ -33112,13 +33112,13 @@
                             {
                                 "name": "FractionMaxHealth",
                                 "value": [
-                                    0.05000000074505806,
-                                    0.05000000074505806,
-                                    0.05000000074505806,
-                                    0.05000000074505806,
-                                    0.05000000074505806,
-                                    0.05000000074505806,
-                                    0.05000000074505806
+                                    0.05999999865889549,
+                                    0.05999999865889549,
+                                    0.05999999865889549,
+                                    0.05999999865889549,
+                                    0.05999999865889549,
+                                    0.05999999865889549,
+                                    0.05999999865889549
                                 ]
                             },
                             {
@@ -37050,7 +37050,7 @@
                             "variables": {
                                 "BuffDuration": 60.0,
                                 "DamageAmp": 30.0,
-                                "PercentHealthDamage": 15.0,
+                                "PercentHealthDamage": 20.0,
                                 "StunDuration": 1.0,
                                 "{17f82fb1}": 8.0,
                                 "{81ce23cf}": 2.0
@@ -37063,7 +37063,7 @@
                             "variables": {
                                 "BuffDuration": 60.0,
                                 "DamageAmp": 60.0,
-                                "PercentHealthDamage": 25.0,
+                                "PercentHealthDamage": 35.0,
                                 "StunDuration": 1.0,
                                 "{17f82fb1}": 8.0,
                                 "{81ce23cf}": 3.0
@@ -37076,7 +37076,7 @@
                             "variables": {
                                 "BuffDuration": 60.0,
                                 "DamageAmp": 120.0,
-                                "PercentHealthDamage": 35.0,
+                                "PercentHealthDamage": 50.0,
                                 "StunDuration": 1.0,
                                 "{17f82fb1}": 8.0,
                                 "{81ce23cf}": 4.0
@@ -37243,13 +37243,13 @@
                             "style": 1,
                             "variables": {
                                 "{17a721be}": 5.0,
-                                "{4a1c6695}": 130.0,
+                                "{4a1c6695}": 120.0,
                                 "{6a4951ed}": 2.0,
-                                "{a4bd7571}": 8.0,
+                                "{a4bd7571}": 6.0,
                                 "{a7c768e7}": 100.0,
                                 "{f809601e}": 0.03999999910593033,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.12999999523162842
+                                "{fe9fc6fd}": 0.11999999731779099
                             }
                         },
                         {
@@ -37258,13 +37258,13 @@
                             "style": 1,
                             "variables": {
                                 "{17a721be}": 5.5,
-                                "{4a1c6695}": 143.0,
+                                "{4a1c6695}": 132.0,
                                 "{6a4951ed}": 2.200000047683716,
-                                "{a4bd7571}": 8.800000190734863,
+                                "{a4bd7571}": 6.599999904632568,
                                 "{a7c768e7}": 110.0,
                                 "{f809601e}": 0.04399999976158142,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.14300000667572021
+                                "{fe9fc6fd}": 0.13199999928474426
                             }
                         },
                         {
@@ -37273,13 +37273,13 @@
                             "style": 2,
                             "variables": {
                                 "{17a721be}": 6.0,
-                                "{4a1c6695}": 156.0,
+                                "{4a1c6695}": 144.0,
                                 "{6a4951ed}": 2.4000000953674316,
-                                "{a4bd7571}": 9.600000381469727,
+                                "{a4bd7571}": 7.199999809265137,
                                 "{a7c768e7}": 120.0,
                                 "{f809601e}": 0.04800000041723251,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.15600000321865082
+                                "{fe9fc6fd}": 0.14399999380111694
                             }
                         },
                         {
@@ -37288,13 +37288,13 @@
                             "style": 2,
                             "variables": {
                                 "{17a721be}": 6.5,
-                                "{4a1c6695}": 169.0,
+                                "{4a1c6695}": 156.0,
                                 "{6a4951ed}": 2.5999999046325684,
-                                "{a4bd7571}": 10.399999618530273,
+                                "{a4bd7571}": 7.800000190734863,
                                 "{a7c768e7}": 130.0,
                                 "{f809601e}": 0.052000001072883606,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.16899999976158142
+                                "{fe9fc6fd}": 0.15600000321865082
                             }
                         },
                         {
@@ -37303,13 +37303,13 @@
                             "style": 2,
                             "variables": {
                                 "{17a721be}": 7.0,
-                                "{4a1c6695}": 182.0,
+                                "{4a1c6695}": 168.0,
                                 "{6a4951ed}": 2.799999952316284,
-                                "{a4bd7571}": 11.199999809265137,
+                                "{a4bd7571}": 8.399999618530273,
                                 "{a7c768e7}": 140.0,
                                 "{f809601e}": 0.0560000017285347,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.18199999630451202
+                                "{fe9fc6fd}": 0.1679999977350235
                             }
                         },
                         {
@@ -37318,13 +37318,13 @@
                             "style": 2,
                             "variables": {
                                 "{17a721be}": 7.5,
-                                "{4a1c6695}": 195.0,
+                                "{4a1c6695}": 180.0,
                                 "{6a4951ed}": 3.0,
-                                "{a4bd7571}": 12.0,
+                                "{a4bd7571}": 9.0,
                                 "{a7c768e7}": 150.0,
                                 "{f809601e}": 0.05999999865889549,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.19499999284744263
+                                "{fe9fc6fd}": 0.18000000715255737
                             }
                         },
                         {
@@ -37332,14 +37332,14 @@
                             "minUnits": 7,
                             "style": 3,
                             "variables": {
-                                "{17a721be}": 8.25,
-                                "{4a1c6695}": 215.0,
-                                "{6a4951ed}": 3.299999952316284,
-                                "{a4bd7571}": 13.199999809265137,
-                                "{a7c768e7}": 165.0,
-                                "{f809601e}": 0.06599999964237213,
+                                "{17a721be}": 8.0,
+                                "{4a1c6695}": 192.0,
+                                "{6a4951ed}": 3.200000047683716,
+                                "{a4bd7571}": 9.600000381469727,
+                                "{a7c768e7}": 160.0,
+                                "{f809601e}": 0.06400000303983688,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.2150000035762787
+                                "{fe9fc6fd}": 0.19200000166893005
                             }
                         },
                         {
@@ -37347,14 +37347,14 @@
                             "minUnits": 8,
                             "style": 4,
                             "variables": {
-                                "{17a721be}": 9.0,
-                                "{4a1c6695}": 234.0,
-                                "{6a4951ed}": 3.5999999046325684,
-                                "{a4bd7571}": 14.399999618530273,
-                                "{a7c768e7}": 180.0,
-                                "{f809601e}": 0.07199999690055847,
+                                "{17a721be}": 8.75,
+                                "{4a1c6695}": 210.0,
+                                "{6a4951ed}": 3.5,
+                                "{a4bd7571}": 10.5,
+                                "{a7c768e7}": 175.0,
+                                "{f809601e}": 0.07000000029802322,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.23399999737739563
+                                "{fe9fc6fd}": 0.20999999344348907
                             }
                         }
                     ],
@@ -37565,9 +37565,9 @@
                             "minUnits": 6,
                             "style": 3,
                             "variables": {
-                                "BonusHealth": 900.0,
+                                "BonusHealth": 1000.0,
                                 "{89626cbc}": 20.0,
-                                "{d49caf5d}": 50.0
+                                "{d49caf5d}": 55.0
                             }
                         },
                         {
@@ -37575,9 +37575,9 @@
                             "minUnits": 8,
                             "style": 4,
                             "variables": {
-                                "BonusHealth": 1200.0,
+                                "BonusHealth": 1450.0,
                                 "{89626cbc}": 20.0,
-                                "{d49caf5d}": 75.0
+                                "{d49caf5d}": 85.0
                             }
                         }
                     ],
@@ -37650,7 +37650,7 @@
                             "style": 3,
                             "variables": {
                                 "Duration": 6.0,
-                                "{08a84200}": 6.0
+                                "{08a84200}": 7.0
                             }
                         }
                     ],
@@ -38535,13 +38535,13 @@
                             {
                                 "name": "FractionMaxHealth",
                                 "value": [
-                                    0.05000000074505806,
-                                    0.05000000074505806,
-                                    0.05000000074505806,
-                                    0.05000000074505806,
-                                    0.05000000074505806,
-                                    0.05000000074505806,
-                                    0.05000000074505806
+                                    0.05999999865889549,
+                                    0.05999999865889549,
+                                    0.05999999865889549,
+                                    0.05999999865889549,
+                                    0.05999999865889549,
+                                    0.05999999865889549,
+                                    0.05999999865889549
                                 ]
                             },
                             {
@@ -40538,9 +40538,9 @@
                                 "name": "ShieldBase",
                                 "value": [
                                     150.0,
-                                    200.0,
-                                    250.0,
-                                    325.0,
+                                    185.0,
+                                    230.0,
+                                    270.0,
                                     350.0,
                                     400.0,
                                     450.0
@@ -41706,8 +41706,8 @@
                                 "name": "Damage",
                                 "value": [
                                     0.0,
-                                    130.0,
-                                    200.0,
+                                    150.0,
+                                    225.0,
                                     1000.0,
                                     0.0,
                                     0.0,
@@ -41783,9 +41783,9 @@
                                 "name": "Damage",
                                 "value": [
                                     0.0,
-                                    70.0,
-                                    100.0,
-                                    600.0,
+                                    135.0,
+                                    195.0,
+                                    1000.0,
                                     0.0,
                                     0.0,
                                     0.0
@@ -41861,9 +41861,9 @@
                                 "name": "MagicDamage",
                                 "value": [
                                     0.0,
-                                    210.0,
-                                    300.0,
-                                    480.0,
+                                    180.0,
+                                    260.0,
+                                    420.0,
                                     0.0,
                                     0.0,
                                     0.0
@@ -42448,9 +42448,9 @@
                                 "name": "LesserDamage",
                                 "value": [
                                     0.0,
-                                    175.0,
-                                    200.0,
-                                    230.0,
+                                    150.0,
+                                    170.0,
+                                    190.0,
                                     0.0,
                                     0.0,
                                     0.0
@@ -42489,8 +42489,8 @@
                                 "name": "ShieldAmount",
                                 "value": [
                                     0.0,
-                                    375.0,
-                                    450.0,
+                                    425.0,
+                                    500.0,
                                     650.0,
                                     0.0,
                                     0.0,
@@ -42501,9 +42501,9 @@
                                 "name": "AttackDamageRatio",
                                 "value": [
                                     0.0,
-                                    4.0,
-                                    4.25,
-                                    5.5,
+                                    3.5,
+                                    3.75,
+                                    4.75,
                                     2.0999999046325684,
                                     2.0999999046325684,
                                     2.0999999046325684
@@ -42840,9 +42840,9 @@
                                 "name": "MagicDamage",
                                 "value": [
                                     0.0,
-                                    210.0,
-                                    300.0,
-                                    480.0,
+                                    180.0,
+                                    260.0,
+                                    420.0,
                                     0.0,
                                     0.0,
                                     0.0
@@ -42894,9 +42894,9 @@
                                 "name": "MagicDamage",
                                 "value": [
                                     0.0,
-                                    210.0,
-                                    300.0,
-                                    480.0,
+                                    180.0,
+                                    260.0,
+                                    420.0,
                                     0.0,
                                     0.0,
                                     0.0
@@ -42948,9 +42948,9 @@
                                 "name": "MagicDamage",
                                 "value": [
                                     0.0,
-                                    210.0,
-                                    300.0,
-                                    480.0,
+                                    180.0,
+                                    260.0,
+                                    420.0,
                                     0.0,
                                     0.0,
                                     0.0
@@ -43053,7 +43053,7 @@
                             "variables": {
                                 "BuffDuration": 60.0,
                                 "DamageAmp": 30.0,
-                                "PercentHealthDamage": 15.0,
+                                "PercentHealthDamage": 20.0,
                                 "StunDuration": 1.0,
                                 "{17f82fb1}": 8.0,
                                 "{81ce23cf}": 2.0
@@ -43066,7 +43066,7 @@
                             "variables": {
                                 "BuffDuration": 60.0,
                                 "DamageAmp": 60.0,
-                                "PercentHealthDamage": 25.0,
+                                "PercentHealthDamage": 35.0,
                                 "StunDuration": 1.0,
                                 "{17f82fb1}": 8.0,
                                 "{81ce23cf}": 3.0
@@ -43079,7 +43079,7 @@
                             "variables": {
                                 "BuffDuration": 60.0,
                                 "DamageAmp": 120.0,
-                                "PercentHealthDamage": 35.0,
+                                "PercentHealthDamage": 50.0,
                                 "StunDuration": 1.0,
                                 "{17f82fb1}": 8.0,
                                 "{81ce23cf}": 4.0
@@ -43262,13 +43262,13 @@
                             "style": 1,
                             "variables": {
                                 "{17a721be}": 5.0,
-                                "{4a1c6695}": 130.0,
+                                "{4a1c6695}": 120.0,
                                 "{6a4951ed}": 2.0,
-                                "{a4bd7571}": 8.0,
+                                "{a4bd7571}": 6.0,
                                 "{a7c768e7}": 100.0,
                                 "{f809601e}": 0.03999999910593033,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.12999999523162842
+                                "{fe9fc6fd}": 0.11999999731779099
                             }
                         },
                         {
@@ -43277,13 +43277,13 @@
                             "style": 1,
                             "variables": {
                                 "{17a721be}": 5.5,
-                                "{4a1c6695}": 143.0,
+                                "{4a1c6695}": 132.0,
                                 "{6a4951ed}": 2.200000047683716,
-                                "{a4bd7571}": 8.800000190734863,
+                                "{a4bd7571}": 6.599999904632568,
                                 "{a7c768e7}": 110.0,
                                 "{f809601e}": 0.04399999976158142,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.14300000667572021
+                                "{fe9fc6fd}": 0.13199999928474426
                             }
                         },
                         {
@@ -43292,13 +43292,13 @@
                             "style": 2,
                             "variables": {
                                 "{17a721be}": 6.0,
-                                "{4a1c6695}": 156.0,
+                                "{4a1c6695}": 144.0,
                                 "{6a4951ed}": 2.4000000953674316,
-                                "{a4bd7571}": 9.600000381469727,
+                                "{a4bd7571}": 7.199999809265137,
                                 "{a7c768e7}": 120.0,
                                 "{f809601e}": 0.04800000041723251,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.15600000321865082
+                                "{fe9fc6fd}": 0.14399999380111694
                             }
                         },
                         {
@@ -43307,13 +43307,13 @@
                             "style": 2,
                             "variables": {
                                 "{17a721be}": 6.5,
-                                "{4a1c6695}": 169.0,
+                                "{4a1c6695}": 156.0,
                                 "{6a4951ed}": 2.5999999046325684,
-                                "{a4bd7571}": 10.399999618530273,
+                                "{a4bd7571}": 7.800000190734863,
                                 "{a7c768e7}": 130.0,
                                 "{f809601e}": 0.052000001072883606,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.16899999976158142
+                                "{fe9fc6fd}": 0.15600000321865082
                             }
                         },
                         {
@@ -43322,13 +43322,13 @@
                             "style": 2,
                             "variables": {
                                 "{17a721be}": 7.0,
-                                "{4a1c6695}": 182.0,
+                                "{4a1c6695}": 168.0,
                                 "{6a4951ed}": 2.799999952316284,
-                                "{a4bd7571}": 11.199999809265137,
+                                "{a4bd7571}": 8.399999618530273,
                                 "{a7c768e7}": 140.0,
                                 "{f809601e}": 0.0560000017285347,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.18199999630451202
+                                "{fe9fc6fd}": 0.1679999977350235
                             }
                         },
                         {
@@ -43337,13 +43337,13 @@
                             "style": 2,
                             "variables": {
                                 "{17a721be}": 7.5,
-                                "{4a1c6695}": 195.0,
+                                "{4a1c6695}": 180.0,
                                 "{6a4951ed}": 3.0,
-                                "{a4bd7571}": 12.0,
+                                "{a4bd7571}": 9.0,
                                 "{a7c768e7}": 150.0,
                                 "{f809601e}": 0.05999999865889549,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.19499999284744263
+                                "{fe9fc6fd}": 0.18000000715255737
                             }
                         },
                         {
@@ -43351,14 +43351,14 @@
                             "minUnits": 7,
                             "style": 3,
                             "variables": {
-                                "{17a721be}": 8.25,
-                                "{4a1c6695}": 215.0,
-                                "{6a4951ed}": 3.299999952316284,
-                                "{a4bd7571}": 13.199999809265137,
-                                "{a7c768e7}": 165.0,
-                                "{f809601e}": 0.06599999964237213,
+                                "{17a721be}": 8.0,
+                                "{4a1c6695}": 192.0,
+                                "{6a4951ed}": 3.200000047683716,
+                                "{a4bd7571}": 9.600000381469727,
+                                "{a7c768e7}": 160.0,
+                                "{f809601e}": 0.06400000303983688,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.2150000035762787
+                                "{fe9fc6fd}": 0.19200000166893005
                             }
                         },
                         {
@@ -43366,14 +43366,14 @@
                             "minUnits": 8,
                             "style": 4,
                             "variables": {
-                                "{17a721be}": 9.0,
-                                "{4a1c6695}": 234.0,
-                                "{6a4951ed}": 3.5999999046325684,
-                                "{a4bd7571}": 14.399999618530273,
-                                "{a7c768e7}": 180.0,
-                                "{f809601e}": 0.07199999690055847,
+                                "{17a721be}": 8.75,
+                                "{4a1c6695}": 210.0,
+                                "{6a4951ed}": 3.5,
+                                "{a4bd7571}": 10.5,
+                                "{a7c768e7}": 175.0,
+                                "{f809601e}": 0.07000000029802322,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.23399999737739563
+                                "{fe9fc6fd}": 0.20999999344348907
                             }
                         }
                     ],
@@ -43624,9 +43624,9 @@
                             "minUnits": 6,
                             "style": 3,
                             "variables": {
-                                "BonusHealth": 900.0,
+                                "BonusHealth": 1000.0,
                                 "{89626cbc}": 20.0,
-                                "{d49caf5d}": 50.0
+                                "{d49caf5d}": 55.0
                             }
                         },
                         {
@@ -43634,9 +43634,9 @@
                             "minUnits": 8,
                             "style": 4,
                             "variables": {
-                                "BonusHealth": 1200.0,
+                                "BonusHealth": 1450.0,
                                 "{89626cbc}": 20.0,
-                                "{d49caf5d}": 75.0
+                                "{d49caf5d}": 85.0
                             }
                         }
                     ],
@@ -43709,7 +43709,7 @@
                             "style": 3,
                             "variables": {
                                 "Duration": 6.0,
-                                "{08a84200}": 6.0
+                                "{08a84200}": 7.0
                             }
                         }
                     ],
@@ -44228,8 +44228,8 @@
                             "minUnits": 9,
                             "style": 3,
                             "variables": {
-                                "AttackSpeed": 0.550000011920929,
-                                "{7f1304b2}": 55.0
+                                "AttackSpeed": 0.699999988079071,
+                                "{7f1304b2}": 70.0
                             }
                         },
                         {
@@ -44701,13 +44701,13 @@
                             {
                                 "name": "FractionMaxHealth",
                                 "value": [
-                                    0.05000000074505806,
-                                    0.05000000074505806,
-                                    0.05000000074505806,
-                                    0.05000000074505806,
-                                    0.05000000074505806,
-                                    0.05000000074505806,
-                                    0.05000000074505806
+                                    0.05999999865889549,
+                                    0.05999999865889549,
+                                    0.05999999865889549,
+                                    0.05999999865889549,
+                                    0.05999999865889549,
+                                    0.05999999865889549,
+                                    0.05999999865889549
                                 ]
                             },
                             {
@@ -48639,7 +48639,7 @@
                             "variables": {
                                 "BuffDuration": 60.0,
                                 "DamageAmp": 30.0,
-                                "PercentHealthDamage": 15.0,
+                                "PercentHealthDamage": 20.0,
                                 "StunDuration": 1.0,
                                 "{17f82fb1}": 8.0,
                                 "{81ce23cf}": 2.0
@@ -48652,7 +48652,7 @@
                             "variables": {
                                 "BuffDuration": 60.0,
                                 "DamageAmp": 60.0,
-                                "PercentHealthDamage": 25.0,
+                                "PercentHealthDamage": 35.0,
                                 "StunDuration": 1.0,
                                 "{17f82fb1}": 8.0,
                                 "{81ce23cf}": 3.0
@@ -48665,7 +48665,7 @@
                             "variables": {
                                 "BuffDuration": 60.0,
                                 "DamageAmp": 120.0,
-                                "PercentHealthDamage": 35.0,
+                                "PercentHealthDamage": 50.0,
                                 "StunDuration": 1.0,
                                 "{17f82fb1}": 8.0,
                                 "{81ce23cf}": 4.0
@@ -48832,13 +48832,13 @@
                             "style": 1,
                             "variables": {
                                 "{17a721be}": 5.0,
-                                "{4a1c6695}": 130.0,
+                                "{4a1c6695}": 120.0,
                                 "{6a4951ed}": 2.0,
-                                "{a4bd7571}": 8.0,
+                                "{a4bd7571}": 6.0,
                                 "{a7c768e7}": 100.0,
                                 "{f809601e}": 0.03999999910593033,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.12999999523162842
+                                "{fe9fc6fd}": 0.11999999731779099
                             }
                         },
                         {
@@ -48847,13 +48847,13 @@
                             "style": 1,
                             "variables": {
                                 "{17a721be}": 5.5,
-                                "{4a1c6695}": 143.0,
+                                "{4a1c6695}": 132.0,
                                 "{6a4951ed}": 2.200000047683716,
-                                "{a4bd7571}": 8.800000190734863,
+                                "{a4bd7571}": 6.599999904632568,
                                 "{a7c768e7}": 110.0,
                                 "{f809601e}": 0.04399999976158142,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.14300000667572021
+                                "{fe9fc6fd}": 0.13199999928474426
                             }
                         },
                         {
@@ -48862,13 +48862,13 @@
                             "style": 2,
                             "variables": {
                                 "{17a721be}": 6.0,
-                                "{4a1c6695}": 156.0,
+                                "{4a1c6695}": 144.0,
                                 "{6a4951ed}": 2.4000000953674316,
-                                "{a4bd7571}": 9.600000381469727,
+                                "{a4bd7571}": 7.199999809265137,
                                 "{a7c768e7}": 120.0,
                                 "{f809601e}": 0.04800000041723251,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.15600000321865082
+                                "{fe9fc6fd}": 0.14399999380111694
                             }
                         },
                         {
@@ -48877,13 +48877,13 @@
                             "style": 2,
                             "variables": {
                                 "{17a721be}": 6.5,
-                                "{4a1c6695}": 169.0,
+                                "{4a1c6695}": 156.0,
                                 "{6a4951ed}": 2.5999999046325684,
-                                "{a4bd7571}": 10.399999618530273,
+                                "{a4bd7571}": 7.800000190734863,
                                 "{a7c768e7}": 130.0,
                                 "{f809601e}": 0.052000001072883606,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.16899999976158142
+                                "{fe9fc6fd}": 0.15600000321865082
                             }
                         },
                         {
@@ -48892,13 +48892,13 @@
                             "style": 2,
                             "variables": {
                                 "{17a721be}": 7.0,
-                                "{4a1c6695}": 182.0,
+                                "{4a1c6695}": 168.0,
                                 "{6a4951ed}": 2.799999952316284,
-                                "{a4bd7571}": 11.199999809265137,
+                                "{a4bd7571}": 8.399999618530273,
                                 "{a7c768e7}": 140.0,
                                 "{f809601e}": 0.0560000017285347,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.18199999630451202
+                                "{fe9fc6fd}": 0.1679999977350235
                             }
                         },
                         {
@@ -48907,13 +48907,13 @@
                             "style": 2,
                             "variables": {
                                 "{17a721be}": 7.5,
-                                "{4a1c6695}": 195.0,
+                                "{4a1c6695}": 180.0,
                                 "{6a4951ed}": 3.0,
-                                "{a4bd7571}": 12.0,
+                                "{a4bd7571}": 9.0,
                                 "{a7c768e7}": 150.0,
                                 "{f809601e}": 0.05999999865889549,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.19499999284744263
+                                "{fe9fc6fd}": 0.18000000715255737
                             }
                         },
                         {
@@ -48921,14 +48921,14 @@
                             "minUnits": 7,
                             "style": 3,
                             "variables": {
-                                "{17a721be}": 8.25,
-                                "{4a1c6695}": 215.0,
-                                "{6a4951ed}": 3.299999952316284,
-                                "{a4bd7571}": 13.199999809265137,
-                                "{a7c768e7}": 165.0,
-                                "{f809601e}": 0.06599999964237213,
+                                "{17a721be}": 8.0,
+                                "{4a1c6695}": 192.0,
+                                "{6a4951ed}": 3.200000047683716,
+                                "{a4bd7571}": 9.600000381469727,
+                                "{a7c768e7}": 160.0,
+                                "{f809601e}": 0.06400000303983688,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.2150000035762787
+                                "{fe9fc6fd}": 0.19200000166893005
                             }
                         },
                         {
@@ -48936,14 +48936,14 @@
                             "minUnits": 8,
                             "style": 4,
                             "variables": {
-                                "{17a721be}": 9.0,
-                                "{4a1c6695}": 234.0,
-                                "{6a4951ed}": 3.5999999046325684,
-                                "{a4bd7571}": 14.399999618530273,
-                                "{a7c768e7}": 180.0,
-                                "{f809601e}": 0.07199999690055847,
+                                "{17a721be}": 8.75,
+                                "{4a1c6695}": 210.0,
+                                "{6a4951ed}": 3.5,
+                                "{a4bd7571}": 10.5,
+                                "{a7c768e7}": 175.0,
+                                "{f809601e}": 0.07000000029802322,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.23399999737739563
+                                "{fe9fc6fd}": 0.20999999344348907
                             }
                         }
                     ],
@@ -49154,9 +49154,9 @@
                             "minUnits": 6,
                             "style": 3,
                             "variables": {
-                                "BonusHealth": 900.0,
+                                "BonusHealth": 1000.0,
                                 "{89626cbc}": 20.0,
-                                "{d49caf5d}": 50.0
+                                "{d49caf5d}": 55.0
                             }
                         },
                         {
@@ -49164,9 +49164,9 @@
                             "minUnits": 8,
                             "style": 4,
                             "variables": {
-                                "BonusHealth": 1200.0,
+                                "BonusHealth": 1450.0,
                                 "{89626cbc}": 20.0,
-                                "{d49caf5d}": 75.0
+                                "{d49caf5d}": 85.0
                             }
                         }
                     ],
@@ -49239,7 +49239,7 @@
                             "style": 3,
                             "variables": {
                                 "Duration": 6.0,
-                                "{08a84200}": 6.0
+                                "{08a84200}": 7.0
                             }
                         }
                     ],
@@ -56498,13 +56498,13 @@
                             {
                                 "name": "FractionMaxHealth",
                                 "value": [
-                                    0.05000000074505806,
-                                    0.05000000074505806,
-                                    0.05000000074505806,
-                                    0.05000000074505806,
-                                    0.05000000074505806,
-                                    0.05000000074505806,
-                                    0.05000000074505806
+                                    0.05999999865889549,
+                                    0.05999999865889549,
+                                    0.05999999865889549,
+                                    0.05999999865889549,
+                                    0.05999999865889549,
+                                    0.05999999865889549,
+                                    0.05999999865889549
                                 ]
                             },
                             {
@@ -60434,7 +60434,7 @@
                             "variables": {
                                 "BuffDuration": 60.0,
                                 "DamageAmp": 30.0,
-                                "PercentHealthDamage": 15.0,
+                                "PercentHealthDamage": 20.0,
                                 "StunDuration": 1.0,
                                 "{17f82fb1}": 8.0,
                                 "{81ce23cf}": 2.0
@@ -60447,7 +60447,7 @@
                             "variables": {
                                 "BuffDuration": 60.0,
                                 "DamageAmp": 60.0,
-                                "PercentHealthDamage": 25.0,
+                                "PercentHealthDamage": 35.0,
                                 "StunDuration": 1.0,
                                 "{17f82fb1}": 8.0,
                                 "{81ce23cf}": 3.0
@@ -60460,7 +60460,7 @@
                             "variables": {
                                 "BuffDuration": 60.0,
                                 "DamageAmp": 120.0,
-                                "PercentHealthDamage": 35.0,
+                                "PercentHealthDamage": 50.0,
                                 "StunDuration": 1.0,
                                 "{17f82fb1}": 8.0,
                                 "{81ce23cf}": 4.0
@@ -60627,13 +60627,13 @@
                             "style": 1,
                             "variables": {
                                 "{17a721be}": 5.0,
-                                "{4a1c6695}": 130.0,
+                                "{4a1c6695}": 120.0,
                                 "{6a4951ed}": 2.0,
-                                "{a4bd7571}": 8.0,
+                                "{a4bd7571}": 6.0,
                                 "{a7c768e7}": 100.0,
                                 "{f809601e}": 0.03999999910593033,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.12999999523162842
+                                "{fe9fc6fd}": 0.11999999731779099
                             }
                         },
                         {
@@ -60642,13 +60642,13 @@
                             "style": 1,
                             "variables": {
                                 "{17a721be}": 5.5,
-                                "{4a1c6695}": 143.0,
+                                "{4a1c6695}": 132.0,
                                 "{6a4951ed}": 2.200000047683716,
-                                "{a4bd7571}": 8.800000190734863,
+                                "{a4bd7571}": 6.599999904632568,
                                 "{a7c768e7}": 110.0,
                                 "{f809601e}": 0.04399999976158142,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.14300000667572021
+                                "{fe9fc6fd}": 0.13199999928474426
                             }
                         },
                         {
@@ -60657,13 +60657,13 @@
                             "style": 2,
                             "variables": {
                                 "{17a721be}": 6.0,
-                                "{4a1c6695}": 156.0,
+                                "{4a1c6695}": 144.0,
                                 "{6a4951ed}": 2.4000000953674316,
-                                "{a4bd7571}": 9.600000381469727,
+                                "{a4bd7571}": 7.199999809265137,
                                 "{a7c768e7}": 120.0,
                                 "{f809601e}": 0.04800000041723251,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.15600000321865082
+                                "{fe9fc6fd}": 0.14399999380111694
                             }
                         },
                         {
@@ -60672,13 +60672,13 @@
                             "style": 2,
                             "variables": {
                                 "{17a721be}": 6.5,
-                                "{4a1c6695}": 169.0,
+                                "{4a1c6695}": 156.0,
                                 "{6a4951ed}": 2.5999999046325684,
-                                "{a4bd7571}": 10.399999618530273,
+                                "{a4bd7571}": 7.800000190734863,
                                 "{a7c768e7}": 130.0,
                                 "{f809601e}": 0.052000001072883606,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.16899999976158142
+                                "{fe9fc6fd}": 0.15600000321865082
                             }
                         },
                         {
@@ -60687,13 +60687,13 @@
                             "style": 2,
                             "variables": {
                                 "{17a721be}": 7.0,
-                                "{4a1c6695}": 182.0,
+                                "{4a1c6695}": 168.0,
                                 "{6a4951ed}": 2.799999952316284,
-                                "{a4bd7571}": 11.199999809265137,
+                                "{a4bd7571}": 8.399999618530273,
                                 "{a7c768e7}": 140.0,
                                 "{f809601e}": 0.0560000017285347,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.18199999630451202
+                                "{fe9fc6fd}": 0.1679999977350235
                             }
                         },
                         {
@@ -60702,13 +60702,13 @@
                             "style": 2,
                             "variables": {
                                 "{17a721be}": 7.5,
-                                "{4a1c6695}": 195.0,
+                                "{4a1c6695}": 180.0,
                                 "{6a4951ed}": 3.0,
-                                "{a4bd7571}": 12.0,
+                                "{a4bd7571}": 9.0,
                                 "{a7c768e7}": 150.0,
                                 "{f809601e}": 0.05999999865889549,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.19499999284744263
+                                "{fe9fc6fd}": 0.18000000715255737
                             }
                         },
                         {
@@ -60716,14 +60716,14 @@
                             "minUnits": 7,
                             "style": 3,
                             "variables": {
-                                "{17a721be}": 8.25,
-                                "{4a1c6695}": 215.0,
-                                "{6a4951ed}": 3.299999952316284,
-                                "{a4bd7571}": 13.199999809265137,
-                                "{a7c768e7}": 165.0,
-                                "{f809601e}": 0.06599999964237213,
+                                "{17a721be}": 8.0,
+                                "{4a1c6695}": 192.0,
+                                "{6a4951ed}": 3.200000047683716,
+                                "{a4bd7571}": 9.600000381469727,
+                                "{a7c768e7}": 160.0,
+                                "{f809601e}": 0.06400000303983688,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.2150000035762787
+                                "{fe9fc6fd}": 0.19200000166893005
                             }
                         },
                         {
@@ -60731,14 +60731,14 @@
                             "minUnits": 8,
                             "style": 4,
                             "variables": {
-                                "{17a721be}": 9.0,
-                                "{4a1c6695}": 234.0,
-                                "{6a4951ed}": 3.5999999046325684,
-                                "{a4bd7571}": 14.399999618530273,
-                                "{a7c768e7}": 180.0,
-                                "{f809601e}": 0.07199999690055847,
+                                "{17a721be}": 8.75,
+                                "{4a1c6695}": 210.0,
+                                "{6a4951ed}": 3.5,
+                                "{a4bd7571}": 10.5,
+                                "{a7c768e7}": 175.0,
+                                "{f809601e}": 0.07000000029802322,
                                 "{f9773fb7}": 2.0,
-                                "{fe9fc6fd}": 0.23399999737739563
+                                "{fe9fc6fd}": 0.20999999344348907
                             }
                         }
                     ],
@@ -60949,9 +60949,9 @@
                             "minUnits": 6,
                             "style": 3,
                             "variables": {
-                                "BonusHealth": 900.0,
+                                "BonusHealth": 1000.0,
                                 "{89626cbc}": 20.0,
-                                "{d49caf5d}": 50.0
+                                "{d49caf5d}": 55.0
                             }
                         },
                         {
@@ -60959,9 +60959,9 @@
                             "minUnits": 8,
                             "style": 4,
                             "variables": {
-                                "BonusHealth": 1200.0,
+                                "BonusHealth": 1450.0,
                                 "{89626cbc}": 20.0,
-                                "{d49caf5d}": 75.0
+                                "{d49caf5d}": 85.0
                             }
                         }
                     ],
@@ -61034,7 +61034,7 @@
                             "style": 3,
                             "variables": {
                                 "Duration": 6.0,
-                                "{08a84200}": 6.0
+                                "{08a84200}": 7.0
                             }
                         }
                     ],
