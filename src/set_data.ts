@@ -117,6 +117,7 @@ const blacklist = [
   'NomsyMage',
   'NomsyEvoker',
   'NomsyCannoneer',
+  'Whispers Emblem',
 ];
 
 const whitelist = [
