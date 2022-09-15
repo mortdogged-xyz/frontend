@@ -118,6 +118,9 @@ const blacklist = [
   'NomsyEvoker',
   'NomsyCannoneer',
   'Whispers Emblem',
+  'Dragonmancer Conference',
+  'Mage Conference',
+  'Part-Time Assassin',
 ];
 
 const whitelist = [
