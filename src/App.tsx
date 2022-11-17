@@ -17,7 +17,7 @@ import {Balance} from './Balance';
 import {AuthUI, Logout} from './firebase';
 import {SimpleAuth, removeUserData} from './SimpleAuth';
 import {Dashboard} from './Dashboard';
-import {TFTSet, TFTVersion} from './version';
+import {TFTSet, TFTVersion, isPBE} from './version';
 import {gqlClient} from './gql';
 
 const darkTheme = createTheme({
@@ -43,7 +43,7 @@ const Plug = () => {
       onClick={() => window?.open('https://discord.gg/nA4wpEGjKV')?.focus()}
       color="info"
       variant="filled"
-      label={`Set ${TFTSet} v${TFTVersion}`}
+      label={`Set ${TFTSet} v${TFTVersion} ${isPBE}`}
       icon={<DiscordIcon />}
     />
   );

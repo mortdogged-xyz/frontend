@@ -1,4 +1,4 @@
-import {TFTSetNumber} from './version';
+import {TFTSetNumber, CDragonVersion} from './version';
 import rawData from './data/en_us.json';
 
 export const CurrentSet = `TFT_Set${TFTSetNumber}`;
@@ -121,6 +121,15 @@ const blacklist = [
   'Dragonmancer Conference',
   'Mage Conference',
   'Part-Time Assassin',
+
+  // Champs SET 8
+  'Archive Of Augments',
+  'Mercenary Chest',
+  'Giant Crabgot',
+  'Mutant Zac',
+  'Target Dummy',
+  'Volcanic Sol',
+  'Hackerim',
 ];
 
 const whitelist = [
@@ -224,6 +233,24 @@ export const items = data.items
   )
   .map((item: DataItem) => item.name || '');
 
+function championAug(item: DataItem, champions: Array<string>) {
+  return champions.some((champ) =>
+    item.apiName?.includes(`Augment_${champ}Carry`),
+  );
+}
+
+function traitAug(item: DataItem, traits: Array<string>) {
+  return traits.some(
+    (trait) =>
+      ['Heart', 'Crest', 'Crown'].some((mod) => item.name?.includes(mod)) &&
+      item.apiName?.includes(`Augment_${trait}`),
+  );
+}
+
+export const champs = setData.champions
+  .filter(offBlacklist)
+  .map((item: DataItem) => item.name);
+
 export const augs = data.items
   .filter(offBlacklist)
   .filter(
@@ -234,14 +261,13 @@ export const augs = data.items
         !item.name?.includes('Crest') &&
         !item.name?.includes('Crown')) ||
       onWhitelist(item) ||
-      traits.some((trait) => item.icon.includes(trait)),
+      traitAug(item, traits),
   )
-  .filter((item: DataItem) => item.icon.includes('Augments/Hexcore'))
-  .map((item: DataItem) => item.name || '');
-
-export const champs = setData.champions
-  .filter(offBlacklist)
-  .map((item: DataItem) => item.name);
+  .filter(
+    (item: DataItem) =>
+      item.icon.includes('Augments/Hexcore') || championAug(item, champs),
+  )
+  .map((item: DataItem) => item.apiName || '');
 
 export const champ_cost: Record<string, number> = setData.champions.reduce(
   (acc: Record<string, number>, item: DataItem) => {
@@ -320,11 +346,11 @@ function championIcon(apiName: string, icon: string): string {
     sn += '_stage2';
   }
 
-  return `assets/characters/${an}/hud/${san}_square.${sn}.png`;
+  return `assets/characters/${an}/hud/${san}.${sn}.png`;
 }
 
 export function icon2Src(icon: string): string {
-  const prefix = 'https://raw.communitydragon.org/latest/game/';
+  const prefix = `https://raw.communitydragon.org/${CDragonVersion}/game/`;
   const ico = icon
     .toLowerCase()
     .replace('.dds', '.png')

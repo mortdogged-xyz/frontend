@@ -1,4 +1,7 @@
-export const TFTSet = '7.5';
-export const TFTSetNumber = 7;
-export const TFTVersion = '12.22';
-export const StorageKey = `${TFTSet}-${TFTVersion}`;
+export const TFTSet = '8';
+export const TFTSetNumber = 8;
+export const TFTVersion = '12.22.0';
+// export const CDragonVersion = 'latest';
+export const CDragonVersion = 'pbe';
+export const isPBE = CDragonVersion === 'pbe' ? 'PBE' : '';
+export const StorageKey = `${TFTSet}-${TFTVersion}${isPBE}`;
