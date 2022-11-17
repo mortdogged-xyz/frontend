@@ -102,7 +102,6 @@ const blacklist = [
   'Two tier',
   'One tier',
   'Special item',
-  'Astral Emblem',
 
   // Midset changes
   'Ragewing Emblem',
@@ -130,12 +129,36 @@ const blacklist = [
   'Target Dummy',
   'Volcanic Sol',
   'Hackerim',
+
+  // SET 8 blocked stuff
+  'Shimmerscale',
+  'Swiftshot',
+  'Revel',
+  'Mirage',
+  'Lagoon',
+  'Guild',
+  'Bruiser',
+  'Cannoneer',
+  'Cavalier',
+  'Dragon',
+  'Evoker',
+  'Mage',
+  'Ragewing',
+  'Tempest',
+  'Whispers',
+  'Dragonmancer',
+  'Debonair',
+  'Darkflight',
+  'Jade',
+  'Scalescorn',
+  'Shapeshifter',
+  'Warrior',
+  'Guardian',
 ];
 
 const whitelist = [
   'OrnnItem',
   'Radiant',
-  'Shimmerscale',
   'Morello',
   'Zeke',
   'Crown',
@@ -185,19 +208,7 @@ const whitelist = [
 
   // Midset
   'Winters_Approach',
-  'SoulSiphon',
-  'Consistency',
-  'Scoped Weapons',
-  'Protectors of the Cosmos',
-  'Dragon Imperialist',
-  'Hero-In-Training',
-  'High Tide',
-  'Oasis',
-  'Essence-Theft-Mage',
-  'Base Camp',
-  'Terrify',
   'Lucky Gloves',
-  'Age of Dragons',
   'Birthday Present',
 
   // SET 8
