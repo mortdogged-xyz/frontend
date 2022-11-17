@@ -2191,7 +2191,7 @@
         },
         {
             "apiName": "TFT6_Augment_MeleeStarBlade1",
-            "desc": "Your units that start combat in the front 2 rows gain @ADPerStarLevel*100@ Attack Damage.",
+            "desc": "Your units that start combat in the front 2 rows gain @ADPerStarLevel*100@% Attack Damage.",
             "effects": {
                 "{d9291863}": 0.20000000298023224
             },
@@ -2213,7 +2213,7 @@
         },
         {
             "apiName": "TFT6_Augment_MeleeStarBlade3",
-            "desc": "Your units that start combat in the front 2 rows gain @ADPerStarLevel*100@ Attack Damage.",
+            "desc": "Your units that start combat in the front 2 rows gain @ADPerStarLevel*100@% Attack Damage.",
             "effects": {
                 "{d9291863}": 0.4000000059604645
             },
@@ -2225,7 +2225,7 @@
         },
         {
             "apiName": "TFT6_Augment_MeleeStarBlade2",
-            "desc": "Your units that start combat in the front 2 rows gain @ADPerStarLevel*100@ Attack Damage.",
+            "desc": "Your units that start combat in the front 2 rows gain @ADPerStarLevel*100@% Attack Damage.",
             "effects": {
                 "{d9291863}": 0.30000001192092896
             },
@@ -5238,7 +5238,7 @@
             "desc": "Grant %i:scaleAP% @BonusAP@ bonus Ability Power.",
             "effects": {
                 "AP": 20.0,
-                "{d49caf5d}": 40.0
+                "{d49caf5d}": 65.0
             },
             "from": [
                 3,
@@ -7235,7 +7235,7 @@
             "desc": "Gain a Taliyah. Combat start: She shields the @TargetCount@ highest Health allies for @HealthPercent*100@% of their maximum Health.",
             "effects": {
                 "Duration": 60.0,
-                "HealthPercent": 0.5,
+                "HealthPercent": 1.0,
                 "{c188a147}": 3.0
             },
             "from": [],
@@ -7284,8 +7284,8 @@
             "desc": "Gain a Sivir. Every Ability cast, she drops @BaseGold@ gold with a @GoldChance@% chance to drop @AdditionalGold@ extra gold.",
             "effects": {
                 "BaseGold": 2.0,
-                "{2dd33743}": 10.0,
-                "{43550802}": 6.0
+                "{2dd33743}": 8.0,
+                "{43550802}": 4.0
             },
             "from": [],
             "icon": "ASSETS/Characters/TFT8_Sivir/HUD/TFT8_Sivir.TFT_Set8.dds",
@@ -7396,7 +7396,7 @@
             "desc": "Gain a Sona. She gains @BonusAP@ Ability Power and her Ability fires @AdditionalTargets@ additional beam.",
             "effects": {
                 "AdditionalTargets": 1.0,
-                "{d49caf5d}": 20.0
+                "{d49caf5d}": 30.0
             },
             "from": [],
             "icon": "ASSETS/Characters/TFT8_Sona/HUD/TFT8_Sona.TFT_Set8.dds",
@@ -7467,7 +7467,7 @@
             "desc": "Gain a Lux. Every @CastInterval@nd cast, her Ability deals @DamageIncreasePercent*100@% more damage.",
             "effects": {
                 "{aa04fb6b}": 2.0,
-                "{d50b4559}": 1.75
+                "{d50b4559}": 2.0
             },
             "from": [],
             "icon": "ASSETS/Characters/TFT8_Lux/HUD/TFT8_Lux.TFT_Set8.dds",
@@ -7479,8 +7479,8 @@
             "apiName": "TFT8_Augment_AlistarBeefUp",
             "desc": "Gain an Alistar. He has @BonusHealth@ bonus Health and his Ability deals bonus damage equal to @PercentHealth@% of his maximum Health.",
             "effects": {
-                "BonusHealth": 450.0,
-                "PercentHealth": 20.0
+                "BonusHealth": 500.0,
+                "PercentHealth": 30.0
             },
             "from": [],
             "icon": "ASSETS/Characters/TFT8_Alistar/HUD/TFT8_Alistar.TFT_Set8.dds",
@@ -7576,7 +7576,7 @@
             "desc": "Gain a Jinx. When she scores a takedown, she gains @BonusSpeed*100@% Attack Speed and movement speed for @Duration@ seconds.",
             "effects": {
                 "Duration": 5.0,
-                "{4eebf7ef}": 1.2000000476837158
+                "{4eebf7ef}": 1.100000023841858
             },
             "from": [],
             "icon": "ASSETS/Characters/TFT8_Jinx/HUD/TFT8_Jinx.TFT_Set8.dds",
@@ -7641,9 +7641,9 @@
         },
         {
             "apiName": "TFT8_Augment_BlitzcrankCarry",
-            "desc": "Gain a Blitzcrank and a Gargoyle Stoneplate. When he casts his Ability, its duration increases by @DurationIncrease@ second per enemy targeting him.",
+            "desc": "Gain a Blitzcrank and a Gargoyle Stoneplate. When he casts his Ability, its duration increases by @DurationIncrease@ seconds per enemy targeting him.",
             "effects": {
-                "{75fd67f5}": 1.5,
+                "{75fd67f5}": 2.0,
                 "{f443fa66}": 1.0
             },
             "from": [],
@@ -7657,7 +7657,7 @@
             "desc": "Your team counts as having 1 additional Gadgeteen. Gain an Ionic Spark and an Annie.",
             "effects": {},
             "from": [],
-            "icon": "ASSETS/Maps/TFT/Icons/Augments/Hexcore/Gadgeteens-Heart-II.TFT_Set8.dds",
+            "icon": "ASSETS/Maps/TFT/Icons/Augments/Hexcore/Gadgeteens-Crown-III.TFT_Set8.dds",
             "id": 9681,
             "name": "Gadgeteen Soul",
             "unique": false
@@ -8450,8 +8450,8 @@
             "apiName": "TFT8_Augment_NasusCarry",
             "desc": "Gain a Nasus. He has @StartingAD@% Attack Damage, which increases permanently by @StackingAD@% when he casts his Ability.",
             "effects": {
-                "{9c6a27a4}": 25.0,
-                "{b3b8f644}": 3.0
+                "{9c6a27a4}": 15.0,
+                "{b3b8f644}": 2.0
             },
             "from": [],
             "icon": "ASSETS/Characters/TFT8_Nasus/HUD/TFT8_Nasus.TFT_Set8.dds",
@@ -8464,7 +8464,7 @@
             "desc": "Your team counts as having 1 additional Underground. Gain a Hextech Gunblade and an Ezreal.",
             "effects": {},
             "from": [],
-            "icon": "ASSETS/Maps/TFT/Icons/Augments/Hexcore/The-Underground-Heart-II.TFT_Set8.dds",
+            "icon": "ASSETS/Maps/TFT/Icons/Augments/Hexcore/The-Underground-Crown-III.TFT_Set8.dds",
             "id": 9682,
             "name": "Underground Soul",
             "unique": false
@@ -8590,11 +8590,11 @@
         },
         {
             "apiName": "TFT8_Augment_CamilleCarry",
-            "desc": "Gain a Camille. She has @BonusAD@% Attack Damage. When she casts her Ability, she gains a shield equal to @ADScaling*100@% of her Attack Damage for @ShieldDuration@ seconds.",
+            "desc": "Gain a Camille. She has @BonusAD@% Attack Damage. The first time she drops below @HealthThreshold*100@% Health, she gains a shield equal to @ADScaling*100@% of her Attack Damage.",
             "effects": {
-                "ADScaling": 3.0,
-                "BonusAD": 30.0,
-                "ShieldDuration": 3.0
+                "ADScaling": 6.0,
+                "BonusAD": 50.0,
+                "HealthThreshold": 0.5
             },
             "from": [],
             "icon": "ASSETS/Characters/TFT8_Camille/HUD/TFT8_Camille.TFT_Set8.dds",
@@ -8751,7 +8751,7 @@
             "desc": "Your team counts as having 1 additional Underground. Gain a Vi.",
             "effects": {},
             "from": [],
-            "icon": "ASSETS/Maps/TFT/Icons/Augments/Hexcore/The-Underground-Heart-I.TFT_Set8.dds",
+            "icon": "ASSETS/Maps/TFT/Icons/Augments/Hexcore/The-Underground-Heart-II.TFT_Set8.dds",
             "id": 9618,
             "name": "Underground Heart",
             "unique": false
@@ -8810,7 +8810,7 @@
             "desc": "Your team counts as having 1 additional Super. Gain a Malphite.",
             "effects": {},
             "from": [],
-            "icon": "ASSETS/Maps/TFT/Icons/Augments/Hexcore/Supers-Heart-I.TFT_Set8.dds",
+            "icon": "ASSETS/Maps/TFT/Icons/Augments/Hexcore/Supers-Heart-II.TFT_Set8.dds",
             "id": 9742,
             "name": "Supers Heart",
             "unique": false
@@ -8845,7 +8845,7 @@
             "desc": "Your team counts as having 1 additional Gadgeteen. Gain an Annie.",
             "effects": {},
             "from": [],
-            "icon": "ASSETS/Maps/TFT/Icons/Augments/Hexcore/Gadgeteens-Heart-I.TFT_Set8.dds",
+            "icon": "ASSETS/Maps/TFT/Icons/Augments/Hexcore/Gadgeteens-Heart-II.TFT_Set8.dds",
             "id": 9608,
             "name": "Gadgeteen Heart",
             "unique": false
@@ -9077,7 +9077,7 @@
             "from": [],
             "icon": "ASSETS/Maps/TFT/Icons/Augments/Hexcore/Renegade-Heart.TFT_Set8.dds",
             "id": 9616,
-            "name": "Renegade Heart<br>",
+            "name": "Renegade Heart",
             "unique": false
         },
         {
@@ -9094,7 +9094,7 @@
         },
         {
             "apiName": "TFT8_Augment_YuumiCarry",
-            "desc": "Gain a Yuumi. She has @BonusCritChance*100@% Critical Strike Chance, and her Ability can critically strike.",
+            "desc": "Gain a Yuumi. She gains @BonusCritChance*100@% Critical Strike Chance, and her Ability can critically strike.",
             "effects": {
                 "{c34a89ec}": 0.75
             },
@@ -9130,7 +9130,7 @@
             "apiName": "TFT8_Augment_LeeSinCarry",
             "desc": "Gain a Lee Sin. He has @BonusAS@% Attack Speed, tripled for @Duration@ seconds after casting his Ability.",
             "effects": {
-                "BonusAS": 45.0,
+                "BonusAS": 50.0,
                 "Duration": 3.0
             },
             "from": [],
@@ -9397,7 +9397,7 @@
             "desc": "Your team counts as having 1 additional Super. Gain a Titan's Resolve and a Lee Sin.",
             "effects": {},
             "from": [],
-            "icon": "ASSETS/Maps/TFT/Icons/Augments/Hexcore/Supers-Heart-II.TFT_Set8.dds",
+            "icon": "ASSETS/Maps/TFT/Icons/Augments/Hexcore/Supers-Crown-III.TFT_Set8.dds",
             "id": 9743,
             "name": "Supers Soul",
             "unique": false
@@ -11575,7 +11575,7 @@
             "from": [],
             "icon": "ASSETS/Maps/Particles/TFT/Item_Icons/Traits/Set8_MechaPrime/TFT8_MechaPrime_Consumable.TFT_Set8.dds",
             "id": 2433,
-            "name": "PRIME selector",
+            "name": "PRIME Selector",
             "unique": false
         },
         {
@@ -11776,12 +11776,12 @@
             "apiName": "TFT_Item_PowerGauntlet",
             "desc": "Grant %i:scaleAD% @BonusAD*100@% bonus Attack Damage and %i:scaleAP% @BonusAP@ bonus Ability Power. After damaging a shielded enemy, Abilities and attacks deal @DamageAmpPct@% more damage for @Duration@ seconds.",
             "effects": {
-                "BonusAD": 0.15000000596046448,
+                "BonusAD": 0.20000000298023224,
                 "CritChance": 20.0,
                 "Duration": 3.0,
                 "Health": 150.0,
                 "{6689e9ad}": 25.0,
-                "{d49caf5d}": 15.0
+                "{d49caf5d}": 20.0
             },
             "from": [
                 7,
@@ -11975,8 +11975,8 @@
             "effects": {
                 "Armor": 20.0,
                 "MagicResist": 20.0,
-                "{7ba8c0e3}": 13.0,
-                "{7c694b41}": 13.0
+                "{7ba8c0e3}": 15.0,
+                "{7c694b41}": 15.0
             },
             "from": [
                 5,
@@ -12290,10 +12290,10 @@
             "effects": {
                 "AD": 0.10000000149011612,
                 "AS": 10.0,
-                "BonusAD": 0.15000000596046448,
-                "HealthThreshold": 1900.0,
+                "BonusAD": 0.20000000298023224,
+                "HealthThreshold": 1800.0,
                 "{b8ae7546}": 25.0,
-                "{d49caf5d}": 15.0
+                "{d49caf5d}": 2.0
             },
             "from": [
                 1,
@@ -13170,7 +13170,7 @@
             "desc": "Grant %i:scaleAS% @BonusAS@% bonus Attack Speed and %i:scaleRange% @HexRangeIncrease@ bonus Attack Range.<br><br>Attacks cannot miss.",
             "effects": {
                 "AS": 20.0,
-                "BonusAS": 25.0,
+                "BonusAS": 30.0,
                 "{16394c87}": 1.0,
                 "{9f5117db}": 100.0
             },
@@ -13482,7 +13482,7 @@
                 "BonusAS": 30.0,
                 "CritChance": 20.0,
                 "MagicResist": 20.0,
-                "{a2b76524}": 10.0
+                "{a2b76524}": 15.0
             },
             "from": [
                 9,
@@ -20234,7 +20234,7 @@
                         "critChance": 0.25,
                         "critMultiplier": 1.399999976158142,
                         "damage": 50.0,
-                        "hp": 750.0,
+                        "hp": 700.0,
                         "initialMana": 30.0,
                         "magicResist": 45.0,
                         "mana": 100,
@@ -20445,7 +20445,7 @@
                         "hp": 600.0,
                         "initialMana": 0,
                         "magicResist": 20.0,
-                        "mana": 80.0,
+                        "mana": 70.0,
                         "range": 4.0
                     },
                     "traits": [
@@ -20695,9 +20695,9 @@
                                 "name": "HealAmount",
                                 "value": [
                                     0.0,
-                                    250.0,
-                                    300.0,
-                                    375.0,
+                                    275.0,
+                                    325.0,
+                                    400.0,
                                     0.0,
                                     0.0,
                                     0.0
@@ -20754,7 +20754,7 @@
                         "hp": 800.0,
                         "initialMana": 50.0,
                         "magicResist": 45.0,
-                        "mana": 150.0,
+                        "mana": 125.0,
                         "range": 1.0
                     },
                     "traits": [
@@ -21143,9 +21143,9 @@
                                 "name": "MinADPercent",
                                 "value": [
                                     1.5,
-                                    1.2000000476837158,
-                                    1.25,
-                                    2.0,
+                                    1.399999976158142,
+                                    1.5,
+                                    3.0,
                                     1.5,
                                     1.5,
                                     1.5
@@ -21167,9 +21167,9 @@
                                 "name": "MaxADPercent",
                                 "value": [
                                     2.0,
-                                    2.4000000953674316,
-                                    2.5,
-                                    4.0,
+                                    2.799999952316284,
+                                    3.0,
+                                    6.0,
                                     2.0,
                                     2.0,
                                     2.0
@@ -21273,8 +21273,8 @@
                                 "name": "MaxHealthPerSec",
                                 "value": [
                                     0.0,
-                                    450.0,
-                                    650.0,
+                                    500.0,
+                                    750.0,
                                     5000.0,
                                     0.0,
                                     0.0,
@@ -21339,9 +21339,9 @@
                                 "name": "StackDamage",
                                 "value": [
                                     50.0,
-                                    40.0,
-                                    60.0,
-                                    100.0,
+                                    35.0,
+                                    50.0,
+                                    90.0,
                                     50.0,
                                     50.0,
                                     50.0
@@ -21635,9 +21635,9 @@
                                 "name": "AutoAttackBonus",
                                 "value": [
                                     0.0,
-                                    30.0,
-                                    45.0,
-                                    120.0,
+                                    40.0,
+                                    60.0,
+                                    200.0,
                                     80.0,
                                     100.0,
                                     120.0
@@ -22053,8 +22053,8 @@
                                 "name": "Damage",
                                 "value": [
                                     0.0,
-                                    270.0,
-                                    400.0,
+                                    250.0,
+                                    375.0,
                                     900.0,
                                     0.0,
                                     0.0,
@@ -22077,8 +22077,8 @@
                                 "name": "AOEDamage",
                                 "value": [
                                     0.0,
-                                    135.0,
-                                    200.0,
+                                    125.0,
+                                    195.0,
                                     450.0,
                                     0.0,
                                     0.0,
@@ -22100,7 +22100,7 @@
                         "hp": 800.0,
                         "initialMana": 0,
                         "magicResist": 50.0,
-                        "mana": 75.0,
+                        "mana": 65.0,
                         "range": 1.0
                     },
                     "traits": [
@@ -22265,7 +22265,7 @@
                 },
                 {
                     "ability": {
-                        "desc": "Samira knocks her target in the air for @Duration@ seconds and rapidly fires bullets that deal a total of <scaleAD>@TotalDamage@</scaleAD> physical damage (@DamagePercent*100@% Attack Damage %i:scaleAD% + @ModifiedBonusDamage@). Bullets ricochet to nearby enemies for @ReducedDamagePercent*100@% less damage.",
+                        "desc": "Samira rapidly fires bullets that deal a total of <scaleAD>@TotalDamage@</scaleAD> physical damage (@DamagePercent*100@% Attack Damage %i:scaleAD% + @ModifiedBonusDamage@). Bullets ricochet to nearby enemies for @ReducedDamagePercent*100@% less damage.",
                         "icon": "ASSETS/Characters/Samira/HUD/Icons2D/SamiraP.dds",
                         "name": "Flair",
                         "variables": [
@@ -22308,13 +22308,13 @@
                             {
                                 "name": "ReducedDamagePercent",
                                 "value": [
-                                    0.5,
-                                    0.5,
-                                    0.5,
-                                    0.5,
-                                    0.5,
-                                    0.5,
-                                    0.5
+                                    0.30000001192092896,
+                                    0.30000001192092896,
+                                    0.30000001192092896,
+                                    0.30000001192092896,
+                                    0.30000001192092896,
+                                    0.30000001192092896,
+                                    0.30000001192092896
                                 ]
                             },
                             {
@@ -22342,9 +22342,9 @@
                         "critMultiplier": 1.399999976158142,
                         "damage": 70.0,
                         "hp": 700.0,
-                        "initialMana": 30.0,
+                        "initialMana": 0,
                         "magicResist": 30.0,
-                        "mana": 90.0,
+                        "mana": 75.0,
                         "range": 4.0
                     },
                     "traits": [
@@ -22488,7 +22488,7 @@
                         "hp": 500.0,
                         "initialMana": 0,
                         "magicResist": 15.0,
-                        "mana": 60.0,
+                        "mana": 50.0,
                         "range": 4.0
                     },
                     "traits": [
@@ -22518,8 +22518,8 @@
                                 "name": "Damage",
                                 "value": [
                                     0.0,
-                                    500.0,
-                                    750.0,
+                                    475.0,
+                                    715.0,
                                     1500.0,
                                     0.0,
                                     0.0,
@@ -22583,13 +22583,13 @@
                             {
                                 "name": "IncreasedDamagePercent",
                                 "value": [
-                                    0.5,
-                                    0.5,
-                                    0.5,
-                                    0.5,
-                                    0.5,
-                                    0.5,
-                                    0.5
+                                    0.4000000059604645,
+                                    0.4000000059604645,
+                                    0.4000000059604645,
+                                    0.4000000059604645,
+                                    0.4000000059604645,
+                                    0.4000000059604645,
+                                    0.4000000059604645
                                 ]
                             },
                             {
@@ -22685,9 +22685,9 @@
                                 "name": "DRReductionPercent",
                                 "value": [
                                     0.0,
-                                    0.4000000059604645,
-                                    0.5,
-                                    0.6000000238418579,
+                                    0.44999998807907104,
+                                    0.550000011920929,
+                                    0.6499999761581421,
                                     0.0,
                                     0.0,
                                     0.0
@@ -22700,14 +22700,14 @@
                     "icon": "ASSETS/UX/TFT/ChampionSplashes/TFT8_Blitzcrank.TFT_Set8.dds",
                     "name": "Blitzcrank",
                     "stats": {
-                        "armor": 40.0,
+                        "armor": 45.0,
                         "attackSpeed": 0.5,
                         "critChance": 0.25,
                         "critMultiplier": 1.399999976158142,
                         "damage": 50.0,
                         "hp": 650.0,
                         "initialMana": 45.0,
-                        "magicResist": 40.0,
+                        "magicResist": 45.0,
                         "mana": 90.0,
                         "range": 1.0
                     },
@@ -23151,9 +23151,9 @@
                                 "name": "Damage",
                                 "value": [
                                     0.0,
-                                    180.0,
-                                    270.0,
-                                    500.0,
+                                    200.0,
+                                    300.0,
+                                    600.0,
                                     3000.0,
                                     3000.0,
                                     3000.0
@@ -23475,9 +23475,9 @@
                                 "name": "Damage",
                                 "value": [
                                     0.0,
-                                    80.0,
-                                    120.0,
-                                    1000.0,
+                                    100.0,
+                                    150.0,
+                                    1500.0,
                                     0.0,
                                     0.0,
                                     0.0
@@ -23486,13 +23486,13 @@
                             {
                                 "name": "HPPercentDamage",
                                 "value": [
-                                    0.11999999731779099,
-                                    0.11999999731779099,
-                                    0.11999999731779099,
-                                    0.11999999731779099,
-                                    0.11999999731779099,
-                                    0.11999999731779099,
-                                    0.11999999731779099
+                                    0.18000000715255737,
+                                    0.18000000715255737,
+                                    0.18000000715255737,
+                                    0.18000000715255737,
+                                    0.18000000715255737,
+                                    0.18000000715255737,
+                                    0.18000000715255737
                                 ]
                             },
                             {
@@ -23518,7 +23518,7 @@
                         "attackSpeed": 0.75,
                         "critChance": 0.25,
                         "critMultiplier": 1.399999976158142,
-                        "damage": 75.0,
+                        "damage": 60.0,
                         "hp": 1050.0,
                         "initialMana": 0,
                         "magicResist": 65.0,
@@ -23871,9 +23871,9 @@
                         "critMultiplier": 1.399999976158142,
                         "damage": 40.0,
                         "hp": 550.0,
-                        "initialMana": 30.0,
+                        "initialMana": 0,
                         "magicResist": 20.0,
-                        "mana": 75.0,
+                        "mana": 60.0,
                         "range": 6.0
                     },
                     "traits": [
@@ -23920,14 +23920,14 @@
                     "name": "Yasuo",
                     "stats": {
                         "armor": 40.0,
-                        "attackSpeed": 0.699999988079071,
+                        "attackSpeed": 0.75,
                         "critChance": 0.25,
                         "critMultiplier": 1.399999976158142,
                         "damage": 45.0,
                         "hp": 750.0,
-                        "initialMana": 20.0,
+                        "initialMana": 0,
                         "magicResist": 40.0,
-                        "mana": 100,
+                        "mana": 90.0,
                         "range": 1.0
                     },
                     "traits": [
@@ -24886,7 +24886,7 @@
                             "style": 1,
                             "variables": {
                                 "HealthPercent": 110.0,
-                                "{b19c3b58}": 50.0,
+                                "{b19c3b58}": 70.0,
                                 "{bc3d5e29}": 70.0
                             }
                         },
@@ -24896,7 +24896,7 @@
                             "style": 4,
                             "variables": {
                                 "HealthPercent": 110.0,
-                                "{b19c3b58}": 35.0,
+                                "{b19c3b58}": 50.0,
                                 "{bc3d5e29}": 50.0
                             }
                         }
@@ -24987,7 +24987,7 @@
                                 "{d625554d}": 30.0,
                                 "{e412bacb}": 10.0,
                                 "{e512bc5e}": 10.0,
-                                "{e612bdf1}": 60.0
+                                "{e612bdf1}": 45.0
                             }
                         }
                     ],
@@ -25087,13 +25087,23 @@
                             }
                         },
                         {
-                            "maxUnits": 25000,
+                            "maxUnits": 7,
                             "minUnits": 6,
                             "style": 4,
                             "variables": {
-                                "MaxAttackSpeed": 180.0,
-                                "{21c0601a}": 90.0,
-                                "{66b6cdea}": 1.0
+                                "MaxAttackSpeed": 160.0,
+                                "{21c0601a}": 80.0,
+                                "{66b6cdea}": 1.5
+                            }
+                        },
+                        {
+                            "maxUnits": 25000,
+                            "minUnits": 8,
+                            "style": 5,
+                            "variables": {
+                                "MaxAttackSpeed": 300.0,
+                                "{21c0601a}": 150.0,
+                                "{66b6cdea}": 1.5
                             }
                         }
                     ],
@@ -25364,7 +25374,7 @@
                             "style": 1,
                             "variables": {
                                 "AP": 25.0,
-                                "MagicDamage": 80.0,
+                                "MagicDamage": 90.0,
                                 "{b258b089}": 5.0
                             }
                         },
@@ -25373,8 +25383,8 @@
                             "minUnits": 4,
                             "style": 4,
                             "variables": {
-                                "AP": 65.0,
-                                "MagicDamage": 80.0,
+                                "AP": 60.0,
+                                "MagicDamage": 90.0,
                                 "{b258b089}": 5.0
                             }
                         },
@@ -25383,8 +25393,8 @@
                             "minUnits": 6,
                             "style": 5,
                             "variables": {
-                                "AP": 125.0,
-                                "MagicDamage": 80.0,
+                                "AP": 100.0,
+                                "MagicDamage": 90.0,
                                 "{b258b089}": 5.0
                             }
                         }
@@ -31811,7 +31821,7 @@
                         "critChance": 0.25,
                         "critMultiplier": 1.399999976158142,
                         "damage": 50.0,
-                        "hp": 750.0,
+                        "hp": 700.0,
                         "initialMana": 30.0,
                         "magicResist": 45.0,
                         "mana": 100,
@@ -32022,7 +32032,7 @@
                         "hp": 600.0,
                         "initialMana": 0,
                         "magicResist": 20.0,
-                        "mana": 80.0,
+                        "mana": 70.0,
                         "range": 4.0
                     },
                     "traits": [
@@ -32272,9 +32282,9 @@
                                 "name": "HealAmount",
                                 "value": [
                                     0.0,
-                                    250.0,
-                                    300.0,
-                                    375.0,
+                                    275.0,
+                                    325.0,
+                                    400.0,
                                     0.0,
                                     0.0,
                                     0.0
@@ -32331,7 +32341,7 @@
                         "hp": 800.0,
                         "initialMana": 50.0,
                         "magicResist": 45.0,
-                        "mana": 150.0,
+                        "mana": 125.0,
                         "range": 1.0
                     },
                     "traits": [
@@ -32720,9 +32730,9 @@
                                 "name": "MinADPercent",
                                 "value": [
                                     1.5,
-                                    1.2000000476837158,
-                                    1.25,
-                                    2.0,
+                                    1.399999976158142,
+                                    1.5,
+                                    3.0,
                                     1.5,
                                     1.5,
                                     1.5
@@ -32744,9 +32754,9 @@
                                 "name": "MaxADPercent",
                                 "value": [
                                     2.0,
-                                    2.4000000953674316,
-                                    2.5,
-                                    4.0,
+                                    2.799999952316284,
+                                    3.0,
+                                    6.0,
                                     2.0,
                                     2.0,
                                     2.0
@@ -32850,8 +32860,8 @@
                                 "name": "MaxHealthPerSec",
                                 "value": [
                                     0.0,
-                                    450.0,
-                                    650.0,
+                                    500.0,
+                                    750.0,
                                     5000.0,
                                     0.0,
                                     0.0,
@@ -32916,9 +32926,9 @@
                                 "name": "StackDamage",
                                 "value": [
                                     50.0,
-                                    40.0,
-                                    60.0,
-                                    100.0,
+                                    35.0,
+                                    50.0,
+                                    90.0,
                                     50.0,
                                     50.0,
                                     50.0
@@ -33212,9 +33222,9 @@
                                 "name": "AutoAttackBonus",
                                 "value": [
                                     0.0,
-                                    30.0,
-                                    45.0,
-                                    120.0,
+                                    40.0,
+                                    60.0,
+                                    200.0,
                                     80.0,
                                     100.0,
                                     120.0
@@ -33630,8 +33640,8 @@
                                 "name": "Damage",
                                 "value": [
                                     0.0,
-                                    270.0,
-                                    400.0,
+                                    250.0,
+                                    375.0,
                                     900.0,
                                     0.0,
                                     0.0,
@@ -33654,8 +33664,8 @@
                                 "name": "AOEDamage",
                                 "value": [
                                     0.0,
-                                    135.0,
-                                    200.0,
+                                    125.0,
+                                    195.0,
                                     450.0,
                                     0.0,
                                     0.0,
@@ -33677,7 +33687,7 @@
                         "hp": 800.0,
                         "initialMana": 0,
                         "magicResist": 50.0,
-                        "mana": 75.0,
+                        "mana": 65.0,
                         "range": 1.0
                     },
                     "traits": [
@@ -33842,7 +33852,7 @@
                 },
                 {
                     "ability": {
-                        "desc": "Samira knocks her target in the air for @Duration@ seconds and rapidly fires bullets that deal a total of <scaleAD>@TotalDamage@</scaleAD> physical damage (@DamagePercent*100@% Attack Damage %i:scaleAD% + @ModifiedBonusDamage@). Bullets ricochet to nearby enemies for @ReducedDamagePercent*100@% less damage.",
+                        "desc": "Samira rapidly fires bullets that deal a total of <scaleAD>@TotalDamage@</scaleAD> physical damage (@DamagePercent*100@% Attack Damage %i:scaleAD% + @ModifiedBonusDamage@). Bullets ricochet to nearby enemies for @ReducedDamagePercent*100@% less damage.",
                         "icon": "ASSETS/Characters/Samira/HUD/Icons2D/SamiraP.dds",
                         "name": "Flair",
                         "variables": [
@@ -33885,13 +33895,13 @@
                             {
                                 "name": "ReducedDamagePercent",
                                 "value": [
-                                    0.5,
-                                    0.5,
-                                    0.5,
-                                    0.5,
-                                    0.5,
-                                    0.5,
-                                    0.5
+                                    0.30000001192092896,
+                                    0.30000001192092896,
+                                    0.30000001192092896,
+                                    0.30000001192092896,
+                                    0.30000001192092896,
+                                    0.30000001192092896,
+                                    0.30000001192092896
                                 ]
                             },
                             {
@@ -33919,9 +33929,9 @@
                         "critMultiplier": 1.399999976158142,
                         "damage": 70.0,
                         "hp": 700.0,
-                        "initialMana": 30.0,
+                        "initialMana": 0,
                         "magicResist": 30.0,
-                        "mana": 90.0,
+                        "mana": 75.0,
                         "range": 4.0
                     },
                     "traits": [
@@ -34065,7 +34075,7 @@
                         "hp": 500.0,
                         "initialMana": 0,
                         "magicResist": 15.0,
-                        "mana": 60.0,
+                        "mana": 50.0,
                         "range": 4.0
                     },
                     "traits": [
@@ -34095,8 +34105,8 @@
                                 "name": "Damage",
                                 "value": [
                                     0.0,
-                                    500.0,
-                                    750.0,
+                                    475.0,
+                                    715.0,
                                     1500.0,
                                     0.0,
                                     0.0,
@@ -34160,13 +34170,13 @@
                             {
                                 "name": "IncreasedDamagePercent",
                                 "value": [
-                                    0.5,
-                                    0.5,
-                                    0.5,
-                                    0.5,
-                                    0.5,
-                                    0.5,
-                                    0.5
+                                    0.4000000059604645,
+                                    0.4000000059604645,
+                                    0.4000000059604645,
+                                    0.4000000059604645,
+                                    0.4000000059604645,
+                                    0.4000000059604645,
+                                    0.4000000059604645
                                 ]
                             },
                             {
@@ -34262,9 +34272,9 @@
                                 "name": "DRReductionPercent",
                                 "value": [
                                     0.0,
-                                    0.4000000059604645,
-                                    0.5,
-                                    0.6000000238418579,
+                                    0.44999998807907104,
+                                    0.550000011920929,
+                                    0.6499999761581421,
                                     0.0,
                                     0.0,
                                     0.0
@@ -34277,14 +34287,14 @@
                     "icon": "ASSETS/UX/TFT/ChampionSplashes/TFT8_Blitzcrank.TFT_Set8.dds",
                     "name": "Blitzcrank",
                     "stats": {
-                        "armor": 40.0,
+                        "armor": 45.0,
                         "attackSpeed": 0.5,
                         "critChance": 0.25,
                         "critMultiplier": 1.399999976158142,
                         "damage": 50.0,
                         "hp": 650.0,
                         "initialMana": 45.0,
-                        "magicResist": 40.0,
+                        "magicResist": 45.0,
                         "mana": 90.0,
                         "range": 1.0
                     },
@@ -34728,9 +34738,9 @@
                                 "name": "Damage",
                                 "value": [
                                     0.0,
-                                    180.0,
-                                    270.0,
-                                    500.0,
+                                    200.0,
+                                    300.0,
+                                    600.0,
                                     3000.0,
                                     3000.0,
                                     3000.0
@@ -35052,9 +35062,9 @@
                                 "name": "Damage",
                                 "value": [
                                     0.0,
-                                    80.0,
-                                    120.0,
-                                    1000.0,
+                                    100.0,
+                                    150.0,
+                                    1500.0,
                                     0.0,
                                     0.0,
                                     0.0
@@ -35063,13 +35073,13 @@
                             {
                                 "name": "HPPercentDamage",
                                 "value": [
-                                    0.11999999731779099,
-                                    0.11999999731779099,
-                                    0.11999999731779099,
-                                    0.11999999731779099,
-                                    0.11999999731779099,
-                                    0.11999999731779099,
-                                    0.11999999731779099
+                                    0.18000000715255737,
+                                    0.18000000715255737,
+                                    0.18000000715255737,
+                                    0.18000000715255737,
+                                    0.18000000715255737,
+                                    0.18000000715255737,
+                                    0.18000000715255737
                                 ]
                             },
                             {
@@ -35095,7 +35105,7 @@
                         "attackSpeed": 0.75,
                         "critChance": 0.25,
                         "critMultiplier": 1.399999976158142,
-                        "damage": 75.0,
+                        "damage": 60.0,
                         "hp": 1050.0,
                         "initialMana": 0,
                         "magicResist": 65.0,
@@ -35448,9 +35458,9 @@
                         "critMultiplier": 1.399999976158142,
                         "damage": 40.0,
                         "hp": 550.0,
-                        "initialMana": 30.0,
+                        "initialMana": 0,
                         "magicResist": 20.0,
-                        "mana": 75.0,
+                        "mana": 60.0,
                         "range": 6.0
                     },
                     "traits": [
@@ -35497,14 +35507,14 @@
                     "name": "Yasuo",
                     "stats": {
                         "armor": 40.0,
-                        "attackSpeed": 0.699999988079071,
+                        "attackSpeed": 0.75,
                         "critChance": 0.25,
                         "critMultiplier": 1.399999976158142,
                         "damage": 45.0,
                         "hp": 750.0,
-                        "initialMana": 20.0,
+                        "initialMana": 0,
                         "magicResist": 40.0,
-                        "mana": 100,
+                        "mana": 90.0,
                         "range": 1.0
                     },
                     "traits": [
@@ -36463,7 +36473,7 @@
                             "style": 1,
                             "variables": {
                                 "HealthPercent": 110.0,
-                                "{b19c3b58}": 50.0,
+                                "{b19c3b58}": 70.0,
                                 "{bc3d5e29}": 70.0
                             }
                         },
@@ -36473,7 +36483,7 @@
                             "style": 4,
                             "variables": {
                                 "HealthPercent": 110.0,
-                                "{b19c3b58}": 35.0,
+                                "{b19c3b58}": 50.0,
                                 "{bc3d5e29}": 50.0
                             }
                         }
@@ -36564,7 +36574,7 @@
                                 "{d625554d}": 30.0,
                                 "{e412bacb}": 10.0,
                                 "{e512bc5e}": 10.0,
-                                "{e612bdf1}": 60.0
+                                "{e612bdf1}": 45.0
                             }
                         }
                     ],
@@ -36664,13 +36674,23 @@
                             }
                         },
                         {
-                            "maxUnits": 25000,
+                            "maxUnits": 7,
                             "minUnits": 6,
                             "style": 4,
                             "variables": {
-                                "MaxAttackSpeed": 180.0,
-                                "{21c0601a}": 90.0,
-                                "{66b6cdea}": 1.0
+                                "MaxAttackSpeed": 160.0,
+                                "{21c0601a}": 80.0,
+                                "{66b6cdea}": 1.5
+                            }
+                        },
+                        {
+                            "maxUnits": 25000,
+                            "minUnits": 8,
+                            "style": 5,
+                            "variables": {
+                                "MaxAttackSpeed": 300.0,
+                                "{21c0601a}": 150.0,
+                                "{66b6cdea}": 1.5
                             }
                         }
                     ],
@@ -36941,7 +36961,7 @@
                             "style": 1,
                             "variables": {
                                 "AP": 25.0,
-                                "MagicDamage": 80.0,
+                                "MagicDamage": 90.0,
                                 "{b258b089}": 5.0
                             }
                         },
@@ -36950,8 +36970,8 @@
                             "minUnits": 4,
                             "style": 4,
                             "variables": {
-                                "AP": 65.0,
-                                "MagicDamage": 80.0,
+                                "AP": 60.0,
+                                "MagicDamage": 90.0,
                                 "{b258b089}": 5.0
                             }
                         },
@@ -36960,8 +36980,8 @@
                             "minUnits": 6,
                             "style": 5,
                             "variables": {
-                                "AP": 125.0,
-                                "MagicDamage": 80.0,
+                                "AP": 100.0,
+                                "MagicDamage": 90.0,
                                 "{b258b089}": 5.0
                             }
                         }
@@ -60860,7 +60880,7 @@
                         "critChance": 0.25,
                         "critMultiplier": 1.399999976158142,
                         "damage": 50.0,
-                        "hp": 750.0,
+                        "hp": 700.0,
                         "initialMana": 30.0,
                         "magicResist": 45.0,
                         "mana": 100,
@@ -61071,7 +61091,7 @@
                         "hp": 600.0,
                         "initialMana": 0,
                         "magicResist": 20.0,
-                        "mana": 80.0,
+                        "mana": 70.0,
                         "range": 4.0
                     },
                     "traits": [
@@ -61321,9 +61341,9 @@
                                 "name": "HealAmount",
                                 "value": [
                                     0.0,
-                                    250.0,
-                                    300.0,
-                                    375.0,
+                                    275.0,
+                                    325.0,
+                                    400.0,
                                     0.0,
                                     0.0,
                                     0.0
@@ -61380,7 +61400,7 @@
                         "hp": 800.0,
                         "initialMana": 50.0,
                         "magicResist": 45.0,
-                        "mana": 150.0,
+                        "mana": 125.0,
                         "range": 1.0
                     },
                     "traits": [
@@ -61769,9 +61789,9 @@
                                 "name": "MinADPercent",
                                 "value": [
                                     1.5,
-                                    1.2000000476837158,
-                                    1.25,
-                                    2.0,
+                                    1.399999976158142,
+                                    1.5,
+                                    3.0,
                                     1.5,
                                     1.5,
                                     1.5
@@ -61793,9 +61813,9 @@
                                 "name": "MaxADPercent",
                                 "value": [
                                     2.0,
-                                    2.4000000953674316,
-                                    2.5,
-                                    4.0,
+                                    2.799999952316284,
+                                    3.0,
+                                    6.0,
                                     2.0,
                                     2.0,
                                     2.0
@@ -61899,8 +61919,8 @@
                                 "name": "MaxHealthPerSec",
                                 "value": [
                                     0.0,
-                                    450.0,
-                                    650.0,
+                                    500.0,
+                                    750.0,
                                     5000.0,
                                     0.0,
                                     0.0,
@@ -61965,9 +61985,9 @@
                                 "name": "StackDamage",
                                 "value": [
                                     50.0,
-                                    40.0,
-                                    60.0,
-                                    100.0,
+                                    35.0,
+                                    50.0,
+                                    90.0,
                                     50.0,
                                     50.0,
                                     50.0
@@ -62261,9 +62281,9 @@
                                 "name": "AutoAttackBonus",
                                 "value": [
                                     0.0,
-                                    30.0,
-                                    45.0,
-                                    120.0,
+                                    40.0,
+                                    60.0,
+                                    200.0,
                                     80.0,
                                     100.0,
                                     120.0
@@ -62679,8 +62699,8 @@
                                 "name": "Damage",
                                 "value": [
                                     0.0,
-                                    270.0,
-                                    400.0,
+                                    250.0,
+                                    375.0,
                                     900.0,
                                     0.0,
                                     0.0,
@@ -62703,8 +62723,8 @@
                                 "name": "AOEDamage",
                                 "value": [
                                     0.0,
-                                    135.0,
-                                    200.0,
+                                    125.0,
+                                    195.0,
                                     450.0,
                                     0.0,
                                     0.0,
@@ -62726,7 +62746,7 @@
                         "hp": 800.0,
                         "initialMana": 0,
                         "magicResist": 50.0,
-                        "mana": 75.0,
+                        "mana": 65.0,
                         "range": 1.0
                     },
                     "traits": [
@@ -62891,7 +62911,7 @@
                 },
                 {
                     "ability": {
-                        "desc": "Samira knocks her target in the air for @Duration@ seconds and rapidly fires bullets that deal a total of <scaleAD>@TotalDamage@</scaleAD> physical damage (@DamagePercent*100@% Attack Damage %i:scaleAD% + @ModifiedBonusDamage@). Bullets ricochet to nearby enemies for @ReducedDamagePercent*100@% less damage.",
+                        "desc": "Samira rapidly fires bullets that deal a total of <scaleAD>@TotalDamage@</scaleAD> physical damage (@DamagePercent*100@% Attack Damage %i:scaleAD% + @ModifiedBonusDamage@). Bullets ricochet to nearby enemies for @ReducedDamagePercent*100@% less damage.",
                         "icon": "ASSETS/Characters/Samira/HUD/Icons2D/SamiraP.dds",
                         "name": "Flair",
                         "variables": [
@@ -62934,13 +62954,13 @@
                             {
                                 "name": "ReducedDamagePercent",
                                 "value": [
-                                    0.5,
-                                    0.5,
-                                    0.5,
-                                    0.5,
-                                    0.5,
-                                    0.5,
-                                    0.5
+                                    0.30000001192092896,
+                                    0.30000001192092896,
+                                    0.30000001192092896,
+                                    0.30000001192092896,
+                                    0.30000001192092896,
+                                    0.30000001192092896,
+                                    0.30000001192092896
                                 ]
                             },
                             {
@@ -62968,9 +62988,9 @@
                         "critMultiplier": 1.399999976158142,
                         "damage": 70.0,
                         "hp": 700.0,
-                        "initialMana": 30.0,
+                        "initialMana": 0,
                         "magicResist": 30.0,
-                        "mana": 90.0,
+                        "mana": 75.0,
                         "range": 4.0
                     },
                     "traits": [
@@ -63114,7 +63134,7 @@
                         "hp": 500.0,
                         "initialMana": 0,
                         "magicResist": 15.0,
-                        "mana": 60.0,
+                        "mana": 50.0,
                         "range": 4.0
                     },
                     "traits": [
@@ -63144,8 +63164,8 @@
                                 "name": "Damage",
                                 "value": [
                                     0.0,
-                                    500.0,
-                                    750.0,
+                                    475.0,
+                                    715.0,
                                     1500.0,
                                     0.0,
                                     0.0,
@@ -63209,13 +63229,13 @@
                             {
                                 "name": "IncreasedDamagePercent",
                                 "value": [
-                                    0.5,
-                                    0.5,
-                                    0.5,
-                                    0.5,
-                                    0.5,
-                                    0.5,
-                                    0.5
+                                    0.4000000059604645,
+                                    0.4000000059604645,
+                                    0.4000000059604645,
+                                    0.4000000059604645,
+                                    0.4000000059604645,
+                                    0.4000000059604645,
+                                    0.4000000059604645
                                 ]
                             },
                             {
@@ -63311,9 +63331,9 @@
                                 "name": "DRReductionPercent",
                                 "value": [
                                     0.0,
-                                    0.4000000059604645,
-                                    0.5,
-                                    0.6000000238418579,
+                                    0.44999998807907104,
+                                    0.550000011920929,
+                                    0.6499999761581421,
                                     0.0,
                                     0.0,
                                     0.0
@@ -63326,14 +63346,14 @@
                     "icon": "ASSETS/UX/TFT/ChampionSplashes/TFT8_Blitzcrank.TFT_Set8.dds",
                     "name": "Blitzcrank",
                     "stats": {
-                        "armor": 40.0,
+                        "armor": 45.0,
                         "attackSpeed": 0.5,
                         "critChance": 0.25,
                         "critMultiplier": 1.399999976158142,
                         "damage": 50.0,
                         "hp": 650.0,
                         "initialMana": 45.0,
-                        "magicResist": 40.0,
+                        "magicResist": 45.0,
                         "mana": 90.0,
                         "range": 1.0
                     },
@@ -63777,9 +63797,9 @@
                                 "name": "Damage",
                                 "value": [
                                     0.0,
-                                    180.0,
-                                    270.0,
-                                    500.0,
+                                    200.0,
+                                    300.0,
+                                    600.0,
                                     3000.0,
                                     3000.0,
                                     3000.0
@@ -64101,9 +64121,9 @@
                                 "name": "Damage",
                                 "value": [
                                     0.0,
-                                    80.0,
-                                    120.0,
-                                    1000.0,
+                                    100.0,
+                                    150.0,
+                                    1500.0,
                                     0.0,
                                     0.0,
                                     0.0
@@ -64112,13 +64132,13 @@
                             {
                                 "name": "HPPercentDamage",
                                 "value": [
-                                    0.11999999731779099,
-                                    0.11999999731779099,
-                                    0.11999999731779099,
-                                    0.11999999731779099,
-                                    0.11999999731779099,
-                                    0.11999999731779099,
-                                    0.11999999731779099
+                                    0.18000000715255737,
+                                    0.18000000715255737,
+                                    0.18000000715255737,
+                                    0.18000000715255737,
+                                    0.18000000715255737,
+                                    0.18000000715255737,
+                                    0.18000000715255737
                                 ]
                             },
                             {
@@ -64144,7 +64164,7 @@
                         "attackSpeed": 0.75,
                         "critChance": 0.25,
                         "critMultiplier": 1.399999976158142,
-                        "damage": 75.0,
+                        "damage": 60.0,
                         "hp": 1050.0,
                         "initialMana": 0,
                         "magicResist": 65.0,
@@ -64497,9 +64517,9 @@
                         "critMultiplier": 1.399999976158142,
                         "damage": 40.0,
                         "hp": 550.0,
-                        "initialMana": 30.0,
+                        "initialMana": 0,
                         "magicResist": 20.0,
-                        "mana": 75.0,
+                        "mana": 60.0,
                         "range": 6.0
                     },
                     "traits": [
@@ -64546,14 +64566,14 @@
                     "name": "Yasuo",
                     "stats": {
                         "armor": 40.0,
-                        "attackSpeed": 0.699999988079071,
+                        "attackSpeed": 0.75,
                         "critChance": 0.25,
                         "critMultiplier": 1.399999976158142,
                         "damage": 45.0,
                         "hp": 750.0,
-                        "initialMana": 20.0,
+                        "initialMana": 0,
                         "magicResist": 40.0,
-                        "mana": 100,
+                        "mana": 90.0,
                         "range": 1.0
                     },
                     "traits": [
@@ -65512,7 +65532,7 @@
                             "style": 1,
                             "variables": {
                                 "HealthPercent": 110.0,
-                                "{b19c3b58}": 50.0,
+                                "{b19c3b58}": 70.0,
                                 "{bc3d5e29}": 70.0
                             }
                         },
@@ -65522,7 +65542,7 @@
                             "style": 4,
                             "variables": {
                                 "HealthPercent": 110.0,
-                                "{b19c3b58}": 35.0,
+                                "{b19c3b58}": 50.0,
                                 "{bc3d5e29}": 50.0
                             }
                         }
@@ -65613,7 +65633,7 @@
                                 "{d625554d}": 30.0,
                                 "{e412bacb}": 10.0,
                                 "{e512bc5e}": 10.0,
-                                "{e612bdf1}": 60.0
+                                "{e612bdf1}": 45.0
                             }
                         }
                     ],
@@ -65713,13 +65733,23 @@
                             }
                         },
                         {
-                            "maxUnits": 25000,
+                            "maxUnits": 7,
                             "minUnits": 6,
                             "style": 4,
                             "variables": {
-                                "MaxAttackSpeed": 180.0,
-                                "{21c0601a}": 90.0,
-                                "{66b6cdea}": 1.0
+                                "MaxAttackSpeed": 160.0,
+                                "{21c0601a}": 80.0,
+                                "{66b6cdea}": 1.5
+                            }
+                        },
+                        {
+                            "maxUnits": 25000,
+                            "minUnits": 8,
+                            "style": 5,
+                            "variables": {
+                                "MaxAttackSpeed": 300.0,
+                                "{21c0601a}": 150.0,
+                                "{66b6cdea}": 1.5
                             }
                         }
                     ],
@@ -65990,7 +66020,7 @@
                             "style": 1,
                             "variables": {
                                 "AP": 25.0,
-                                "MagicDamage": 80.0,
+                                "MagicDamage": 90.0,
                                 "{b258b089}": 5.0
                             }
                         },
@@ -65999,8 +66029,8 @@
                             "minUnits": 4,
                             "style": 4,
                             "variables": {
-                                "AP": 65.0,
-                                "MagicDamage": 80.0,
+                                "AP": 60.0,
+                                "MagicDamage": 90.0,
                                 "{b258b089}": 5.0
                             }
                         },
@@ -66009,8 +66039,8 @@
                             "minUnits": 6,
                             "style": 5,
                             "variables": {
-                                "AP": 125.0,
-                                "MagicDamage": 80.0,
+                                "AP": 100.0,
+                                "MagicDamage": 90.0,
                                 "{b258b089}": 5.0
                             }
                         }
@@ -84235,7 +84265,7 @@
                         "critChance": 0.25,
                         "critMultiplier": 1.399999976158142,
                         "damage": 50.0,
-                        "hp": 750.0,
+                        "hp": 700.0,
                         "initialMana": 30.0,
                         "magicResist": 45.0,
                         "mana": 100,
@@ -84446,7 +84476,7 @@
                         "hp": 600.0,
                         "initialMana": 0,
                         "magicResist": 20.0,
-                        "mana": 80.0,
+                        "mana": 70.0,
                         "range": 4.0
                     },
                     "traits": [
@@ -84696,9 +84726,9 @@
                                 "name": "HealAmount",
                                 "value": [
                                     0.0,
-                                    250.0,
-                                    300.0,
-                                    375.0,
+                                    275.0,
+                                    325.0,
+                                    400.0,
                                     0.0,
                                     0.0,
                                     0.0
@@ -84755,7 +84785,7 @@
                         "hp": 800.0,
                         "initialMana": 50.0,
                         "magicResist": 45.0,
-                        "mana": 150.0,
+                        "mana": 125.0,
                         "range": 1.0
                     },
                     "traits": [
@@ -85144,9 +85174,9 @@
                                 "name": "MinADPercent",
                                 "value": [
                                     1.5,
-                                    1.2000000476837158,
-                                    1.25,
-                                    2.0,
+                                    1.399999976158142,
+                                    1.5,
+                                    3.0,
                                     1.5,
                                     1.5,
                                     1.5
@@ -85168,9 +85198,9 @@
                                 "name": "MaxADPercent",
                                 "value": [
                                     2.0,
-                                    2.4000000953674316,
-                                    2.5,
-                                    4.0,
+                                    2.799999952316284,
+                                    3.0,
+                                    6.0,
                                     2.0,
                                     2.0,
                                     2.0
@@ -85274,8 +85304,8 @@
                                 "name": "MaxHealthPerSec",
                                 "value": [
                                     0.0,
-                                    450.0,
-                                    650.0,
+                                    500.0,
+                                    750.0,
                                     5000.0,
                                     0.0,
                                     0.0,
@@ -85340,9 +85370,9 @@
                                 "name": "StackDamage",
                                 "value": [
                                     50.0,
-                                    40.0,
-                                    60.0,
-                                    100.0,
+                                    35.0,
+                                    50.0,
+                                    90.0,
                                     50.0,
                                     50.0,
                                     50.0
@@ -85636,9 +85666,9 @@
                                 "name": "AutoAttackBonus",
                                 "value": [
                                     0.0,
-                                    30.0,
-                                    45.0,
-                                    120.0,
+                                    40.0,
+                                    60.0,
+                                    200.0,
                                     80.0,
                                     100.0,
                                     120.0
@@ -86054,8 +86084,8 @@
                                 "name": "Damage",
                                 "value": [
                                     0.0,
-                                    270.0,
-                                    400.0,
+                                    250.0,
+                                    375.0,
                                     900.0,
                                     0.0,
                                     0.0,
@@ -86078,8 +86108,8 @@
                                 "name": "AOEDamage",
                                 "value": [
                                     0.0,
-                                    135.0,
-                                    200.0,
+                                    125.0,
+                                    195.0,
                                     450.0,
                                     0.0,
                                     0.0,
@@ -86101,7 +86131,7 @@
                         "hp": 800.0,
                         "initialMana": 0,
                         "magicResist": 50.0,
-                        "mana": 75.0,
+                        "mana": 65.0,
                         "range": 1.0
                     },
                     "traits": [
@@ -86266,7 +86296,7 @@
                 },
                 {
                     "ability": {
-                        "desc": "Samira knocks her target in the air for @Duration@ seconds and rapidly fires bullets that deal a total of <scaleAD>@TotalDamage@</scaleAD> physical damage (@DamagePercent*100@% Attack Damage %i:scaleAD% + @ModifiedBonusDamage@). Bullets ricochet to nearby enemies for @ReducedDamagePercent*100@% less damage.",
+                        "desc": "Samira rapidly fires bullets that deal a total of <scaleAD>@TotalDamage@</scaleAD> physical damage (@DamagePercent*100@% Attack Damage %i:scaleAD% + @ModifiedBonusDamage@). Bullets ricochet to nearby enemies for @ReducedDamagePercent*100@% less damage.",
                         "icon": "ASSETS/Characters/Samira/HUD/Icons2D/SamiraP.dds",
                         "name": "Flair",
                         "variables": [
@@ -86309,13 +86339,13 @@
                             {
                                 "name": "ReducedDamagePercent",
                                 "value": [
-                                    0.5,
-                                    0.5,
-                                    0.5,
-                                    0.5,
-                                    0.5,
-                                    0.5,
-                                    0.5
+                                    0.30000001192092896,
+                                    0.30000001192092896,
+                                    0.30000001192092896,
+                                    0.30000001192092896,
+                                    0.30000001192092896,
+                                    0.30000001192092896,
+                                    0.30000001192092896
                                 ]
                             },
                             {
@@ -86343,9 +86373,9 @@
                         "critMultiplier": 1.399999976158142,
                         "damage": 70.0,
                         "hp": 700.0,
-                        "initialMana": 30.0,
+                        "initialMana": 0,
                         "magicResist": 30.0,
-                        "mana": 90.0,
+                        "mana": 75.0,
                         "range": 4.0
                     },
                     "traits": [
@@ -86489,7 +86519,7 @@
                         "hp": 500.0,
                         "initialMana": 0,
                         "magicResist": 15.0,
-                        "mana": 60.0,
+                        "mana": 50.0,
                         "range": 4.0
                     },
                     "traits": [
@@ -86519,8 +86549,8 @@
                                 "name": "Damage",
                                 "value": [
                                     0.0,
-                                    500.0,
-                                    750.0,
+                                    475.0,
+                                    715.0,
                                     1500.0,
                                     0.0,
                                     0.0,
@@ -86584,13 +86614,13 @@
                             {
                                 "name": "IncreasedDamagePercent",
                                 "value": [
-                                    0.5,
-                                    0.5,
-                                    0.5,
-                                    0.5,
-                                    0.5,
-                                    0.5,
-                                    0.5
+                                    0.4000000059604645,
+                                    0.4000000059604645,
+                                    0.4000000059604645,
+                                    0.4000000059604645,
+                                    0.4000000059604645,
+                                    0.4000000059604645,
+                                    0.4000000059604645
                                 ]
                             },
                             {
@@ -86686,9 +86716,9 @@
                                 "name": "DRReductionPercent",
                                 "value": [
                                     0.0,
-                                    0.4000000059604645,
-                                    0.5,
-                                    0.6000000238418579,
+                                    0.44999998807907104,
+                                    0.550000011920929,
+                                    0.6499999761581421,
                                     0.0,
                                     0.0,
                                     0.0
@@ -86701,14 +86731,14 @@
                     "icon": "ASSETS/UX/TFT/ChampionSplashes/TFT8_Blitzcrank.TFT_Set8.dds",
                     "name": "Blitzcrank",
                     "stats": {
-                        "armor": 40.0,
+                        "armor": 45.0,
                         "attackSpeed": 0.5,
                         "critChance": 0.25,
                         "critMultiplier": 1.399999976158142,
                         "damage": 50.0,
                         "hp": 650.0,
                         "initialMana": 45.0,
-                        "magicResist": 40.0,
+                        "magicResist": 45.0,
                         "mana": 90.0,
                         "range": 1.0
                     },
@@ -87152,9 +87182,9 @@
                                 "name": "Damage",
                                 "value": [
                                     0.0,
-                                    180.0,
-                                    270.0,
-                                    500.0,
+                                    200.0,
+                                    300.0,
+                                    600.0,
                                     3000.0,
                                     3000.0,
                                     3000.0
@@ -87476,9 +87506,9 @@
                                 "name": "Damage",
                                 "value": [
                                     0.0,
-                                    80.0,
-                                    120.0,
-                                    1000.0,
+                                    100.0,
+                                    150.0,
+                                    1500.0,
                                     0.0,
                                     0.0,
                                     0.0
@@ -87487,13 +87517,13 @@
                             {
                                 "name": "HPPercentDamage",
                                 "value": [
-                                    0.11999999731779099,
-                                    0.11999999731779099,
-                                    0.11999999731779099,
-                                    0.11999999731779099,
-                                    0.11999999731779099,
-                                    0.11999999731779099,
-                                    0.11999999731779099
+                                    0.18000000715255737,
+                                    0.18000000715255737,
+                                    0.18000000715255737,
+                                    0.18000000715255737,
+                                    0.18000000715255737,
+                                    0.18000000715255737,
+                                    0.18000000715255737
                                 ]
                             },
                             {
@@ -87519,7 +87549,7 @@
                         "attackSpeed": 0.75,
                         "critChance": 0.25,
                         "critMultiplier": 1.399999976158142,
-                        "damage": 75.0,
+                        "damage": 60.0,
                         "hp": 1050.0,
                         "initialMana": 0,
                         "magicResist": 65.0,
@@ -87872,9 +87902,9 @@
                         "critMultiplier": 1.399999976158142,
                         "damage": 40.0,
                         "hp": 550.0,
-                        "initialMana": 30.0,
+                        "initialMana": 0,
                         "magicResist": 20.0,
-                        "mana": 75.0,
+                        "mana": 60.0,
                         "range": 6.0
                     },
                     "traits": [
@@ -87921,14 +87951,14 @@
                     "name": "Yasuo",
                     "stats": {
                         "armor": 40.0,
-                        "attackSpeed": 0.699999988079071,
+                        "attackSpeed": 0.75,
                         "critChance": 0.25,
                         "critMultiplier": 1.399999976158142,
                         "damage": 45.0,
                         "hp": 750.0,
-                        "initialMana": 20.0,
+                        "initialMana": 0,
                         "magicResist": 40.0,
-                        "mana": 100,
+                        "mana": 90.0,
                         "range": 1.0
                     },
                     "traits": [
@@ -88885,7 +88915,7 @@
                             "style": 1,
                             "variables": {
                                 "HealthPercent": 110.0,
-                                "{b19c3b58}": 50.0,
+                                "{b19c3b58}": 70.0,
                                 "{bc3d5e29}": 70.0
                             }
                         },
@@ -88895,7 +88925,7 @@
                             "style": 4,
                             "variables": {
                                 "HealthPercent": 110.0,
-                                "{b19c3b58}": 35.0,
+                                "{b19c3b58}": 50.0,
                                 "{bc3d5e29}": 50.0
                             }
                         }
@@ -88986,7 +89016,7 @@
                                 "{d625554d}": 30.0,
                                 "{e412bacb}": 10.0,
                                 "{e512bc5e}": 10.0,
-                                "{e612bdf1}": 60.0
+                                "{e612bdf1}": 45.0
                             }
                         }
                     ],
@@ -89086,13 +89116,23 @@
                             }
                         },
                         {
-                            "maxUnits": 25000,
+                            "maxUnits": 7,
                             "minUnits": 6,
                             "style": 4,
                             "variables": {
-                                "MaxAttackSpeed": 180.0,
-                                "{21c0601a}": 90.0,
-                                "{66b6cdea}": 1.0
+                                "MaxAttackSpeed": 160.0,
+                                "{21c0601a}": 80.0,
+                                "{66b6cdea}": 1.5
+                            }
+                        },
+                        {
+                            "maxUnits": 25000,
+                            "minUnits": 8,
+                            "style": 5,
+                            "variables": {
+                                "MaxAttackSpeed": 300.0,
+                                "{21c0601a}": 150.0,
+                                "{66b6cdea}": 1.5
                             }
                         }
                     ],
@@ -89363,7 +89403,7 @@
                             "style": 1,
                             "variables": {
                                 "AP": 25.0,
-                                "MagicDamage": 80.0,
+                                "MagicDamage": 90.0,
                                 "{b258b089}": 5.0
                             }
                         },
@@ -89372,8 +89412,8 @@
                             "minUnits": 4,
                             "style": 4,
                             "variables": {
-                                "AP": 65.0,
-                                "MagicDamage": 80.0,
+                                "AP": 60.0,
+                                "MagicDamage": 90.0,
                                 "{b258b089}": 5.0
                             }
                         },
@@ -89382,8 +89422,8 @@
                             "minUnits": 6,
                             "style": 5,
                             "variables": {
-                                "AP": 125.0,
-                                "MagicDamage": 80.0,
+                                "AP": 100.0,
+                                "MagicDamage": 90.0,
                                 "{b258b089}": 5.0
                             }
                         }
