@@ -154,6 +154,7 @@ const blacklist = [
   'Shapeshifter',
   'Warrior',
   'Guardian',
+  'Trainer',
 ];
 
 const whitelist = [
