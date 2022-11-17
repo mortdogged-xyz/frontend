@@ -1,7 +1,11 @@
+import contentMetadata from './data/content-metadata.json';
+
 export const TFTSet = '8';
 export const TFTSetNumber = 8;
-export const TFTVersion = '12.23';
-// export const CDragonVersion = 'latest';
-export const CDragonVersion = 'pbe';
-export const isPBE = CDragonVersion === 'pbe' ? 'PBE' : '';
+export const TFTVersion =
+  contentMetadata.version.match(/^(\d+\.\d+)\.\d+\+.*/)!![1];
+export const CDragonVersion = contentMetadata.version.includes('.beta')
+  ? 'pbe'
+  : 'latest';
+export const isPBE = contentMetadata.version.includes('.beta') ? 'PBE' : '';
 export const StorageKey = `${TFTSet}-${TFTVersion}${isPBE}`;
