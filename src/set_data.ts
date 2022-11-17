@@ -199,6 +199,9 @@ const whitelist = [
   'Lucky Gloves',
   'Age of Dragons',
   'Birthday Present',
+
+  // SET 8
+  'Stridebreaker',
 ];
 
 function offBlacklist(item: DataItem) {
