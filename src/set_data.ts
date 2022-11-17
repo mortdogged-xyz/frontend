@@ -213,6 +213,7 @@ const whitelist = [
 
   // SET 8
   'Stridebreaker',
+  'GenAE',
 ];
 
 function offBlacklist(item: DataItem) {
