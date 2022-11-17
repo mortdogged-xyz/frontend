@@ -213,6 +213,20 @@ function onWhitelist(item: DataItem) {
   return whitelist.some((wl) => item.icon.includes(wl));
 }
 
+function championAug(item: DataItem, champions: Array<string>) {
+  return champions.some((champ) =>
+    item.apiName?.includes(`Augment_${champ}Carry`),
+  );
+}
+
+function traitAug(item: DataItem, traits: Array<string>) {
+  return traits.some(
+    (trait) =>
+      ['Heart', 'Crest', 'Crown'].some((mod) => item.name?.includes(mod)) &&
+      item.apiName?.includes(`Augment_${trait}`),
+  );
+}
+
 const data = rawData as unknown as RawData;
 const setData: SetData = data.setData.find(
   (data) => data.number === TFTSetNumber,
@@ -232,20 +246,6 @@ export const items = data.items
         onWhitelist(item)),
   )
   .map((item: DataItem) => item.name || '');
-
-function championAug(item: DataItem, champions: Array<string>) {
-  return champions.some((champ) =>
-    item.apiName?.includes(`Augment_${champ}Carry`),
-  );
-}
-
-function traitAug(item: DataItem, traits: Array<string>) {
-  return traits.some(
-    (trait) =>
-      ['Heart', 'Crest', 'Crown'].some((mod) => item.name?.includes(mod)) &&
-      item.apiName?.includes(`Augment_${trait}`),
-  );
-}
 
 export const champs = setData.champions
   .filter(offBlacklist)
