@@ -2831,7 +2831,7 @@
         },
         {
             "apiName": "TFT6_Augment_CyberneticImplants3",
-            "desc": "Your champions holding an item gain @HP@ Health and @AD*100@ Attack Damage.",
+            "desc": "Your champions holding an item gain @HP@ Health and @AD*100@% bonus Attack Damage.",
             "effects": {
                 "AD": 0.30000001192092896,
                 "{513ad265}": 180.0
@@ -2869,7 +2869,7 @@
         },
         {
             "apiName": "TFT6_Augment_CyberneticImplants2",
-            "desc": "Your champions holding an item gain @HP@ Health and @AD*100@ Attack Damage.",
+            "desc": "Your champions holding an item gain @HP@ Health and @AD*100@% bonus Attack Damage.",
             "effects": {
                 "AD": 0.20000000298023224,
                 "{513ad265}": 120.0
@@ -2882,7 +2882,7 @@
         },
         {
             "apiName": "TFT6_Augment_CyberneticImplants1",
-            "desc": "Your champions holding an item gain @HP@ Health and @AD*100@ Attack Damage.",
+            "desc": "Your champions holding an item gain @HP@ Health and @AD*100@% bonus Attack Damage.",
             "effects": {
                 "AD": 0.10000000149011612,
                 "{513ad265}": 80.0
@@ -3272,7 +3272,7 @@
                 "{5d8ecbba}": 12.0,
                 "{9a186b7d}": "null",
                 "{9dc86ba9}": 20.0,
-                "{c16da2b4}": 15.0
+                "{c16da2b4}": 20.0
             },
             "from": [],
             "icon": "ASSETS/Maps/TFT/Icons/Augments/Hexcore/InnovatorSoul1.dds",
@@ -3461,8 +3461,8 @@
                 "{2d7e43a8}": 20.0,
                 "{2dd33743}": 33.0,
                 "{3b96bc78}": 60.0,
-                "{3ba78496}": 10.0,
-                "{5d8ecbba}": 8.0,
+                "{3ba78496}": 15.0,
+                "{5d8ecbba}": 10.0,
                 "{9a186b7d}": "null",
                 "{9dc86ba9}": 30.0,
                 "{c16da2b4}": 15.0
@@ -3669,7 +3669,7 @@
                 "{2dd33743}": 10.0,
                 "{3b96bc78}": 200.0,
                 "{3ba78496}": 10.0,
-                "{5d8ecbba}": 7.0,
+                "{5d8ecbba}": 10.0,
                 "{9a186b7d}": "null",
                 "{9dc86ba9}": 35.0,
                 "{c16da2b4}": 10.0
@@ -3855,10 +3855,10 @@
                 "{2dd33743}": 33.0,
                 "{3b96bc78}": 200.0,
                 "{3ba78496}": 25.0,
-                "{5d8ecbba}": 15.0,
+                "{5d8ecbba}": 25.0,
                 "{9a186b7d}": "null",
                 "{9dc86ba9}": 30.0,
-                "{c16da2b4}": 20.0
+                "{c16da2b4}": 25.0
             },
             "from": [],
             "icon": "ASSETS/Maps/TFT/Icons/Augments/Hexcore/InnovatorSoul1.dds",
@@ -3888,7 +3888,7 @@
                 "{2d7e43a8}": 20.0,
                 "{2dd33743}": 20.0,
                 "{3b96bc78}": 200.0,
-                "{3ba78496}": 20.0,
+                "{3ba78496}": 15.0,
                 "{5d8ecbba}": 15.0,
                 "{9a186b7d}": "null",
                 "{9dc86ba9}": 15.0,
@@ -3942,9 +3942,9 @@
                 "{2dd33743}": 20.0,
                 "{3b96bc78}": 200.0,
                 "{3ba78496}": 20.0,
-                "{5d8ecbba}": 15.0,
+                "{5d8ecbba}": 20.0,
                 "{9a186b7d}": "null",
-                "{9dc86ba9}": 15.0,
+                "{9dc86ba9}": 20.0,
                 "{c16da2b4}": 20.0
             },
             "from": [],
@@ -7271,7 +7271,7 @@
             "apiName": "TFT8_Augment_LeBlancSupport",
             "desc": "Gain a LeBlanc. Combat start: Your strongest LeBlanc duplicates her nearest ally (without items at @HealthPercent@% Health).",
             "effects": {
-                "HealthPercent": 60.0
+                "HealthPercent": 70.0
             },
             "from": [],
             "icon": "ASSETS/Characters/TFT8_Leblanc/HUD/TFT8_Leblanc.TFT_Set8.dds",
@@ -7281,11 +7281,12 @@
         },
         {
             "apiName": "TFT8_HyperRollAugment_SivirCarry",
-            "desc": "Gain a Sivir. Every Ability cast, she drops @BaseGold@ gold with a @GoldChance@% chance to drop @AdditionalGold@ extra gold.",
+            "desc": "Gain a Sivir. Every @CastCycle@ Ability casts, your strongest Sivir drops @BaseGold@ gold with a @GoldChance@% chance to drop @AdditionalGold@ extra gold.",
             "effects": {
                 "BaseGold": 2.0,
-                "{2dd33743}": 8.0,
-                "{43550802}": 4.0
+                "{2dd33743}": 5.0,
+                "{43550802}": 2.0,
+                "{e5c8ad60}": 2.0
             },
             "from": [],
             "icon": "ASSETS/Characters/TFT8_Sivir/HUD/TFT8_Sivir.TFT_Set8.dds",
@@ -7320,11 +7321,12 @@
         },
         {
             "apiName": "TFT8_Augment_SivirCarry",
-            "desc": "Gain a Sivir. Every Ability cast, she drops @BaseGold@ gold with a @GoldChance@% chance to drop @AdditionalGold@ extra gold.",
+            "desc": "Gain a Sivir. Every @CastCycle@ Ability casts, your strongest Sivir drops @BaseGold@ gold with a @GoldChance@% chance to drop @AdditionalGold@ extra gold.",
             "effects": {
                 "BaseGold": 1.0,
-                "{2dd33743}": 8.0,
-                "{43550802}": 2.0
+                "{2dd33743}": 5.0,
+                "{43550802}": 1.0,
+                "{e5c8ad60}": 2.0
             },
             "from": [],
             "icon": "ASSETS/Characters/TFT8_Sivir/HUD/TFT8_Sivir.TFT_Set8.dds",
@@ -7502,7 +7504,7 @@
         },
         {
             "apiName": "TFT8_Augment_LeeSinSupport",
-            "desc": "Gain a Lee Sin. When your field him, your team gains @BonusAS@% Attack Speed, doubled for @Duration@ seconds after being shielded.",
+            "desc": "Gain a Lee Sin. When you field him, your team gains @BonusAS@% Attack Speed, doubled for @Duration@ seconds after Lee Sin shields them.",
             "effects": {
                 "BonusAS": 20.0,
                 "Duration": 3.0
@@ -7618,7 +7620,7 @@
         },
         {
             "apiName": "TFT8_Augment_RenegadeEmblem2",
-            "desc": "Gain a Renegade Crown, a Bloodthirster, and a Camille.",
+            "desc": "Gain a Renegade Emblem, a Bloodthirster, and a Camille.",
             "effects": {},
             "from": [],
             "icon": "ASSETS/Maps/TFT/Icons/Augments/Hexcore/Renegade-Crown.TFT_Set8.dds",
@@ -7678,7 +7680,7 @@
             "apiName": "TFT8_Augment_LuluCarry",
             "desc": "Gain a Lulu. When she casts her Ability, she gains @BonusHealth@ bonus Health and @BonusAP@ Ability Power (this can stack).",
             "effects": {
-                "BonusHealth": 100.0,
+                "BonusHealth": 125.0,
                 "{d49caf5d}": 30.0
             },
             "from": [],
@@ -7715,7 +7717,7 @@
             "apiName": "TFT8_Augment_PoppySupport",
             "desc": "Gain a Poppy. Combat start: Your strongest Poppy grants your team a @ShieldAmount@ Health shield.",
             "effects": {
-                "ShieldAmount": 275.0
+                "ShieldAmount": 325.0
             },
             "from": [],
             "icon": "ASSETS/Characters/TFT8_Poppy/HUD/TFT8_Poppy.TFT_Set8.dds",
@@ -7727,7 +7729,7 @@
             "apiName": "TFT8_Augment_ViSupport",
             "desc": "Gain a Vi. When you field her, your team gains @BonusHealth@ bonus Health.",
             "effects": {
-                "BonusHealth": 250.0
+                "BonusHealth": 275.0
             },
             "from": [],
             "icon": "ASSETS/Characters/TFT8_Vi/HUD/TFT8_Vi.TFT_Set8.dds",
@@ -7797,9 +7799,9 @@
         },
         {
             "apiName": "TFT8_Augment_EkkoCarry",
-            "desc": "Gain an Ekko. His ability hits all enemies within 2 hexes and deals @BonusDamage*100@% increased damage.",
+            "desc": "Gain an Ekko. His ability hits all enemies within 2 hexes and deals additional damage equal to @BonusDamage*100@% of his Magic Resistance.",
             "effects": {
-                "BonusDamage": 1.0
+                "BonusDamage": 2.0
             },
             "from": [],
             "icon": "ASSETS/Characters/TFT8_Ekko/HUD/TFT8_Ekko.TFT_Set8.dds",
@@ -7924,7 +7926,7 @@
             "desc": "Gain an Annie. When you field her, your team gains @BonusAP@ Ability Power, tripled while they are below @HealthThreshold*100@% Health.",
             "effects": {
                 "HealthThreshold": 0.5,
-                "{d49caf5d}": 20.0
+                "{d49caf5d}": 15.0
             },
             "from": [],
             "icon": "ASSETS/Characters/TFT8_Annie/HUD/TFT8_Annie.TFT_Set8.dds",
@@ -8027,8 +8029,8 @@
             "apiName": "TFT8_Augment_ZedCarry",
             "desc": "Gain a Zed. He has @AD@% Attack Damage, and for the rest of combat, he gains @ADPercent@% of an enemy's Attack Damage on kill.",
             "effects": {
-                "AD": 10.0,
-                "{bc3d5e29}": 10.0
+                "AD": 12.0,
+                "{bc3d5e29}": 12.0
             },
             "from": [],
             "icon": "ASSETS/Characters/TFT8_Zed/HUD/TFT8_Zed.TFT_Set8.dds",
@@ -8218,7 +8220,7 @@
             "apiName": "TFT8_Augment_MissFortuneSupport",
             "desc": "Gain a Miss Fortune. After every @Combats@ player combats fielded, she drops @Gold@ gold.",
             "effects": {
-                "Gold": 15.0,
+                "Gold": 18.0,
                 "{cc06ab16}": 3.0
             },
             "from": [],
@@ -8263,7 +8265,7 @@
             "apiName": "TFT8_Augment_KayleSupport",
             "desc": "Gain a Kayle. Combat start: She and her @NumAllies@ nearest allies gain +@BonusRange@ Attack Range and @AttackSpeed*100@% Attack Speed.",
             "effects": {
-                "AttackSpeed": 0.20000000298023224,
+                "AttackSpeed": 0.25,
                 "{0c712be9}": 2.0,
                 "{79a51d61}": 2.0
             },
@@ -8290,7 +8292,7 @@
             "desc": "Gain a Rell. She has @AP@ Ability Power and takes @DamageReduction@% less damage.",
             "effects": {
                 "AP": 40.0,
-                "DamageReduction": 20.0
+                "DamageReduction": 30.0
             },
             "from": [],
             "icon": "ASSETS/Characters/TFT8_Rell/HUD/TFT8_Rell.TFT_Set8.dds",
@@ -8302,7 +8304,8 @@
             "apiName": "TFT8_Augment_YuumiSupport",
             "desc": "Gain a Yuumi. When you field her, your team gains @BonusAS*100@% Attack Speed, and zooms towards their targets.",
             "effects": {
-                "BonusAS": 0.20000000298023224
+                "BonusAS": 0.20000000298023224,
+                "{57b6d2c4}": 0.5
             },
             "from": [],
             "icon": "ASSETS/Characters/TFT8_Yuumi/HUD/TFT8_Yuumi.TFT_Set8.dds",
@@ -8438,7 +8441,7 @@
             "apiName": "TFT8_Augment_ZacSupersize",
             "desc": "Gain a Zac. He gains @BonusHealth@ bonus Health and is immune to crowd control.",
             "effects": {
-                "BonusHealth": 800.0
+                "BonusHealth": 1000.0
             },
             "from": [],
             "icon": "ASSETS/Characters/TFT8_Zac/HUD/TFT8_Zac.TFT_Set8.dds",
@@ -8483,8 +8486,8 @@
             "apiName": "TFT8_Augment_DravenCarry",
             "desc": "Gain a Draven. He has @BonusAD@% Attack Damage. When he kills an enemy, there is a @GoldChance@% chance to gain 1 gold.",
             "effects": {
-                "BonusAD": 30.0,
-                "{2dd33743}": 40.0
+                "BonusAD": 25.0,
+                "{2dd33743}": 30.0
             },
             "from": [],
             "icon": "ASSETS/Characters/TFT8_Draven/HUD/TFT8_Draven.TFT_Set8.dds",
@@ -8558,7 +8561,7 @@
             "apiName": "TFT8_Augment_MalphiteSupport",
             "desc": "Gain a Malphite. When you field him, your team restores @HealPercent@% of their missing Health when they cast Abilities.",
             "effects": {
-                "HealPercent": 25.0
+                "HealPercent": 20.0
             },
             "from": [],
             "icon": "ASSETS/Characters/TFT8_Malphite/HUD/TFT8_Malphite.TFT_Set8.dds",
@@ -8590,10 +8593,10 @@
         },
         {
             "apiName": "TFT8_Augment_CamilleCarry",
-            "desc": "Gain a Camille. She has @BonusAD@% Attack Damage. The first time she drops below @HealthThreshold*100@% Health, she gains a shield equal to @ADScaling*100@% of her Attack Damage.",
+            "desc": "Gain a Camille. She gains @BonusAD@% Attack Damage. The first time she drops below @HealthThreshold*100@% Health, she gains a shield equal to @ADScaling*100@% of her Attack Damage.",
             "effects": {
                 "ADScaling": 6.0,
-                "BonusAD": 50.0,
+                "BonusAD": 30.0,
                 "HealthThreshold": 0.5
             },
             "from": [],
@@ -8738,7 +8741,7 @@
             "apiName": "TFT8_Augment_DravenSupport",
             "desc": "Gain a Draven. When you field him, your team gains @CritChance@% Critical Strike Chance.",
             "effects": {
-                "CritChance": 35.0
+                "CritChance": 40.0
             },
             "from": [],
             "icon": "ASSETS/Characters/TFT8_Draven/HUD/TFT8_Draven.TFT_Set8.dds",
@@ -8832,7 +8835,7 @@
             "apiName": "TFT8_Augment_PoppyCarry",
             "desc": "Gain a Poppy. She gains @BonusArmor@ Armor.",
             "effects": {
-                "BonusArmor": 150.0
+                "BonusArmor": 200.0
             },
             "from": [],
             "icon": "ASSETS/Characters/TFT8_Poppy/HUD/TFT8_Poppy.TFT_Set8.dds",
@@ -8885,9 +8888,10 @@
         },
         {
             "apiName": "TFT8_Augment_AlistarAoEPulverizer",
-            "desc": "Gain an Alistar. He restores @ManaRegen@ Mana per second and his Ability hits all enemies within 1 hex.",
+            "desc": "Gain an Alistar. He restores @ManaRegen@ Mana per second and his Ability hits all enemies within @HexRadius@ hex(es).",
             "effects": {
-                "{d8f646f3}": 5.0
+                "{5cc52ba8}": 1.0,
+                "{d8f646f3}": 10.0
             },
             "from": [],
             "icon": "ASSETS/Characters/TFT8_Alistar/HUD/TFT8_Alistar.TFT_Set8.dds",
@@ -9094,9 +9098,10 @@
         },
         {
             "apiName": "TFT8_Augment_YuumiCarry",
-            "desc": "Gain a Yuumi. She gains @BonusCritChance*100@% Critical Strike Chance, and her Ability can critically strike.",
+            "desc": "Gain a Yuumi. She gains @BonusAP@ Ability Power, @BonusCritChance*100@% Critical Strike Chance, and her Ability can critically strike.",
             "effects": {
-                "{c34a89ec}": 0.75
+                "{c34a89ec}": 0.75,
+                "{d49caf5d}": 50.0
             },
             "from": [],
             "icon": "ASSETS/Characters/TFT8_Yuumi/HUD/TFT8_Yuumi.TFT_Set8.dds",
@@ -9154,7 +9159,7 @@
             "desc": "Gain a Riven. Combat start: She grants herself and adjacent allies a shield for @ShieldDuration@ seconds equal to  @MaxHealthPercent@% of their maximum Health.",
             "effects": {
                 "ShieldDuration": 10.0,
-                "{f12d8928}": 30.0
+                "{f12d8928}": 35.0
             },
             "from": [],
             "icon": "ASSETS/Characters/TFT8_Riven/HUD/TFT8_Riven.TFT_Set8.dds",
@@ -9295,7 +9300,7 @@
             "desc": "Gain a Jax. When you field him, your team gains @DodgeChance@% Dodge Chance for @DodgeDuration@ seconds the first time they fall below @HealthThreshold@% Health each combat.",
             "effects": {
                 "HealthThreshold": 50.0,
-                "{852a9a90}": 2.5,
+                "{852a9a90}": 2.0,
                 "{c4b5579c}": 100.0
             },
             "from": [],
@@ -10037,7 +10042,7 @@
         },
         {
             "apiName": "TFT5_Item_ChaliceOfPowerRadiant",
-            "desc": "Combat start: Grant %i:scaleAP% <TFTRadiantItemBonus>@BonusAP@</TFTRadiantItemBonus> Ability Power <TFTRadiantItemBonus>and @Spellvamp@% <TFTKeyword> Omnivamp</TFTKeyword></TFTRadiantItemBonus> to the holder and allies within 1 hex in the same row.<br><br>\u200b\u200b<tftitemrules>[Aura item]<br><tftbold>Omnivamp</tftbold>: heal for some of damage dealt</tftitemrules>",
+            "desc": "Combat start: Grant %i:scaleAP% <TFTRadiantItemBonus>@BonusAP@</TFTRadiantItemBonus> Ability Power <TFTRadiantItemBonus>and @Spellvamp@% <TFTKeyword>Omnivamp</TFTKeyword></TFTRadiantItemBonus> to the holder and allies within 1 hex in the same row.<br><br>\u200b\u200b<tftitemrules>[Aura item]<br><tftbold>Omnivamp</tftbold>: heal for some of damage dealt</tftitemrules>",
             "effects": {
                 "MagicResist": 20.0,
                 "Mana": 15.0,
@@ -12293,7 +12298,7 @@
                 "BonusAD": 0.20000000298023224,
                 "HealthThreshold": 1800.0,
                 "{b8ae7546}": 25.0,
-                "{d49caf5d}": 2.0
+                "{d49caf5d}": 20.0
             },
             "from": [
                 1,
@@ -20357,9 +20362,9 @@
                                 "name": "ShieldAmount",
                                 "value": [
                                     0.699999988079071,
-                                    200.0,
                                     250.0,
-                                    325.0,
+                                    300.0,
+                                    375.0,
                                     0.699999988079071,
                                     0.699999988079071,
                                     0.699999988079071
@@ -20372,14 +20377,14 @@
                     "icon": "ASSETS/UX/TFT/ChampionSplashes/TFT8_Galio.TFT_Set8.dds",
                     "name": "Galio",
                     "stats": {
-                        "armor": 40.0,
+                        "armor": 45.0,
                         "attackSpeed": 0.550000011920929,
                         "critChance": 0.25,
                         "critMultiplier": 1.399999976158142,
                         "damage": 50.0,
                         "hp": 650.0,
                         "initialMana": 60.0,
-                        "magicResist": 40.0,
+                        "magicResist": 45.0,
                         "mana": 120.0,
                         "range": 1.0
                     },
@@ -20539,8 +20544,8 @@
                     },
                     "traits": [
                         "Civilian",
-                        "Forecaster",
-                        "Spellslinger"
+                        "Spellslinger",
+                        "Forecaster"
                     ]
                 },
                 {
@@ -20630,9 +20635,9 @@
                                 "name": "Damage",
                                 "value": [
                                     0.0,
-                                    180.0,
-                                    270.0,
-                                    400.0,
+                                    190.0,
+                                    285.0,
+                                    425.0,
                                     0.0,
                                     0.0,
                                     0.0
@@ -20746,14 +20751,14 @@
                     "icon": "ASSETS/UX/TFT/ChampionSplashes/TFT8_Nilah.TFT_Set8.dds",
                     "name": "Nilah",
                     "stats": {
-                        "armor": 45.0,
+                        "armor": 50.0,
                         "attackSpeed": 0.699999988079071,
                         "critChance": 0.25,
                         "critMultiplier": 1.399999976158142,
                         "damage": 45.0,
                         "hp": 800.0,
                         "initialMana": 50.0,
-                        "magicResist": 45.0,
+                        "magicResist": 50.0,
                         "mana": 125.0,
                         "range": 1.0
                     },
@@ -20784,9 +20789,9 @@
                                 "name": "Damage",
                                 "value": [
                                     0.15000000596046448,
-                                    140.0,
-                                    210.0,
-                                    350.0,
+                                    150.0,
+                                    225.0,
+                                    385.0,
                                     0.15000000596046448,
                                     0.15000000596046448,
                                     0.15000000596046448
@@ -20848,13 +20853,13 @@
                             {
                                 "name": "Resists",
                                 "value": [
-                                    30.0,
                                     40.0,
                                     50.0,
                                     60.0,
                                     70.0,
                                     80.0,
-                                    90.0
+                                    90.0,
+                                    100.0
                                 ]
                             },
                             {
@@ -20894,9 +20899,9 @@
                         "critMultiplier": 1.399999976158142,
                         "damage": 60.0,
                         "hp": 750.0,
-                        "initialMana": 75.0,
+                        "initialMana": 80.0,
                         "magicResist": 50.0,
-                        "mana": 175.0,
+                        "mana": 160.0,
                         "range": 1.0
                     },
                     "traits": [
@@ -20983,9 +20988,9 @@
                         "critMultiplier": 1.399999976158142,
                         "damage": 60.0,
                         "hp": 1000.0,
-                        "initialMana": 60.0,
+                        "initialMana": 75.0,
                         "magicResist": 60.0,
-                        "mana": 160.0,
+                        "mana": 150.0,
                         "range": 1.0
                     },
                     "traits": [
@@ -21004,9 +21009,9 @@
                                 "name": "ShieldAmount",
                                 "value": [
                                     0.0,
-                                    30.0,
-                                    300.0,
-                                    3000.0,
+                                    200.0,
+                                    500.0,
+                                    4000.0,
                                     160.0,
                                     200.0,
                                     240.0
@@ -21194,7 +21199,7 @@
                         "range": 1.0
                     },
                     "traits": [
-                        "Mecha: PRIME",
+                        "Mecha:PRIME",
                         "Defender"
                     ]
                 },
@@ -21219,13 +21224,13 @@
                             {
                                 "name": "ADPercent",
                                 "value": [
-                                    1.5,
-                                    1.5,
-                                    1.5,
-                                    1.5,
-                                    1.5,
-                                    1.5,
-                                    1.5
+                                    1.399999976158142,
+                                    1.399999976158142,
+                                    1.399999976158142,
+                                    1.399999976158142,
+                                    1.399999976158142,
+                                    1.399999976158142,
+                                    1.399999976158142
                                 ]
                             },
                             {
@@ -21251,7 +21256,7 @@
                         "attackSpeed": 0.699999988079071,
                         "critChance": 0.25,
                         "critMultiplier": 1.399999976158142,
-                        "damage": 65.0,
+                        "damage": 60.0,
                         "hp": 600.0,
                         "initialMana": 0,
                         "magicResist": 20.0,
@@ -21259,7 +21264,7 @@
                         "range": 4.0
                     },
                     "traits": [
-                        "Mecha: PRIME",
+                        "Mecha:PRIME",
                         "Ace"
                     ]
                 },
@@ -21312,7 +21317,7 @@
                         "range": 1.0
                     },
                     "traits": [
-                        "Mecha: PRIME",
+                        "Mecha:PRIME",
                         "Renegade",
                         "Aegis"
                     ]
@@ -21350,13 +21355,13 @@
                             {
                                 "name": "TotalStacks",
                                 "value": [
-                                    10.0,
-                                    10.0,
-                                    10.0,
-                                    10.0,
-                                    10.0,
-                                    10.0,
-                                    10.0
+                                    8.0,
+                                    8.0,
+                                    8.0,
+                                    8.0,
+                                    8.0,
+                                    8.0,
+                                    8.0
                                 ]
                             }
                         ]
@@ -21378,7 +21383,7 @@
                         "range": 1.0
                     },
                     "traits": [
-                        "Mecha: PRIME",
+                        "Mecha:PRIME",
                         "Brawler"
                     ]
                 },
@@ -21635,8 +21640,8 @@
                                 "name": "AutoAttackBonus",
                                 "value": [
                                     0.0,
-                                    40.0,
-                                    60.0,
+                                    30.0,
+                                    45.0,
                                     200.0,
                                     80.0,
                                     100.0,
@@ -21687,7 +21692,7 @@
                     "name": "Zed",
                     "stats": {
                         "armor": 50.0,
-                        "attackSpeed": 0.8999999761581421,
+                        "attackSpeed": 0.8500000238418579,
                         "critChance": 0.25,
                         "critMultiplier": 1.399999976158142,
                         "damage": 90.0,
@@ -21920,13 +21925,13 @@
                             {
                                 "name": "MaxHealthPercent",
                                 "value": [
-                                    0.18000000715255737,
-                                    0.18000000715255737,
-                                    0.18000000715255737,
-                                    0.18000000715255737,
-                                    0.18000000715255737,
-                                    0.18000000715255737,
-                                    0.18000000715255737
+                                    0.20000000298023224,
+                                    0.20000000298023224,
+                                    0.20000000298023224,
+                                    0.20000000298023224,
+                                    0.20000000298023224,
+                                    0.20000000298023224,
+                                    0.20000000298023224
                                 ]
                             },
                             {
@@ -23646,13 +23651,13 @@
                             {
                                 "name": "ASRatio",
                                 "value": [
-                                    0.15000000596046448,
-                                    0.15000000596046448,
-                                    0.15000000596046448,
-                                    0.15000000596046448,
-                                    0.15000000596046448,
-                                    0.15000000596046448,
-                                    0.15000000596046448
+                                    0.10000000149011612,
+                                    0.10000000149011612,
+                                    0.10000000149011612,
+                                    0.10000000149011612,
+                                    0.10000000149011612,
+                                    0.10000000149011612,
+                                    0.10000000149011612
                                 ]
                             },
                             {
@@ -23678,7 +23683,7 @@
                         "attackSpeed": 1.0,
                         "critChance": 0.25,
                         "critMultiplier": 1.399999976158142,
-                        "damage": 99.0,
+                        "damage": 80.0,
                         "hp": 1100.0,
                         "initialMana": 100.0,
                         "magicResist": 50.0,
@@ -24312,9 +24317,9 @@
                                 "name": "Damage",
                                 "value": [
                                     0.0,
-                                    150.0,
-                                    225.0,
-                                    350.0,
+                                    140.0,
+                                    210.0,
+                                    315.0,
                                     0.0,
                                     0.0,
                                     0.0
@@ -24351,7 +24356,7 @@
                         "range": 1.0
                     },
                     "traits": [
-                        "Mecha: PRIME",
+                        "Mecha:PRIME",
                         "Defender"
                     ]
                 },
@@ -24762,7 +24767,7 @@
                 },
                 {
                     "apiName": "Set8_AnimaSquad",
-                    "desc": "Anima Squad members build fame for scoring champion kills. When they pause to celebrate a kill, they permanently gain @HealthPerStack@ maximum Health per point of fame. Fame immediately benefits the whole Anima Squad.<br><br>Anima Squad also gains:<br><expandRow>(@MinUnits@) @InitialAD@% Attack Damage and @InitialAP@ Ability Power</expandRow><br><br>Total Fame: @TFTUnitProperty.trait:TFT8_AnimaFameStacks@<br>Bonus Health: @TFTUnitProperty.trait:TFT8_AnimaFameHP@",
+                    "desc": "Anima Squad members pose after champion kills, increasing their fame. Anima Squad units gain permanent @HealthPerStack@ Health per fame stack aquired this game.<br><br>Anima Squad units also gain:<br><expandRow>(@MinUnits@) @InitialAD@% Attack Damage and @InitialAP@ Ability Power</expandRow><br><br>Total Fame: @TFTUnitProperty.trait:TFT8_AnimaFameStacks@<br>Bonus Health: @TFTUnitProperty.trait:TFT8_AnimaFameHP@",
                     "effects": [
                         {
                             "maxUnits": 4,
@@ -24779,8 +24784,8 @@
                             "minUnits": 5,
                             "style": 4,
                             "variables": {
-                                "{054d3a66}": 40.0,
-                                "{194d59e2}": 40.0,
+                                "{054d3a66}": 35.0,
+                                "{194d59e2}": 35.0,
                                 "{40376e4e}": 5.0
                             }
                         },
@@ -24789,8 +24794,8 @@
                             "minUnits": 7,
                             "style": 5,
                             "variables": {
-                                "{054d3a66}": 65.0,
-                                "{194d59e2}": 65.0,
+                                "{054d3a66}": 55.0,
+                                "{194d59e2}": 55.0,
                                 "{40376e4e}": 5.0
                             }
                         }
@@ -24885,9 +24890,9 @@
                             "minUnits": 3,
                             "style": 1,
                             "variables": {
-                                "HealthPercent": 110.0,
-                                "{b19c3b58}": 70.0,
-                                "{bc3d5e29}": 70.0
+                                "HealthPercent": 100.0,
+                                "{b19c3b58}": 60.0,
+                                "{bc3d5e29}": 60.0
                             }
                         },
                         {
@@ -24895,14 +24900,14 @@
                             "minUnits": 5,
                             "style": 4,
                             "variables": {
-                                "HealthPercent": 110.0,
-                                "{b19c3b58}": 50.0,
-                                "{bc3d5e29}": 50.0
+                                "HealthPercent": 100.0,
+                                "{b19c3b58}": 45.0,
+                                "{bc3d5e29}": 45.0
                             }
                         }
                     ],
                     "icon": "ASSETS/UX/TraitIcons/Trait_Icon_8_MechaPrime.tex",
-                    "name": "Mecha: PRIME"
+                    "name": "Mecha:PRIME"
                 },
                 {
                     "apiName": "Set8_Threat",
@@ -24927,7 +24932,7 @@
                             "minUnits": 2,
                             "style": 1,
                             "variables": {
-                                "{66b6cdea}": 3.0,
+                                "{66b6cdea}": 2.0,
                                 "{a576b894}": 1.0,
                                 "{d1ba07df}": 1.5
                             }
@@ -24937,7 +24942,7 @@
                             "minUnits": 4,
                             "style": 3,
                             "variables": {
-                                "{66b6cdea}": 3.0,
+                                "{66b6cdea}": 2.0,
                                 "{a576b894}": 1.0,
                                 "{d1ba07df}": 2.5
                             }
@@ -24947,7 +24952,7 @@
                             "minUnits": 6,
                             "style": 4,
                             "variables": {
-                                "{66b6cdea}": 3.0,
+                                "{66b6cdea}": 2.0,
                                 "{a576b894}": 1.0,
                                 "{d1ba07df}": 4.5
                             }
@@ -24957,7 +24962,7 @@
                             "minUnits": 8,
                             "style": 5,
                             "variables": {
-                                "{66b6cdea}": 3.0,
+                                "{66b6cdea}": 2.0,
                                 "{a576b894}": 1.0,
                                 "{d1ba07df}": 7.0
                             }
@@ -25206,7 +25211,7 @@
                 },
                 {
                     "apiName": "Set8_StarGuardian",
-                    "desc": "Gain more Mana from all sources. <br><br><expandRow>(@MinUnits@) @AdditionalManaPercentage@% Mana</expandRow>",
+                    "desc": "Gain more Mana in combat. <br><br><expandRow>(@MinUnits@) @AdditionalManaPercentage@% Mana</expandRow>",
                     "effects": [
                         {
                             "maxUnits": 4,
@@ -25366,7 +25371,7 @@
                 },
                 {
                     "apiName": "Set8_Channeler",
-                    "desc": "Every @RefreshSeconds@ seconds, the next attack instead fires a magic orb at a random target, which explodes for @MagicDamage@% Ability Power as magic damage.<br><br>Spellslingers gain:<br><expandRow>(@MinUnits@) +@AP@ Ability Power</expandRow>",
+                    "desc": "Every @RefreshSeconds@ seconds, the next attack instead fires a magic orb at a random target, which explodes for @MagicDamage@% Ability Power as magic damage.<br><br>Spellslingers gain:<br><row>(@MinUnits@) +@AP@ Ability Power</row><br><row>(@MinUnits@) +@AP@ Ability Power</row><br><row>(@MinUnits@) +@AP@ Ability Power</row><br><row>(@MinUnits@) +@AP@ Ability Power, and orbs deal @MagicDamage@% Ability Power</row>",
                     "effects": [
                         {
                             "maxUnits": 3,
@@ -25374,27 +25379,37 @@
                             "style": 1,
                             "variables": {
                                 "AP": 25.0,
-                                "MagicDamage": 90.0,
+                                "MagicDamage": 80.0,
                                 "{b258b089}": 5.0
                             }
                         },
                         {
                             "maxUnits": 5,
                             "minUnits": 4,
-                            "style": 4,
+                            "style": 3,
                             "variables": {
                                 "AP": 60.0,
-                                "MagicDamage": 90.0,
+                                "MagicDamage": 80.0,
                                 "{b258b089}": 5.0
                             }
                         },
                         {
                             "maxUnits": 7,
                             "minUnits": 6,
-                            "style": 5,
+                            "style": 4,
                             "variables": {
                                 "AP": 100.0,
-                                "MagicDamage": 90.0,
+                                "MagicDamage": 80.0,
+                                "{b258b089}": 5.0
+                            }
+                        },
+                        {
+                            "maxUnits": 25000,
+                            "minUnits": 8,
+                            "style": 5,
+                            "variables": {
+                                "AP": 150.0,
+                                "MagicDamage": 200.0,
                                 "{b258b089}": 5.0
                             }
                         }
@@ -31944,9 +31959,9 @@
                                 "name": "ShieldAmount",
                                 "value": [
                                     0.699999988079071,
-                                    200.0,
                                     250.0,
-                                    325.0,
+                                    300.0,
+                                    375.0,
                                     0.699999988079071,
                                     0.699999988079071,
                                     0.699999988079071
@@ -31959,14 +31974,14 @@
                     "icon": "ASSETS/UX/TFT/ChampionSplashes/TFT8_Galio.TFT_Set8.dds",
                     "name": "Galio",
                     "stats": {
-                        "armor": 40.0,
+                        "armor": 45.0,
                         "attackSpeed": 0.550000011920929,
                         "critChance": 0.25,
                         "critMultiplier": 1.399999976158142,
                         "damage": 50.0,
                         "hp": 650.0,
                         "initialMana": 60.0,
-                        "magicResist": 40.0,
+                        "magicResist": 45.0,
                         "mana": 120.0,
                         "range": 1.0
                     },
@@ -32126,8 +32141,8 @@
                     },
                     "traits": [
                         "Civilian",
-                        "Forecaster",
-                        "Spellslinger"
+                        "Spellslinger",
+                        "Forecaster"
                     ]
                 },
                 {
@@ -32217,9 +32232,9 @@
                                 "name": "Damage",
                                 "value": [
                                     0.0,
-                                    180.0,
-                                    270.0,
-                                    400.0,
+                                    190.0,
+                                    285.0,
+                                    425.0,
                                     0.0,
                                     0.0,
                                     0.0
@@ -32333,14 +32348,14 @@
                     "icon": "ASSETS/UX/TFT/ChampionSplashes/TFT8_Nilah.TFT_Set8.dds",
                     "name": "Nilah",
                     "stats": {
-                        "armor": 45.0,
+                        "armor": 50.0,
                         "attackSpeed": 0.699999988079071,
                         "critChance": 0.25,
                         "critMultiplier": 1.399999976158142,
                         "damage": 45.0,
                         "hp": 800.0,
                         "initialMana": 50.0,
-                        "magicResist": 45.0,
+                        "magicResist": 50.0,
                         "mana": 125.0,
                         "range": 1.0
                     },
@@ -32371,9 +32386,9 @@
                                 "name": "Damage",
                                 "value": [
                                     0.15000000596046448,
-                                    140.0,
-                                    210.0,
-                                    350.0,
+                                    150.0,
+                                    225.0,
+                                    385.0,
                                     0.15000000596046448,
                                     0.15000000596046448,
                                     0.15000000596046448
@@ -32435,13 +32450,13 @@
                             {
                                 "name": "Resists",
                                 "value": [
-                                    30.0,
                                     40.0,
                                     50.0,
                                     60.0,
                                     70.0,
                                     80.0,
-                                    90.0
+                                    90.0,
+                                    100.0
                                 ]
                             },
                             {
@@ -32481,9 +32496,9 @@
                         "critMultiplier": 1.399999976158142,
                         "damage": 60.0,
                         "hp": 750.0,
-                        "initialMana": 75.0,
+                        "initialMana": 80.0,
                         "magicResist": 50.0,
-                        "mana": 175.0,
+                        "mana": 160.0,
                         "range": 1.0
                     },
                     "traits": [
@@ -32570,9 +32585,9 @@
                         "critMultiplier": 1.399999976158142,
                         "damage": 60.0,
                         "hp": 1000.0,
-                        "initialMana": 60.0,
+                        "initialMana": 75.0,
                         "magicResist": 60.0,
-                        "mana": 160.0,
+                        "mana": 150.0,
                         "range": 1.0
                     },
                     "traits": [
@@ -32591,9 +32606,9 @@
                                 "name": "ShieldAmount",
                                 "value": [
                                     0.0,
-                                    30.0,
-                                    300.0,
-                                    3000.0,
+                                    200.0,
+                                    500.0,
+                                    4000.0,
                                     160.0,
                                     200.0,
                                     240.0
@@ -32781,7 +32796,7 @@
                         "range": 1.0
                     },
                     "traits": [
-                        "Mecha: PRIME",
+                        "Mecha:PRIME",
                         "Defender"
                     ]
                 },
@@ -32806,13 +32821,13 @@
                             {
                                 "name": "ADPercent",
                                 "value": [
-                                    1.5,
-                                    1.5,
-                                    1.5,
-                                    1.5,
-                                    1.5,
-                                    1.5,
-                                    1.5
+                                    1.399999976158142,
+                                    1.399999976158142,
+                                    1.399999976158142,
+                                    1.399999976158142,
+                                    1.399999976158142,
+                                    1.399999976158142,
+                                    1.399999976158142
                                 ]
                             },
                             {
@@ -32838,7 +32853,7 @@
                         "attackSpeed": 0.699999988079071,
                         "critChance": 0.25,
                         "critMultiplier": 1.399999976158142,
-                        "damage": 65.0,
+                        "damage": 60.0,
                         "hp": 600.0,
                         "initialMana": 0,
                         "magicResist": 20.0,
@@ -32846,7 +32861,7 @@
                         "range": 4.0
                     },
                     "traits": [
-                        "Mecha: PRIME",
+                        "Mecha:PRIME",
                         "Ace"
                     ]
                 },
@@ -32899,7 +32914,7 @@
                         "range": 1.0
                     },
                     "traits": [
-                        "Mecha: PRIME",
+                        "Mecha:PRIME",
                         "Renegade",
                         "Aegis"
                     ]
@@ -32937,13 +32952,13 @@
                             {
                                 "name": "TotalStacks",
                                 "value": [
-                                    10.0,
-                                    10.0,
-                                    10.0,
-                                    10.0,
-                                    10.0,
-                                    10.0,
-                                    10.0
+                                    8.0,
+                                    8.0,
+                                    8.0,
+                                    8.0,
+                                    8.0,
+                                    8.0,
+                                    8.0
                                 ]
                             }
                         ]
@@ -32965,7 +32980,7 @@
                         "range": 1.0
                     },
                     "traits": [
-                        "Mecha: PRIME",
+                        "Mecha:PRIME",
                         "Brawler"
                     ]
                 },
@@ -33222,8 +33237,8 @@
                                 "name": "AutoAttackBonus",
                                 "value": [
                                     0.0,
-                                    40.0,
-                                    60.0,
+                                    30.0,
+                                    45.0,
                                     200.0,
                                     80.0,
                                     100.0,
@@ -33274,7 +33289,7 @@
                     "name": "Zed",
                     "stats": {
                         "armor": 50.0,
-                        "attackSpeed": 0.8999999761581421,
+                        "attackSpeed": 0.8500000238418579,
                         "critChance": 0.25,
                         "critMultiplier": 1.399999976158142,
                         "damage": 90.0,
@@ -33507,13 +33522,13 @@
                             {
                                 "name": "MaxHealthPercent",
                                 "value": [
-                                    0.18000000715255737,
-                                    0.18000000715255737,
-                                    0.18000000715255737,
-                                    0.18000000715255737,
-                                    0.18000000715255737,
-                                    0.18000000715255737,
-                                    0.18000000715255737
+                                    0.20000000298023224,
+                                    0.20000000298023224,
+                                    0.20000000298023224,
+                                    0.20000000298023224,
+                                    0.20000000298023224,
+                                    0.20000000298023224,
+                                    0.20000000298023224
                                 ]
                             },
                             {
@@ -35233,13 +35248,13 @@
                             {
                                 "name": "ASRatio",
                                 "value": [
-                                    0.15000000596046448,
-                                    0.15000000596046448,
-                                    0.15000000596046448,
-                                    0.15000000596046448,
-                                    0.15000000596046448,
-                                    0.15000000596046448,
-                                    0.15000000596046448
+                                    0.10000000149011612,
+                                    0.10000000149011612,
+                                    0.10000000149011612,
+                                    0.10000000149011612,
+                                    0.10000000149011612,
+                                    0.10000000149011612,
+                                    0.10000000149011612
                                 ]
                             },
                             {
@@ -35265,7 +35280,7 @@
                         "attackSpeed": 1.0,
                         "critChance": 0.25,
                         "critMultiplier": 1.399999976158142,
-                        "damage": 99.0,
+                        "damage": 80.0,
                         "hp": 1100.0,
                         "initialMana": 100.0,
                         "magicResist": 50.0,
@@ -35899,9 +35914,9 @@
                                 "name": "Damage",
                                 "value": [
                                     0.0,
-                                    150.0,
-                                    225.0,
-                                    350.0,
+                                    140.0,
+                                    210.0,
+                                    315.0,
                                     0.0,
                                     0.0,
                                     0.0
@@ -35938,7 +35953,7 @@
                         "range": 1.0
                     },
                     "traits": [
-                        "Mecha: PRIME",
+                        "Mecha:PRIME",
                         "Defender"
                     ]
                 },
@@ -36349,7 +36364,7 @@
                 },
                 {
                     "apiName": "Set8_AnimaSquad",
-                    "desc": "Anima Squad members build fame for scoring champion kills. When they pause to celebrate a kill, they permanently gain @HealthPerStack@ maximum Health per point of fame. Fame immediately benefits the whole Anima Squad.<br><br>Anima Squad also gains:<br><expandRow>(@MinUnits@) @InitialAD@% Attack Damage and @InitialAP@ Ability Power</expandRow><br><br>Total Fame: @TFTUnitProperty.trait:TFT8_AnimaFameStacks@<br>Bonus Health: @TFTUnitProperty.trait:TFT8_AnimaFameHP@",
+                    "desc": "Anima Squad members pose after champion kills, increasing their fame. Anima Squad units gain permanent @HealthPerStack@ Health per fame stack aquired this game.<br><br>Anima Squad units also gain:<br><expandRow>(@MinUnits@) @InitialAD@% Attack Damage and @InitialAP@ Ability Power</expandRow><br><br>Total Fame: @TFTUnitProperty.trait:TFT8_AnimaFameStacks@<br>Bonus Health: @TFTUnitProperty.trait:TFT8_AnimaFameHP@",
                     "effects": [
                         {
                             "maxUnits": 4,
@@ -36366,8 +36381,8 @@
                             "minUnits": 5,
                             "style": 4,
                             "variables": {
-                                "{054d3a66}": 40.0,
-                                "{194d59e2}": 40.0,
+                                "{054d3a66}": 35.0,
+                                "{194d59e2}": 35.0,
                                 "{40376e4e}": 5.0
                             }
                         },
@@ -36376,8 +36391,8 @@
                             "minUnits": 7,
                             "style": 5,
                             "variables": {
-                                "{054d3a66}": 65.0,
-                                "{194d59e2}": 65.0,
+                                "{054d3a66}": 55.0,
+                                "{194d59e2}": 55.0,
                                 "{40376e4e}": 5.0
                             }
                         }
@@ -36472,9 +36487,9 @@
                             "minUnits": 3,
                             "style": 1,
                             "variables": {
-                                "HealthPercent": 110.0,
-                                "{b19c3b58}": 70.0,
-                                "{bc3d5e29}": 70.0
+                                "HealthPercent": 100.0,
+                                "{b19c3b58}": 60.0,
+                                "{bc3d5e29}": 60.0
                             }
                         },
                         {
@@ -36482,14 +36497,14 @@
                             "minUnits": 5,
                             "style": 4,
                             "variables": {
-                                "HealthPercent": 110.0,
-                                "{b19c3b58}": 50.0,
-                                "{bc3d5e29}": 50.0
+                                "HealthPercent": 100.0,
+                                "{b19c3b58}": 45.0,
+                                "{bc3d5e29}": 45.0
                             }
                         }
                     ],
                     "icon": "ASSETS/UX/TraitIcons/Trait_Icon_8_MechaPrime.tex",
-                    "name": "Mecha: PRIME"
+                    "name": "Mecha:PRIME"
                 },
                 {
                     "apiName": "Set8_Threat",
@@ -36514,7 +36529,7 @@
                             "minUnits": 2,
                             "style": 1,
                             "variables": {
-                                "{66b6cdea}": 3.0,
+                                "{66b6cdea}": 2.0,
                                 "{a576b894}": 1.0,
                                 "{d1ba07df}": 1.5
                             }
@@ -36524,7 +36539,7 @@
                             "minUnits": 4,
                             "style": 3,
                             "variables": {
-                                "{66b6cdea}": 3.0,
+                                "{66b6cdea}": 2.0,
                                 "{a576b894}": 1.0,
                                 "{d1ba07df}": 2.5
                             }
@@ -36534,7 +36549,7 @@
                             "minUnits": 6,
                             "style": 4,
                             "variables": {
-                                "{66b6cdea}": 3.0,
+                                "{66b6cdea}": 2.0,
                                 "{a576b894}": 1.0,
                                 "{d1ba07df}": 4.5
                             }
@@ -36544,7 +36559,7 @@
                             "minUnits": 8,
                             "style": 5,
                             "variables": {
-                                "{66b6cdea}": 3.0,
+                                "{66b6cdea}": 2.0,
                                 "{a576b894}": 1.0,
                                 "{d1ba07df}": 7.0
                             }
@@ -36793,7 +36808,7 @@
                 },
                 {
                     "apiName": "Set8_StarGuardian",
-                    "desc": "Gain more Mana from all sources. <br><br><expandRow>(@MinUnits@) @AdditionalManaPercentage@% Mana</expandRow>",
+                    "desc": "Gain more Mana in combat. <br><br><expandRow>(@MinUnits@) @AdditionalManaPercentage@% Mana</expandRow>",
                     "effects": [
                         {
                             "maxUnits": 4,
@@ -36953,7 +36968,7 @@
                 },
                 {
                     "apiName": "Set8_Channeler",
-                    "desc": "Every @RefreshSeconds@ seconds, the next attack instead fires a magic orb at a random target, which explodes for @MagicDamage@% Ability Power as magic damage.<br><br>Spellslingers gain:<br><expandRow>(@MinUnits@) +@AP@ Ability Power</expandRow>",
+                    "desc": "Every @RefreshSeconds@ seconds, the next attack instead fires a magic orb at a random target, which explodes for @MagicDamage@% Ability Power as magic damage.<br><br>Spellslingers gain:<br><row>(@MinUnits@) +@AP@ Ability Power</row><br><row>(@MinUnits@) +@AP@ Ability Power</row><br><row>(@MinUnits@) +@AP@ Ability Power</row><br><row>(@MinUnits@) +@AP@ Ability Power, and orbs deal @MagicDamage@% Ability Power</row>",
                     "effects": [
                         {
                             "maxUnits": 3,
@@ -36961,27 +36976,37 @@
                             "style": 1,
                             "variables": {
                                 "AP": 25.0,
-                                "MagicDamage": 90.0,
+                                "MagicDamage": 80.0,
                                 "{b258b089}": 5.0
                             }
                         },
                         {
                             "maxUnits": 5,
                             "minUnits": 4,
-                            "style": 4,
+                            "style": 3,
                             "variables": {
                                 "AP": 60.0,
-                                "MagicDamage": 90.0,
+                                "MagicDamage": 80.0,
                                 "{b258b089}": 5.0
                             }
                         },
                         {
                             "maxUnits": 7,
                             "minUnits": 6,
-                            "style": 5,
+                            "style": 4,
                             "variables": {
                                 "AP": 100.0,
-                                "MagicDamage": 90.0,
+                                "MagicDamage": 80.0,
+                                "{b258b089}": 5.0
+                            }
+                        },
+                        {
+                            "maxUnits": 25000,
+                            "minUnits": 8,
+                            "style": 5,
+                            "variables": {
+                                "AP": 150.0,
+                                "MagicDamage": 200.0,
                                 "{b258b089}": 5.0
                             }
                         }
@@ -61003,9 +61028,9 @@
                                 "name": "ShieldAmount",
                                 "value": [
                                     0.699999988079071,
-                                    200.0,
                                     250.0,
-                                    325.0,
+                                    300.0,
+                                    375.0,
                                     0.699999988079071,
                                     0.699999988079071,
                                     0.699999988079071
@@ -61018,14 +61043,14 @@
                     "icon": "ASSETS/UX/TFT/ChampionSplashes/TFT8_Galio.TFT_Set8.dds",
                     "name": "Galio",
                     "stats": {
-                        "armor": 40.0,
+                        "armor": 45.0,
                         "attackSpeed": 0.550000011920929,
                         "critChance": 0.25,
                         "critMultiplier": 1.399999976158142,
                         "damage": 50.0,
                         "hp": 650.0,
                         "initialMana": 60.0,
-                        "magicResist": 40.0,
+                        "magicResist": 45.0,
                         "mana": 120.0,
                         "range": 1.0
                     },
@@ -61185,8 +61210,8 @@
                     },
                     "traits": [
                         "Civilian",
-                        "Forecaster",
-                        "Spellslinger"
+                        "Spellslinger",
+                        "Forecaster"
                     ]
                 },
                 {
@@ -61276,9 +61301,9 @@
                                 "name": "Damage",
                                 "value": [
                                     0.0,
-                                    180.0,
-                                    270.0,
-                                    400.0,
+                                    190.0,
+                                    285.0,
+                                    425.0,
                                     0.0,
                                     0.0,
                                     0.0
@@ -61392,14 +61417,14 @@
                     "icon": "ASSETS/UX/TFT/ChampionSplashes/TFT8_Nilah.TFT_Set8.dds",
                     "name": "Nilah",
                     "stats": {
-                        "armor": 45.0,
+                        "armor": 50.0,
                         "attackSpeed": 0.699999988079071,
                         "critChance": 0.25,
                         "critMultiplier": 1.399999976158142,
                         "damage": 45.0,
                         "hp": 800.0,
                         "initialMana": 50.0,
-                        "magicResist": 45.0,
+                        "magicResist": 50.0,
                         "mana": 125.0,
                         "range": 1.0
                     },
@@ -61430,9 +61455,9 @@
                                 "name": "Damage",
                                 "value": [
                                     0.15000000596046448,
-                                    140.0,
-                                    210.0,
-                                    350.0,
+                                    150.0,
+                                    225.0,
+                                    385.0,
                                     0.15000000596046448,
                                     0.15000000596046448,
                                     0.15000000596046448
@@ -61494,13 +61519,13 @@
                             {
                                 "name": "Resists",
                                 "value": [
-                                    30.0,
                                     40.0,
                                     50.0,
                                     60.0,
                                     70.0,
                                     80.0,
-                                    90.0
+                                    90.0,
+                                    100.0
                                 ]
                             },
                             {
@@ -61540,9 +61565,9 @@
                         "critMultiplier": 1.399999976158142,
                         "damage": 60.0,
                         "hp": 750.0,
-                        "initialMana": 75.0,
+                        "initialMana": 80.0,
                         "magicResist": 50.0,
-                        "mana": 175.0,
+                        "mana": 160.0,
                         "range": 1.0
                     },
                     "traits": [
@@ -61629,9 +61654,9 @@
                         "critMultiplier": 1.399999976158142,
                         "damage": 60.0,
                         "hp": 1000.0,
-                        "initialMana": 60.0,
+                        "initialMana": 75.0,
                         "magicResist": 60.0,
-                        "mana": 160.0,
+                        "mana": 150.0,
                         "range": 1.0
                     },
                     "traits": [
@@ -61650,9 +61675,9 @@
                                 "name": "ShieldAmount",
                                 "value": [
                                     0.0,
-                                    30.0,
-                                    300.0,
-                                    3000.0,
+                                    200.0,
+                                    500.0,
+                                    4000.0,
                                     160.0,
                                     200.0,
                                     240.0
@@ -61840,7 +61865,7 @@
                         "range": 1.0
                     },
                     "traits": [
-                        "Mecha: PRIME",
+                        "Mecha:PRIME",
                         "Defender"
                     ]
                 },
@@ -61865,13 +61890,13 @@
                             {
                                 "name": "ADPercent",
                                 "value": [
-                                    1.5,
-                                    1.5,
-                                    1.5,
-                                    1.5,
-                                    1.5,
-                                    1.5,
-                                    1.5
+                                    1.399999976158142,
+                                    1.399999976158142,
+                                    1.399999976158142,
+                                    1.399999976158142,
+                                    1.399999976158142,
+                                    1.399999976158142,
+                                    1.399999976158142
                                 ]
                             },
                             {
@@ -61897,7 +61922,7 @@
                         "attackSpeed": 0.699999988079071,
                         "critChance": 0.25,
                         "critMultiplier": 1.399999976158142,
-                        "damage": 65.0,
+                        "damage": 60.0,
                         "hp": 600.0,
                         "initialMana": 0,
                         "magicResist": 20.0,
@@ -61905,7 +61930,7 @@
                         "range": 4.0
                     },
                     "traits": [
-                        "Mecha: PRIME",
+                        "Mecha:PRIME",
                         "Ace"
                     ]
                 },
@@ -61958,7 +61983,7 @@
                         "range": 1.0
                     },
                     "traits": [
-                        "Mecha: PRIME",
+                        "Mecha:PRIME",
                         "Renegade",
                         "Aegis"
                     ]
@@ -61996,13 +62021,13 @@
                             {
                                 "name": "TotalStacks",
                                 "value": [
-                                    10.0,
-                                    10.0,
-                                    10.0,
-                                    10.0,
-                                    10.0,
-                                    10.0,
-                                    10.0
+                                    8.0,
+                                    8.0,
+                                    8.0,
+                                    8.0,
+                                    8.0,
+                                    8.0,
+                                    8.0
                                 ]
                             }
                         ]
@@ -62024,7 +62049,7 @@
                         "range": 1.0
                     },
                     "traits": [
-                        "Mecha: PRIME",
+                        "Mecha:PRIME",
                         "Brawler"
                     ]
                 },
@@ -62281,8 +62306,8 @@
                                 "name": "AutoAttackBonus",
                                 "value": [
                                     0.0,
-                                    40.0,
-                                    60.0,
+                                    30.0,
+                                    45.0,
                                     200.0,
                                     80.0,
                                     100.0,
@@ -62333,7 +62358,7 @@
                     "name": "Zed",
                     "stats": {
                         "armor": 50.0,
-                        "attackSpeed": 0.8999999761581421,
+                        "attackSpeed": 0.8500000238418579,
                         "critChance": 0.25,
                         "critMultiplier": 1.399999976158142,
                         "damage": 90.0,
@@ -62566,13 +62591,13 @@
                             {
                                 "name": "MaxHealthPercent",
                                 "value": [
-                                    0.18000000715255737,
-                                    0.18000000715255737,
-                                    0.18000000715255737,
-                                    0.18000000715255737,
-                                    0.18000000715255737,
-                                    0.18000000715255737,
-                                    0.18000000715255737
+                                    0.20000000298023224,
+                                    0.20000000298023224,
+                                    0.20000000298023224,
+                                    0.20000000298023224,
+                                    0.20000000298023224,
+                                    0.20000000298023224,
+                                    0.20000000298023224
                                 ]
                             },
                             {
@@ -64292,13 +64317,13 @@
                             {
                                 "name": "ASRatio",
                                 "value": [
-                                    0.15000000596046448,
-                                    0.15000000596046448,
-                                    0.15000000596046448,
-                                    0.15000000596046448,
-                                    0.15000000596046448,
-                                    0.15000000596046448,
-                                    0.15000000596046448
+                                    0.10000000149011612,
+                                    0.10000000149011612,
+                                    0.10000000149011612,
+                                    0.10000000149011612,
+                                    0.10000000149011612,
+                                    0.10000000149011612,
+                                    0.10000000149011612
                                 ]
                             },
                             {
@@ -64324,7 +64349,7 @@
                         "attackSpeed": 1.0,
                         "critChance": 0.25,
                         "critMultiplier": 1.399999976158142,
-                        "damage": 99.0,
+                        "damage": 80.0,
                         "hp": 1100.0,
                         "initialMana": 100.0,
                         "magicResist": 50.0,
@@ -64958,9 +64983,9 @@
                                 "name": "Damage",
                                 "value": [
                                     0.0,
-                                    150.0,
-                                    225.0,
-                                    350.0,
+                                    140.0,
+                                    210.0,
+                                    315.0,
                                     0.0,
                                     0.0,
                                     0.0
@@ -64997,7 +65022,7 @@
                         "range": 1.0
                     },
                     "traits": [
-                        "Mecha: PRIME",
+                        "Mecha:PRIME",
                         "Defender"
                     ]
                 },
@@ -65408,7 +65433,7 @@
                 },
                 {
                     "apiName": "Set8_AnimaSquad",
-                    "desc": "Anima Squad members build fame for scoring champion kills. When they pause to celebrate a kill, they permanently gain @HealthPerStack@ maximum Health per point of fame. Fame immediately benefits the whole Anima Squad.<br><br>Anima Squad also gains:<br><expandRow>(@MinUnits@) @InitialAD@% Attack Damage and @InitialAP@ Ability Power</expandRow><br><br>Total Fame: @TFTUnitProperty.trait:TFT8_AnimaFameStacks@<br>Bonus Health: @TFTUnitProperty.trait:TFT8_AnimaFameHP@",
+                    "desc": "Anima Squad members pose after champion kills, increasing their fame. Anima Squad units gain permanent @HealthPerStack@ Health per fame stack aquired this game.<br><br>Anima Squad units also gain:<br><expandRow>(@MinUnits@) @InitialAD@% Attack Damage and @InitialAP@ Ability Power</expandRow><br><br>Total Fame: @TFTUnitProperty.trait:TFT8_AnimaFameStacks@<br>Bonus Health: @TFTUnitProperty.trait:TFT8_AnimaFameHP@",
                     "effects": [
                         {
                             "maxUnits": 4,
@@ -65425,8 +65450,8 @@
                             "minUnits": 5,
                             "style": 4,
                             "variables": {
-                                "{054d3a66}": 40.0,
-                                "{194d59e2}": 40.0,
+                                "{054d3a66}": 35.0,
+                                "{194d59e2}": 35.0,
                                 "{40376e4e}": 5.0
                             }
                         },
@@ -65435,8 +65460,8 @@
                             "minUnits": 7,
                             "style": 5,
                             "variables": {
-                                "{054d3a66}": 65.0,
-                                "{194d59e2}": 65.0,
+                                "{054d3a66}": 55.0,
+                                "{194d59e2}": 55.0,
                                 "{40376e4e}": 5.0
                             }
                         }
@@ -65531,9 +65556,9 @@
                             "minUnits": 3,
                             "style": 1,
                             "variables": {
-                                "HealthPercent": 110.0,
-                                "{b19c3b58}": 70.0,
-                                "{bc3d5e29}": 70.0
+                                "HealthPercent": 100.0,
+                                "{b19c3b58}": 60.0,
+                                "{bc3d5e29}": 60.0
                             }
                         },
                         {
@@ -65541,14 +65566,14 @@
                             "minUnits": 5,
                             "style": 4,
                             "variables": {
-                                "HealthPercent": 110.0,
-                                "{b19c3b58}": 50.0,
-                                "{bc3d5e29}": 50.0
+                                "HealthPercent": 100.0,
+                                "{b19c3b58}": 45.0,
+                                "{bc3d5e29}": 45.0
                             }
                         }
                     ],
                     "icon": "ASSETS/UX/TraitIcons/Trait_Icon_8_MechaPrime.tex",
-                    "name": "Mecha: PRIME"
+                    "name": "Mecha:PRIME"
                 },
                 {
                     "apiName": "Set8_Threat",
@@ -65573,7 +65598,7 @@
                             "minUnits": 2,
                             "style": 1,
                             "variables": {
-                                "{66b6cdea}": 3.0,
+                                "{66b6cdea}": 2.0,
                                 "{a576b894}": 1.0,
                                 "{d1ba07df}": 1.5
                             }
@@ -65583,7 +65608,7 @@
                             "minUnits": 4,
                             "style": 3,
                             "variables": {
-                                "{66b6cdea}": 3.0,
+                                "{66b6cdea}": 2.0,
                                 "{a576b894}": 1.0,
                                 "{d1ba07df}": 2.5
                             }
@@ -65593,7 +65618,7 @@
                             "minUnits": 6,
                             "style": 4,
                             "variables": {
-                                "{66b6cdea}": 3.0,
+                                "{66b6cdea}": 2.0,
                                 "{a576b894}": 1.0,
                                 "{d1ba07df}": 4.5
                             }
@@ -65603,7 +65628,7 @@
                             "minUnits": 8,
                             "style": 5,
                             "variables": {
-                                "{66b6cdea}": 3.0,
+                                "{66b6cdea}": 2.0,
                                 "{a576b894}": 1.0,
                                 "{d1ba07df}": 7.0
                             }
@@ -65852,7 +65877,7 @@
                 },
                 {
                     "apiName": "Set8_StarGuardian",
-                    "desc": "Gain more Mana from all sources. <br><br><expandRow>(@MinUnits@) @AdditionalManaPercentage@% Mana</expandRow>",
+                    "desc": "Gain more Mana in combat. <br><br><expandRow>(@MinUnits@) @AdditionalManaPercentage@% Mana</expandRow>",
                     "effects": [
                         {
                             "maxUnits": 4,
@@ -66012,7 +66037,7 @@
                 },
                 {
                     "apiName": "Set8_Channeler",
-                    "desc": "Every @RefreshSeconds@ seconds, the next attack instead fires a magic orb at a random target, which explodes for @MagicDamage@% Ability Power as magic damage.<br><br>Spellslingers gain:<br><expandRow>(@MinUnits@) +@AP@ Ability Power</expandRow>",
+                    "desc": "Every @RefreshSeconds@ seconds, the next attack instead fires a magic orb at a random target, which explodes for @MagicDamage@% Ability Power as magic damage.<br><br>Spellslingers gain:<br><row>(@MinUnits@) +@AP@ Ability Power</row><br><row>(@MinUnits@) +@AP@ Ability Power</row><br><row>(@MinUnits@) +@AP@ Ability Power</row><br><row>(@MinUnits@) +@AP@ Ability Power, and orbs deal @MagicDamage@% Ability Power</row>",
                     "effects": [
                         {
                             "maxUnits": 3,
@@ -66020,27 +66045,37 @@
                             "style": 1,
                             "variables": {
                                 "AP": 25.0,
-                                "MagicDamage": 90.0,
+                                "MagicDamage": 80.0,
                                 "{b258b089}": 5.0
                             }
                         },
                         {
                             "maxUnits": 5,
                             "minUnits": 4,
-                            "style": 4,
+                            "style": 3,
                             "variables": {
                                 "AP": 60.0,
-                                "MagicDamage": 90.0,
+                                "MagicDamage": 80.0,
                                 "{b258b089}": 5.0
                             }
                         },
                         {
                             "maxUnits": 7,
                             "minUnits": 6,
-                            "style": 5,
+                            "style": 4,
                             "variables": {
                                 "AP": 100.0,
-                                "MagicDamage": 90.0,
+                                "MagicDamage": 80.0,
+                                "{b258b089}": 5.0
+                            }
+                        },
+                        {
+                            "maxUnits": 25000,
+                            "minUnits": 8,
+                            "style": 5,
+                            "variables": {
+                                "AP": 150.0,
+                                "MagicDamage": 200.0,
                                 "{b258b089}": 5.0
                             }
                         }
@@ -84388,9 +84423,9 @@
                                 "name": "ShieldAmount",
                                 "value": [
                                     0.699999988079071,
-                                    200.0,
                                     250.0,
-                                    325.0,
+                                    300.0,
+                                    375.0,
                                     0.699999988079071,
                                     0.699999988079071,
                                     0.699999988079071
@@ -84403,14 +84438,14 @@
                     "icon": "ASSETS/UX/TFT/ChampionSplashes/TFT8_Galio.TFT_Set8.dds",
                     "name": "Galio",
                     "stats": {
-                        "armor": 40.0,
+                        "armor": 45.0,
                         "attackSpeed": 0.550000011920929,
                         "critChance": 0.25,
                         "critMultiplier": 1.399999976158142,
                         "damage": 50.0,
                         "hp": 650.0,
                         "initialMana": 60.0,
-                        "magicResist": 40.0,
+                        "magicResist": 45.0,
                         "mana": 120.0,
                         "range": 1.0
                     },
@@ -84570,8 +84605,8 @@
                     },
                     "traits": [
                         "Civilian",
-                        "Forecaster",
-                        "Spellslinger"
+                        "Spellslinger",
+                        "Forecaster"
                     ]
                 },
                 {
@@ -84661,9 +84696,9 @@
                                 "name": "Damage",
                                 "value": [
                                     0.0,
-                                    180.0,
-                                    270.0,
-                                    400.0,
+                                    190.0,
+                                    285.0,
+                                    425.0,
                                     0.0,
                                     0.0,
                                     0.0
@@ -84777,14 +84812,14 @@
                     "icon": "ASSETS/UX/TFT/ChampionSplashes/TFT8_Nilah.TFT_Set8.dds",
                     "name": "Nilah",
                     "stats": {
-                        "armor": 45.0,
+                        "armor": 50.0,
                         "attackSpeed": 0.699999988079071,
                         "critChance": 0.25,
                         "critMultiplier": 1.399999976158142,
                         "damage": 45.0,
                         "hp": 800.0,
                         "initialMana": 50.0,
-                        "magicResist": 45.0,
+                        "magicResist": 50.0,
                         "mana": 125.0,
                         "range": 1.0
                     },
@@ -84815,9 +84850,9 @@
                                 "name": "Damage",
                                 "value": [
                                     0.15000000596046448,
-                                    140.0,
-                                    210.0,
-                                    350.0,
+                                    150.0,
+                                    225.0,
+                                    385.0,
                                     0.15000000596046448,
                                     0.15000000596046448,
                                     0.15000000596046448
@@ -84879,13 +84914,13 @@
                             {
                                 "name": "Resists",
                                 "value": [
-                                    30.0,
                                     40.0,
                                     50.0,
                                     60.0,
                                     70.0,
                                     80.0,
-                                    90.0
+                                    90.0,
+                                    100.0
                                 ]
                             },
                             {
@@ -84925,9 +84960,9 @@
                         "critMultiplier": 1.399999976158142,
                         "damage": 60.0,
                         "hp": 750.0,
-                        "initialMana": 75.0,
+                        "initialMana": 80.0,
                         "magicResist": 50.0,
-                        "mana": 175.0,
+                        "mana": 160.0,
                         "range": 1.0
                     },
                     "traits": [
@@ -85014,9 +85049,9 @@
                         "critMultiplier": 1.399999976158142,
                         "damage": 60.0,
                         "hp": 1000.0,
-                        "initialMana": 60.0,
+                        "initialMana": 75.0,
                         "magicResist": 60.0,
-                        "mana": 160.0,
+                        "mana": 150.0,
                         "range": 1.0
                     },
                     "traits": [
@@ -85035,9 +85070,9 @@
                                 "name": "ShieldAmount",
                                 "value": [
                                     0.0,
-                                    30.0,
-                                    300.0,
-                                    3000.0,
+                                    200.0,
+                                    500.0,
+                                    4000.0,
                                     160.0,
                                     200.0,
                                     240.0
@@ -85225,7 +85260,7 @@
                         "range": 1.0
                     },
                     "traits": [
-                        "Mecha: PRIME",
+                        "Mecha:PRIME",
                         "Defender"
                     ]
                 },
@@ -85250,13 +85285,13 @@
                             {
                                 "name": "ADPercent",
                                 "value": [
-                                    1.5,
-                                    1.5,
-                                    1.5,
-                                    1.5,
-                                    1.5,
-                                    1.5,
-                                    1.5
+                                    1.399999976158142,
+                                    1.399999976158142,
+                                    1.399999976158142,
+                                    1.399999976158142,
+                                    1.399999976158142,
+                                    1.399999976158142,
+                                    1.399999976158142
                                 ]
                             },
                             {
@@ -85282,7 +85317,7 @@
                         "attackSpeed": 0.699999988079071,
                         "critChance": 0.25,
                         "critMultiplier": 1.399999976158142,
-                        "damage": 65.0,
+                        "damage": 60.0,
                         "hp": 600.0,
                         "initialMana": 0,
                         "magicResist": 20.0,
@@ -85290,7 +85325,7 @@
                         "range": 4.0
                     },
                     "traits": [
-                        "Mecha: PRIME",
+                        "Mecha:PRIME",
                         "Ace"
                     ]
                 },
@@ -85343,7 +85378,7 @@
                         "range": 1.0
                     },
                     "traits": [
-                        "Mecha: PRIME",
+                        "Mecha:PRIME",
                         "Renegade",
                         "Aegis"
                     ]
@@ -85381,13 +85416,13 @@
                             {
                                 "name": "TotalStacks",
                                 "value": [
-                                    10.0,
-                                    10.0,
-                                    10.0,
-                                    10.0,
-                                    10.0,
-                                    10.0,
-                                    10.0
+                                    8.0,
+                                    8.0,
+                                    8.0,
+                                    8.0,
+                                    8.0,
+                                    8.0,
+                                    8.0
                                 ]
                             }
                         ]
@@ -85409,7 +85444,7 @@
                         "range": 1.0
                     },
                     "traits": [
-                        "Mecha: PRIME",
+                        "Mecha:PRIME",
                         "Brawler"
                     ]
                 },
@@ -85666,8 +85701,8 @@
                                 "name": "AutoAttackBonus",
                                 "value": [
                                     0.0,
-                                    40.0,
-                                    60.0,
+                                    30.0,
+                                    45.0,
                                     200.0,
                                     80.0,
                                     100.0,
@@ -85718,7 +85753,7 @@
                     "name": "Zed",
                     "stats": {
                         "armor": 50.0,
-                        "attackSpeed": 0.8999999761581421,
+                        "attackSpeed": 0.8500000238418579,
                         "critChance": 0.25,
                         "critMultiplier": 1.399999976158142,
                         "damage": 90.0,
@@ -85951,13 +85986,13 @@
                             {
                                 "name": "MaxHealthPercent",
                                 "value": [
-                                    0.18000000715255737,
-                                    0.18000000715255737,
-                                    0.18000000715255737,
-                                    0.18000000715255737,
-                                    0.18000000715255737,
-                                    0.18000000715255737,
-                                    0.18000000715255737
+                                    0.20000000298023224,
+                                    0.20000000298023224,
+                                    0.20000000298023224,
+                                    0.20000000298023224,
+                                    0.20000000298023224,
+                                    0.20000000298023224,
+                                    0.20000000298023224
                                 ]
                             },
                             {
@@ -87677,13 +87712,13 @@
                             {
                                 "name": "ASRatio",
                                 "value": [
-                                    0.15000000596046448,
-                                    0.15000000596046448,
-                                    0.15000000596046448,
-                                    0.15000000596046448,
-                                    0.15000000596046448,
-                                    0.15000000596046448,
-                                    0.15000000596046448
+                                    0.10000000149011612,
+                                    0.10000000149011612,
+                                    0.10000000149011612,
+                                    0.10000000149011612,
+                                    0.10000000149011612,
+                                    0.10000000149011612,
+                                    0.10000000149011612
                                 ]
                             },
                             {
@@ -87709,7 +87744,7 @@
                         "attackSpeed": 1.0,
                         "critChance": 0.25,
                         "critMultiplier": 1.399999976158142,
-                        "damage": 99.0,
+                        "damage": 80.0,
                         "hp": 1100.0,
                         "initialMana": 100.0,
                         "magicResist": 50.0,
@@ -88343,9 +88378,9 @@
                                 "name": "Damage",
                                 "value": [
                                     0.0,
-                                    150.0,
-                                    225.0,
-                                    350.0,
+                                    140.0,
+                                    210.0,
+                                    315.0,
                                     0.0,
                                     0.0,
                                     0.0
@@ -88382,7 +88417,7 @@
                         "range": 1.0
                     },
                     "traits": [
-                        "Mecha: PRIME",
+                        "Mecha:PRIME",
                         "Defender"
                     ]
                 },
@@ -88791,7 +88826,7 @@
                 },
                 {
                     "apiName": "Set8_AnimaSquad",
-                    "desc": "Anima Squad members build fame for scoring champion kills. When they pause to celebrate a kill, they permanently gain @HealthPerStack@ maximum Health per point of fame. Fame immediately benefits the whole Anima Squad.<br><br>Anima Squad also gains:<br><expandRow>(@MinUnits@) @InitialAD@% Attack Damage and @InitialAP@ Ability Power</expandRow><br><br>Total Fame: @TFTUnitProperty.trait:TFT8_AnimaFameStacks@<br>Bonus Health: @TFTUnitProperty.trait:TFT8_AnimaFameHP@",
+                    "desc": "Anima Squad members pose after champion kills, increasing their fame. Anima Squad units gain permanent @HealthPerStack@ Health per fame stack aquired this game.<br><br>Anima Squad units also gain:<br><expandRow>(@MinUnits@) @InitialAD@% Attack Damage and @InitialAP@ Ability Power</expandRow><br><br>Total Fame: @TFTUnitProperty.trait:TFT8_AnimaFameStacks@<br>Bonus Health: @TFTUnitProperty.trait:TFT8_AnimaFameHP@",
                     "effects": [
                         {
                             "maxUnits": 4,
@@ -88808,8 +88843,8 @@
                             "minUnits": 5,
                             "style": 4,
                             "variables": {
-                                "{054d3a66}": 40.0,
-                                "{194d59e2}": 40.0,
+                                "{054d3a66}": 35.0,
+                                "{194d59e2}": 35.0,
                                 "{40376e4e}": 5.0
                             }
                         },
@@ -88818,8 +88853,8 @@
                             "minUnits": 7,
                             "style": 5,
                             "variables": {
-                                "{054d3a66}": 65.0,
-                                "{194d59e2}": 65.0,
+                                "{054d3a66}": 55.0,
+                                "{194d59e2}": 55.0,
                                 "{40376e4e}": 5.0
                             }
                         }
@@ -88914,9 +88949,9 @@
                             "minUnits": 3,
                             "style": 1,
                             "variables": {
-                                "HealthPercent": 110.0,
-                                "{b19c3b58}": 70.0,
-                                "{bc3d5e29}": 70.0
+                                "HealthPercent": 100.0,
+                                "{b19c3b58}": 60.0,
+                                "{bc3d5e29}": 60.0
                             }
                         },
                         {
@@ -88924,14 +88959,14 @@
                             "minUnits": 5,
                             "style": 4,
                             "variables": {
-                                "HealthPercent": 110.0,
-                                "{b19c3b58}": 50.0,
-                                "{bc3d5e29}": 50.0
+                                "HealthPercent": 100.0,
+                                "{b19c3b58}": 45.0,
+                                "{bc3d5e29}": 45.0
                             }
                         }
                     ],
                     "icon": "ASSETS/UX/TraitIcons/Trait_Icon_8_MechaPrime.tex",
-                    "name": "Mecha: PRIME"
+                    "name": "Mecha:PRIME"
                 },
                 {
                     "apiName": "Set8_Threat",
@@ -88956,7 +88991,7 @@
                             "minUnits": 2,
                             "style": 1,
                             "variables": {
-                                "{66b6cdea}": 3.0,
+                                "{66b6cdea}": 2.0,
                                 "{a576b894}": 1.0,
                                 "{d1ba07df}": 1.5
                             }
@@ -88966,7 +89001,7 @@
                             "minUnits": 4,
                             "style": 3,
                             "variables": {
-                                "{66b6cdea}": 3.0,
+                                "{66b6cdea}": 2.0,
                                 "{a576b894}": 1.0,
                                 "{d1ba07df}": 2.5
                             }
@@ -88976,7 +89011,7 @@
                             "minUnits": 6,
                             "style": 4,
                             "variables": {
-                                "{66b6cdea}": 3.0,
+                                "{66b6cdea}": 2.0,
                                 "{a576b894}": 1.0,
                                 "{d1ba07df}": 4.5
                             }
@@ -88986,7 +89021,7 @@
                             "minUnits": 8,
                             "style": 5,
                             "variables": {
-                                "{66b6cdea}": 3.0,
+                                "{66b6cdea}": 2.0,
                                 "{a576b894}": 1.0,
                                 "{d1ba07df}": 7.0
                             }
@@ -89235,7 +89270,7 @@
                 },
                 {
                     "apiName": "Set8_StarGuardian",
-                    "desc": "Gain more Mana from all sources. <br><br><expandRow>(@MinUnits@) @AdditionalManaPercentage@% Mana</expandRow>",
+                    "desc": "Gain more Mana in combat. <br><br><expandRow>(@MinUnits@) @AdditionalManaPercentage@% Mana</expandRow>",
                     "effects": [
                         {
                             "maxUnits": 4,
@@ -89395,7 +89430,7 @@
                 },
                 {
                     "apiName": "Set8_Channeler",
-                    "desc": "Every @RefreshSeconds@ seconds, the next attack instead fires a magic orb at a random target, which explodes for @MagicDamage@% Ability Power as magic damage.<br><br>Spellslingers gain:<br><expandRow>(@MinUnits@) +@AP@ Ability Power</expandRow>",
+                    "desc": "Every @RefreshSeconds@ seconds, the next attack instead fires a magic orb at a random target, which explodes for @MagicDamage@% Ability Power as magic damage.<br><br>Spellslingers gain:<br><row>(@MinUnits@) +@AP@ Ability Power</row><br><row>(@MinUnits@) +@AP@ Ability Power</row><br><row>(@MinUnits@) +@AP@ Ability Power</row><br><row>(@MinUnits@) +@AP@ Ability Power, and orbs deal @MagicDamage@% Ability Power</row>",
                     "effects": [
                         {
                             "maxUnits": 3,
@@ -89403,27 +89438,37 @@
                             "style": 1,
                             "variables": {
                                 "AP": 25.0,
-                                "MagicDamage": 90.0,
+                                "MagicDamage": 80.0,
                                 "{b258b089}": 5.0
                             }
                         },
                         {
                             "maxUnits": 5,
                             "minUnits": 4,
-                            "style": 4,
+                            "style": 3,
                             "variables": {
                                 "AP": 60.0,
-                                "MagicDamage": 90.0,
+                                "MagicDamage": 80.0,
                                 "{b258b089}": 5.0
                             }
                         },
                         {
                             "maxUnits": 7,
                             "minUnits": 6,
-                            "style": 5,
+                            "style": 4,
                             "variables": {
                                 "AP": 100.0,
-                                "MagicDamage": 90.0,
+                                "MagicDamage": 80.0,
+                                "{b258b089}": 5.0
+                            }
+                        },
+                        {
+                            "maxUnits": 25000,
+                            "minUnits": 8,
+                            "style": 5,
+                            "variables": {
+                                "AP": 150.0,
+                                "MagicDamage": 200.0,
                                 "{b258b089}": 5.0
                             }
                         }
