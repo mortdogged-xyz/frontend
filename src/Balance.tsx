@@ -259,7 +259,6 @@ export const ExtraSummaryChip = (props: {
 function formatIconName(name: string): string {
   return name
     .replace(/TFT\d_Augment_/g, '')
-    .replace(/TFT\d_HyperRollAugment_/g, 'HyperRoll')
     .replace(/[A-Z0-9]/g, ' $&')
     .trim();
 }

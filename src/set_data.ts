@@ -155,6 +155,9 @@ const blacklist = [
   'Warrior',
   'Guardian',
   'Trainer',
+
+  // HYPEROLL SPECIFIC augs
+  'HyperRoll',
 ];
 
 const whitelist = [
