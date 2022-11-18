@@ -109,6 +109,14 @@ function itemCost(icon: string): number {
   return -1;
 }
 
+function augCost(icon: string): number {
+  if (icon.includes('Carry')) {
+    return 10;
+  }
+
+  return 0;
+}
+
 const colormap: Record<number, string> = {
   5: 'gold',
   4: 'purple',
@@ -249,7 +257,11 @@ export const ExtraSummaryChip = (props: {
 };
 
 function formatIconName(name: string): string {
-  return name.replace(/[A-Z]/g, ' $&').trim();
+  return name
+    .replace(/TFT\d_Augment_/g, '')
+    .replace(/TFT\d_HyperRollAugment_/g, 'HyperRoll')
+    .replace(/[A-Z0-9]/g, ' $&')
+    .trim();
 }
 
 const DraggableIcon = (props: {
@@ -449,7 +461,7 @@ function convertData(
 }
 
 TFTData.champs.sort((a, b) => champCost(a) - champCost(b));
-TFTData.augs.sort();
+TFTData.augs.sort((a, b) => augCost(b) - augCost(a) + a.localeCompare(b));
 TFTData.items.sort((a, b) => itemCost(b) - itemCost(a));
 
 const champs = convertData(TFTData.champs.reverse(), 'champ', []);
