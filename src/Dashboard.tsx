@@ -217,6 +217,7 @@ const RenderSummary = (props: {summary: Array<Summary>; pile: IconKind}) => {
   return (
     <div style={{height: 'calc(100vh - 64px)', width: '100%'}}>
       <DataGrid
+        autoHeight
         rowHeight={rowHeight}
         rows={rows}
         columns={columns}
@@ -242,7 +243,7 @@ const CopyDataChip = (props: {data: any}) => {
     <Chip
       sx={{
         position: 'fixed',
-        right: 180,
+        right: 5,
         bottom: {md: 5, sm: 10, xs: 20},
       }}
       onClick={share}
