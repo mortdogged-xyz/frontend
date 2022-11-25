@@ -3544,7 +3544,7 @@
             "from": [],
             "icon": "ASSETS/Maps/TFT/Icons/Augments/ChoiceUI/ADMIN_Armorery_Icon.TFT_Set8.dds",
             "id": 9280,
-            "name": "On enemy death, A.D.M.I.N.s gain @TFTUnitProperty.item:TFT8_Admin_ASAmount@% Attack Speed",
+            "name": "On kill, your team gains @TFTUnitProperty.item:TFT8_Admin_ASAmount@% Attack Speed",
             "unique": false
         },
         {
@@ -3727,7 +3727,7 @@
             "from": [],
             "icon": "ASSETS/Maps/TFT/Icons/Augments/ChoiceUI/ADMIN_Armorery_Icon.TFT_Set8.dds",
             "id": 9278,
-            "name": "On enemy death, A.D.M.I.N.s gain @TFTUnitProperty.item:TFT8_Admin_ManaGained@ Mana",
+            "name": "On kill, your team gains @TFTUnitProperty.item:TFT8_Admin_ManaGained@ Mana",
             "unique": false
         },
         {
@@ -3747,7 +3747,7 @@
             "from": [],
             "icon": "ASSETS/Maps/TFT/Icons/Augments/ChoiceUI/ADMIN_Armorery_Icon.TFT_Set8.dds",
             "id": 9283,
-            "name": "On enemy death, A.D.M.I.N.s gain @TFTUnitProperty.item:TFT8_Admin_PermanentHealthPerActivation@ permanent maximum Health",
+            "name": "On kill, your team gains @TFTUnitProperty.item:TFT8_Admin_PermanentHealthPerActivation@ permanent maximum Health",
             "unique": false
         },
         {
@@ -3767,7 +3767,7 @@
             "from": [],
             "icon": "ASSETS/Maps/TFT/Icons/Augments/ChoiceUI/ADMIN_Armorery_Icon.TFT_Set8.dds",
             "id": 9279,
-            "name": "On enemy death, A.D.M.I.N.s gain a @TFTUnitProperty.item:TFT8_Admin_ShieldAmount@% Health shield",
+            "name": "On kill, your team gains @TFTUnitProperty.item:TFT8_Admin_ShieldAmount@% Health shield",
             "unique": false
         },
         {
@@ -4104,7 +4104,7 @@
             "from": [],
             "icon": "ASSETS/Maps/TFT/Icons/Augments/ChoiceUI/ADMIN_Armorery_Icon.TFT_Set8.dds",
             "id": 9281,
-            "name": "On enemy death, A.D.M.I.N.s heal @TFTUnitProperty.item:TFT8_Admin_HealAmount@",
+            "name": "On kill, your team gains @TFTUnitProperty.item:TFT8_Admin_HealAmount@",
             "unique": false
         },
         {
@@ -4144,7 +4144,7 @@
             "from": [],
             "icon": "ASSETS/Maps/TFT/Icons/Augments/ChoiceUI/ADMIN_Armorery_Icon.TFT_Set8.dds",
             "id": 9277,
-            "name": "On enemy death, A.D.M.I.N.s gain @TFTUnitProperty.item:TFT8_Admin_APGained@ Ability Power",
+            "name": "On kill, your team gains @TFTUnitProperty.item:TFT8_Admin_APGained@ Ability Power",
             "unique": false
         },
         {
@@ -4164,7 +4164,7 @@
             "from": [],
             "icon": "ASSETS/Maps/TFT/Icons/Augments/ChoiceUI/ADMIN_Armorery_Icon.TFT_Set8.dds",
             "id": 9282,
-            "name": "On enemy death, A.D.M.I.N.s gain @TFTUnitProperty.item:TFT8_Admin_ADGained@ Attack Damage",
+            "name": "On kill, your team gains @TFTUnitProperty.item:TFT8_Admin_ADGained@ Attack Damage",
             "unique": false
         },
         {
@@ -9270,10 +9270,11 @@
         },
         {
             "apiName": "TFT8_Augment_GalioCarry",
-            "desc": "Gain a Galio. His Ability deals @DamageAmp@% more damage and knocks up its target for @StunDuration@ seconds.",
+            "desc": "Gain a Galio. His Ability costs @ManaReduction@ less Mana to cast, deals @DamageAmp@% more damage and knocks up its target for @StunDuration@ seconds.",
             "effects": {
                 "DamageAmp": 75.0,
-                "StunDuration": 2.0
+                "StunDuration": 2.0,
+                "{7ccd3647}": 40.0
             },
             "from": [],
             "icon": "ASSETS/Characters/TFT8_Galio/HUD/TFT8_Galio.TFT_Set8.dds",
@@ -10377,7 +10378,7 @@
         },
         {
             "apiName": "TFT8_Item_CivilianEmblemItem",
-            "desc": "The holder gains the Civilian Trait.<br><br><tftitemrules>[Unique - only 1 per champion]</tftitemrules>",
+            "desc": "The holder gains the Civilian Trait.<br><br><tftitemrules>[Unique - only 1 per champion<br>Elusive - cannot be crafted.]</tftitemrules>",
             "effects": {
                 "Health": 150.0
             },
@@ -10404,7 +10405,7 @@
         },
         {
             "apiName": "TFT8_Item_UndergroundTheEmblemItem",
-            "desc": "The holder gains the Underground Trait.<br><br><tftitemrules>[Unique - only 1 per champion]</tftitemrules>",
+            "desc": "The holder gains the Underground Trait.<br><br><tftitemrules>[Unique - only 1 per champion<br>Elusive - cannot be crafted.]</tftitemrules>",
             "effects": {
                 "Health": 150.0
             },
@@ -10416,7 +10417,7 @@
         },
         {
             "apiName": "TFT8_Item_BrawlerEmblemItem",
-            "desc": "The holder gains the Brawler Trait.<br><br><tftitemrules>[Unique - only 1 per champion]</tftitemrules>",
+            "desc": "The holder gains the Brawler Trait.<br><br><tftitemrules>[Unique - only 1 per champion<br>Elusive - cannot be crafted.]</tftitemrules>",
             "effects": {
                 "Health": 150.0
             },
@@ -10438,7 +10439,7 @@
             ],
             "icon": "ASSETS/Maps/Particles/TFT/Item_Icons/Traits/Spatula/Set8/Admin.TFT_Set8.dds",
             "id": 8007,
-            "name": "A.D.M.I.N. Crest",
+            "name": "A.D.M.I.N. Emblem",
             "unique": true
         },
         {
@@ -10455,7 +10456,7 @@
         },
         {
             "apiName": "TFT8_Item_DeadeyeEmblemItem",
-            "desc": "The holder gains the Sureshot Trait.<br><br><tftitemrules>[Unique - only 1 per champion]</tftitemrules>",
+            "desc": "The holder gains the Sureshot Trait.<br><br><tftitemrules>[Unique - only 1 per champion<br>Elusive - cannot be crafted.]</tftitemrules>",
             "effects": {
                 "Health": 150.0
             },
@@ -10467,7 +10468,7 @@
         },
         {
             "apiName": "TFT8_Item_GenAEEmblemItem",
-            "desc": "The holder gains the Gadgeteen Trait.<br><br><tftitemrules>[Unique - only 1 per champion]</tftitemrules>",
+            "desc": "The holder gains the Gadgeteen Trait.<br><br><tftitemrules>[Unique - only 1 per champion<br>Elusive - cannot be crafted.]</tftitemrules>",
             "effects": {
                 "Health": 150.0
             },
@@ -10479,7 +10480,7 @@
         },
         {
             "apiName": "TFT8_Item_ExoPrimeEmblemItem",
-            "desc": "The holder gains the Mecha: PRIME Trait.<br><br><tftitemrules>[Unique - only 1 per champion]</tftitemrules>",
+            "desc": "The holder gains the Mecha: PRIME Trait.<br><br><tftitemrules>[Unique - only 1 per champion<br>Elusive - cannot be crafted.]</tftitemrules>",
             "effects": {
                 "Health": 150.0
             },
@@ -10491,7 +10492,7 @@
         },
         {
             "apiName": "TFT8_Item_StarGuardianEmblemItem",
-            "desc": "The holder gains the Star Guardian Trait.<br><br><tftitemrules>[Unique - only 1 per champion]</tftitemrules>",
+            "desc": "The holder gains the Star Guardian Trait.<br><br><tftitemrules>[Unique - only 1 per champion<br>Elusive - cannot be crafted.]</tftitemrules>",
             "effects": {
                 "Health": 150.0
             },
@@ -10533,7 +10534,7 @@
         },
         {
             "apiName": "TFT8_Item_AegisEmblemItem",
-            "desc": "The holder gains the Aegis Trait.<br><br><tftitemrules>[Unique - only 1 per champion]</tftitemrules>",
+            "desc": "The holder gains the Aegis Trait.<br><br><tftitemrules>[Unique - only 1 per champion<br>Elusive - cannot be crafted.]</tftitemrules>",
             "effects": {
                 "Health": 150.0
             },
@@ -10560,7 +10561,7 @@
         },
         {
             "apiName": "TFT8_Item_AceEmblemItem",
-            "desc": "The holder gains the Ace Trait.<br><br><tftitemrules>[Unique - only 1 per champion]</tftitemrules>",
+            "desc": "The holder gains the Ace Trait.<br><br><tftitemrules>[Unique - only 1 per champion<br>Elusive - cannot be crafted.]</tftitemrules>",
             "effects": {
                 "Health": 150.0
             },
@@ -10584,7 +10585,7 @@
         },
         {
             "apiName": "TFT8_Item_ChannelerEmblemItem",
-            "desc": "The holder gains the Spellslinger Trait.<br><br><tftitemrules>[Unique - only 1 per champion]</tftitemrules>",
+            "desc": "The holder gains the Spellslinger Trait.<br><br><tftitemrules>[Unique - only 1 per champion<br>Elusive - cannot be crafted.]</tftitemrules>",
             "effects": {
                 "Health": 150.0
             },
@@ -10611,7 +10612,7 @@
         },
         {
             "apiName": "TFT8_Item_DefenderEmblemItem",
-            "desc": "The holder gains the Defender Trait.<br><br><tftitemrules>[Unique - only 1 per champion]</tftitemrules>",
+            "desc": "The holder gains the Defender Trait.<br><br><tftitemrules>[Unique - only 1 per champion<br>Elusive - cannot be crafted.]</tftitemrules>",
             "effects": {
                 "Health": 150.0
             },
@@ -10638,7 +10639,7 @@
         },
         {
             "apiName": "TFT8_Item_PranksterEmblemItem",
-            "desc": "The holder gains the Prankster Trait.<br><br><tftitemrules>[Unique - only 1 per champion]</tftitemrules>",
+            "desc": "The holder gains the Prankster Trait.<br><br><tftitemrules>[Unique - only 1 per champion<br>Elusive - cannot be crafted.]</tftitemrules>",
             "effects": {
                 "Health": 150.0
             },
@@ -25521,14 +25522,13 @@
                 },
                 {
                     "apiName": "Set8_GenAE",
-                    "desc": "Gadgeteens create random modified weapons with powerful effects. Any champion can equip the items, but they fall apart after @TurnsPerItem@ player combat.<br><br>Gadgeteens make new items once the old ones have been used.<br><br><expandRow>(@MinUnits@) Create @ItemsToMake@ item(s) every player combat</expandRow><br>",
+                    "desc": "Gadgeteens create random modified weapons with powerful effects. Any champion can equip the items, but they fall apart after one round.<br><br><expandRow>(@MinUnits@) Create @ItemsToMake@ item(s) every round</expandRow><br>",
                     "effects": [
                         {
                             "maxUnits": 4,
                             "minUnits": 3,
                             "style": 1,
                             "variables": {
-                                "{780885d1}": 1.0,
                                 "{e3f67a80}": 1.0
                             }
                         },
@@ -25537,7 +25537,6 @@
                             "minUnits": 5,
                             "style": 4,
                             "variables": {
-                                "{780885d1}": 1.0,
                                 "{e3f67a80}": 2.0
                             }
                         }
@@ -37118,14 +37117,13 @@
                 },
                 {
                     "apiName": "Set8_GenAE",
-                    "desc": "Gadgeteens create random modified weapons with powerful effects. Any champion can equip the items, but they fall apart after @TurnsPerItem@ player combat.<br><br>Gadgeteens make new items once the old ones have been used.<br><br><expandRow>(@MinUnits@) Create @ItemsToMake@ item(s) every player combat</expandRow><br>",
+                    "desc": "Gadgeteens create random modified weapons with powerful effects. Any champion can equip the items, but they fall apart after one round.<br><br><expandRow>(@MinUnits@) Create @ItemsToMake@ item(s) every round</expandRow><br>",
                     "effects": [
                         {
                             "maxUnits": 4,
                             "minUnits": 3,
                             "style": 1,
                             "variables": {
-                                "{780885d1}": 1.0,
                                 "{e3f67a80}": 1.0
                             }
                         },
@@ -37134,7 +37132,6 @@
                             "minUnits": 5,
                             "style": 4,
                             "variables": {
-                                "{780885d1}": 1.0,
                                 "{e3f67a80}": 2.0
                             }
                         }
@@ -66187,14 +66184,13 @@
                 },
                 {
                     "apiName": "Set8_GenAE",
-                    "desc": "Gadgeteens create random modified weapons with powerful effects. Any champion can equip the items, but they fall apart after @TurnsPerItem@ player combat.<br><br>Gadgeteens make new items once the old ones have been used.<br><br><expandRow>(@MinUnits@) Create @ItemsToMake@ item(s) every player combat</expandRow><br>",
+                    "desc": "Gadgeteens create random modified weapons with powerful effects. Any champion can equip the items, but they fall apart after one round.<br><br><expandRow>(@MinUnits@) Create @ItemsToMake@ item(s) every round</expandRow><br>",
                     "effects": [
                         {
                             "maxUnits": 4,
                             "minUnits": 3,
                             "style": 1,
                             "variables": {
-                                "{780885d1}": 1.0,
                                 "{e3f67a80}": 1.0
                             }
                         },
@@ -66203,7 +66199,6 @@
                             "minUnits": 5,
                             "style": 4,
                             "variables": {
-                                "{780885d1}": 1.0,
                                 "{e3f67a80}": 2.0
                             }
                         }
@@ -89580,14 +89575,13 @@
                 },
                 {
                     "apiName": "Set8_GenAE",
-                    "desc": "Gadgeteens create random modified weapons with powerful effects. Any champion can equip the items, but they fall apart after @TurnsPerItem@ player combat.<br><br>Gadgeteens make new items once the old ones have been used.<br><br><expandRow>(@MinUnits@) Create @ItemsToMake@ item(s) every player combat</expandRow><br>",
+                    "desc": "Gadgeteens create random modified weapons with powerful effects. Any champion can equip the items, but they fall apart after one round.<br><br><expandRow>(@MinUnits@) Create @ItemsToMake@ item(s) every round</expandRow><br>",
                     "effects": [
                         {
                             "maxUnits": 4,
                             "minUnits": 3,
                             "style": 1,
                             "variables": {
-                                "{780885d1}": 1.0,
                                 "{e3f67a80}": 1.0
                             }
                         },
@@ -89596,7 +89590,6 @@
                             "minUnits": 5,
                             "style": 4,
                             "variables": {
-                                "{780885d1}": 1.0,
                                 "{e3f67a80}": 2.0
                             }
                         }
