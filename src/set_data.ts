@@ -218,6 +218,10 @@ const whitelist = [
   // SET 8
   'Stridebreaker',
   'GenAE',
+
+  // Augs
+  'Consistency',
+  'SacrificialPact',
 ];
 
 function offBlacklist(item: DataItem) {
