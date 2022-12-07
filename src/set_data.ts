@@ -221,7 +221,6 @@ const whitelist = [
 
   // Augs
   'Consistency',
-  'SacrificialPact',
 ];
 
 function offBlacklist(item: DataItem) {
